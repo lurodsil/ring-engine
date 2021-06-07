@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - AGUA
+  - Item Collision
+  - Target
+  - Damage
+  - Stone
+  - SideView
+  - Metal
+  - LightSpeedDashRing
+  - Grind
+  - Grass
+  - BreathBubble
+  - WaterSurface
+  - Ring Engine Light Probe
+  - FV
+  - Tornado
+  - Enemy
+  - Ocean
+  - p0
+  - Wood
+  - Pushable
+  - Rope
+  - TornadoBrake
+  - Water
+  - Camera Target
+  - HomingTarget
+  - Pit
+  - SpeedPad
+  - Ring
+  - Spring
+  - Monitor
+  - CameraTrigger
+  - MovingPlatform
+  - GoalRing
+  - Checkpoint
+  - Hazard
+  - Rail
+  - MovingRing
+  - Missile
+  - SplineCollision
+  - PulleyTrigger
+  - Underwater
+  - Shot
+  - Eggman
+  - Boss
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Collectible
+  - Explosion
+  - Wall
+  - Walkable
+  - Player
+  - Static
+  - Enemy
+  - Spline Collision
+  - Editor Only
+  - Shot
+  - ItemCollision
+  - WallCollision
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
