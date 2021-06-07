@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<InputManager>
+  <XboxAxis>
+    <DPadX>D-Pad X</DPadX>
+    <DPadY>D-Pad Y</DPadY>
+    <LeftStickX>Left Stick X</LeftStickX>
+    <LeftStickY>Left Stick Y</LeftStickY>
+    <LeftTrigger>Left Trigger</LeftTrigger>
+    <RightStickX>Right Stick X</RightStickX>
+    <RightStickY>Right Stick Y</RightStickY>
+    <RightTrigger>Right Trigger</RightTrigger>
+  </XboxAxis>
+  <XboxButton>
+    <A>A</A>
+    <B>B</B>
+    <Back>Back</Back>
+    <DPadDown>D-Pad Y</DPadDown>
+    <DPadLeft>D-Pad X</DPadLeft>
+    <DPadRight>D-Pad X</DPadRight>
+    <DPadUp>D-Pad Y</DPadUp>
+    <Guide>Guide</Guide>
+    <LeftShoulder>Left Shoulder</LeftShoulder>
+    <LeftStick>Left Stick</LeftStick>
+    <RightShoulder>Right Shoulder</RightShoulder>
+    <RightStick>Right Stick</RightStick>
+    <Start>Start</Start>
+    <X>X</X>
+    <Y>Y</Y>
+  </XboxButton>
+</InputManager>
