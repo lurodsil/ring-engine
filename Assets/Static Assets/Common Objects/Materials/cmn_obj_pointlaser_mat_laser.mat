@@ -95,7 +95,7 @@ Material:
     m_Colors:
     - _BlendColorB: {r: 1, g: 1, b: 1, a: 1}
     - _BlendColorG: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.07373047, g: 0.07373047, b: 0.07373047, a: 0.07373047}
+    - _Color: {r: 0.3762207, g: 0.3762207, b: 0.3762207, a: 0.3762207}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FalloffColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectionColor: {r: 0, g: 0, b: 0, a: 1}

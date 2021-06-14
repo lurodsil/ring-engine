@@ -58,11 +58,4 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-Assets/Static Assets/Common Objects/Materials/cmn_obj_dashpanel_HD_arrow.mat
-Assets/Static Assets/Common Objects/Materials/cmn_obj_jumppanel_HD_arrow.mat
-Assets/Static Assets/Common Objects/Materials/cmn_obj_pointlaser_mat_laser.mat
-Assets/Static Assets/Common Objects/Materials/cmn_obj_trickpanel_HD_arrow.mat
-Assets/Static Assets/Common Objects/Materials/cmn_obj_dashpanel_HD_arrow.mat
-Assets/Static Assets/Common Objects/Materials/cmn_obj_jumppanel_HD_arrow.mat
-Assets/Static Assets/Common Objects/Materials/cmn_obj_pointlaser_mat_laser.mat
-Assets/Static Assets/Common Objects/Materials/cmn_obj_trickpanel_HD_arrow.mat
+
