@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000013038256024}
+  m_IsPrefabAsset: 1
+--- !u!1 &1000013038256024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4000013887975740}
+  - component: {fileID: 114000013775587314}
+  m_Layer: 0
+  m_Name: SpringClassic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013887975740
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013038256024}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114000013775587314
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013038256024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196e4a969c84d1141ac10b0c6d3269a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  SetObjectID: 0
+  AimDirection: 0
+  DebugShotTimeLength: 2
+  FirstSpeed: 20
+  IsBreak: 0
+  IsChangeCameraWhenPathChange: 0
+  IsHomingAttackEnable: 0
+  IsPathChange: 0
+  IsSideSet: 0
+  IsStartVelocityConstant: 1
+  IsWallWalk: 0
+  IsYawUpdate: 0
+  KeepVelocityDistance: 6
+  MotionType: 0
+  OutOfControl: 0.25
+  TreasureSearchHideType: 0
+  m_IsConstantFrame: 0
+  m_IsConstantPosition: 1
+  m_IsMonkeyHunting: 0
+  m_IsStopBoost: 0
+  m_IsTo3D: 0
+  m_MonkeyTarget: {x: 0, y: 0, z: 0}

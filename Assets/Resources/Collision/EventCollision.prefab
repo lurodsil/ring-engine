@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000012275948874}
+  m_IsPrefabAsset: 1
+--- !u!1 &1000012275948874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4000013120437534}
+  - component: {fileID: 114000010820257634}
+  - component: {fileID: 65000013487008510}
+  m_Layer: 0
+  m_Name: EventCollision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000013120437534
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012275948874}
+  m_LocalRotation: {x: -0, y: 0.13269302, z: -0, w: 0.9911572}
+  m_LocalPosition: {x: -1451.55, y: 307.303, z: -1867.17}
+  m_LocalScale: {x: 0.9999999, y: 1, z: 0.9999999}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65000013487008510
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012275948874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 100, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010820257634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012275948874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f660d0910b7f3a458772dfbe4d9efb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  SetObjectID: 2902
+  Collision_Height: 100
+  Collision_Length: 20
+  Collision_Width: 20
+  DefaultStatus: 0
+  Durability: 0
+  Event0: 4
+  Event1: 0
+  Event2: 0
+  Event3: 0
+  Shape_Type: 0
+  TargetList3: 0
+  Timer0: 0
+  Timer1: 0
+  Timer2: 0
+  Timer3: 0
+  Trigger: 0
+  TriggerType: 0

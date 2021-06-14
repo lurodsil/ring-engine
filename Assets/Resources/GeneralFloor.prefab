@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000013438909726}
+  m_IsPrefabAsset: 1
+--- !u!1 &1000013438909726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4000010971136700}
+  - component: {fileID: 114000014108714078}
+  m_Layer: 0
+  m_Name: GeneralFloor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000010971136700
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013438909726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114000014108714078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013438909726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa4fbbff1b9f3d4c9ffd8cebfac0de3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  SetObjectID: 0
+  Amplitude: 1
+  AttachOffsetX: 0
+  AttachOffsetY: 0
+  AttachOffsetZ: 0
+  BeginEdge: 0
+  Cycle: 1
+  FallPointIndex: -1
+  FallPointTime: -0.1
+  FallTime: 0
+  FloorSize: 1
+  FloorType: 0
+  ForceGrid: 0
+  Gravity: 45
+  InitOffset: 0
+  IsBreakable: 0
+  IsEnableFall: 0
+  IsMessageON: 0
+  IsRelativePosition: 1
+  IsReverse: 0
+  IsWallJump: 0
+  LightFieldOffset: {x: 0, y: 0, z: 0}
+  ModelInterval: 3
+  ModelNum: 1
+  MoveType: 0
+  MoveTypeGeneral: 0
+  MoveVel: 5
+  OnFloorTime: 5
+  Phase: 0
+  RailDir: 0
+  Ratio: 0
+  ResetTime: 10
+  StartByNotify: 0
+  UsePointFloor: 1
+  UseStartSE: 0
+  VisibleRail: 1
+  WaitShakeTime: -0.1
