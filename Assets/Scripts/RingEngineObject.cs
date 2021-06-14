@@ -2,6 +2,8 @@
 
 public class RingEngineObject : MonoBehaviour
 {
+    public Player player { get; set; }
+
     public virtual void OnEnable()
     {
         if (GetComponent<AudioSource>())
