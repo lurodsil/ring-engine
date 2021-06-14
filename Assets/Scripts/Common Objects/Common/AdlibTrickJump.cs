@@ -1,36 +1,27 @@
 using RingEngine;
 using UnityEngine;
 
-public class AdlibTrickJump : GenerationsObject
+public class AdlibTrickJump : RingEngineObject
 {
-
-
     public float ImpulseSpeedOnBoost = 41f;
     public float ImpulseSpeedOnNormal = 41f;
-
     public bool IsTo3D = true;
     public float OutOfControl = 3.5f;
-
-    public float SizeType = 1f;
-
     private AudioSource audioSource;
     public Transform startPoint;
-
-
+    public AudioClip sound;
     float duration;
     float outOfControl;
 
-    public override void OnValidate()
+    private void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     #region State Jump Board
     void StateAdlibTrickJumpStart()
     {
         Time.timeScale = 0.7f;
-
-
 
         player.transform.position = startPoint.position;
 
@@ -49,16 +40,14 @@ public class AdlibTrickJump : GenerationsObject
     }
     void StateAdlibTrickJump()
     {
-
-
         if (Time.time > outOfControl)
         {
-            player.stateMachine.ChangeState(player.StateTransition);
+            player.stateMachine.ChangeState(player.StateTransition, gameObject);
         }
     }
     void StateAdlibTrickJumpEnd()
     {
-
+        Time.timeScale = 1f;
     }
     #endregion
 
@@ -78,15 +67,11 @@ public class AdlibTrickJump : GenerationsObject
     {
         if (other.CompareTag(GameTags.playerTag))
         {
-
-            if (!audioSource.isPlaying)
-            {
-                //audioSource.PlayOneShot(springSound);
-            }
+            audioSource.PlayOneShot(sound);
 
             player = other.GetComponent<Player>();
 
-            player.stateMachine.ChangeState(StateAdlibTrickJump);
+            player.stateMachine.ChangeState(StateAdlibTrickJump, gameObject);
         }
     }
 }

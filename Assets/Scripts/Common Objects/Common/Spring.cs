@@ -1,35 +1,14 @@
 using RingEngine;
 using UnityEngine;
 
-public class Spring : GenerationsObject
+public class Spring : RingEngineObject
 {
-    public float AimDirection = 0f;
-    public float BaseRotation = 0f;
     public float DebugShotTimeLength = 2f;
     public float FirstSpeed = 30f;
-    public bool IsBreak = false;
-    public bool IsChangeCameraWhenPathChange = true;
     public bool IsHomingAttackEnable = false;
-    public bool IsLongBase = false;
-    public bool IsPathChange = false;
-    public bool IsSideSet = false;
-    public bool IsStartVelocityConstant = true;
-    public bool IsWallWalk = false;
-    public bool IsWithBase = false;
-    public bool IsYawUpdate = false;
     public float KeepVelocityDistance = 5f;
-    public float MotionType = 0f;
     public float OutOfControl = 0.4f;
-    public bool m_IsConstantFrame = false;
-    public bool m_IsConstantPosition = true;
-    public bool m_IsMonkeyHunting = false;
-    public bool m_IsStopBoost = false;
-    public bool m_IsTo3D = false;
-    public Vector3 m_MonkeyTarget;
-    public bool IsInvisible = false;
-    public bool HasBase = false;
-    public bool m_IsMonkeyHuntingLowAngle = true;
-
+    public bool isBoostCancel = false;
     public AudioClip springSound;
 
     private Animator animator;
@@ -41,11 +20,6 @@ public class Spring : GenerationsObject
     private float duration;
     private float outOfControl;
     private float dotTransformUpVector3Up;
-
-    public override void OnValidate()
-    {
-
-    }
 
     public void Start()
     {
@@ -61,7 +35,7 @@ public class Spring : GenerationsObject
         duration = player.stateMachine.lastStateTime + MathfExtension.Time(KeepVelocityDistance, FirstSpeed);
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
         player.rigidbody.velocity = Vector3.zero;
-        if (m_IsStopBoost)
+        if (isBoostCancel)
         {
             player.isBoosting = false;
         }
@@ -122,12 +96,4 @@ public class Spring : GenerationsObject
         Gizmos.color = Color.red;
         GizmosExtension.DrawTrajectory(transform.position, transform.up, FirstSpeed, OutOfControl, KeepVelocityDistance);
     }
-}
-
-public interface ISpring
-{
-    public void StateSpringStart();
-    public void StateSpring();
-    public void StateSpringEnd();
-
 }
