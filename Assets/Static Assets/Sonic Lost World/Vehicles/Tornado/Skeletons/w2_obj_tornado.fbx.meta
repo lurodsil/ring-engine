@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: 36efa0e746670af479cb78bb437f2202
+timeCreated: 1478820834
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Blade_roter
+    100002: Body
+    100004: Ear_L
+    100006: Ear_R
+    100008: Flap_L
+    100010: Flap_R
+    100012: ForeArm_L
+    100014: ForeArm_R
+    100016: Hair1
+    100018: Hair2
+    100020: Hair3
+    100022: Hand_L
+    100024: Hand_R
+    100026: Head
+    100028: Main_roter
+    100030: Mesh_tornado
+    100032: MeshTails
+    100034: Meter_L
+    100036: Meter_R
+    100038: Reference
+    100040: Sonic_position
+    100042: Spine1
+    100044: Tailwing
+    100046: UpperArm_L
+    100048: UpperArm_R
+    100050: w2_obj_tornado
+    100052: //RootNode
+    100054: w2_obj_tornado 1
+    100056: Whisker_L
+    100058: Whisker_R
+    400000: Blade_roter
+    400002: Body
+    400004: Ear_L
+    400006: Ear_R
+    400008: Flap_L
+    400010: Flap_R
+    400012: ForeArm_L
+    400014: ForeArm_R
+    400016: Hair1
+    400018: Hair2
+    400020: Hair3
+    400022: Hand_L
+    400024: Hand_R
+    400026: Head
+    400028: Main_roter
+    400030: Mesh_tornado
+    400032: MeshTails
+    400034: Meter_L
+    400036: Meter_R
+    400038: Reference
+    400040: Sonic_position
+    400042: Spine1
+    400044: Tailwing
+    400046: UpperArm_L
+    400048: UpperArm_R
+    400050: //RootNode
+    400052: w2_obj_tornado
+    400054: w2_obj_tornado 1
+    400056: Whisker_L
+    400058: Whisker_R
+    4300000: w2_obj_tornado
+    9500000: //RootNode
+    13700000: w2_obj_tornado
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: 19dd35eb66a615042975a6da97fc1989
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Body
+  - first:
+      1: 100002
+    second: enm_spina_HD
+  - first:
+      1: 100004
+    second: enm_spina_HD 1
+  - first:
+      1: 100006
+    second: //RootNode
+  - first:
+      1: 100008
+    second: Head
+  - first:
+      1: 100010
+    second: Hips
+  - first:
+      1: 100012
+    second: Mesh
+  - first:
+      1: 100014
+    second: Parts
+  - first:
+      1: 100016
+    second: Reference
+  - first:
+      4: 400000
+    second: Body
+  - first:
+      4: 400002
+    second: enm_spina_HD
+  - first:
+      4: 400004
+    second: enm_spina_HD 1
+  - first:
+      4: 400006
+    second: //RootNode
+  - first:
+      4: 400008
+    second: Head
+  - first:
+      4: 400010
+    second: Hips
+  - first:
+      4: 400012
+    second: Mesh
+  - first:
+      4: 400014
+    second: Parts
+  - first:
+      4: 400016
+    second: Reference
+  - first:
+      21: 2100000
+    second: enm_spina_body
+  - first:
+      21: 2100002
+    second: enm_spina_metal
+  - first:
+      21: 2100004
+    second: enm_spina_eye
+  - first:
+      21: 2100006
+    second: enm_spina_ball
+  - first:
+      21: 2100008
+    second: enm_spina_light
+  - first:
+      43: 4300000
+    second: enm_spina_HD
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: enm_spina_HD
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_spina_ball
+    second: {fileID: 2100000, guid: 5aec0066bc1f716419ffaf39d81ece07, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_spina_body
+    second: {fileID: 2100000, guid: e4f8d3d6f3fea9043bc2b2368180fce9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_spina_eye
+    second: {fileID: 2100000, guid: 334b0e8ae9cb61347a7d64c495139865, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_spina_light
+    second: {fileID: 2100000, guid: 11cadd93b3867f74a8ed6151dd6e48e9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_spina_metal
+    second: {fileID: 2100000, guid: afb6d7fb11766604b9b1504b28b66c2c, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

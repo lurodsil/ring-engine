@@ -1,0 +1,7 @@
+newmtl snow_1
+map_Kd Snow_001_COLOR.jpg
+map_Pm Snow_001_ROUGH.jpg
+bump Snow_001_NORM.jpg
+Kd 1 1 1
+d 1
+

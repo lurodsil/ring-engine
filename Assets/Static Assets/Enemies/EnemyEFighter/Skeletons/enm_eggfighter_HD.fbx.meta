@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: a48271058dd10bb4a895b746ad2d5a12
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Calf_L
+    100002: Calf_R
+    100004: //RootNode
+    100006: enm_eggfighter_HD
+    100008: enm_eggfighter_HD 1
+    100010: FingerA1_L
+    100012: FingerA1_R
+    100014: FingerA2_L
+    100016: FingerA2_R
+    100018: FingerB1_L
+    100020: FingerB1_R
+    100022: FingerB2_L
+    100024: FingerB2_R
+    100026: FingerC1_L
+    100028: FingerC1_R
+    100030: FingerC2_L
+    100032: FingerC2_R
+    100034: FingerD1_L
+    100036: FingerD1_R
+    100038: FingerD2_L
+    100040: FingerD2_R
+    100042: Foot_L
+    100044: Foot_R
+    100046: ForeArm_L
+    100048: ForeArm_R
+    100050: Hand_L
+    100052: Hand_R
+    100054: Head
+    100056: Heel_L
+    100058: Heel_R
+    100060: Hips
+    100062: Pelvis_L
+    100064: Pelvis_R
+    100066: Reference
+    100068: Shoulder_L
+    100070: Shoulder_R
+    100072: Spine
+    100074: Spine1
+    100076: Thigh_L
+    100078: Thigh_R
+    100080: Toe_L
+    100082: Toe_R
+    100084: UpperArm_L
+    100086: UpperArm_R
+    400000: Calf_L
+    400002: Calf_R
+    400004: //RootNode
+    400006: enm_eggfighter_HD
+    400008: enm_eggfighter_HD 1
+    400010: FingerA1_L
+    400012: FingerA1_R
+    400014: FingerA2_L
+    400016: FingerA2_R
+    400018: FingerB1_L
+    400020: FingerB1_R
+    400022: FingerB2_L
+    400024: FingerB2_R
+    400026: FingerC1_L
+    400028: FingerC1_R
+    400030: FingerC2_L
+    400032: FingerC2_R
+    400034: FingerD1_L
+    400036: FingerD1_R
+    400038: FingerD2_L
+    400040: FingerD2_R
+    400042: Foot_L
+    400044: Foot_R
+    400046: ForeArm_L
+    400048: ForeArm_R
+    400050: Hand_L
+    400052: Hand_R
+    400054: Head
+    400056: Heel_L
+    400058: Heel_R
+    400060: Hips
+    400062: Pelvis_L
+    400064: Pelvis_R
+    400066: Reference
+    400068: Shoulder_L
+    400070: Shoulder_R
+    400072: Spine
+    400074: Spine1
+    400076: Thigh_L
+    400078: Thigh_R
+    400080: Toe_L
+    400082: Toe_R
+    400084: UpperArm_L
+    400086: UpperArm_R
+    2100000: em_eday_ef2n_body01
+    2100002: em_eday_ef2n_lens_in
+    2100004: em_eday_ef2n_eyeglow01
+    2100006: em_eday_ef2n_body02
+    2100008: em_eday_ef2n_lens01
+    2100010: em_eday_ef2n_eyeadd
+    2100012: em_eday_ef2n_teethadd
+    2100014: em_eday_ef2n_teethglow01
+    4300000: enm_eggfighter_HD
+    9500000: //RootNode
+    13700000: enm_eggfighter_HD
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_body01
+    second: {fileID: 2100000, guid: c86118c057c190c46b05109c8527ae7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_body02
+    second: {fileID: 2100000, guid: ca6b7085cc2f0844d90586f2461a8b59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_eyeadd
+    second: {fileID: 2100000, guid: f7c8ed83271f8ef4fb832999e6983593, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_eyeglow01
+    second: {fileID: 2100000, guid: d64500477023ec04c87dd572052c2b12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_lens01
+    second: {fileID: 2100000, guid: a6533423d8afffe449949ec3db37ad54, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_lens_in
+    second: {fileID: 2100000, guid: 6031c0dba9513ff44bbfa4f24908c68f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_teethadd
+    second: {fileID: 2100000, guid: 8cf05a2e79c4f6a478ac907b4dfe15d4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: em_eday_ef2n_teethglow01
+    second: {fileID: 2100000, guid: 20f8298bf080417479df487381198838, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,5 @@
+newmtl cmn_metal_ms_wire_dif
+map_Kd cmn_metal_ms_wire_dif.tga
+Kd 1 1 1
+d 1
+

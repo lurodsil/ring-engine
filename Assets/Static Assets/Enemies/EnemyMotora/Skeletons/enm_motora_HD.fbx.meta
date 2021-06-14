@@ -1,0 +1,151 @@
+fileFormatVersion: 2
+guid: 19ab0e6cef28abf489b545db44239998
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Antena_L
+    100002: Antena_R
+    100004: Arm_L
+    100006: Arm_R
+    100008: Body
+    100010: //RootNode
+    100012: enm_motora_HD
+    100014: enm_motora_HD 1
+    100016: Head
+    100018: Mesh
+    100020: Muf_effL
+    100022: Muf_effR
+    100024: Muffler
+    100026: Reference
+    100028: Suspension
+    100030: Tire
+    400000: Antena_L
+    400002: Antena_R
+    400004: Arm_L
+    400006: Arm_R
+    400008: Body
+    400010: //RootNode
+    400012: enm_motora_HD
+    400014: enm_motora_HD 1
+    400016: Head
+    400018: Mesh
+    400020: Muf_effL
+    400022: Muf_effR
+    400024: Muffler
+    400026: Reference
+    400028: Suspension
+    400030: Tire
+    2100000: enm_motora_body
+    2100002: enm_motora_metal
+    2100004: enm_motora_lamp
+    2100006: enm_motora_eye
+    2100008: enm_motora_tyre
+    4300000: enm_motora_HD
+    9500000: //RootNode
+    13700000: enm_motora_HD
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_motora_body
+    second: {fileID: 2100000, guid: 1c18d81f373923945ae06f4f32a780b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_motora_eye
+    second: {fileID: 2100000, guid: 1e484adeae18df74a919b3046510650a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_motora_lamp
+    second: {fileID: 2100000, guid: 8f44cfbefa24ea94a8cf6a24f73191af, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_motora_metal
+    second: {fileID: 2100000, guid: 84180ada51e6eba49a615125772b52d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enm_motora_tyre
+    second: {fileID: 2100000, guid: 5b29b6e313560504b947f79d1f66c181, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

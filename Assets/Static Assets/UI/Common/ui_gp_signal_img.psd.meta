@@ -1,0 +1,1063 @@
+fileFormatVersion: 2
+guid: 73831ebc9bb11f14e8994ce42adf27be
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: ui_gp_signal_img_0
+  - first:
+      213: 21300002
+    second: ui_gp_signal_img_1
+  - first:
+      213: 21300004
+    second: ui_gp_signal_img_2
+  - first:
+      213: 21300006
+    second: ui_gp_signal_img_3
+  - first:
+      213: 21300008
+    second: ui_gp_signal_img_4
+  - first:
+      213: 21300010
+    second: ui_gp_signal_img_5
+  - first:
+      213: 21300012
+    second: ui_gp_signal_img_6
+  - first:
+      213: 21300014
+    second: ui_gp_signal_img_7
+  - first:
+      213: 21300016
+    second: ui_gp_signal_img_8
+  - first:
+      213: 21300018
+    second: ui_gp_signal_img_9
+  - first:
+      213: 21300020
+    second: ui_gp_signal_img_10
+  - first:
+      213: 21300022
+    second: ui_gp_signal_img_11
+  - first:
+      213: 21300024
+    second: ui_gp_signal_img_12
+  - first:
+      213: 21300026
+    second: ui_gp_signal_img_13
+  - first:
+      213: 21300028
+    second: ui_gp_signal_img_14
+  - first:
+      213: 21300030
+    second: ui_gp_signal_img_15
+  - first:
+      213: 21300032
+    second: ui_gp_signal_img_16
+  - first:
+      213: 21300034
+    second: ui_gp_signal_img_17
+  - first:
+      213: 21300036
+    second: ui_gp_signal_img_18
+  - first:
+      213: 21300038
+    second: ui_gp_signal_img_19
+  - first:
+      213: 21300040
+    second: ui_gp_signal_img_20
+  - first:
+      213: 21300042
+    second: ui_gp_signal_img_21
+  - first:
+      213: 21300044
+    second: ui_gp_signal_img_22
+  - first:
+      213: 21300046
+    second: ui_gp_signal_img_23
+  - first:
+      213: 21300048
+    second: ui_gp_signal_img_24
+  - first:
+      213: 21300050
+    second: ui_gp_signal_img_25
+  - first:
+      213: 21300052
+    second: ui_gp_signal_img_26
+  - first:
+      213: 21300054
+    second: ui_gp_signal_img_27
+  - first:
+      213: 21300056
+    second: ui_gp_signal_img_28
+  - first:
+      213: 21300058
+    second: ui_gp_signal_img_29
+  - first:
+      213: 21300060
+    second: ui_gp_signal_img_30
+  - first:
+      213: 21300062
+    second: ui_gp_signal_img_31
+  - first:
+      213: 21300064
+    second: ui_gp_signal_img_32
+  - first:
+      213: 21300066
+    second: ui_gp_signal_img_33
+  - first:
+      213: 21300068
+    second: ui_gp_signal_img_34
+  - first:
+      213: 21300070
+    second: ui_gp_signal_img_35
+  - first:
+      213: 21300072
+    second: ui_gp_signal_img_36
+  - first:
+      213: 21300074
+    second: ui_gp_signal_img_37
+  - first:
+      213: 21300076
+    second: ui_gp_signal_img_38
+  - first:
+      213: 21300078
+    second: ui_gp_signal_img_39
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui_gp_signal_img_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 369
+        width: 35
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10bb598d69094234ab75c7dec28b3afd
+      internalID: 21300000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_1
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 422
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c57a23bc6558c75479d9c2c552d6d915
+      internalID: 21300002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_2
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 445
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df729fea6b5c7bf429fdf5fa86f47ccf
+      internalID: 21300004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_3
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 461
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 552ffcfc8d66d0c458e2f8848b81c436
+      internalID: 21300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_4
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 448
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e639141d3ab68434aa31c8b203f41992
+      internalID: 21300008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_5
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 438
+        width: 61
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a82fc47fb6a47d47a6e0b4d81cfd90d
+      internalID: 21300010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_6
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 431
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc34b1d40bc371f469d19528f8dd5af8
+      internalID: 21300012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_7
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 429
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 862b1ccc6e081934284122c7b89e3a73
+      internalID: 21300014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_8
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 361
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4071c6cb3e38054896f5e5c983254b2
+      internalID: 21300016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_9
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 428
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 500d59c635ca5f646bab869e12bfff24
+      internalID: 21300018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_10
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 324
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3d1365c46adbf14b95b5eb8978f27c5
+      internalID: 21300020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_11
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 324
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4725c2b2c20d31f499297cdf76631e4f
+      internalID: 21300022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_12
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 362
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce899e0d1c5d8714d8e9e99b6dc0c27d
+      internalID: 21300024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_13
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 330
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfa63db5be7439448a399a8ef6b709d3
+      internalID: 21300026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_14
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 339
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b66a322d37ab52a4a815c0356f14cb20
+      internalID: 21300028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_15
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 332
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e78227a4c5ecf44884ebd92d5b37fc
+      internalID: 21300030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 184
+        width: 284
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9325d2055cfe70e42a5e930af8779059
+      internalID: 21300032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_17
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 235
+        width: 225
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d558d643f44c9439380d249200d638
+      internalID: 21300034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_18
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 208
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1f2c701020ec544e9108792efa9c3df
+      internalID: 21300036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_19
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 148
+        width: 15
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c4173cbc3a057f48994f05f88048301
+      internalID: 21300038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_20
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 108
+        width: 15
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d68fb32d09a084d844a98aa0a98044
+      internalID: 21300040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_21
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 121
+        width: 110
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56bb2eeb76933e94daf5a026d4ee5dbd
+      internalID: 21300042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_22
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 66
+        width: 73
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a759394a511e78469bc6d4bf6bb340b
+      internalID: 21300044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_23
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 71
+        width: 236
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc95da89e688ce4cafefc07c419f0e9
+      internalID: 21300046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_24
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 48
+        width: 198
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e47bfcdab58b2c45ad5c60e3967e1ea
+      internalID: 21300048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_25
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 58
+        width: 56
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51d7ec60cee737b4199cdeb99bb3d40d
+      internalID: 21300050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_26
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 39
+        width: 107
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d2dc63c02c4634489c0aca863a56908
+      internalID: 21300052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_27
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 8
+        width: 75
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0762af4f069be3c48a1e274f8add8f26
+      internalID: 21300054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_28
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 8
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0137740c8eadd9843a1a6c11e153fca1
+      internalID: 21300056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_29
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 25
+        width: 36
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88583375780ecc3479c9ba4b53f42c54
+      internalID: 21300058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_30
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 3
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4fbd0978ec50047bba6a8382f7df0f
+      internalID: 21300060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_31
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 3
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd710b4c54b8a574ba8876cfb4e66825
+      internalID: 21300062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_32
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 4
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45de967edde994d4f9b639689d0a1eb3
+      internalID: 21300064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_33
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 3
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f63bb964cd9104eadc18e2024568af
+      internalID: 21300066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_34
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 3
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b53166efd7a29864dae14b925ff53f4e
+      internalID: 21300068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_35
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 3
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfed83c59f77ab8439a8f333e51354e1
+      internalID: 21300070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_36
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 3
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a85bac06c768a43b66cf2424e897d1
+      internalID: 21300072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_37
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 2
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 088f15627f55c554abc817cbe64dd459
+      internalID: 21300074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_38
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 3
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40f444b5717213746a2647fed87b2a65
+      internalID: 21300076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_gp_signal_img_39
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 3
+        width: 16
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47f2bb12858d1be4785d1ada0e91476d
+      internalID: 21300078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: ce7107b2d69cd0e4a9c3797d257996ae
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 1
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
