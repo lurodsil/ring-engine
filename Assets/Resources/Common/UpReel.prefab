@@ -360,7 +360,7 @@ SphereCollider:
   m_GameObject: {fileID: 196646}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -376,13 +376,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09549dd3331edc9448b333d638a2a658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObjectID: 0
-  ImpulseVelocity: 15
-  IsWaitUp: 0
-  Length: 14
-  OutOfControl: 0
-  UpSpeedMax: 20
-  target: {fileID: 1780663734283070}
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1780663734283070}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 6878326955609278773}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1780663734283070}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+      - m_Target: {fileID: 6878326955609278773}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  impulseVelocity: 18
+  length: 8
+  outOfControl: 0
+  upSpeedMax: 50
   handle: {fileID: 465580}
   wire: {fileID: 8476263271858211208}
   start: {fileID: 8300000, guid: 30321ab5211e0444e81452a502c3e44f, type: 3}
