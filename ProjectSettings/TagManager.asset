@@ -52,7 +52,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Debris
   - Water
   - UI
   - Collectible
