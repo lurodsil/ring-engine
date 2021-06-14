@@ -1,50 +1,28 @@
 using UnityEngine;
 
-public class Switch : GenerationsObject
+public class Switch : RingEngineObject
 {
-    public float EventOFF = 0f;
-    public float EventON = 6f;
-    public bool IsMoveCollision = false;
-    public bool IsPrimitiveCollision = true;
-    public float OffTimer = 5f;
-    public float TimerOFF = 0f;
-    public float TimerON = 0f;
-    public float Type = 0f;
-    public AudioClip audio1, audio2;
     public bool keepOn;
-    private Material material;
-    private SkinnedMeshRenderer meshRenderer;
 
-    public MonoBehaviour[] generationsObjects;
+    public AudioClip switchOn;
+    public AudioClip switchOff;    
+
     private Animator animator;
     private AudioSource audioSource;
+    private SkinnedMeshRenderer meshRenderer;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         animator = GetComponentInChildren<Animator>();
-        animator.SetTrigger("Switch Off");
     }
 
-    public override void OnValidate()
-    {
-
-    }
-
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (!active)
         {
-            active = true;
-
-            audioSource.PlayOneShot(audio1);
-
-            meshRenderer.materials[2].color = Color.cyan;
-
-            animator.SetTrigger("Switch On");
-
-            SetActive(true);
+            Activate();
         }
     }
 
@@ -52,36 +30,34 @@ public class Switch : GenerationsObject
     {
         if (!keepOn && active)
         {
-            active = false;
-
-            audioSource.PlayOneShot(audio2);
-
-            meshRenderer.materials[2].color = Color.yellow;
-
-            animator.SetTrigger("Switch Off");
-
-            SetActive(false);
+            Deactivate();
         }
+    }    
+
+    public override void Activate()
+    {
+        base.Activate();
+
+        TriggerSwitch(switchOn, Color.cyan, "Switch On");
     }
 
-    void SetActive(bool active)
+    public override void Deactivate()
     {
-        foreach (GenerationsObject g in generationsObjects)
-        {
-            g.active = active;
-        }
+        base.Deactivate();
+
+        TriggerSwitch(switchOff, Color.yellow, "Switch Off");
+    }
+
+    private void TriggerSwitch(AudioClip sound, Color color, string animatorTrigger)
+    {
+        audioSource.PlayOneShot(sound);
+        meshRenderer.materials[2].color = color;
+        animator.SetTrigger(animatorTrigger);
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-
-        foreach (GenerationsObject generationsObject in generationsObjects)
-        {
-            if (generationsObject != null)
-            {
-                Gizmos.DrawLine(transform.position, generationsObject.transform.position);
-            }
-        }
+        DrawEventLines(OnBecomeActive, Color.green);
+        DrawEventLines(OnBecomeInactive, Color.red);
     }
 }
