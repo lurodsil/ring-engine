@@ -30,6 +30,8 @@ public class GenerationsObject : RingEngineObject
 
     public int SetObjectID;
 
+    public Player player { get; set; }
+
     public GenerationsObject FindObjectByID(int id)
     {
         GenerationsObject[] gos = FindObjectsOfType<GenerationsObject>();
