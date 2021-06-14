@@ -631,7 +631,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            if (!isBoosting && !wallCeiling)
+            if (!isBoosting && !wallCeiling && absoluteVelocity < lowToHighVelocity)
             {
                 FreeMovement();
             }
