@@ -4,27 +4,14 @@ using UnityEngine;
 
 public class AnimExtract : EditorWindow
 {
+    string sourcePath = "Assets/Input/";
+    string destinationPath = "Assets/Output/";
+    string log = string.Empty;
 
-    string inputFbx = "Assets/Input/";
-    string outputAnim = "Assets/Output/";
-
-    [MenuItem("Ring Engine/Anim Extract")]
+    [MenuItem("Window/Ring Engine Tools/FBX to Animation")]
     public static void ShowWindow()
     {
         GetWindow(typeof(AnimExtract), true);
-    }
-
-    void OnEnable()
-    {
-        if (!Directory.Exists(inputFbx))
-        {
-            EditorUtility.DisplayDialog("Input folder not found!", "The default input folder (Assets/Input/) was not found. Please assign the folder who contains .fbx files.", "OK");
-        }
-        if (!Directory.Exists(outputAnim))
-        {
-            Directory.CreateDirectory(outputAnim);
-            AssetDatabase.Refresh();
-        }
     }
 
     void OnGUI()
@@ -35,69 +22,128 @@ public class AnimExtract : EditorWindow
 
         EditorGUILayout.Separator();
 
-        inputFbx = EditorGUILayout.TextField(".fbx source folder", inputFbx);
+        EditorGUILayout.BeginHorizontal();
 
-        outputAnim = EditorGUILayout.TextField(".anim destination folder", outputAnim);
+        sourcePath = EditorGUILayout.TextField(".fbx source folder", sourcePath);
+
+        if (GUILayout.Button("Browse"))
+        {
+            sourcePath = "Assets" + EditorUtility.OpenFolderPanel(title, "/Assets", "").Replace(Application.dataPath, "");
+            destinationPath = sourcePath + "/Output/";
+        }
+
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginHorizontal();
+
+        destinationPath = EditorGUILayout.TextField(".anim destination folder", destinationPath);
+
+        if (GUILayout.Button("Browse"))
+        {
+            destinationPath = "Assets" + EditorUtility.OpenFolderPanel(title, "/Assets", "").Replace(Application.dataPath, "");
+        }
+        EditorGUILayout.EndHorizontal();
 
         if (GUILayout.Button("Convert"))
         {
-            CreateAnimationClips();
+            sourcePath = CheckIfPathIsCorrect(sourcePath);
+            destinationPath = CheckIfPathIsCorrect(destinationPath);
+
+            if (ValidadePath(sourcePath))
+            {
+                ConvertAnimationClips(sourcePath, destinationPath);
+            }
+        }
+
+        EditorGUILayout.HelpBox(log,MessageType.None);
+    }
+
+    private string CheckIfPathIsCorrect(string path)
+    {
+        if (!path.EndsWith("/"))
+        {
+            path += "/";
+        }
+
+        return path;
+    }
+
+    private bool ValidadePath(string path)
+    {
+        if (Directory.Exists(path))
+        {
+            return true;
+        }
+        else
+        {
+            EditorUtility.DisplayDialog("Folder not found", path + " does not exist!", "OK");
+
+            return false;
         }
     }
 
-    void CreateAnimationClips()
+    private void CheckAndCreateOutputDirectory(string path)
     {
-        float progress = 0;
-
-        int index = 0;
-
-        string[] clips = Directory.GetFiles(inputFbx, "*.fbx", SearchOption.AllDirectories);
-
-        float clipPercentage = 100 / clips.Length;
-
-        foreach (string s in clips)
+        if (!Directory.Exists(path))
         {
+            Directory.CreateDirectory(path);
+        }
+    }
 
-            string name = Path.GetFileNameWithoutExtension(s);
+    void ConvertAnimationClips(string sourceDirectory, string destinationDirectory)
+    {
+        log = string.Empty;
 
-            if ((AnimationClip)AssetDatabase.LoadAssetAtPath(inputFbx + name + ".fbx", typeof(AnimationClip)))
+        CheckAndCreateOutputDirectory(destinationDirectory);
+
+        string[] sourceClips = Directory.GetFiles(sourceDirectory, "*.fbx", SearchOption.AllDirectories);
+
+        float clipPercentage = 100 / sourceClips.Length;
+
+        float progress = 0;        
+
+        for (int i = 0; i < sourceClips.Length; i++)
+        {
+            string sourceFBXName = Path.GetFileNameWithoutExtension(sourceClips[i]);
+            string sourceFBXPath = sourceDirectory + sourceFBXName + ".fbx";
+            string destinationAnimationPath = destinationDirectory + sourceFBXName + ".anim";
+
+            if (File.Exists(destinationAnimationPath))
             {
-
-                AnimationClip originalClip = (AnimationClip)AssetDatabase.LoadAssetAtPath(inputFbx + name + ".fbx", typeof(AnimationClip));
-
-                SerializedObject serializedClip = new SerializedObject(originalClip);
-
-                serializedClip.ApplyModifiedProperties();
-
-                AnimationClip newClip = new AnimationClip();
-
-                if (!File.Exists(outputAnim + name + ".anim"))
+                if (EditorUtility.DisplayDialog("File exists", sourceFBXName + ".anim already exists in the destination directory.\r\n" +
+                    "Do you want do overwrite file?", "Yes", "No"))
                 {
-                    EditorUtility.CopySerialized(originalClip, newClip);
-
-                    AssetDatabase.CreateAsset(newClip, outputAnim + name + ".anim");
-
-                    AssetDatabase.Refresh();
-
-                    index++;
+                    File.Delete(destinationAnimationPath);
                 }
-
-                progress += clipPercentage;
-
-                EditorUtility.DisplayProgressBar("Converting", "Converting to .anim", progress);
+                else
+                {
+                    log += "Ignoring file " + destinationAnimationPath + "\r\n";
+                    break;
+                }
             }
+
+            AnimationClip sourceClip = (AnimationClip)AssetDatabase.LoadAssetAtPath(sourceFBXPath, typeof(AnimationClip));
+
+            SerializedObject serializedClip = new SerializedObject(sourceClip);
+
+            serializedClip.ApplyModifiedProperties();
+
+            AnimationClip destinationClip = new AnimationClip();
+
+            EditorUtility.CopySerialized(sourceClip, destinationClip);
+
+            AssetDatabase.CreateAsset(destinationClip, destinationAnimationPath);
+
+            log += "Successfull converted file " + destinationAnimationPath + "\r\n";
+
+            AssetDatabase.Refresh();
+
+            progress += clipPercentage;
+
+            EditorUtility.DisplayProgressBar("Converting", "Converting to .anim", progress);
         }
 
         EditorUtility.ClearProgressBar();
 
-        if (index > 0)
-        {
-            EditorUtility.DisplayDialog("Success!", index + " animation successfully converted.", "OK");
-        }
-        else
-        {
-            EditorUtility.DisplayDialog("Warning!", "The animations who you are trying to convert already exists in the output directory." +
-                " Change the name of the input animation or delete the destination animation.", "OK");
-        }
+        EditorUtility.DisplayDialog("Success!", sourceClips.Length + " animation successfully converted.", "OK");
     }
 }
