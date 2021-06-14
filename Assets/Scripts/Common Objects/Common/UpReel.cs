@@ -1,18 +1,14 @@
 using UnityEngine;
 
-public class UpReel : GenerationsObject
+public class UpReel : RingEngineObject
 {
-    public float ImpulseVelocity = 18f;
-    public bool IsWaitUp = false;
-    public float Length = 8f;
-    public float OutOfControl = 0f;
-    public float UpSpeedMax = 50f;
+    public float impulseVelocity = 18f;
+    public float length = 8f;
+    public float outOfControl = 0f;
+    public float upSpeedMax = 50f;
 
-    public GameObject target;
     public Transform handle;
-
     public Transform wire;
-
 
     public AudioClip start;
     public AudioClip loop;
@@ -20,30 +16,21 @@ public class UpReel : GenerationsObject
     private Vector3 startPosition;
     private Vector3 endPosition;
     private Vector3 targetPosition;
-
     private bool pullUp;
-
     private SphereCollider sphereCollider;
     private AudioSource audioSource;
     private Vector3 playerOffset = new Vector3(0, -1.08f, 0.02f);
 
-    void Start()
+    private void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
         audioSource = GetComponent<AudioSource>();
-
         audioSource.clip = loop;
-
-        startPosition = transform.TransformPoint(new Vector3(0, -Length, 0));
+        startPosition = transform.TransformPoint(new Vector3(0, -length, 0));
         endPosition = transform.position;
-
-        if (!IsWaitUp)
-        {
-            active = true;
-        }
     }
 
-    void Update()
+    private void Update()
     {
         if (active)
         {
@@ -63,7 +50,7 @@ public class UpReel : GenerationsObject
 
         if (handle.transform.position != targetPosition)
         {
-            handle.transform.position = Vector3.MoveTowards(handle.transform.position, targetPosition, UpSpeedMax * Time.deltaTime);
+            handle.transform.position = Vector3.MoveTowards(handle.transform.position, targetPosition, upSpeedMax * Time.deltaTime);
 
             if (handle.position == endPosition)
             {
@@ -119,27 +106,15 @@ public class UpReel : GenerationsObject
         player.canHomming = true;
         player.transform.parent = null;
         player.rigidbody.useGravity = true;
-        player.rigidbody.velocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.9f) * ImpulseVelocity;
+        player.rigidbody.velocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.9f) * impulseVelocity;
     }
     #endregion
 
     private void OnDrawGizmos()
     {
-        Vector3 handleOffset = transform.TransformPoint(new Vector3(0, -Length, 0));
+        Vector3 handleOffset = transform.TransformPoint(new Vector3(0, -length, 0));
         Gizmos.color = Color.red;
         Gizmos.DrawLine(handle.position, handleOffset);
         Gizmos.DrawSphere(handleOffset, 0.2f);
-    }
-
-    public void OnBecomeActive()
-    {
-        target.SetActive(true);
-        sphereCollider.enabled = true;
-    }
-
-    public void OnBecomeInactive()
-    {
-        target.SetActive(false);
-        sphereCollider.enabled = false;
     }
 }
