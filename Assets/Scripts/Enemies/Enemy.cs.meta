@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c152a425a4be6874db4196ac1ffde101
+timeCreated: 1496095214
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - waypoint: {instanceID: 0}
+  - spline: {instanceID: 0}
+  - explosion: {fileID: 1371451388584362, guid: afbc76c98e382b84ab908a556e93a9e0,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
