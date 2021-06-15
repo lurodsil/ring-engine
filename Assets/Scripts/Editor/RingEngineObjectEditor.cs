@@ -8,10 +8,15 @@ public class RingEngineObjectEditor : Editor
     public override void OnInspectorGUI()
     {
         RingEngineObject ringEngineObject = (RingEngineObject)target;
-        ringEngineObject.active = EditorGUILayout.Toggle("Active", ringEngineObject.active);
+
+        EditorGUI.BeginChangeCheck();
+
+        ringEngineObject.active = EditorGUILayout.Toggle("Active", ringEngineObject.active);           
 
         DrawDefaultInspector();
 
+        SerializedProperty onStateStart = serializedObject.FindProperty("OnStateStart");
+        SerializedProperty onStateEnd = serializedObject.FindProperty("OnStateEnd");
         SerializedProperty onBecomeActive = serializedObject.FindProperty("OnBecomeActive");
         SerializedProperty onBecomeInactive = serializedObject.FindProperty("OnBecomeInactive");
 
@@ -19,10 +24,20 @@ public class RingEngineObjectEditor : Editor
 
         if (ringEngineObject.showEventsInInspector)
         {
+            EditorGUILayout.PropertyField(onStateStart);
+            EditorGUILayout.PropertyField(onStateEnd);
             EditorGUILayout.PropertyField(onBecomeActive);
             EditorGUILayout.PropertyField(onBecomeInactive);
         }
 
         serializedObject.ApplyModifiedProperties();
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            EditorUtility.SetDirty(target);
+            PrefabUtility.RecordPrefabInstancePropertyModifications(target);
+        }
+        
     }
+    
 }

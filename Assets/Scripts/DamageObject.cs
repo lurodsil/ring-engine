@@ -3,36 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-public class DamageObject: GenerationsObject
+public abstract class DamageObject: RingEngineObject
 {
-    public UnityEvent OnPlayerContact;
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameTags.playerTag))
+        if (active && other.CompareTag(GameTags.playerTag))
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             damageable.TakeDamage(gameObject);
-            OnPlayerContact?.Invoke();
+            OnStateStart?.Invoke();
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag(GameTags.playerTag))
+        if (active && collision.collider.CompareTag(GameTags.playerTag))
         {
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
             damageable.TakeDamage(gameObject);
-            OnPlayerContact?.Invoke();
+            OnStateStart?.Invoke();
         }
     }
     private void OnParticleCollision(GameObject other)
     {
-        if (other.CompareTag(GameTags.playerTag))
+        if (active && other.CompareTag(GameTags.playerTag))
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             damageable.TakeDamage(gameObject);
-            OnPlayerContact?.Invoke();
+            OnStateStart?.Invoke();
         }
     }
 }

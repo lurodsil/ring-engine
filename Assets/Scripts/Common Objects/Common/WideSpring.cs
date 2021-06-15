@@ -1,4 +1,1 @@
-public class WideSpring : Spring
-{
-    public bool IsStartPositionConstant = true;
-}
+public class WideSpring : Spring { }

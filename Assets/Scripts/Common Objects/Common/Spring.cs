@@ -9,29 +9,25 @@ public class Spring : RingEngineObject
     public float KeepVelocityDistance = 5f;
     public float OutOfControl = 0.4f;
     public bool isBoostCancel = false;
-    public AudioClip springSound;
-
-    private Animator animator;
-    private AudioSource audioSource;
-
     public Transform startPoint;
-    public ParticleSystem particle;
-
     private float duration;
     private float outOfControl;
     private float dotTransformUpVector3Up;
+    public bool isStartPositionConstant = true;
 
     public void Start()
     {
-        animator = GetComponentInChildren<Animator>();
-        audioSource = GetComponent<AudioSource>();
         dotTransformUpVector3Up = Vector3.Dot(transform.up, Vector3.up);
     }
 
     #region State Spring
     void StateSpringStart()
     {
-        player.transform.position = startPoint.position;
+        OnStateStart?.Invoke();
+        if (isStartPositionConstant)
+        {
+            player.transform.position = startPoint.position;
+        }
         duration = player.stateMachine.lastStateTime + MathfExtension.Time(KeepVelocityDistance, FirstSpeed);
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
         player.rigidbody.velocity = Vector3.zero;
@@ -72,18 +68,15 @@ public class Spring : RingEngineObject
     }
     void StateSpringEnd()
     {
+        OnStateEnd?.Invoke();
         player.canHomming = IsHomingAttackEnable;
     }
     #endregion
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameTags.playerTag))
+        if (active && other.CompareTag(GameTags.playerTag))
         {
-            animator.SetTrigger("Spring");
-            audioSource.PlayOneShot(springSound);
-            if (particle)
-                particle.Play();
             player = other.GetComponent<Player>();
             player.stateMachine.ChangeState(StateSpring, gameObject);
         }

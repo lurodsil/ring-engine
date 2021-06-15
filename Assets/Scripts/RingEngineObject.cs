@@ -9,6 +9,10 @@ public abstract class RingEngineObject : MonoBehaviour
     public UnityEvent OnBecomeActive;
     [HideInInspector]
     public UnityEvent OnBecomeInactive;
+    [HideInInspector]
+    public UnityEvent OnStateStart;
+    [HideInInspector]
+    public UnityEvent OnStateEnd;
 
     public bool showEventsInInspector { get; set; }
 
@@ -78,5 +82,10 @@ public abstract class RingEngineObject : MonoBehaviour
     public virtual void Deactivate()
     {
         active = false;
+    }
+
+    public void Reset()
+    {
+        active = true;        
     }
 }
