@@ -9890,7 +9890,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000013057008138}
-  - component: {fileID: 95993412623942128}
   m_Layer: 0
   m_Name: cmn_obj_springred_HD
   m_TagString: Untagged
@@ -9914,25 +9913,6 @@ Transform:
   m_Father: {fileID: 4000013645803966}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!95 &95993412623942128
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000012289911376}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a4fb5eefb1b70944bb5b6e96e1991c7d, type: 3}
-  m_Controller: {fileID: 9100000, guid: ef8db680ca2c59e4aa9b6c475a292eb9, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1000012647086140
 GameObject:
   m_ObjectHideFlags: 0
@@ -9972,6 +9952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000013645803966}
+  - component: {fileID: 5371508978514417407}
   - component: {fileID: 82000010337463366}
   - component: {fileID: 135000012872115044}
   - component: {fileID: 114000010939025066}
@@ -10000,6 +9981,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!95 &5371508978514417407
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013180697064}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a4fb5eefb1b70944bb5b6e96e1991c7d, type: 3}
+  m_Controller: {fileID: 9100000, guid: ef8db680ca2c59e4aa9b6c475a292eb9, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &82000010337463366
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10176,36 +10176,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72b9509192673444b3cd7f61581010d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObjectID: 0
-  AimDirection: 0
-  BaseRotation: 0
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 82000010337463366}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: ea7316acd03a0d841bd078d8992fe47c,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198000013085997760}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5371508978514417407}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Spring
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
   DebugShotTimeLength: 2
   FirstSpeed: 30
-  IsBreak: 0
-  IsChangeCameraWhenPathChange: 1
   IsHomingAttackEnable: 0
-  IsLongBase: 0
-  IsPathChange: 0
-  IsSideSet: 0
-  IsStartVelocityConstant: 1
-  IsWallWalk: 0
-  IsWithBase: 0
-  IsYawUpdate: 0
   KeepVelocityDistance: 5
-  MotionType: 0
   OutOfControl: 0.8
-  m_IsConstantFrame: 0
-  m_IsConstantPosition: 1
-  m_IsMonkeyHunting: 0
-  m_IsStopBoost: 0
-  m_IsTo3D: 0
-  m_MonkeyTarget: {x: 0, y: 0, z: 0}
-  IsInvisible: 0
-  HasBase: 0
-  m_IsMonkeyHuntingLowAngle: 1
-  springSound: {fileID: 8300000, guid: ea7316acd03a0d841bd078d8992fe47c, type: 3}
+  isBoostCancel: 0
   startPoint: {fileID: 4000014242776988}
-  particle: {fileID: 198000013085997760}
 --- !u!1 &1000013453794558
 GameObject:
   m_ObjectHideFlags: 0

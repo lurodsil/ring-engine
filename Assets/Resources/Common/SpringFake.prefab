@@ -106,13 +106,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598116392037132}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4681549968577766}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1638580021404190
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,34 +461,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532c0adabaae0ea409e5d5237e69167c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObjectID: 22492
-  AimDirection: 0
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 82967062353951898}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: ea7316acd03a0d841bd078d8992fe47c,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 82967062353951898}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 9957403830163204ca1e2f9000aa153b,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 95189534676947594}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Spring
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
   DebugShotTimeLength: 2
   FirstSpeed: 17
-  IsBreak: 0
-  IsChangeCameraWhenPathChange: 1
   IsHomingAttackEnable: 0
-  IsPathChange: 0
-  IsSideSet: 0
-  IsStartVelocityConstant: 1
-  IsWallWalk: 0
-  IsYawUpdate: 0
   KeepVelocityDistance: 5
-  MotionType: 0
   OutOfControl: 0.25
-  m_IsConstantFrame: 0
-  m_IsConstantPosition: 1
-  m_IsMonkeyHunting: 0
-  m_IsStopBoost: 0
-  m_IsTo3D: 0
-  m_MonkeyTarget: {x: 0, y: 0, z: 0}
-  HasBase: 0
-  m_IsMonkeyHuntingLowAngle: 1
-  trajectoryLength: 0
-  springSound: {fileID: 8300000, guid: ea7316acd03a0d841bd078d8992fe47c, type: 3}
-  fakeSpringSound: {fileID: 8300000, guid: 9957403830163204ca1e2f9000aa153b, type: 3}
+  isBoostCancel: 0
   startPoint: {fileID: 4859319149299810}
-  particle: {fileID: 198159347663446420}
+  isStartPositionConstant: 1
 --- !u!1 &1737755353498090
 GameObject:
   m_ObjectHideFlags: 0

@@ -75,8 +75,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc30ceea1de38734db089c6e00568774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObjectID: -1
-  OnPlayerContact:
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114000013786648526}
@@ -91,6 +96,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
   BlastPower: 15
   ThresholdStumble: 30
   timeToExplode: -1

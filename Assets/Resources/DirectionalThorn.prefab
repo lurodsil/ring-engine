@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4000012533625488}
   - component: {fileID: 65000014244538070}
   - component: {fileID: 114000012356968766}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DirectionalThorn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,13 +221,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb3166577216c34cb23a7c22c3b7da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObjectID: -1
-  ForetasteTime: 0.5
-  IsUsePanel: 1
-  MoveTime: 0.5
-  OffTime: 1
-  OnTime: 1
-  Phase: 0
-  Type: 0
-  UseRigidBody: 1
-  UsePanel: 1
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
