@@ -20,9 +20,11 @@ public class PlayerCollision : MonoBehaviour
 
     CapsuleCollider collision;
     public CapsuleCollider itemCollision;
+    Player player;
 
     void Awake()
     {
+        player = GetComponent<Player>();
         collision = GetComponent<CapsuleCollider>();
         //itemCollision = new GameObject("Item Collision").AddComponent<CapsuleCollider>();
         itemCollision.tag = "Item Collision";
@@ -41,7 +43,8 @@ public class PlayerCollision : MonoBehaviour
 
     void Update()
     {
-        if (Player.instance.isBoosting)
+
+        if (player.isBoosting)
         {
             itemCollision.height = itemCollisionStandHeightInBoost;
             itemCollision.radius = itemCollisionRadiusInBoost;

@@ -302,7 +302,7 @@ public class PlayerAnimation : MonoBehaviour
 
         //if(player.aligninput)
         animator.SetFloat(directionNameHash, direction);
-        animator.SetBool(groundedNameHash, Player.instance.groundInfo.grounded);
+        animator.SetBool(groundedNameHash, player.groundInfo.grounded);
         animator.SetFloat(verticalSpeedNameHash, verticalSpeed);
         animator.SetBool(brakeNameHash, player.isBraking);
         animator.SetFloat(horizontalSpeedNameHash, horizontalSpeed);
@@ -337,7 +337,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetFloat("Abs Speed", absSpeed);
         animator.SetFloat(dotVUpTForwardNameHash, Vector3.Dot(Vector3.up, transform.forward));
-        animator.SetFloat(groundDistanceNameHash, Player.instance.groundInfo.groundHit.distance);
+        animator.SetFloat(groundDistanceNameHash, player.groundInfo.groundHit.distance);
         animator.SetBool(lightSpeedDashNameHash, lightSpeedDash);
         animator.SetBool(hommingNameHash, homming);
         //animator.SetBool(underwaterNameHash, underwater);

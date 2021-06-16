@@ -59,7 +59,8 @@ public class LockOn : MonoBehaviour
                 arrow.transform.localScale = circle.transform.localScale;
             }
 
-            lockon.transform.position = Camera.main.WorldToScreenPoint(Player.instance.closestTarget.transform.position);
+
+            lockon.transform.position = Camera.main.WorldToScreenPoint(player.closestTarget.transform.position);
 
             circle.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
             arrow.transform.Rotate(0, 0, -rotationSpeed * Time.deltaTime);
