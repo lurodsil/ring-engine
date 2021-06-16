@@ -19,7 +19,6 @@ public class AddExplosionForce : MonoBehaviour
             {
                 rigidbody.AddExplosionForce(explosionForce, explosionPos, explosionRadius, 0.1f);
             }
-            print(rigidbody.name);
         }
     }
 }

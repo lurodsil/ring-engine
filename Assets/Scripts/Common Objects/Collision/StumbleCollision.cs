@@ -9,9 +9,13 @@ public class StumbleCollision : RingEngineObject
     #region State Stumble
     private void StateStumbleStart()
     {
+        OnStateStart?.Invoke();
         Vector3 playerKeepVelocity = player.rigidbody.velocity * keepVelocityRate;
         playerKeepVelocity.y = stumbleUpVelocity;
         player.rigidbody.velocity = playerKeepVelocity;
+
+        player.isBoosting = false;
+        player.canHomming = false;
     }
     private void StateStumble()
     {
@@ -21,10 +25,11 @@ public class StumbleCollision : RingEngineObject
     }
     private void StateStumbleEnd()
     {
+        OnStateEnd?.Invoke();
     }
     #endregion State
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (active && other.CompareTag(GameTags.playerTag))
         {

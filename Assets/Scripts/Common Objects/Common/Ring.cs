@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ring : GenerationsObject
+public class Ring : MonoBehaviour
 {
     public bool InitDisp = false;
     public bool IsLightSpeedDashTarget = false;

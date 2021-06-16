@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public abstract class DamageObject: RingEngineObject
 {
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (active && other.CompareTag(GameTags.playerTag))
         {

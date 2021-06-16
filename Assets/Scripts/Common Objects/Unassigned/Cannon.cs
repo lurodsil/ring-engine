@@ -59,6 +59,8 @@ public class Cannon : GenerationsObject
         audioSource = GetComponent<AudioSource>();
         audioSource.loop = true;
         audioSource.clip = loop;
+
+        objectState = StateCanon;
     }
 
     private void Update()
@@ -87,6 +89,10 @@ public class Cannon : GenerationsObject
 
     private void StateCanonStart()
     {
+        player.rigidbody.isKinematic = true;
+        player.rigidbody.useGravity = false;
+        player.rigidbody.velocity = Vector3.zero;
+        cannonState = CannonState.EnteringUp;
     }
 
     private void StateCanon()
@@ -148,8 +154,14 @@ public class Cannon : GenerationsObject
                 }
                 else if (player.groundInfo.groundHit.distance > 0 && player.groundInfo.groundHit.distance < 20)
                 {
-                    aimCannon = false;
+                    
                     player.stateMachine.ChangeState(player.StateTransition, gameObject);
+                    
+                }
+                else
+                {
+                    aimCannon = false;
+                    cannonState = CannonState.Wait;
                 }
 
                 player.transform.forward = player.rigidbody.velocity.normalized;
@@ -163,22 +175,6 @@ public class Cannon : GenerationsObject
     }
 
     #endregion State
-
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            player.rigidbody.isKinematic = true;
-            player.rigidbody.useGravity = false;
-            player.rigidbody.velocity = Vector3.zero;
-            cannonState = CannonState.EnteringUp;
-
-            player.stateMachine.ChangeState(StateCanon, gameObject);
-        }
-    }
 
     private void OnDrawGizmos()
     {

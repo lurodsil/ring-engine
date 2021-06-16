@@ -1,37 +1,39 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
-public class Flame : GenerationsObject
+public class Flame : RingEngineObject
 {
-    public float FlameType = 1f;
-    public float LengthType = 1f;
-    public float OffTime = 0.1f;
-    public float OnTime = 5.00002f;
-    public float PhaseRate = 0f;
-
-    public float AppearTime = 0.2f;
-    public float Length = 10f;
-    public float Phase = 0f;
-    public float Type = 1f;
-
-    public ParticleSystem flames;
-    private AudioSource audioSource;
+    public float offTime = 2;
+    public float onTime = 5;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        StartCoroutine(OnOff(OnTime, OffTime));
+        if (active)
+        {
+            StartCoroutine(OnOff(onTime, offTime));
+        }
+    }
+
+    public override void Activate()
+    {
+        base.Activate();
+
+        StartCoroutine(OnOff(onTime, offTime));
+    }
+
+    public override void Deactivate()
+    {
+        base.Deactivate();
+
+        StopAllCoroutines();
     }
 
     private IEnumerator OnOff(float onTime, float offTime)
     {
         yield return new WaitForSeconds(offTime);
-        audioSource.Play();
-        flames.Play();
+        OnStateStart.Invoke();
         yield return new WaitForSeconds(onTime);
-        audioSource.Stop();
-        flames.Stop();
-        StartCoroutine(OnOff(onTime, offTime));
+        OnStateEnd?.Invoke();
+        StartCoroutine(OnOff(onTime, offTime));       
     }
 }

@@ -15,9 +15,15 @@ public class Balloon : RingEngineObject
     public float upVelocity = 10;
     public float keepVelocityRate = 0.8f;
 
+    private void Start()
+    {
+        objectState = StateBalloon;
+    }
+
     #region State Balloon
     private void StateBalloonStart()
     {
+        OnStateStart?.Invoke();
         Vector3 playerKeepVelocity = player.rigidbody.velocity.normalized * Random.Range(SpeedMin,SpeedMax);
         playerKeepVelocity.y = upVelocity;
         player.rigidbody.velocity = playerKeepVelocity;
@@ -30,15 +36,8 @@ public class Balloon : RingEngineObject
 
     private void StateBalloonEnd()
     {
+        OnStateEnd?.Invoke();
+        player.canHomming = true;
     }
     #endregion 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = GetComponent<Player>();
-            player.stateMachine.ChangeState(StateBalloon, gameObject);
-        }
-    }
 }

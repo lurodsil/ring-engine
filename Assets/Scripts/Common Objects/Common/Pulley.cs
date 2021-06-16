@@ -1,22 +1,15 @@
 using UnityEngine;
 
-public class Pulley : GenerationsObject
+public class Pulley : RingEngineObject
 {
-    public float EndPosition = 3f;
-    public bool IsJumpCancel = true;
-    public bool IsPoleAttackInvSide = false;
-    public float Length = 1f;
-    public float MinInitVel = 0f;
-    public float PathID = 1f;
-    public float StartPosition = 0f;
+    public bool isJumpCancel = true;
+    public bool isHommingAttackEnable = true;
     public float speed;
 
-    public AudioClip pulleySound;
     public Transform pulleyHandle;
     public BezierPath bezierPath;
 
     private SphereCollider sphereCollider;
-    private AudioSource audioSource;
 
     private float appliedSpeed;
     private Vector3 colliderOffset = new Vector3(0, -2, 0);
@@ -24,16 +17,11 @@ public class Pulley : GenerationsObject
 
     private BezierKnot knot = new BezierKnot();
 
-    public override void OnValidate()
-    {
-
-    }
-
     private void Start()
     {
         sphereCollider = GetComponent<SphereCollider>();
-        audioSource = pulleyHandle.GetComponent<AudioSource>();
-        audioSource.clip = pulleySound;
+
+        objectState = StatePulley;
     }
 
     private void Update()
@@ -58,7 +46,6 @@ public class Pulley : GenerationsObject
             else
             {
                 appliedSpeed = 0;
-                audioSource.Stop();
             }
         }
 
@@ -76,6 +63,8 @@ public class Pulley : GenerationsObject
         player.transform.parent = pulleyHandle;
         player.transform.forward = pulleyHandle.forward;
         player.transform.localPosition = playerOffset;
+
+        OnStateStart?.Invoke();
     }
     public void StatePulley()
     {
@@ -83,32 +72,20 @@ public class Pulley : GenerationsObject
         {
             player.stateMachine.ChangeState(player.StateTransition, gameObject);
         }
+
+        if (!isJumpCancel && Input.GetButtonDown(XboxButton.A))
+        {
+            player.canHomming = false;
+            player.stateMachine.ChangeState(player.StateJump, gameObject);
+        }
     }
     void StatePulleyEnd()
     {
-        player.canHomming = true;
+        OnStateEnd?.Invoke();
+        player.canHomming = isHommingAttackEnable;
         player.transform.parent = null;
         player.rigidbody.useGravity = true;
         player.rigidbody.velocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.2f) * speed;
     }
     #endregion
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            Activate();
-            player.stateMachine.ChangeState(StatePulley, gameObject);
-        }
-    }
-
-    private void OnBecomeActive()
-    {
-        if (!audioSource.isPlaying)
-        {
-            audioSource.Play();
-        }
-    }
 }

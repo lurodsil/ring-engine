@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SuperRing : GenerationsObject
+public class SuperRing : MonoBehaviour
 {
     public ParticleSystem getSuperRing;
 

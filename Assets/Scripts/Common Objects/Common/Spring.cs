@@ -3,17 +3,23 @@ using UnityEngine;
 
 public class Spring : RingEngineObject
 {
-    public float DebugShotTimeLength = 2f;
-    public float FirstSpeed = 30f;
     public bool IsHomingAttackEnable = false;
-    public float KeepVelocityDistance = 5f;
-    public float OutOfControl = 0.4f;
+    public bool isStartPositionConstant = true;
     public bool isBoostCancel = false;
+    public float firstSpeed = 30f;
+    public float keepVelocityDistance = 5f;
+    public float OutOfControl = 0.4f;
     public Transform startPoint;
+    public float DebugShotTimeLength = 2f;
     private float duration;
     private float outOfControl;
     private float dotTransformUpVector3Up;
-    public bool isStartPositionConstant = true;
+
+
+    private void Awake()
+    {
+        objectState = StateSpring;
+    }
 
     public void Start()
     {
@@ -21,14 +27,14 @@ public class Spring : RingEngineObject
     }
 
     #region State Spring
-    void StateSpringStart()
+    private void StateSpringStart()
     {
         OnStateStart?.Invoke();
         if (isStartPositionConstant)
         {
             player.transform.position = startPoint.position;
         }
-        duration = player.stateMachine.lastStateTime + MathfExtension.Time(KeepVelocityDistance, FirstSpeed);
+        duration = player.stateMachine.lastStateTime + MathfExtension.Time(keepVelocityDistance, firstSpeed);
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
         player.rigidbody.velocity = Vector3.zero;
         if (isBoostCancel)
@@ -36,13 +42,15 @@ public class Spring : RingEngineObject
             player.isBoosting = false;
         }
     }
-    void StateSpring()
+    private void StateSpring()
     {
-        player.SearchGround(); ;
+
+            player.SearchGround();
+        
 
         if (Time.time < duration)
         {
-            player.rigidbody.velocity = transform.up * FirstSpeed;
+            player.rigidbody.velocity = transform.up * firstSpeed;
         }
 
         if (Mathf.Abs(player.rigidbody.velocity.y) > 0)
@@ -66,28 +74,18 @@ public class Spring : RingEngineObject
             player.stateMachine.ChangeState(player.StateFall, gameObject);
         }
     }
-    void StateSpringEnd()
+    private void StateSpringEnd()
     {
         OnStateEnd?.Invoke();
         player.canHomming = IsHomingAttackEnable;
     }
     #endregion
 
-    private void OnTriggerEnter(Collider other)
+    private void OnDrawGizmos()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            player.stateMachine.ChangeState(StateSpring, gameObject);
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-
         Gizmos.color = Color.green;
-        GizmosExtension.DrawTrajectory(transform.position, transform.up, FirstSpeed, DebugShotTimeLength, KeepVelocityDistance);
+        GizmosExtension.DrawTrajectory(transform.position, transform.up, firstSpeed, DebugShotTimeLength, keepVelocityDistance);
         Gizmos.color = Color.red;
-        GizmosExtension.DrawTrajectory(transform.position, transform.up, FirstSpeed, OutOfControl, KeepVelocityDistance);
+        GizmosExtension.DrawTrajectory(transform.position, transform.up, firstSpeed, OutOfControl, keepVelocityDistance);
     }
 }

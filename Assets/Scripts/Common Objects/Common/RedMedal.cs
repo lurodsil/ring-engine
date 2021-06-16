@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RedMedal : GenerationsObject
+public class RedMedal : MonoBehaviour
 {
     public float MedalID = 1;
     public ParticleSystem getSpecialRing;

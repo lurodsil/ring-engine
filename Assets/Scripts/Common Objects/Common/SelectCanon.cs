@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SelectCanon : GenerationsObject
+public class SelectCanon : RingEngineObject
 {
     public float InputTmie = 2.5f;
     public float OutOfControl = 0.13f;
@@ -30,9 +30,11 @@ public class SelectCanon : GenerationsObject
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = loop;
+
+        objectState = StateSelectCanon;
     }
 
     private void Update()
@@ -197,16 +199,4 @@ public class SelectCanon : GenerationsObject
 
     }
     #endregion
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            animator.SetTrigger("Select Canon Start");
-
-            player = other.GetComponent<Player>();
-
-            player.stateMachine.ChangeState(StateSelectCanon, gameObject);
-        }
-    }
 }

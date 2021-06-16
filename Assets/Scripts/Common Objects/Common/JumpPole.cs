@@ -1,52 +1,38 @@
 using UnityEngine;
 
-public class JumpPole : GenerationsObject
+public class JumpPole : RingEngineObject
 {
-    public float AddMaxVelocity = 0f;
-    public float AddMinVelocity = 0f;
-    public AudioClip jumpPoleSound;
-
-    private AudioSource audioSource;
-    private Animator animator;
+    public float addMinVelocity = 10f;
+    public float addMaxVelocity = 30f;
+    public float acceleration = 5f;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
+        objectState = StateJumpPole;
     }
 
     #region State Jump Pole
     private void StateJumpPoleStart()
     {
+        OnStateStart?.Invoke();
+
         player.transform.forward = transform.forward;
 
-        player.rigidbody.velocity = Vector3.up * AddMaxVelocity;
+        float absoluteYVelocity = Mathf.Abs(player.rigidbody.velocity.y);
+        float clampedVelocity = Mathf.Clamp(absoluteYVelocity + acceleration, addMinVelocity, addMaxVelocity);
+
+        player.rigidbody.velocity = Vector3.up * clampedVelocity;        
     }
     private void StateJumpPole()
     {
-        if(player.rigidbody.velocity.y < 10)
+        if (player.rigidbody.velocity.y < 10)
         {
             player.stateMachine.ChangeState(player.StateFall, gameObject);
         }
-             
     }
     private void StateJumpPoleEnd()
     {
+        OnStateEnd?.Invoke();
     }
     #endregion
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-
-            if(player.rigidbody.velocity.y < 0)
-            {
-                player.stateMachine.ChangeState(StateJumpPole, gameObject);
-                audioSource.PlayOneShot(jumpPoleSound);
-                animator.SetTrigger("Spring Pole");
-            }
-        }
-    }
 }

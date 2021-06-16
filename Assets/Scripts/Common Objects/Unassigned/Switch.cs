@@ -18,7 +18,7 @@ public class Switch : RingEngineObject
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (!active)
         {
