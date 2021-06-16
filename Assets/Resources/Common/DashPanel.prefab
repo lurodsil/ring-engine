@@ -161,6 +161,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04ca10281e4dc14488aa4d94c54de73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: 2227
   IsChangeCameraWhenChangePath: 0
   IsChangePath: 0

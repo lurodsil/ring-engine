@@ -46,6 +46,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30e676f6b23957745954719b48aa1901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: 22097
   IsMessageOn: 0
   Radius: 4

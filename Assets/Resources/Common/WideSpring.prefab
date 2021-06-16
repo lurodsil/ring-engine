@@ -270,6 +270,7 @@ MonoBehaviour:
   OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
+  active: 1
   DebugShotTimeLength: 2
   FirstSpeed: 30
   IsHomingAttackEnable: 0
@@ -277,6 +278,7 @@ MonoBehaviour:
   OutOfControl: 0.8
   isBoostCancel: 0
   startPoint: {fileID: 8786250325719886056}
+  isStartPositionConstant: 1
 --- !u!1 &1013622845722468
 GameObject:
   m_ObjectHideFlags: 0

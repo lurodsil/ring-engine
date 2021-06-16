@@ -78,6 +78,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a2a67f30bb6b34fbaebbe8de5d7625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: -1
   MedalID: 1
   getSpecialRing: {fileID: 198000014259060502, guid: 7f171c9d304fedc4c9a0ecb8a1d82ca5,

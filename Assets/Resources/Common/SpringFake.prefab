@@ -511,6 +511,7 @@ MonoBehaviour:
   OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
+  active: 1
   DebugShotTimeLength: 2
   FirstSpeed: 17
   IsHomingAttackEnable: 0

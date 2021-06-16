@@ -129,6 +129,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651a3165c06f4d244b23cc0a0db292f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: 3091
   IsFront: 1
   IsStartVelocityConstant: 1

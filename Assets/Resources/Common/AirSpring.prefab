@@ -354,36 +354,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e89382feec27b49b34d86be3b7d4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SetObjectID: 0
-  AimDirection: 0
-  BaseRotation: 0
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   DebugShotTimeLength: 2
   FirstSpeed: 30
-  IsBreak: 0
-  IsChangeCameraWhenPathChange: 1
   IsHomingAttackEnable: 0
-  IsLongBase: 0
-  IsPathChange: 0
-  IsSideSet: 0
-  IsStartVelocityConstant: 1
-  IsWallWalk: 0
-  IsWithBase: 0
-  IsYawUpdate: 0
   KeepVelocityDistance: 10
-  MotionType: 0
   OutOfControl: 1
-  m_IsConstantFrame: 0
-  m_IsConstantPosition: 1
-  m_IsMonkeyHunting: 0
-  m_IsStopBoost: 0
-  m_IsTo3D: 0
-  m_MonkeyTarget: {x: 0, y: 0, z: 0}
-  IsInvisible: 0
-  HasBase: 0
-  m_IsMonkeyHuntingLowAngle: 1
-  springSound: {fileID: 8300000, guid: ea7316acd03a0d841bd078d8992fe47c, type: 3}
+  isBoostCancel: 0
   startPoint: {fileID: 4349855955040706}
-  particle: {fileID: 198738052496637232}
+  isStartPositionConstant: 1
 --- !u!1 &1000011777753622
 GameObject:
   m_ObjectHideFlags: 0

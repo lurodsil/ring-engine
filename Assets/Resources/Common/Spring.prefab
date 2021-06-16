@@ -10176,6 +10176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72b9509192673444b3cd7f61581010d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []
@@ -10232,6 +10233,7 @@ MonoBehaviour:
   OutOfControl: 0.8
   isBoostCancel: 0
   startPoint: {fileID: 4000014242776988}
+  isStartPositionConstant: 1
 --- !u!1 &1000013453794558
 GameObject:
   m_ObjectHideFlags: 0

@@ -218,6 +218,13 @@ MonoBehaviour:
   OnBecomeInactive:
     m_PersistentCalls:
       m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   ImpulseSpeedOnBoost: 46
   ImpulseSpeedOnNormal: 41
   IsTo3D: 1

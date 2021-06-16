@@ -160,6 +160,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdf16cbb199b1446a5d153a381d1a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: 0
   InitDisp: 0
   IsLightSpeedDashTarget: 0

@@ -255,6 +255,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48eb22c2277e5d346b9b815a7e32a9b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: -1
   getSuperRing: {fileID: 198000013054435632, guid: 5b7dae2e2c4354445844b2de583300c6,
     type: 3}

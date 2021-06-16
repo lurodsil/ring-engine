@@ -274,6 +274,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -300,6 +301,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64504512024277160
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -400,6 +402,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -426,6 +429,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &64626027125742796
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -828,6 +832,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -942,6 +947,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -969,6 +975,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!82 &82524410625381400
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1217,6 +1224,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32d41112a1b3194d84f7418e2b49cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: 0
   EndPosition: 3
   IsJumpCancel: 1
@@ -1226,9 +1246,9 @@ MonoBehaviour:
   PathID: 1
   StartPosition: 0
   speed: 30
+  pulleySound: {fileID: 8300000, guid: 93b620b33690eb54790e1d84eb50ec10, type: 3}
   pulleyHandle: {fileID: 4944195657077406}
   bezierPath: {fileID: 114007106308367192}
-  pulleySound: {fileID: 8300000, guid: 93b620b33690eb54790e1d84eb50ec10, type: 3}
 --- !u!1 &1945451600309490
 GameObject:
   m_ObjectHideFlags: 0

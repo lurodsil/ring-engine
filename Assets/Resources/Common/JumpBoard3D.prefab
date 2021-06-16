@@ -207,6 +207,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16d9c7e41ea919458ed651a63ee06b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  active: 1
   SetObjectID: 2736
   ImpulseSpeedOnBoost: 50.3
   ImpulseSpeedOnNormal: 50.3
