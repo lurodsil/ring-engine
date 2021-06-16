@@ -354,6 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e89382feec27b49b34d86be3b7d4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []
@@ -362,19 +363,55 @@ MonoBehaviour:
       m_Calls: []
   OnStateStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 82736175396448592}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: ea7316acd03a0d841bd078d8992fe47c,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 198738052496637232}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 95559218448099136}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Spring
+          m_BoolArgument: 0
+        m_CallState: 2
   OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
-  active: 1
-  DebugShotTimeLength: 2
-  FirstSpeed: 30
-  IsHomingAttackEnable: 0
-  KeepVelocityDistance: 10
-  OutOfControl: 1
-  isBoostCancel: 0
-  startPoint: {fileID: 4349855955040706}
+  IsHomingAttackEnable: 1
   isStartPositionConstant: 1
+  isBoostCancel: 0
+  firstSpeed: 30
+  keepVelocityDistance: 5
+  OutOfControl: 1
+  startPoint: {fileID: 4349855955040706}
+  DebugShotTimeLength: 2
 --- !u!1 &1000011777753622
 GameObject:
   m_ObjectHideFlags: 0

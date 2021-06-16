@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012048156824}
-  - component: {fileID: 114000011898599736}
   - component: {fileID: 82000012252452004}
   - component: {fileID: 65000011131693666}
+  - component: {fileID: 114000011898599736}
   m_Layer: 2
   m_Name: DashRing
   m_TagString: Untagged
@@ -36,42 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 40.9, y: 180, z: 0}
---- !u!114 &114000011898599736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010088576002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 813f9f743206dd34f9f5ea46fe5db47a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  active: 1
-  SetObjectID: 2748
-  FirstSpeed: 20
-  IsChangeCameraWhenChangePath: 0
-  IsChangePath: 0
-  IsHeadToVelocity: 0
-  IsTo3D: 0
-  KeepVelocityDistance: 2.3
-  OutOfControl: 0.64
-  dashRingSound: {fileID: 8300000, guid: b577e1e903e0482479a0bab3144db0fa, type: 3}
-  startPoint: {fileID: 4000012212948406}
-  particle: {fileID: 198000012846036978}
 --- !u!82 &82000012252452004
 AudioSource:
   m_ObjectHideFlags: 0
@@ -236,6 +200,42 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000011898599736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010088576002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813f9f743206dd34f9f5ea46fe5db47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  SetObjectID: 2748
+  FirstSpeed: 20
+  IsChangeCameraWhenChangePath: 0
+  IsChangePath: 0
+  IsHeadToVelocity: 0
+  IsTo3D: 0
+  KeepVelocityDistance: 2.3
+  OutOfControl: 0.64
+  dashRingSound: {fileID: 8300000, guid: b577e1e903e0482479a0bab3144db0fa, type: 3}
+  startPoint: {fileID: 4000012212948406}
+  particle: {fileID: 198000012846036978}
 --- !u!1 &1000010483778228
 GameObject:
   m_ObjectHideFlags: 0

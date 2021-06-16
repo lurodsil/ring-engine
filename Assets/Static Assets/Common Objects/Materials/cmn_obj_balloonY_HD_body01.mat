@@ -5,11 +5,12 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: cmn_obj_balloonY_HD_body01
   m_Shader: {fileID: 4800000, guid: 189e50727d4b9e14ab23a5f8be56a58f, type: 3}
-  m_ShaderKeywords: _VERTEXBLEND_OFF
-  m_LightmapFlags: 1
+  m_ShaderKeywords: _EMISSION _VERTEXBLEND_OFF
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -63,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectionMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 938f55be515ca244d989849bde1f39ce, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -71,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AlphaToMask: 1
+    - _AlphaToMask: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
@@ -79,7 +80,7 @@ Material:
     - _DstBlend: 0
     - _FalloffThereshold: 0.3
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.8
     - _GlossyReflections: 1
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -93,9 +94,10 @@ Material:
     m_Colors:
     - _BlendColorB: {r: 1, g: 1, b: 1, a: 1}
     - _BlendColorG: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 0, a: 0.8627451}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FalloffColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ReflectionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ReflectionColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _UVSpeed: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

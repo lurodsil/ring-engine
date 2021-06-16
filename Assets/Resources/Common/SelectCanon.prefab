@@ -183,7 +183,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011590808948}
-  - component: {fileID: 95000013587683922}
   m_Layer: 0
   m_Name: cmn_obj_scannonring_HD
   m_TagString: Untagged
@@ -207,25 +206,6 @@ Transform:
   m_Father: {fileID: 4000010458378638}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95000013587683922
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010684159206}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b6c8f2e5371b2dc42a3b716bcdbbc283, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9e800791c4338ca4b9418bc62a94ed2c, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1000011057326606
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,9 +514,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010458378638}
-  - component: {fileID: 114000011620052490}
+  - component: {fileID: 8184180430264014534}
   - component: {fileID: 82014264571440144}
   - component: {fileID: 135339146171714336}
+  - component: {fileID: 114000011620052490}
   m_Layer: 2
   m_Name: SelectCanon
   m_TagString: Untagged
@@ -562,43 +543,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &114000011620052490
-MonoBehaviour:
+--- !u!95 &8184180430264014534
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000012791662054}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a4b87e8890e0a943ad328c706dce755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  active: 1
-  SetObjectID: 10042
-  InputTmie: 2.5
-  OutOfControl: 0.13
-  OutOfControl_Fail: 0.2
-  ShotForce: 20
-  ShotForce_Fail: 20
-  SuccessDir: 1
-  start: {fileID: 8300000, guid: b7b71129180565d438de5729a18f84f5, type: 3}
-  select: {fileID: 8300000, guid: f8965c2775d584a4eb89c97b856eaa34, type: 3}
-  loop: {fileID: 8300000, guid: 6013be66883688240b786d3fa6f4b395, type: 3}
-  end: {fileID: 8300000, guid: 77b3dc27be563a04bbd2904f3f9ef0d7, type: 3}
-  fail: {fileID: 8300000, guid: bcc7e47f17d7c5a4aaff00de7ed8768f, type: 3}
+  m_Avatar: {fileID: 9000000, guid: b6c8f2e5371b2dc42a3b716bcdbbc283, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9e800791c4338ca4b9418bc62a94ed2c, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &82014264571440144
 AudioSource:
   m_ObjectHideFlags: 0
@@ -763,6 +726,55 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000011620052490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000012791662054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4b87e8890e0a943ad328c706dce755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8184180430264014534}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Select Canon Start
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  SetObjectID: 10042
+  InputTmie: 2.5
+  OutOfControl: 0.13
+  OutOfControl_Fail: 0.2
+  ShotForce: 20
+  ShotForce_Fail: 20
+  SuccessDir: 1
+  start: {fileID: 8300000, guid: b7b71129180565d438de5729a18f84f5, type: 3}
+  select: {fileID: 8300000, guid: f8965c2775d584a4eb89c97b856eaa34, type: 3}
+  loop: {fileID: 8300000, guid: 6013be66883688240b786d3fa6f4b395, type: 3}
+  end: {fileID: 8300000, guid: 77b3dc27be563a04bbd2904f3f9ef0d7, type: 3}
+  fail: {fileID: 8300000, guid: bcc7e47f17d7c5a4aaff00de7ed8768f, type: 3}
 --- !u!1 &1000012960693996
 GameObject:
   m_ObjectHideFlags: 0

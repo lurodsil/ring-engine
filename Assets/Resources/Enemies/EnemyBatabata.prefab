@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 136108006772160838}
   - component: {fileID: 54296803750261038}
   - component: {fileID: 3962889759869409686}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyBatabata
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -349,6 +349,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a9ae67ea2a43e47aa3d93d4d2f7351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
   SetObjectID: 0
   isAlive: 1
   enemyType: 0

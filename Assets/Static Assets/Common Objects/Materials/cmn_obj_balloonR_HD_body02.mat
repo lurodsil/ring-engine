@@ -5,11 +5,12 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: cmn_obj_balloonR_HD_body02
   m_Shader: {fileID: 4800000, guid: 189e50727d4b9e14ab23a5f8be56a58f, type: 3}
   m_ShaderKeywords: _VERTEXBLEND_OFF
-  m_LightmapFlags: 1
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -55,7 +56,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3103a0bf66ab72f4a92cb965f51aaecb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -71,7 +72,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _AlphaToMask: 1
+    - _AlphaToMask: 0
     - _BumpScale: 1
     - _Cull: 2
     - _Cutoff: 0.5
@@ -99,3 +100,4 @@ Material:
     - _ReflectionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _UVSpeed: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []

@@ -71,7 +71,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011327450668}
-  - component: {fileID: 95000013275292234}
   m_Layer: 0
   m_Name: cmn_obj_springpole_HD
   m_TagString: Untagged
@@ -95,25 +94,6 @@ Transform:
   m_Father: {fileID: 4000013218696426}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!95 &95000013275292234
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000011154732132}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0867117a22ca3924a881dc4f0f678bfa, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1000012378747974
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,9 +317,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000013218696426}
-  - component: {fileID: 114000013428584468}
-  - component: {fileID: 1174262242}
+  - component: {fileID: 1733914373571705989}
   - component: {fileID: 3712327467278456451}
+  - component: {fileID: 1174262242}
+  - component: {fileID: 114000013428584468}
   m_Layer: 0
   m_Name: JumpPole
   m_TagString: Untagged
@@ -362,49 +343,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114000013428584468
-MonoBehaviour:
+--- !u!95 &1733914373571705989
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000014050570610}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 862f9a6ebbaad044599cbb4037369517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  active: 1
-  SetObjectID: 0
-  AddMaxVelocity: 0
-  AddMinVelocity: 0
-  jumpPoleSound: {fileID: 8300000, guid: 07f104150ad70284aa0b43539a11996d, type: 3}
---- !u!136 &1174262242
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000014050570610}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.5
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -1.5}
+  m_Avatar: {fileID: 9000000, guid: 0867117a22ca3924a881dc4f0f678bfa, type: 3}
+  m_Controller: {fileID: 9100000, guid: ef8db680ca2c59e4aa9b6c475a292eb9, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &3712327467278456451
 AudioSource:
   m_ObjectHideFlags: 0
@@ -516,7 +473,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.5
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -556,3 +513,69 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &1174262242
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014050570610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -1.5}
+--- !u!114 &114000013428584468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000014050570610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862f9a6ebbaad044599cbb4037369517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3712327467278456451}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 07f104150ad70284aa0b43539a11996d,
+            type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1733914373571705989}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Spring Pole
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  AddMaxVelocity: 30
+  AddMinVelocity: 20

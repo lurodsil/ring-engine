@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc30ceea1de38734db089c6e00568774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Active: 0
+  active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []

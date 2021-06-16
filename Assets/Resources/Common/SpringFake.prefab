@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 532c0adabaae0ea409e5d5237e69167c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []
@@ -511,15 +512,14 @@ MonoBehaviour:
   OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
-  active: 1
-  DebugShotTimeLength: 2
-  FirstSpeed: 17
   IsHomingAttackEnable: 0
-  KeepVelocityDistance: 5
-  OutOfControl: 0.25
-  isBoostCancel: 0
-  startPoint: {fileID: 4859319149299810}
   isStartPositionConstant: 1
+  isBoostCancel: 1
+  firstSpeed: 30
+  keepVelocityDistance: 5
+  OutOfControl: 0.25
+  startPoint: {fileID: 4859319149299810}
+  DebugShotTimeLength: 2
 --- !u!1 &1737755353498090
 GameObject:
   m_ObjectHideFlags: 0

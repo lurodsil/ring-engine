@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &573941945954116634
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5554264838413760739}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: aa6c1b17fb02ee64bb56900813f02c64, type: 3}
 --- !u!1 &5554264838467311541
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,36 +210,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59786a81eb5b3aa48ac3f175b2809bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
   OnBecomeActive:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RingEngineObject, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnBecomeInactive:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RingEngineObject, Assembly-CSharp
-        m_MethodName: Deactivate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
   keepOn: 1
   switchOn: {fileID: 8300000, guid: 69b6f1a6b7b4b3f46b6963669c2ee96a, type: 3}
   switchOff: {fileID: 8300000, guid: 6933cbebc0d24c74ebf48b7df3629b2a, type: 3}
@@ -274,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aa6c1b17fb02ee64bb56900813f02c64, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: aa6c1b17fb02ee64bb56900813f02c64, type: 3}
       propertyPath: m_LocalPosition.z
@@ -313,12 +282,6 @@ PrefabInstance:
 --- !u!4 &5554264838414247109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: aa6c1b17fb02ee64bb56900813f02c64,
-    type: 3}
-  m_PrefabInstance: {fileID: 5554264838413860423}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5554264838413760739 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100004, guid: aa6c1b17fb02ee64bb56900813f02c64,
     type: 3}
   m_PrefabInstance: {fileID: 5554264838413860423}
   m_PrefabAsset: {fileID: 0}
