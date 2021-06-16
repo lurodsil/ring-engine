@@ -631,7 +631,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            if (!isBoosting && !wallCeiling && absoluteVelocity < lowToHighVelocity)
+            if (!wallCeiling)
             {
                 FreeMovement();
             }
@@ -1998,7 +1998,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         isBoosting = false;
         contactPoint = new ContactPoint();
-        print(stateMachine.lastStateName);
         UpdateTargets();
     }
     public virtual void StateFall()

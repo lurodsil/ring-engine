@@ -214,6 +214,11 @@ public class PlayerAnimation : MonoBehaviour
         //animator = GetComponent<Animator>();
     }
 
+    private void StateBalloonStart()
+    {
+        animator.SetTrigger("Balloon Start");
+    }
+
     private void StateStumbleStart()
     {
         animator.SetTrigger("Stumble Start");
@@ -657,6 +662,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void StatePulleyStart()
     {
+        animator.ResetTrigger(pulleyEndNameHash);
         animator.SetTrigger(pulleyStartNameHash);
     }
 

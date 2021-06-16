@@ -23,7 +23,7 @@ public class LockOn : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
-    void LateUpdate()
+    void Update()
     {
         if (player.closestTarget && !player.groundInfo.grounded)
         {

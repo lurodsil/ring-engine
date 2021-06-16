@@ -15,6 +15,7 @@ public abstract class RingEngineObject : MonoBehaviour
     [HideInInspector]
     public UnityEvent OnStateEnd;
     public Player player { get; set; }
+    public StateMachine.State objectState { get; set; }
 
     public virtual void OnEnable()
     {
@@ -71,6 +72,29 @@ public abstract class RingEngineObject : MonoBehaviour
         {
             OnBecomeInactive?.Invoke();
             wasActive = false;
+        }
+    }
+
+    public virtual void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(GameTags.playerTag))
+        {
+            if (objectState == null)
+            {
+                Debug.Log("Object state is not defined");
+                return;
+            }
+
+            try
+            {
+                player = other.GetComponent<Player>();
+                player.stateMachine.ChangeState(objectState, gameObject);
+            }
+            catch
+            {
+                Debug.Log(other.name + " does't contain Player component");
+                return;
+            }
         }
     }
 }

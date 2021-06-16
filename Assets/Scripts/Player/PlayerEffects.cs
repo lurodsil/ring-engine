@@ -86,50 +86,50 @@ public class PlayerEffects : MonoBehaviour
     {
         underwaterBubble.SetActive(player.underwater);
 
-        //if (player.groundInfo.grounded && player.groundInfo.groundHit.collider.sharedMaterial)
-        //{
-        //    string materialName = player.groundInfo.groundHit.collider.sharedMaterial.name;
+        if (player.groundInfo.grounded && player.groundInfo.groundHit.collider.sharedMaterial)
+        {
+            string materialName = player.groundInfo.groundHit.collider.sharedMaterial.name;
 
-        //    if (materialName.Contains("Stone"))
-        //    {
-        //        smokeMaterial.SetTexture("_MainTex", stone);
-        //    }
-        //    else if (materialName.Contains("Grass"))
-        //    {
-        //        smokeMaterial.SetTexture("_MainTex", grass);
-        //    }
-        //    else if (materialName.Contains("Dirt"))
-        //    {
-        //        smokeMaterial.SetTexture("_MainTex", dirt);
-        //    }
-        //    else if (materialName.Contains("Metal"))
-        //    {
-        //        smokeMaterial.SetTexture("_MainTex", metal);
-        //    }
-        //    else if (materialName.Contains("Snow"))
-        //    {
-        //        smokeMaterial.SetTexture("_MainTex", snow);
-        //    }
-        //}
-        //else
-        //{
-        //    smokeMaterial.SetTexture("_MainTex", stone);
-        //}
+            if (materialName.Contains("Stone"))
+            {
+                smokeMaterial.SetTexture("_MainTex", stone);
+            }
+            else if (materialName.Contains("Grass"))
+            {
+                smokeMaterial.SetTexture("_MainTex", grass);
+            }
+            else if (materialName.Contains("Dirt"))
+            {
+                smokeMaterial.SetTexture("_MainTex", dirt);
+            }
+            else if (materialName.Contains("Metal"))
+            {
+                smokeMaterial.SetTexture("_MainTex", metal);
+            }
+            else if (materialName.Contains("Snow"))
+            {
+                smokeMaterial.SetTexture("_MainTex", snow);
+            }
+        }
+        else
+        {
+            smokeMaterial.SetTexture("_MainTex", stone);
+        }
 
-        //if (player.groundInfo.grounded && !player.underwater)
-        //{
-        //    if (player.groundInfo.groundHit.collider.sharedMaterial && player.groundInfo.groundHit.collider.sharedMaterial.name != "Water")
-        //    {
-        //        if (smoke.isStopped)
-        //        {
-        //            smoke.Play();
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    smoke.Stop();
-        //}
+        if (player.groundInfo.grounded && !player.underwater)
+        {
+            if (player.groundInfo.groundHit.collider.sharedMaterial && player.groundInfo.groundHit.collider.sharedMaterial.name != "Water")
+            {
+                if (smoke.isStopped)
+                {
+                    smoke.Play();
+                }
+            }
+        }
+        else
+        {
+            smoke.Stop();
+        }
 
         dashBall.localScale = dashBallSizeFast;// Vector3.Lerp(dashBallSizeNormal, dashBallSizeFast, player.velocity * 3 * Time.deltaTime);
 
