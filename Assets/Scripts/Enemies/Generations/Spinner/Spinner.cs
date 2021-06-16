@@ -3,15 +3,20 @@
     public override void Start()
     {
         base.Start();
-
-        stateMachine.Initialize(gameObject, Empty);
     }
 
     public override void Update()
     {
         base.Update();
 
-        stateMachine.Update();
+        if (stateMachine.initiated)
+        {
+            stateMachine.Update();
+        }
+        else
+        {
+            stateMachine.Initialize(gameObject, Empty);
+        }
     }
 
     void Empty()

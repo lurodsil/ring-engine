@@ -43,7 +43,6 @@ public class HidrocityBoss : GenerationsObject
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        stateMachine.Initialize(gameObject, StateWait);
 
         waterSwirlPosA = waterSwirlPos.position + Vector3.up;
         waterSwirlPosB = waterSwirlPos.position + Vector3.up * 6;
@@ -52,7 +51,14 @@ public class HidrocityBoss : GenerationsObject
 
     void Update()
     {
-        stateMachine.Update();
+        if (stateMachine.initiated)
+        {
+            stateMachine.Update();
+        }
+        else
+        {
+            stateMachine.Initialize(gameObject, StateWait);
+        }
 
         waterSwirl.transform.position = new Vector3(transform.position.x, waterSwirlPos.position.y, transform.position.z);
     }

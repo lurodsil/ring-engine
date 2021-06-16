@@ -10,14 +10,21 @@ public class SimpleEnemy : Enemy
     {
         base.Start();
         animator = GetComponent<Animator>();
-        stateMachine.Initialize(gameObject, StateIdle);
+       
     }
 
     public override void Update()
     {
         base.Update();
 
-        stateMachine.Update();
+        if (stateMachine.initiated)
+        {
+            stateMachine.Update();
+        }
+        else
+        {
+            stateMachine.Initialize(gameObject, StateIdle);
+        }
     }
 
     #region State Idle

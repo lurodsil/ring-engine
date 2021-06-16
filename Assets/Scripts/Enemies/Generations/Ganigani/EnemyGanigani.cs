@@ -17,8 +17,6 @@ public class EnemyGanigani : Enemy
     new void Start()
     {
         base.Start();
-
-        stateMachine.Initialize(gameObject, StateIdle);
     }
 
     new void Update()
@@ -30,7 +28,14 @@ public class EnemyGanigani : Enemy
             waypointIndex = 0;
         }
 
-        stateMachine.Update();
+        if (stateMachine.initiated)
+        {
+            stateMachine.Update();
+        }
+        else
+        {
+            stateMachine.Initialize(gameObject, StateIdle);
+        }
 
     }
 

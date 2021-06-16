@@ -278,12 +278,12 @@ public class Player : MonoBehaviour, IDamageable
         collider = GetComponent<Collider>();
         camera = Camera.main;
         playerAnimation = GetComponent<PlayerAnimation>();
-
+       
     }
 
     void Start()
     {
-        stateMachine.Initialize(gameObject, StateIdle);
+
         SetCameraTarget();
         UpdateTargets();
     }

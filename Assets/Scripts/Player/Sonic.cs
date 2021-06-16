@@ -24,9 +24,17 @@ public class Sonic : Player
             canAirboost = true;
         }
 
+
         if (GameManager.instance.gameState == GameState.Playing)
         {
-            stateMachine.Update();
+            if (stateMachine.initiated)
+            {
+                stateMachine.Update();
+            }
+            else
+            {
+                stateMachine.Initialize(gameObject, StateIdle);
+            }
         }
 
         if (Input.GetButtonDown(XboxButton.DPadUp))
