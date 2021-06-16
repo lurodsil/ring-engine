@@ -1,18 +1,14 @@
 ﻿using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 [CustomEditor(typeof(RingEngineObject), true)]
-[CanEditMultipleObjects]
 public class RingEngineObjectEditor : Editor
 {
+    bool showEventsInInspector;
+
     public override void OnInspectorGUI()
     {
-        RingEngineObject ringEngineObject = (RingEngineObject)target;
-
-        EditorGUI.BeginChangeCheck();
-
-        ringEngineObject.active = EditorGUILayout.Toggle("Active", ringEngineObject.active);           
-
         DrawDefaultInspector();
 
         SerializedProperty onStateStart = serializedObject.FindProperty("OnStateStart");
@@ -20,9 +16,9 @@ public class RingEngineObjectEditor : Editor
         SerializedProperty onBecomeActive = serializedObject.FindProperty("OnBecomeActive");
         SerializedProperty onBecomeInactive = serializedObject.FindProperty("OnBecomeInactive");
 
-        ringEngineObject.showEventsInInspector = EditorGUILayout.Foldout(ringEngineObject.showEventsInInspector, "Events");
+        showEventsInInspector = EditorGUILayout.Foldout(showEventsInInspector, "Events");
 
-        if (ringEngineObject.showEventsInInspector)
+        if (showEventsInInspector)
         {
             EditorGUILayout.PropertyField(onStateStart);
             EditorGUILayout.PropertyField(onStateEnd);
@@ -31,13 +27,5 @@ public class RingEngineObjectEditor : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
-
-        if (EditorGUI.EndChangeCheck())
-        {
-            EditorUtility.SetDirty(target);
-            PrefabUtility.RecordPrefabInstancePropertyModifications(target);
-        }
-        
     }
-    
 }

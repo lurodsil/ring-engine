@@ -3,7 +3,8 @@ using UnityEngine.Events;
 
 public abstract class RingEngineObject : MonoBehaviour
 {
-    public Player player { get; set; }
+    public bool active;
+    private bool wasActive;
 
     [HideInInspector]
     public UnityEvent OnBecomeActive;
@@ -13,34 +14,7 @@ public abstract class RingEngineObject : MonoBehaviour
     public UnityEvent OnStateStart;
     [HideInInspector]
     public UnityEvent OnStateEnd;
-
-    public bool showEventsInInspector { get; set; }
-
-    public bool active
-    {
-        get
-        {
-            return Active;
-        }
-        set
-        {
-            if (Active != value)
-            {
-                if (Active == false)
-                {
-                    OnBecomeActive?.Invoke();
-                }
-                else
-                {
-                    OnBecomeInactive?.Invoke();
-                }
-            }
-
-            Active = value;
-        }
-    }
-
-    private bool Active;
+    public Player player { get; set; }
 
     public virtual void OnEnable()
     {
@@ -66,7 +40,7 @@ public abstract class RingEngineObject : MonoBehaviour
 
         for (int i = 0; i < unityEvent.GetPersistentEventCount(); i++)
         {
-            Component targetComponent = unityEvent.GetPersistentTarget(i) as Component;            
+            Component targetComponent = unityEvent.GetPersistentTarget(i) as Component;
 
             if (targetComponent != null)
             {
@@ -77,15 +51,26 @@ public abstract class RingEngineObject : MonoBehaviour
 
     public virtual void Activate()
     {
+        OnBecomeActive!.Invoke();
         active = true;
     }
     public virtual void Deactivate()
     {
+        OnBecomeInactive!.Invoke();
         active = false;
     }
 
-    public void Reset()
+    public virtual void OnValidate()
     {
-        active = true;        
+        if (!wasActive && active)
+        {
+            OnBecomeActive?.Invoke();
+            wasActive = true;
+        }
+        else if (wasActive && !active)
+        {
+            OnBecomeInactive?.Invoke();
+            wasActive = false;
+        }
     }
 }
