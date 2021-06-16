@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class StateMachine
 {
@@ -13,6 +14,7 @@ public class StateMachine
     private string CurrentStateName;
     private string NextStateName;
     private bool paused;
+    public bool initiated { get; private set; }
 
     public string lastStateName
     {
@@ -45,6 +47,7 @@ public class StateMachine
 
     private GameObject gameObject;
 
+
     public void Initialize(GameObject gameObject, State startState)
     {
         this.gameObject = gameObject;
@@ -58,13 +61,25 @@ public class StateMachine
         CurrentStateName = state.Method.Name;
 
         NextStateName = string.Empty;
+
+        initiated = true;
     }
 
     public void Update()
     {
-        if (!paused)
+        if (initiated)
         {
-            state();
+            if (!paused)
+            {
+                if (state == null)
+                {
+                    initiated = false;
+                }
+                else
+                {
+                    state();
+                }
+            }
         }
     }
 
