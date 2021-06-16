@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
-public class PointMarker : GenerationsObject
+public class PointMarker : RingEngineObject
 {
     public float Width = 1.4f;
     public float Height = 5f;
@@ -39,7 +39,7 @@ public class PointMarker : GenerationsObject
 
     private void Start()
     {
-        active = true;
+        Activate();
 
         laserRenderer = laser.GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
@@ -73,7 +73,7 @@ public class PointMarker : GenerationsObject
             pointMarkerLeft.SetTrigger("Checkpoint");
             pointMarkerRight.SetTrigger("Checkpoint");
             audioSource.PlayOneShot(checkpoint);
-            active = false;
+           
             Deactivate();
             GameManager.instance.lastCheckpoint = (int)PointMarkerID;
             if (!GameManager.instance.saveData.achievements.Contains(Achievements.getCheckpoint.ToString()))

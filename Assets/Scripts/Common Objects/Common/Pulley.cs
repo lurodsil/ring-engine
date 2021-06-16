@@ -46,7 +46,7 @@ public class Pulley : GenerationsObject
             }
             else
             {
-                active = false;
+                Deactivate();
             }
         }
         else
@@ -99,7 +99,7 @@ public class Pulley : GenerationsObject
         if (other.CompareTag(GameTags.playerTag))
         {
             player = other.GetComponent<Player>();
-            active = true;
+            Activate();
             player.stateMachine.ChangeState(StatePulley, gameObject);
         }
     }

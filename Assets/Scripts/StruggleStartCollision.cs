@@ -36,7 +36,7 @@ public class StruggleStartCollision : GenerationsObject
 
             player.stateMachine.ChangeState(StateStruggle, gameObject);
 
-            struggleEndCollision.active = true;
+            struggleEndCollision.Deactivate();
         }
     }
 }

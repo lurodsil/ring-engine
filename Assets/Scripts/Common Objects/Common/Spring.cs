@@ -75,7 +75,7 @@ public class Spring : RingEngineObject
 
     private void OnTriggerEnter(Collider other)
     {
-        if (active && other.CompareTag(GameTags.playerTag))
+        if (other.CompareTag(GameTags.playerTag))
         {
             player = other.GetComponent<Player>();
             player.stateMachine.ChangeState(StateSpring, gameObject);
@@ -84,6 +84,7 @@ public class Spring : RingEngineObject
 
     void OnDrawGizmos()
     {
+
         Gizmos.color = Color.green;
         GizmosExtension.DrawTrajectory(transform.position, transform.up, FirstSpeed, DebugShotTimeLength, KeepVelocityDistance);
         Gizmos.color = Color.red;

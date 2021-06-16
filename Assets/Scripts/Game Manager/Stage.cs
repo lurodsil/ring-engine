@@ -200,7 +200,10 @@ public class Stage : MonoBehaviour
     {
         for (int i = 0; i < checkpoints.Length; i++)
         {
-            checkpoints[i].active = GameManager.instance.activeCheckpoints[i];
+            if (GameManager.instance.activeCheckpoints[i])
+            {
+                checkpoints[i].Activate();
+            }
 
             if (checkpoints[i].PointMarkerID == GameManager.instance.lastCheckpoint)
             {

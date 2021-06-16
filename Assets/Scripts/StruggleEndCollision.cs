@@ -10,7 +10,7 @@ public class StruggleEndCollision : GenerationsObject
 
             player.stateMachine.ChangeState(player.StateFall, gameObject);
 
-            active = false;
+            Deactivate();
         }
     }
 }
