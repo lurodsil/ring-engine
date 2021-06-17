@@ -28,6 +28,8 @@ public class UpReel : RingEngineObject
         audioSource.clip = loop;
         startPosition = transform.TransformPoint(new Vector3(0, -length, 0));
         endPosition = transform.position;
+
+        objectState = StateUpReel;
     }
 
     private void Update()
@@ -71,14 +73,11 @@ public class UpReel : RingEngineObject
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            pullUp = true;
-            player.stateMachine.ChangeState(StateUpReel, gameObject);
-        }
+        base.OnTriggerEnter(other);
+
+        pullUp = true;
     }
 
 
