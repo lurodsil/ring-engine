@@ -2076,6 +2076,7 @@ public class Player : MonoBehaviour, IDamageable
     private void StateJumpStart()
     {
         rigidbody.velocity += lastGroundedNormal * JumpPowerMin;
+        UpdateTargets();
     }
     public virtual void StateJump()
     {
@@ -2120,6 +2121,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         isAttacking = true;
         isBoosting = false;
+        UpdateTargets();
     }
     public virtual void StateBall()
     {
