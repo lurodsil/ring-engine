@@ -39,8 +39,6 @@ public class PointMarker : RingEngineObject
 
     private void Start()
     {
-        Activate();
-
         laserRenderer = laser.GetComponent<MeshRenderer>();
         boxCollider = GetComponent<BoxCollider>();
         audioSource = GetComponent<AudioSource>();
@@ -50,11 +48,6 @@ public class PointMarker : RingEngineObject
 
         pointMarkerLeft.SetBool("Active", active);
         pointMarkerRight.SetBool("Active", active);
-
-        if (!active)
-        {
-            Deactivate();
-        }
     }
 
     private void Update()
@@ -66,7 +59,7 @@ public class PointMarker : RingEngineObject
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (active)
         {
@@ -84,8 +77,9 @@ public class PointMarker : RingEngineObject
         }
     }
 
-    void Deactivate()
+    public override void Deactivate()
     {
+        base.Deactivate();
         skinnedMeshRendererLeft.materials[4].color = Color.yellow;
         skinnedMeshRendererRight.materials[4].color = Color.yellow;
         laser.gameObject.SetActive(false);

@@ -47,7 +47,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 5ac4cf8c9f2b4b1479c021811ac6ceb3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -56,7 +56,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 100
+  MaxDistance: 50
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -127,7 +127,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -182,10 +182,13 @@ MonoBehaviour:
   active: 1
   OnBecomeActive:
     m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114000012675395838}
-        m_TargetAssemblyTypeName: Flame, Assembly-CSharp
-        m_MethodName: Start
+      - m_Target: {fileID: 2283113178243117867}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -195,9 +198,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
+      - m_Target: {fileID: 8474537374985519006}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnStateStart:
     m_PersistentCalls:
       m_Calls:
@@ -252,15 +264,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  FlameType: 1
-  LengthType: 1
-  OffTime: 0
-  OnTime: 5
-  PhaseRate: 0
-  AppearTime: 0.2
-  Length: 10
-  Phase: 0
-  Type: 1
+  offTime: 2
+  onTime: 5
 --- !u!114 &1220214838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33bb07529d69ba34ab1a54f3f3f9124b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []
