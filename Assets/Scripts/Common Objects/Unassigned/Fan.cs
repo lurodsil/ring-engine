@@ -45,29 +45,17 @@ public class Fan : GenerationsObject
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
 
         audioSource = GetComponent<AudioSource>();
 
         audioSource.clip = sound;
+
+        objectState = StateFloat;
     }
 
     private void Update()
     {
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (active)
-        {
-            if (other.CompareTag(GameTags.playerTag))
-            {
-                player = other.GetComponent<Player>();
-
-                player.stateMachine.ChangeState(StateFloat, gameObject);
-            }
-        }
 
     }
 
