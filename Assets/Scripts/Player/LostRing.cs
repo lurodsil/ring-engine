@@ -22,6 +22,16 @@ public class LostRing : MonoBehaviour
 
     void StateHurtStart()
     {
+        LostRings();
+    }
+
+    private void GrindDamage()
+    {
+        LostRings();
+    }
+
+    void LostRings()
+    {
         int rings = Mathf.Clamp(GameManager.instance.rings, 0, 20);
 
         if (rings == 0)
