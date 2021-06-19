@@ -4,9 +4,10 @@ public class Pulley : RingEngineObject
 {
     public bool isJumpCancel = true;
     public bool isHommingAttackEnable = true;
-    public float speed;
+    public float speed = 30;
 
     public Transform pulleyHandle;
+    public Rigidbody rigidbody;
     public BezierPath bezierPath;
 
     private SphereCollider sphereCollider;
@@ -22,35 +23,41 @@ public class Pulley : RingEngineObject
         sphereCollider = GetComponent<SphereCollider>();
 
         objectState = StatePulley;
+
+        rigidbody = pulleyHandle.gameObject.AddComponent<Rigidbody>();
+        rigidbody.useGravity = false;
     }
 
     private void Update()
     {
         if (active)
         {
-            if (Vector3.Distance(pulleyHandle.position, bezierPath.bezierSpline.GetPoint(1)) > 0.5f)
+            if (Vector3.Distance(pulleyHandle.position, bezierPath.bezierSpline.GetPoint(1)) < 1f)
             {
-                appliedSpeed = -speed;
+                Deactivate();
             }
             else
             {
-                Deactivate();
+                appliedSpeed = speed;
             }
         }
         else
         {
-            if (Vector3.Distance(pulleyHandle.position, bezierPath.bezierSpline.GetPoint(0)) > 0.5f)
+            if (Vector3.Distance(pulleyHandle.position, bezierPath.bezierSpline.GetPoint(0)) < 1f)
             {
-                appliedSpeed = speed;
+                appliedSpeed = 0;
+                sphereCollider.enabled = true;
             }
             else
             {
-                appliedSpeed = 0;
+                appliedSpeed = -speed;
             }
         }
 
-        pulleyHandle.Translate(knot.tangent * -appliedSpeed * Time.deltaTime);
-        bezierPath.PutOnPath(pulleyHandle, PutOnPathMode.BinormalAndNormal, out knot);
+        rigidbody.velocity = knot.tangent * appliedSpeed;
+
+        bezierPath.PutOnPath(pulleyHandle, PutOnPathMode.BinormalAndNormal, out knot, out _, 10);
+
         pulleyHandle.rotation = Quaternion.LookRotation(knot.tangent, knot.normal);
         sphereCollider.center = pulleyHandle.localPosition + colliderOffset;
     }
@@ -59,12 +66,14 @@ public class Pulley : RingEngineObject
     void StatePulleyStart()
     {
         player.rigidbody.useGravity = false;
+        player.rigidbody.isKinematic = true;
         player.rigidbody.velocity = Vector3.zero;
         player.transform.parent = pulleyHandle;
         player.transform.forward = pulleyHandle.forward;
         player.transform.localPosition = playerOffset;
 
         OnStateStart?.Invoke();
+        sphereCollider.enabled = false;
     }
     public void StatePulley()
     {
@@ -85,6 +94,7 @@ public class Pulley : RingEngineObject
         player.canHomming = isHommingAttackEnable;
         player.transform.parent = null;
         player.rigidbody.useGravity = true;
+        player.rigidbody.isKinematic = false;
         player.rigidbody.velocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.2f) * speed;
     }
     #endregion
