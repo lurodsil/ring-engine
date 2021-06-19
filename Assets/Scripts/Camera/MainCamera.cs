@@ -83,7 +83,7 @@ public class MainCamera : MonoBehaviour
 
             Camera.main.fieldOfView = fieldOfView;
 
-            //CameraTarget.instance.offset = Vector3.zero;
+            CameraTarget.instance.offset = Vector3.zero;
         }
         else
         {

@@ -17,51 +17,8 @@ public class ChangeVolumeCamera : GenerationsObject
 
     public GameObject target;
 
-    public override void OnValidate()
-    {
-        if (!gameObject.GetComponent<BoxCollider>())
-        {
-            gameObject.AddComponent<BoxCollider>();
-        }
 
-        gameObject.GetComponent<BoxCollider>().isTrigger = true;
-
-        transform.localScale = new Vector3(Collision_Width, Collision_Height, Collision_Length);
-
-        try
-        {
-            target = FindObjectByID(Target).gameObject;
-        }
-        catch
-        {
-
-        }
-
-    }
-
-    public void Start()
-    {
-        if (!gameObject.GetComponent<BoxCollider>())
-        {
-            gameObject.AddComponent<BoxCollider>();
-        }
-
-        gameObject.GetComponent<BoxCollider>().isTrigger = true;
-
-        transform.localScale = new Vector3(Collision_Width, Collision_Height, Collision_Length);
-
-        try
-        {
-            target = FindObjectByID(Target).gameObject;
-        }
-        catch
-        {
-
-        }
-
-    }
-
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {

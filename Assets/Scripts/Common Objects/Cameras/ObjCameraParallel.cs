@@ -33,10 +33,7 @@ public class ObjCameraParallel : GenerationsObject
     Quaternion rotation;
     Vector3 targetOffset;
 
-    public override void OnValidate()
-    {
-        transform.eulerAngles = new Vector3(Pitch, -Yaw + 180, ZRot);
-    }
+
 
     void Start()
     {
