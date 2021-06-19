@@ -3,73 +3,50 @@ using UnityEngine.UI;
 
 public class RingEngineDebug : MonoBehaviour
 {
+    public Text physicsContent;
+    public Text playerContent;
+    public Text statemachineContent;
+    public Text animationContent;
+    public Text miscContent;
 
-    new public bool enabled;
-    public Canvas canvas;
-    Player player;
-    PlayerAnimation playerAnimation;
+    private Player player;
+    private Animator playerAnimator;
 
-    public Text
-        rigidbodyVelocity,
-        absoluteVelocity,
-        verticalVelocity,
-        horizontalVelocity,
-        appliedVelocity,
-        isGrounded,
-        groundDistance,
-        groundPhysicMaterial,
-        useGravity,
-        gravity,
-        isKinematic
-    ;
-
-    public Text currentState;
-
-    public Text currentAnimation;
-
-    public Text fpsText;
-
-    public Text groundState;
-
-    // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        playerAnimation = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAnimation>();
+        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if (enabled)
-        {
-            fpsText.text = GameManager.fps.ToString("f0");
+        physicsContent.text =
+            "Rigidbody velocity: " + player.rigidbody.velocity.ToString("f2") + "\r\n" +
+            "Absolute velocity: " + player.rigidbody.velocity.magnitude.ToString("f2") + "\r\n" +
+            "Horizontal velocity: " + new Vector3(player.rigidbody.velocity.x, 0, player.rigidbody.velocity.z).magnitude.ToString("f2") + "\r\n" +
+            "Vertical velocity: " + player.rigidbody.velocity.y.ToString("f2") + "\r\n" +
+            "Applied velocity: " + player.velocity.ToString("f2") + "\r\n" +
+            "Ground distance: " + (player.groundInfo.groundHit.distance - 0.5f).ToString("f2") + "\r\n" +
+            "Is Kinematic: " + player.rigidbody.isKinematic + "\r\n" +
+            "Use gravity: " + player.rigidbody.useGravity + "\r\n" +
+            "Gravity: " + Physics.gravity;
 
-            rigidbodyVelocity.text = player.rigidbody.velocity.ToString("f2");
-            absoluteVelocity.text = player.rigidbody.velocity.magnitude.ToString("f2");
-            horizontalVelocity.text = new Vector3(player.rigidbody.velocity.x, 0, player.rigidbody.velocity.z).magnitude.ToString("f2");
-            verticalVelocity.text = player.rigidbody.velocity.y.ToString("f2");
-            appliedVelocity.text = player.velocity.ToString("f2");
-            isGrounded.text = player.groundInfo.grounded.ToString();
-            groundDistance.text = (player.groundInfo.groundHit.distance - 0.5f).ToString("f2");
-            if (player.groundInfo.GetComponent<Collider>() && player.groundInfo.GetComponent<Collider>().sharedMaterial != null)
-            {
-                groundPhysicMaterial.text = player.groundInfo.GetComponent<Collider>().sharedMaterial.name;
-            }
+        playerContent.text =
+            "Is grounded: " + player.groundInfo.grounded + "\r\n" +
+            "Ground state: " + player.groundInfo.groundState + "\r\n" +
+            "Is grind grounded: " + player.groundInfo.grindGrounded + "\n\r" +
+            "Can homming: " + player.canHomming + "\n\r" +
+            "Is attacking: " + player.isAttacking + "\n\r" +
+            "Ignore damage: " + player.ignoreDamage;
 
-            useGravity.text = player.rigidbody.useGravity.ToString();
-            gravity.text = Physics.gravity.y.ToString();
-            isKinematic.text = player.rigidbody.isKinematic.ToString();
+        statemachineContent.text =
+            "Last state: " + player.stateMachine.lastStateName.Replace("State", "") + "\n\r" +
+            "Current state: " + player.stateMachine.currentStateName.Replace("State", "");
 
-            currentState.text = player.stateMachine.currentStateName.Replace("State", "");
-            currentAnimation.text = playerAnimation.animator.GetCurrentAnimatorStateInfo(0).tagHash.ToString();
+        animationContent.text =
+            "Current animation: " + playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
 
-            groundState.text = player.groundInfo.groundState.ToString();
-        }
-    }
-
-    // Update is called once per frame
-    private void LateUpdate()
-    {
-        canvas.enabled = enabled;
+        miscContent.text =
+            "FPS: " + GameManager.fps.ToString("f0");
     }
 }
