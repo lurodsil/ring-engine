@@ -8,9 +8,9 @@ public class BezierPath : MonoBehaviour
     [Range(0.01f, 0.001f)]
     public float pathFindPrecision = 0.01f;
     public bool fastMode = true;
-    [HideInInspector]
+
     public BezierSpline bezierSpline;
-    [HideInInspector]
+
     public DualBezierSpline dualBezierSpline;
     private Vector3 pathPosition;
 

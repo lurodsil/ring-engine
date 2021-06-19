@@ -60,6 +60,7 @@ public class BezierSplineCollider : MonoBehaviour
 
     private void Reset()
     {
+
         GetComponent<MeshCollider>().hideFlags = HideFlags.HideInInspector;
         Rigidbody rigidbody = GetComponent<Rigidbody>();
         rigidbody.useGravity = false;
