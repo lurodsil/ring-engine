@@ -105,7 +105,10 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetTrigger("Snow Board Start");
     }
-
+    private void GrindDamage()
+    {
+        animator.SetTrigger("Do Damage Action");
+    }
 
     private void StateJumpCollisionStart()
     {
@@ -613,6 +616,7 @@ public class PlayerAnimation : MonoBehaviour
     void StateHomingStart()
     {
         animator.SetInteger("HommingTrickID", 0);
+        animator.SetTrigger("Homming Start");
         homming = true;
     }
 
