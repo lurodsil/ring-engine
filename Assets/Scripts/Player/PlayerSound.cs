@@ -417,6 +417,11 @@ public class PlayerSound : MonoBehaviour
         audioSource.PlayOneShot(hurt);
     }
 
+    private void GrindDamage()
+    {
+        StateHurtStart();
+    }
+
     void StateStompStart()
     {
         audioSource.PlayOneShot(stompStart);

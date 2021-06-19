@@ -281,6 +281,11 @@ public class PlayerEffects : MonoBehaviour
         StartCoroutine(BlinkObject(playerMesh, damageTakeBlinkInterval, player.ignoreDamageTime));
     }
 
+    private void GrindDamage()
+    {
+        StartCoroutine(BlinkObject(playerMesh, damageTakeBlinkInterval, player.ignoreDamageTime));
+    }
+
     IEnumerator BlinkObject(GameObject target, float blinkInterval, float waitTime)
     {
         float endTime = Time.time + waitTime;
