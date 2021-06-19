@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class GrindDashPanel : GenerationsObject
+public class GrindDashPanel : RingEngineObject
 {
-
     public bool IsFront = true;
     public bool IsStartVelocityConstant = true;
     public float OutOfControl = 2.5f;
@@ -12,18 +11,12 @@ public class GrindDashPanel : GenerationsObject
     public AudioClip dash;
     new private AudioSource audio;
 
-
-    public override void OnValidate()
-    {
-
-    }
-
     private void Start()
     {
         audio = GetComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
