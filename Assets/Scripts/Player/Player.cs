@@ -60,7 +60,7 @@ public class Player : MonoBehaviour, IDamageable
     [Range(0, 360)]
     public float targetFindAngle = 180;
 
-    private SplineSensor tempSensor;
+    private SplineSensor tempSensor = new SplineSensor();
     public SplineSensor splineSensor;
     public SplineSensor grindSplineSensorL;
     public SplineSensor grindSplineSensorR;
@@ -1739,21 +1739,26 @@ public class Player : MonoBehaviour, IDamageable
 
         if (Time.time > stateMachine.lastStateTime + 0.5f)
         {
-            if (Input.GetButtonDown(XboxButton.LeftShoulder) && grindSplineSensorL.bezierPath)
+            if (grindSplineSensorL.bezierPath && Input.GetButtonDown(XboxButton.LeftShoulder))
             {
                 tempSensor.bezierPath = grindSplineSensorL.bezierPath;
+
                 stateMachine.ChangeState(StateGrindSwitchLeft);
+
                 return;
             }
-            else if (Input.GetButtonDown(XboxButton.RightShoulder) && grindSplineSensorR.bezierPath)
+            else if (grindSplineSensorR.bezierPath && Input.GetButtonDown(XboxButton.RightShoulder))
             {
                 tempSensor.bezierPath = grindSplineSensorR.bezierPath;
+
                 stateMachine.ChangeState(StateGrindSwitchRight);
+
                 return;
             }
             else if (Input.GetButtonDown(XboxButton.A))
             {
                 stateMachine.ChangeState(StateGrindJump);
+
                 return;
             }
         }
@@ -1779,7 +1784,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            velocity = Mathf.Clamp(Mathf.MoveTowards(velocity, 0, (0.5f + rigidbody.velocity.y * 0.5f) * Time.deltaTime), 10, 40);
+            velocity = Mathf.Clamp(Mathf.MoveTowards(velocity, 0, (0.5f + rigidbody.velocity.y * 0.2f) * Time.deltaTime), 10, 40);
         }
 
         rigidbody.velocity = tangent * velocity;
@@ -1998,6 +2003,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         isBoosting = false;
         contactPoint = new ContactPoint();
+        isAttacking = false;
         UpdateTargets();
     }
     public virtual void StateFall()
@@ -2049,7 +2055,7 @@ public class Player : MonoBehaviour, IDamageable
 
             if (absoluteLeftStick > 0)
             {
-                rigidbody.AddForce(leftStickDirection * 100 * GameManager.deltaStep);
+                rigidbody.AddForce(leftStickDirection * 10 * GameManager.deltaStep);
             }
 
             if (rigidbody.HorizontalVelocity().magnitude > 1)
@@ -2069,6 +2075,8 @@ public class Player : MonoBehaviour, IDamageable
         {
             AlignPlayerToMovingDirection(1);
         }
+
+
     }
     #endregion State Fall
 
@@ -2101,7 +2109,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (absoluteLeftStick > 0)
         {
-            rigidbody.AddForce(leftStickDirection * 100 * GameManager.deltaStep);
+            rigidbody.AddForce(leftStickDirection * 10 * GameManager.deltaStep);
         }
 
         if (rigidbody.HorizontalVelocity().magnitude > 1)
@@ -2191,7 +2199,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             if (absoluteLeftStick > 0)
             {
-                rigidbody.AddForce(leftStickDirection * 100 * GameManager.deltaStep);
+                rigidbody.AddForce(leftStickDirection * 10 * GameManager.deltaStep);
             }
 
             if (rigidbody.HorizontalVelocity().magnitude > 1)
@@ -2315,7 +2323,6 @@ public class Player : MonoBehaviour, IDamageable
         FindClosestTarget();
         isAttacking = true;
         canHomming = false;
-
         hommingAttackTarget = closestTarget;
     }
     public virtual void StateHoming()
@@ -2340,6 +2347,9 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         FindClosestTarget();
+
+        isAttacking = false;
+        
     }
     #endregion State Homing
 
@@ -2928,25 +2938,31 @@ public class Player : MonoBehaviour, IDamageable
             return;
         }
 
-        Vector3 senderPosition = sender.transform.position;
-        senderPosition.y = transform.position.y;
-        Vector3 playerToSenderDirection = Vector3Extension.Direction(transform.position, senderPosition);
+        Input.SetVibration(1, 1, 0.2f);
+
+        IgnoreDamage();        
 
         if (GameManager.instance.rings > 0)
         {
+            if (isGrinding)
+            {
+                gameObject.SendMessage("GrindDamage");
+                return;
+            }
             stateMachine.ChangeState(StateHurt);
         }
         else
         {
+            bezierPath = null;
             stateMachine.ChangeState(StateDie);
         }
 
+        Vector3 senderPosition = sender.transform.position;
+        senderPosition.y = transform.position.y;
+        Vector3 playerToSenderDirection = Vector3Extension.Direction(transform.position, senderPosition);
+
         transform.forward = playerToSenderDirection;
-        rigidbody.velocity = -playerToSenderDirection * 15;
-
-        Input.SetVibration(1, 1, 0.2f);
-
-        IgnoreDamage();
+        rigidbody.velocity = -playerToSenderDirection * 15;        
     }
 
     private void IgnoreDamage()
