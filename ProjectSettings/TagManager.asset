@@ -56,17 +56,17 @@ TagManager:
   - Water
   - UI
   - Collectible
-  - Explosion
-  - Wall
-  - Walkable
+  - 
+  - 
+  - 
   - Player
-  - Static
+  - 
   - Enemy
   - Spline Collision
   - Editor Only
   - Shot
-  - ItemCollision
-  - WallCollision
+  - 
+  - 
   - 
   - 
   - 

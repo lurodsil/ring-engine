@@ -8,6 +8,10 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour, IDamageable
 {
+    public float rotationForceMin = 1;
+    public float rotationForceMax = 10;
+
+
     public LayerMask targetFindLayerMask;
     public float binormalTargetOffset;
 
@@ -290,6 +294,18 @@ public class Player : MonoBehaviour, IDamageable
 
     public virtual void Update()
     {
+        if (pathType == BezierPathType.SideView && !isGrinding)
+        {
+            try
+            {
+                bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out _, 15);
+            }
+            catch
+            {
+
+            }
+        }
+
 
         Debug.DrawRay(transform.position + transform.up, Quaternion.Euler(0, dirMultiplier, 0) * transform.forward);
 
@@ -354,37 +370,30 @@ public class Player : MonoBehaviour, IDamageable
             rawDirection = 1;
         }
 
-        if (pathType == BezierPathType.SideView && !isGrinding)
-        {
-            float closestT;
-            try
-            {
-                bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out closestT, 10);
-            }
-            catch
-            {
+       
+        
 
-            }
-        }
+        //if (underwater)
+        //{
+        //    rigidbody.drag = 2;
 
+        //    Physics.gravity = new Vector3(0, -35 - 0) * 0.27f;
+        //}
+        //else
+        //{
+        //    rigidbody.drag = 0;
+
+        //    Physics.gravity = new Vector3(0, -35 - 0);
+        //}
+    }
+
+    public virtual void FixedUpdate()
+    {
         Vector3 cross = Vector3.Cross(transform.right, groundInfo.groundHit.normal).normalized;
 
         if (cross != Vector3.zero)
         {
             direction = cross;
-        }
-
-        if (underwater)
-        {
-            rigidbody.drag = 2;
-
-            Physics.gravity = new Vector3(0, -35 - 0) * 0.27f;
-        }
-        else
-        {
-            rigidbody.drag = 0;
-
-            Physics.gravity = new Vector3(0, -35 - 0);
         }
     }
 
@@ -442,21 +451,16 @@ public class Player : MonoBehaviour, IDamageable
         //Clamp X and Y of left stick in a number between 0 and 1
         absoluteLeftStick = Mathf.Clamp01(Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) + Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickY)));
         //Convert the X and Y of left stick to the stick pointing direction relative to the camera
-        leftStickDirection = MathfExtension.StickDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), camera.transform);
+        leftStickDirection = MathfExtension.StickDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), camera.transform, transform);
     }
 
     public void FreeMovement()
-    {
-        if (absoluteLeftStick > 0.1f)
+    {    
+        if (rigidbody.velocity.magnitude > 0.01f)
         {
-            //Change Sonic Rotation Based On Camera
-            Quaternion targetRotation = Quaternion.LookRotation(leftStickDirection, transform.up);
-
             if (!isBraking)
             {
-                //Apply Rotation to Sonic
-                float rotationLerp = Mathf.Lerp(10f, 1f, absoluteVelocity / 15);
-                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationLerp * Time.deltaTime);
+                transform.forward = rigidbody.velocity.normalized;             
             }
 
         }
@@ -501,18 +505,9 @@ public class Player : MonoBehaviour, IDamageable
 
         //If player is on ground
         if (groundInfo.grounded)
-        {
-            switch (speedMode)
-            {
-                case SpeedMode.Low:
-                    transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.groundHit.normal) * transform.rotation;
-                    break;
-                case SpeedMode.High:
-                    transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.groundHit.normal) * transform.rotation;
-                    break;
-            }
+        { 
+            transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.groundHit.normal) * transform.rotation;
         }
-        //If player isn't on ground and the ground distance is grater than 1.
         else
         {
             if (angle > 70)
@@ -555,7 +550,6 @@ public class Player : MonoBehaviour, IDamageable
     {
         isBoosting = false;
         isAttacking = false;
-
     }
 
     public void DoDamageOrDie()
@@ -611,7 +605,7 @@ public class Player : MonoBehaviour, IDamageable
 
         bool wallCeiling = groundInfo.groundState == GroundState.onCeiling || groundInfo.groundState == GroundState.onWall;
 
-        if (isBrakingAngle > isBrakingAngleMax && absoluteVelocity > 0.1f && !wallCeiling)
+        if (isBrakingAngle > isBrakingAngleMax && absoluteVelocity > 10 && !wallCeiling)
         {
             if (isBraking == false)
             {
@@ -643,36 +637,38 @@ public class Player : MonoBehaviour, IDamageable
 
         CalculateVelocity();
 
-        if (Mathf.Abs(absoluteLeftStick) > deadZone && !isBraking && !isBoosting)
-        {
-            if (isBrakingAngle < 60)
+        if (absoluteLeftStick > deadZone && !isBraking && !isBoosting)
+        {       
+            if (rigidbody.velocity.magnitude < maxVelocity)
             {
-                velocity = Mathf.MoveTowards(velocity, maxVelocity, (accelerationForce - rigidbody.velocity.y) * Time.deltaTime);
-            }
-            else
-            {
-                velocity = Mathf.MoveTowards(velocity, rigidbody.velocity.magnitude, (decelerationForce + rigidbody.velocity.y) * Time.deltaTime);
+                rigidbody.AddForce(leftStickDirection * accelerationForce * GameManager.deltaStep, ForceMode.Acceleration);
             }
         }
         else if (isBraking)
         {
-            velocity = Mathf.MoveTowards(velocity, 0, (isBrakingForce + rigidbody.velocity.y) * Time.deltaTime);
+            rigidbody.AddForce(-rigidbody.velocity.normalized * isBrakingForce * GameManager.deltaStep, ForceMode.Acceleration);
+
+            if (rigidbody.velocity.sqrMagnitude < 0.01f)
+            {
+                rigidbody.Sleep();
+            }
         }
         else if (isBoosting)
         {
-            velocity = Mathf.MoveTowards(velocity, maxBoostVelocity, accelerationForceBoost * Time.deltaTime);
-        }
-        else if (Time.time > stateMachine.lastStateTime + 0.1f && rigidbody.velocity.magnitude > 0.01f)
-        {
-            velocity = Mathf.MoveTowards(velocity, rigidbody.velocity.magnitude, (decelerationForce + rigidbody.velocity.y) * Time.deltaTime);
-
-            if (Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) < deadZone)
+            if (rigidbody.velocity.magnitude < maxBoostVelocity)
             {
-                AlignPlayerToMovingDirection(0.02f);
+                rigidbody.AddForce(leftStickDirection * accelerationForceBoost * GameManager.deltaStep, ForceMode.Acceleration);
             }
         }
+        else 
+        {
+            rigidbody.AddForce(-rigidbody.velocity.normalized * decelerationForce * GameManager.deltaStep, ForceMode.Acceleration);
 
-        velocity = Mathf.Clamp(velocity, 0, 150);
+            if(rigidbody.velocity.sqrMagnitude < 0.01f)
+            {
+                rigidbody.Sleep();
+            }
+        }
     }
 
     #region State Transition
@@ -766,7 +762,7 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateMove);
         }
 
-        if (absoluteVelocity > 0.02f || absoluteLeftStick > 0)
+        if (absoluteVelocity > 0.0015f || absoluteLeftStick > 0)
         {
             stateMachine.ChangeState(StateMove);
         }
@@ -934,26 +930,26 @@ public class Player : MonoBehaviour, IDamageable
             return;
         }
 
-        if (absoluteVelocity < 0.2f && absoluteLeftStick == 0 && !isBoosting)
-        {
-            stateMachine.ChangeState(StateIdle);
-            return;
-        }
-
         SearchWall();
         groundInfo.SearchGroundHighSpeed();
         AlignPlayer();
-        MovementRules();
-        if (!RigidbodyStepClimb())
-        {
-            PutOnGround();
-        }
 
-        rigidbody.velocity = direction * velocity;
+        MovementRules();
+
+        //if (!RigidbodyStepClimb())
+        //{
+        //    PutOnGround();
+        //}
 
         if (!groundInfo.grounded)
         {
             stateMachine.ChangeState(StateFall);
+        }
+
+        if (absoluteVelocity < 0.001f && absoluteLeftStick == 0 && !isBoosting)
+        {
+            stateMachine.ChangeState(StateIdle);
+            return;
         }
     }
     private void StateMove3DEnd()
@@ -967,22 +963,21 @@ public class Player : MonoBehaviour, IDamageable
     private void StateMove2DStart()
     {
         velocity = horizontalVelocity.magnitude;
-
-
         tangentMultiplier = Mathf.Sign(Vector3.Dot(transform.forward, knot.tangent));
+        rigidbody.useGravity = false;
     }
 
     private void StateMove2D()
     {
         groundInfo.SearchGroundHighSpeed();
-        SearchWall();
+        //SearchWall();
 
         //If Sonic stops return to State Idle
-        if (absoluteVelocity < 0.01f && absoluteLeftStick == 0)
-        {
-            stateMachine.ChangeState(StateIdle);
-            return;
-        }
+        //if (absoluteVelocity < 0.01f && absoluteLeftStick == 0)
+        //{
+        //    stateMachine.ChangeState(StateIdle);
+        //    return;
+        //}
         //Change to Jump State
         if (Input.GetButtonDown(XboxButton.A))
         {
@@ -1016,10 +1011,9 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
 
-
         float x = Input.GetAxis(XboxAxis.LeftStickX);
         float y = Input.GetAxis(XboxAxis.LeftStickY);
-        float xy = Mathf.Clamp(x + y, -1, 1);
+        float xy = Mathf.Clamp(x + y, -1, 1);         
 
         //Brake
         if (absoluteVelocity > 1f)
@@ -1030,7 +1024,7 @@ public class Player : MonoBehaviour, IDamageable
                 {
                     SendMessage("StateBrakeStart");
                     SendMessage("StateBoostEnd");
-                    isBraking = true;
+                    //isBraking = true;
                 }
             }
             else if (tangentMultiplier == -1 && xy > 0)
@@ -1064,45 +1058,58 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
 
+        rigidbody.AddForce(-groundInfo.groundHit.normal * rigidbody.mass * 35);
+
         tangent = knot.tangent * tangentMultiplier;
 
-        tangent.y = direction.y;
-
-        transform.rotation = Quaternion.LookRotation(tangent, transform.up);
+        transform.rotation = Quaternion.LookRotation(tangent);
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.groundHit.normal) * transform.rotation;        
 
         if (Mathf.Abs(xy) > deadZone && !isBraking && !isBoosting)
         {
-            velocity = Mathf.MoveTowards(velocity, 44, (accelerationForce - rigidbody.velocity.y) * Time.deltaTime);
+            if (rigidbody.velocity.magnitude < 40)
+            { 
+                rigidbody.AddForce(direction * 30);
+            }
         }
         else if (isBraking)
         {
-            velocity = Mathf.MoveTowards(velocity, 0, (isBrakingForce + rigidbody.velocity.y) * Time.deltaTime);
+            rigidbody.AddForce(-rigidbody.velocity.normalized * isBrakingForce * GameManager.deltaStep, ForceMode.Acceleration);
+
+            if (rigidbody.velocity.sqrMagnitude < 0.01f)
+            {
+                rigidbody.Sleep();
+            }
         }
         else if (isBoosting)
         {
-            velocity = Mathf.MoveTowards(velocity, maxBoostVelocity, accelerationForceBoost * Time.deltaTime);
+            if (rigidbody.velocity.magnitude < maxBoostVelocity)
+            {
+                rigidbody.AddForce(leftStickDirection * accelerationForceBoost * GameManager.deltaStep, ForceMode.Acceleration);
+            }
         }
-        else if (Time.time > stateMachine.lastStateTime + 0.1f && rigidbody.velocity.magnitude > 0.01f)
+        else
         {
-            velocity = Mathf.MoveTowards(velocity, rigidbody.velocity.magnitude, (25f + rigidbody.velocity.y) * Time.deltaTime);
+            rigidbody.AddForce(-rigidbody.velocity.normalized * decelerationForce * GameManager.deltaStep, ForceMode.Acceleration);
+
+            if (rigidbody.velocity.sqrMagnitude < 0.2f)
+            {
+                rigidbody.Sleep();
+            }
         }
 
-        AlignPlayer();
+        rigidbody.velocity = direction * rigidbody.velocity.magnitude;
 
-        rigidbody.velocity = direction * velocity;
-
-        PutOnGround();
-
-        //If Sonic isn't on ground change to state fall
-        if (!groundInfo.grounded)
-        {
-            stateMachine.ChangeState(StateFall);
-            return;
-        }
+        //if (!groundInfo.grounded)
+        //{
+        //    stateMachine.ChangeState(StateFall);
+        //    return;
+        //}        
     }
 
     private void StateMove2DEnd()
     {
+        rigidbody.useGravity = true;
     }
 
     #endregion State Move 2D   
@@ -2049,14 +2056,14 @@ public class Player : MonoBehaviour, IDamageable
         if (pathType == BezierPathType.SideView)
         {
             AirAlign();
+
+            AirMotion();
+
+            transform.rotation = Quaternion.LookRotation(tangent, groundInfo.groundHit.normal);
         }
         else
         {
-
-            if (absoluteLeftStick > 0)
-            {
-                rigidbody.AddForce(leftStickDirection * 10 * GameManager.deltaStep);
-            }
+            AirMotion();
 
             if (rigidbody.HorizontalVelocity().magnitude > 1)
             {
@@ -2107,10 +2114,7 @@ public class Player : MonoBehaviour, IDamageable
         rbVel.y = JumpPower;
         rigidbody.velocity = rbVel;
 
-        if (absoluteLeftStick > 0)
-        {
-            rigidbody.AddForce(leftStickDirection * 10 * GameManager.deltaStep);
-        }
+        AirMotion();
 
         if (rigidbody.HorizontalVelocity().magnitude > 1)
         {
@@ -2194,13 +2198,12 @@ public class Player : MonoBehaviour, IDamageable
         if (pathType == BezierPathType.SideView)
         {
             AirAlign();
+
+            AirMotion();
         }
         else
         {
-            if (absoluteLeftStick > 0)
-            {
-                rigidbody.AddForce(leftStickDirection * 10 * GameManager.deltaStep);
-            }
+            AirMotion();
 
             if (rigidbody.HorizontalVelocity().magnitude > 1)
             {
@@ -2217,6 +2220,16 @@ public class Player : MonoBehaviour, IDamageable
         isAttacking = false;
     }
     #endregion State Ball
+
+    private void AirMotion()
+    {
+        //FreeMovement();
+
+        if (absoluteLeftStick > 0.1)
+        {
+            rigidbody.Accelerate(15, rigidbody.velocity.magnitude, true);
+        }
+    }
 
     #region State Carry
 
@@ -2789,49 +2802,10 @@ public class Player : MonoBehaviour, IDamageable
 
     void AirAlign()
     {
-        if (Mathf.Abs(Vector3.Dot(tangentCopy, Vector3.up)) > 0.2f)
-        {
 
-        }
-        tangentCopy = knot.tangent;
-        tangentCopy.z = 0;
-
-        //float dotTangent = Vector3.Dot(transform.forward, tangentCopy);
-
-        //float x = Input.GetAxis(XboxAxis.LeftStickX);
-        //float y = Input.GetAxis(XboxAxis.LeftStickY);
-
-        //float xy = Mathf.Clamp(x, -1, 1);
-
-        //if (horizontalVelocity.magnitude < 1)
-        //{
-        //    if (xy > 0)
-        //    {
-        //        tangent = tangentCopy;
-        //    }
-        //    else if (xy < 0)
-        //    {
-        //        tangent = -tangentCopy;
-        //    }
-        //}
-
-        //if (dotTangent > 0.5f)
-        //{
-        //    tangent = tangentCopy;
-        //}
-        //else if (dotTangent < -0.5f)
-        //{
-        //    tangent = -tangentCopy;
-        //}
-
-        //tangent.y = 0;
-
-        float dot = Vector3.Dot(transform.forward, tangentCopy);
-
-        rigidbody.AddForce(transform.forward * dot * Input.GetAxis(XboxAxis.LeftStickX) * 1000 * GameManager.deltaStep);
-
-        //transform.rotation = Quaternion.LookRotation(tangent, Vector3.up);
-
+        Vector3 hVelocity = rigidbody.velocity;
+        hVelocity.y = 0;
+        transform.rotation = Quaternion.LookRotation(hVelocity);
     }
 
     private Vector3 ClampVelocity(Vector3 velocity, float maxHorizontalVelocity, float maxDownVelocity, float maxUpVelocity)

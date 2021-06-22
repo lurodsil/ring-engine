@@ -203,8 +203,8 @@ namespace RingEngine
         {
             Vector3 stickDirection = new Vector3(x, 0, y);
             stickDirection = RelativeTo.TransformDirection(stickDirection);
-            stickDirection.y = 0;
-            return target.TransformDirection(stickDirection.normalized);
+            stickDirection.y = target.forward.y;
+            return stickDirection.normalized;
         }
     }
 
@@ -242,6 +242,46 @@ namespace RingEngine
         public static Vector3 HorizontalVelocity(this Rigidbody rigidbody)
         {
             return new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+        }
+        public static Vector3 VerticalVelocity(this Rigidbody rigidbody)
+        {
+            return new Vector3(0, rigidbody.velocity.y, 0);
+        }
+        public static void Accelerate(this Rigidbody rigidbody, float acceleration, float maxVelocity)
+        {
+            Accelerate(rigidbody, acceleration, maxVelocity, false, rigidbody.transform.forward);
+        }
+        public static void Accelerate(this Rigidbody rigidbody, float acceleration, float maxVelocity, bool useGravity)
+        {
+            Accelerate(rigidbody, acceleration, maxVelocity, useGravity, rigidbody.transform.forward);
+        }
+        public static void Accelerate(this Rigidbody rigidbody, float acceleration, float maxVelocity, bool useGravity, Vector3 direction)
+        {            
+            if (useGravity)
+            {
+                Vector3 currentVelocity = rigidbody.velocity;
+
+                currentVelocity = direction * Mathf.MoveTowards(HorizontalVelocity(rigidbody).magnitude, maxVelocity, acceleration * Time.deltaTime);
+
+                currentVelocity.y = rigidbody.velocity.y;
+
+                rigidbody.velocity = currentVelocity;
+            }
+            else
+            {
+
+
+                rigidbody.velocity = direction * Mathf.MoveTowards(rigidbody.velocity.magnitude, maxVelocity, acceleration * Time.deltaTime);
+            }
+        }
+
+        public static void Decelerate(this Rigidbody rigidbody, float deceleration)
+        {
+            Accelerate(rigidbody, deceleration, 0);
+        }
+        public static void Decelerate(this Rigidbody rigidbody, float deceleration, bool useGravity)
+        {
+            Accelerate(rigidbody, deceleration, 0, useGravity);
         }
     }
 

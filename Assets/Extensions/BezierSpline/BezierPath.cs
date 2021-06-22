@@ -8,9 +8,9 @@ public class BezierPath : MonoBehaviour
     [Range(0.01f, 0.001f)]
     public float pathFindPrecision = 0.01f;
     public bool fastMode = true;
-
+    [HideInInspector]
     public BezierSpline bezierSpline;
-
+    [HideInInspector]
     public DualBezierSpline dualBezierSpline;
     private Vector3 pathPosition;
 
@@ -73,13 +73,13 @@ public class BezierPath : MonoBehaviour
         switch (putOnPathMode)
         {
             case PutOnPathMode.BinormalOnly:
-                pathPosition = bezierKnot.binormal * (matrix.inverse.MultiplyPoint(position).x);
+                pathPosition = bezierKnot.binormal * matrix.inverse.MultiplyPoint(position).x;
                 break;
             case PutOnPathMode.NormalOnly:
-                pathPosition = bezierKnot.normal * (matrix.inverse.MultiplyPoint(position).y);
+                pathPosition = bezierKnot.normal * matrix.inverse.MultiplyPoint(position).y;
                 break;
             case PutOnPathMode.BinormalAndNormal:
-                pathPosition = bezierKnot.binormal * (matrix.inverse.MultiplyPoint(position).x) + bezierKnot.normal * (matrix.inverse.MultiplyPoint(position).y);
+                pathPosition = bezierKnot.binormal * matrix.inverse.MultiplyPoint(position).x + bezierKnot.normal * matrix.inverse.MultiplyPoint(position).y;
                 break;
         }
 
