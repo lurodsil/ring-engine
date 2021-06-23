@@ -32,7 +32,7 @@ public class RingEngineDebug : MonoBehaviour
             "Gravity: " + Physics.gravity;
 
         playerContent.text =
-            "Is grounded: " + player.groundInfo.grounded + "\r\n" +
+            "Is grounded: " + player.isGrounded + "\r\n" +
             "Ground state: " + player.groundInfo.groundState + "\r\n" +
             "Is grind grounded: " + player.groundInfo.grindGrounded + "\n\r" +
             "Can homming: " + player.canHomming + "\n\r" +

@@ -192,19 +192,33 @@ namespace RingEngine
             return stickDirection.normalized;
         }
 
-        public static Vector3 StickDirection(float x, float y, Transform RelativeTo)
+        public static Vector3 StickDirection(float x, float y, Transform orientation)
         {
-            Vector3 stickDirection = new Vector3(x, 0, y);
-            stickDirection = RelativeTo.TransformDirection(stickDirection);
+            Vector3 stickDirection = orientation.TransformDirection(new Vector3(x, 0, y));
+            stickDirection.y = 0;
             return stickDirection.normalized;
         }
 
-        public static Vector3 StickDirection(float x, float y, Transform RelativeTo, Transform target)
+        public static Vector3 StickDirection(float x, float y, Transform orientation, Transform target)
         {
-            Vector3 stickDirection = new Vector3(x, 0, y);
-            stickDirection = RelativeTo.TransformDirection(stickDirection);
-            stickDirection.y = target.forward.y;
-            return stickDirection.normalized;
+
+
+            return target.TransformDirection(orientation.TransformDirection(new Vector3(x, 0, y)));
+        }
+
+        public static Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)
+        {
+            // If this script is on your camera object, you can use this.transform instead.
+            Transform cam = Camera.main.transform;
+
+            // The first part creates a rotation looking into the ground, with
+            // "up" matching the camera's look direction as closely as it can. 
+            // The second part rotates this 90 degrees, so "forward" input matches 
+            // the camera's look direction as closely as it can in the horizontal plane.
+            Quaternion flatten = Quaternion.LookRotation( localUp, cam.forward);
+
+            // Now we rotate our input vector into this frame of reference
+            return flatten * input;
         }
     }
 
@@ -212,6 +226,22 @@ namespace RingEngine
     {
         private static Vector3 previous;
         private static Vector3 velocity;
+
+        private static Vector3 pointOnGround;
+
+        public static void StickToGround(this Transform target, RaycastHit groundHit)
+        {
+            if(groundHit.point == Vector3.zero)
+            {
+                return;
+            }                     
+
+            Quaternion rotation = target.rotation;
+            Vector3 position = target.position;
+            Matrix4x4 matrix = Matrix4x4.TRS(groundHit.point, rotation, Vector3.one);
+            pointOnGround = groundHit.normal * matrix.inverse.MultiplyPoint(position).y;
+            target.position -= pointOnGround;
+        }
 
         public static Vector3 Velocity(this Transform transform)
         {

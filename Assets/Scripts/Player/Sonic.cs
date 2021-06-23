@@ -14,10 +14,8 @@ public class Sonic : Player
     public float airboostTime = 0.25f;
     public float airboostKeepVelocity = 0.8f;
 
-    public override void FixedUpdate()
+    private void FixedUpdate()
     {
-        base.FixedUpdate();
-
         if (GameManager.instance.gameState == GameState.Playing)
         {
             if (stateMachine.initiated)
@@ -39,9 +37,7 @@ public class Sonic : Player
         {
             canStomp = true;
             canAirboost = true;
-        }
-
-        
+        }      
 
 
         if (Input.GetButtonDown(XboxButton.DPadUp))
