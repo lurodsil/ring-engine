@@ -194,16 +194,18 @@ namespace RingEngine
 
         public static Vector3 StickDirection(float x, float y, Transform orientation)
         {
-            Vector3 stickDirection = orientation.TransformDirection(new Vector3(x, 0, y));
-            stickDirection.y = 0;
-            return stickDirection.normalized;
+            Vector3 input = new Vector3(x, 0, y);
+            Vector3 direction = orientation.rotation * input;
+            direction.y = 0;
+            return direction.normalized;
         }
 
         public static Vector3 StickDirection(float x, float y, Transform orientation, Transform target)
         {
-
-
-            return target.TransformDirection(orientation.TransformDirection(new Vector3(x, 0, y)));
+            Vector3 input = new Vector3(x, 0, y);
+            Quaternion rotation = Quaternion.LookRotation(orientation.forward, target.up) * orientation.rotation;
+            Vector3 direction = rotation * input;            
+            return orientation.InverseTransformDirection(direction).normalized; 
         }
 
         public static Vector3 CameraRelativeFlatten(Vector3 input, Vector3 localUp)

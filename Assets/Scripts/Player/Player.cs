@@ -448,7 +448,7 @@ public class Player : MonoBehaviour, IDamageable
         //Clamp X and Y of left stick in a number between 0 and 1
         absoluteLeftStick = Mathf.Clamp01(Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) + Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickY)));
         //Convert the X and Y of left stick to the stick pointing direction relative to the camera
-        leftStickDirection = MathfExtension.StickDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), camera.transform);
+        leftStickDirection = MathfExtension.StickDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), camera.transform, transform);
     }
 
     public void FreeMovement()
@@ -510,7 +510,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            if (angle > 70)
+            if (angle > 90)
             {
                 //Linear interpolate the player up to world up.
                 transform.Rotate(-360 * Time.deltaTime, 0, 0);
@@ -855,6 +855,9 @@ public class Player : MonoBehaviour, IDamageable
         velocity = horizontalVelocity.magnitude;
         rigidbody.useGravity = false;
     }
+
+    Quaternion rott;
+
     public void StateMove3D()
     {
         if (pathType != BezierPathType.None)
@@ -921,31 +924,13 @@ public class Player : MonoBehaviour, IDamageable
             return;
         }
 
-        //MovementRules();
-
-        //Vector3 inputDirectionNormal = transform.TransformDirection(leftStickDirection);
-
-
-
-        //movementDirection = Vector3.Lerp(movementDirection, inputDirectionNormal, rotationForceMax * Time.deltaTime);
-
-
-        Vector3 normalInput = Vector3.Cross(-leftStickDirection, groundHit.normal);
-
-
-        Vector3 groundDirection = transform.rotation * leftStickDirection;
-
-        Debug.DrawRay(collider.bounds.center, groundDirection, Color.yellow);
-
         rigidbody.AddForce(-transform.up * 35);
 
         if(absoluteLeftStick > deadZone)
         {
-            rigidbody.AddForce(groundDirection * 40, ForceMode.Acceleration);
+            rigidbody.AddForce(leftStickDirection * 40, ForceMode.Acceleration);
+            
         }
-
-
-       
 
         if (rigidbody.velocity.magnitude > 0.1f)
         {
@@ -956,13 +941,12 @@ public class Player : MonoBehaviour, IDamageable
         if (!isGrounded)
         {
             stateMachine.ChangeState(StateFall);
-            return;
-            
+            return;           
         }
 
         transform.StickToGround(groundHit);
 
-        rigidbody.velocity = groundDirection.normalized * rigidbody.velocity.magnitude;
+        rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
     }
     private void StateMove3DEnd()
     {
