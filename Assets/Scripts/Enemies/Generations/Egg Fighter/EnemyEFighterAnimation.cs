@@ -1,5 +1,4 @@
-﻿using RingEngine;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyEFighterAnimation : MonoBehaviour
 {
@@ -64,7 +63,7 @@ public class EnemyEFighterAnimation : MonoBehaviour
     {
         if (collision.collider.CompareTag(GameTags.playerTag))
         {
-            animator.SetInteger("DirectionID", (int)Vector3Extension.InverseDirection(transform, collision.collider.transform.position));
+            animator.SetInteger("DirectionID", (int)VectorExtension.InverseDirection(transform, collision.collider.transform.position));
         }
     }
 }

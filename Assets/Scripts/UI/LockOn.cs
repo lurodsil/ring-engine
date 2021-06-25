@@ -25,7 +25,7 @@ public class LockOn : MonoBehaviour
 
     void Update()
     {
-        if (player.closestTarget && !player.groundInfo.grounded)
+        if (player.closestTarget && !player.IsGrounded())
         {
             if (player.canHomming)
             {

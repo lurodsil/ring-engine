@@ -5,6 +5,8 @@ public class StateMachine
 {
     public delegate void State();
     private State state;
+    public State physicsState;
+
 
     public bool canTransitToSameState;
 
@@ -15,6 +17,8 @@ public class StateMachine
     private string NextStateName;
     private bool paused;
     public bool initiated { get; private set; }
+
+    public bool useFixedUpdate;
 
     public string lastStateName
     {
@@ -62,25 +66,24 @@ public class StateMachine
 
         NextStateName = string.Empty;
 
+        physicsState = Zero;
+
         initiated = true;
     }
 
     public void Update()
     {
-        if (initiated)
+        if (!paused)
         {
-            if (!paused)
+            if (state == null)
             {
-                if (state == null)
-                {
-                    initiated = false;
-                }
-                else
-                {
-                    state();
-                }
+                initiated = false;
             }
-        }
+            else
+            {
+                state();
+            }
+        }        
     }
 
     public void ChangeState(State nextState)

@@ -1,4 +1,3 @@
-using RingEngine;
 using UnityEngine;
 
 public class JumpBoard3D : GenerationsObject
@@ -39,8 +38,6 @@ public class JumpBoard3D : GenerationsObject
     }
     private void StateJumpBoard()
     {
-        player.SearchGround();
-
         player.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized, Vector3.up);
 
         if (Time.time > outOfControl)

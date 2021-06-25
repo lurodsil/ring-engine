@@ -47,7 +47,7 @@ public class CameraTarget : MonoBehaviour
         }
         else
         {
-            localOffset.y = Mathf.Lerp(localOffset.y, (player.groundInfo.grounded || player.groundInfo.grindGrounded) ? UpOffset : UpOffsetInAir, UpOffsetSensitive * Time.deltaTime);
+            localOffset.y = Mathf.Lerp(localOffset.y, (player.IsGrounded() || player.isGrindGrounded) ? UpOffset : UpOffsetInAir, UpOffsetSensitive * Time.deltaTime);
 
             lastIdleTime = Time.time;
         }

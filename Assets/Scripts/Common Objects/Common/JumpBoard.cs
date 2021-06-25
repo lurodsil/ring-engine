@@ -1,4 +1,3 @@
-using RingEngine;
 using UnityEngine;
 
 public class JumpBoard : GenerationsObject
@@ -50,7 +49,7 @@ public class JumpBoard : GenerationsObject
 
         player.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized, Vector3.up);
 
-        //if (player.groundInfo.grounded)
+        //if (player.IsGrounded())
         //{
         //     player.stateMachine.ChangeState(interactingGameObjects, player.);
         //}

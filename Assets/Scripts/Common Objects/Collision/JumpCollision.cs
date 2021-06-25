@@ -1,4 +1,3 @@
-using RingEngine;
 using UnityEngine;
 
 public class JumpCollision : GenerationsObject
@@ -50,12 +49,12 @@ public class JumpCollision : GenerationsObject
     private void StateJumpCollision()
     {
 
-        player.groundInfo.SearchGroundHighSpeed();
-        player.AlignPlayer();
+        //player.groundInfo.SearchGroundHighSpeed();
+        //player.AlignPlayer();
 
         if (Time.time > duration)
         {
-            if (player.groundInfo.grounded)
+            if (player.IsGrounded())
             {
                 if (player.isBoosting)
                 {

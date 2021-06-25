@@ -25,7 +25,7 @@ public class GameplayUI : MonoBehaviour
     {
         //if (worldPosition != Vector3.zero)
         //{
-        //    if (Vector3.Dot(Camera.main.transform.forward, Vector3Extension.Direction(Camera.main.transform.position, Camera.main.transform.forward)) < 0)
+        //    if (Vector3.Dot(Camera.main.transform.forward, VectorExtension.Direction(Camera.main.transform.position, Camera.main.transform.forward)) < 0)
         //    {
         //        activeButton.rectTransform.position = Camera.main.WorldToScreenPoint(worldPosition);
         //    }

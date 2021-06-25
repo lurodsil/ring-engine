@@ -1,5 +1,4 @@
-﻿using RingEngine;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +10,13 @@ public class Player : MonoBehaviour, IDamageable
     public float rotationForceMin = 1;
     public float rotationForceMax = 10;
 
+    [Header("Ground Insformation")]
+    public float isGroundedMaxDistance = 0.05f;
+    public float isGroundedRadius = 0.2f;
+    public float groundInformationMaxDistance = 1;
+    public float groundInformationRadius = 0.3f;
+    public float groundInformationFrontOffsetMin = 0.2f;
+    public float groundInformationFrontOffsetMax = 0.5f;
 
     public LayerMask targetFindLayerMask;
     public float binormalTargetOffset;
@@ -46,8 +52,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public GameObject playerCenter;
 
-    //Ground Find Settings
-    public GroundInfo groundInfo;
 
     public bool isSnowboarding;
 
@@ -57,9 +61,7 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Find Closest Target Settings")]
     public float targetFindRange = 10;
     public GameObject closestTarget { get; set; }
-
     public GameObject hommingAttackTarget { get; set; }
-
 
     [Range(0, 360)]
     public float targetFindAngle = 180;
@@ -211,9 +213,6 @@ public class Player : MonoBehaviour, IDamageable
     public Vector3 pushableNormal { get; set; }
     public Vector3 pushableCenter { get; set; }
 
-    [HideInInspector]
-    public new Transform transform;
-
     public float absoluteVelocity { get; private set; }
 
     public float rawDirection { get; set; }
@@ -228,21 +227,13 @@ public class Player : MonoBehaviour, IDamageable
 
     public bool isBraking;
     public bool isBoosting;
-
     //Jump
     private bool jumpReachedApex { get; set; }
 
     public bool canHomming { get; set; }
     public bool canCancelState { get; set; }
 
-    public SkinnedMeshRenderer meshRenderer;
-
     public CameraTarget cameraTarget;
-
-    [Range(0, 360)]
-    public float dirMultiplier;
-
-    float angle { get; set; }
 
     float tangentMultiplier { get; set; }
 
@@ -254,10 +245,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public bool ignoreDamage = false;
     public float ignoreDamageTime = 5;
-    public bool isGrounded { get; set; }
 
-    private Vector3 movementDirection { get; set; }
-    Matrix4x4 movementMatrix;
+    public bool isGrindGrounded { get; private set; }
 
     private void SetCameraTarget()
     {
@@ -277,14 +266,13 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        groundInfo = GetComponent<GroundInfo>();
+
         instance = GetComponent<Player>();
         rigidbody = GetComponent<Rigidbody>();
-        transform = GetComponent<Transform>();
+
         collider = GetComponent<CapsuleCollider>();
         camera = Camera.main;
         playerAnimation = GetComponent<PlayerAnimation>();
-
     }
 
     void Start()
@@ -295,6 +283,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public virtual void Update()
     {
+        print(Vector3.Angle(transform.up, Vector3.up));
+
         if (pathType == BezierPathType.SideView && !isGrinding)
         {
             try
@@ -306,14 +296,6 @@ public class Player : MonoBehaviour, IDamageable
 
             }
         }
-
-        float groundRayOffsetFront = 0.2f + (0.3f / 60f * rigidbody.velocity.magnitude);
-        groundRay = new Ray(collider.bounds.center + transform.forward * groundRayOffsetFront, -transform.up);
-
-        Physics.SphereCast(groundRay, 0.3f, out groundHit, 1);
-        isGrounded = Physics.SphereCast(groundRay, 0.2f, 0.55f);
-
-        Debug.DrawRay(groundRay.origin, groundRay.direction, Color.blue);
 
         speedMode = rigidbody.velocity.magnitude <= 15f ? SpeedMode.Low : SpeedMode.High;
 
@@ -354,11 +336,11 @@ public class Player : MonoBehaviour, IDamageable
 
         closestLightSpeedDashRing = gameObject.Closest(GameObject.FindGameObjectsWithTag("LightSpeedDashRing"), 1, 5, true, transform.forward, 180);
 
-        if (isGrounded)
+        if (IsGrounded())
         {
             jumpReachedApex = false;
             canHomming = true;
-            //lastGroundedNormal = groundInfo.groundHit.normal;
+            //lastGroundedNormal = GetGroundInformation().normal;
         }
 
         if (Input.GetAxisRaw(XboxAxis.LeftStickX) > 0)
@@ -424,11 +406,6 @@ public class Player : MonoBehaviour, IDamageable
         closestTarget = playerCenter.Closest(targets, 1, targetFindRange, false, closestDirection, targetFindAngle, camera.transform.forward, 180, targetFindLayerMask);
     }
 
-    public void SearchGround()
-    {
-        groundInfo.SearchGround();
-    }
-
     public void SearchWall()
     {
         ////Make Player stop if have a wall in front of the player
@@ -448,7 +425,8 @@ public class Player : MonoBehaviour, IDamageable
         //Clamp X and Y of left stick in a number between 0 and 1
         absoluteLeftStick = Mathf.Clamp01(Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) + Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickY)));
         //Convert the X and Y of left stick to the stick pointing direction relative to the camera
-        leftStickDirection = MathfExtension.StickDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), camera.transform, transform);
+        leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), transform);
+        Debug.DrawRay(collider.bounds.center, leftStickDirection, Color.magenta);
     }
 
     public void FreeMovement()
@@ -456,7 +434,7 @@ public class Player : MonoBehaviour, IDamageable
         if (leftStickDirection.magnitude > 0.01f)
         {
             if (!isBraking)
-            { 
+            {
                 float rotationLerp = Mathf.Lerp(rotationForceMax, rotationForceMin, absoluteVelocity / lowToHighVelocity);
                 Quaternion inputRotation = Quaternion.LookRotation(leftStickDirection);
                 transform.rotation = Quaternion.Lerp(transform.rotation, inputRotation, rotationLerp * Time.deltaTime);
@@ -464,7 +442,20 @@ public class Player : MonoBehaviour, IDamageable
         }
     }
 
+    public bool IsGrounded()
+    {
+        Ray isGroundedRay = new Ray(collider.bounds.center, -transform.up);
+        return Physics.SphereCast(isGroundedRay, isGroundedRadius, (collider.height * 0.5f) + isGroundedMaxDistance);
+    }
 
+    public RaycastHit GetGroundInformation()
+    {
+        float groundInformationOffsetFront = Mathf.Lerp(groundInformationFrontOffsetMin, groundInformationFrontOffsetMax, maxVelocity * rigidbody.velocity.magnitude);
+        Ray groundInformationRay = new Ray(collider.bounds.center + transform.forward * groundInformationOffsetFront, -transform.up);
+        RaycastHit groundInformationHit = new RaycastHit();
+        Physics.SphereCast(groundInformationRay, groundInformationRadius, out groundInformationHit, groundInformationMaxDistance);
+        return groundInformationHit;
+    }
 
     public void ForwardView()
     {
@@ -486,49 +477,41 @@ public class Player : MonoBehaviour, IDamageable
         //If player absolute velocity is greater than min velocity.
         if (horizontalVelocity.magnitude > minVelocity)
         {
-            switch (speedMode)
-            {
-                case SpeedMode.Low:
-                    transform.rotation = Quaternion.LookRotation(direction, groundHit.normal);
-                    break;
-                case SpeedMode.High:
-                    transform.rotation = Quaternion.LookRotation(direction, groundHit.normal);
-                    break;
-            }
+            //switch (speedMode)
+            //{
+            //    case SpeedMode.Low:
+            //        transform.rotation = Quaternion.LookRotation(direction, groundHit.normal);
+            //        break;
+            //    case SpeedMode.High:
+            //        transform.rotation = Quaternion.LookRotation(direction, groundHit.normal);
+            //        break;
+            //}
 
         }
     }
 
-    public void AlignPlayer()
+    public void AlignPlayerUpToWorldUp()
     {
-        angle = Vector3.Angle(transform.up, Vector3.up);
-
-        //If player is on ground
-        if (isGrounded)
+        if (Vector3.Angle(transform.up, Vector3.up) > 45)
         {
-            transform.rotation = Quaternion.FromToRotation(transform.up, groundHit.normal) * transform.rotation;
+            transform.Rotate(-360 * Time.deltaTime, 0, 0);
         }
         else
         {
-            if (angle > 90)
-            {
-                //Linear interpolate the player up to world up.
-                transform.Rotate(-360 * Time.deltaTime, 0, 0);
-            }
-            else
-            {
-                //Linear interpolate the player up to world up.
-                Quaternion finalRotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
-                transform.rotation = Quaternion.Lerp(transform.rotation, finalRotation, Time.deltaTime);
-            }
+            transform.rotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
         }
+    }
+
+    public void AlignPlayerToNormalDirection(Vector3 normal)
+    {
+        transform.rotation = transform.rotation = Quaternion.FromToRotation(transform.up, normal) * transform.rotation;
     }
 
     public void PutOnGround()
     {
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
-            rigidbody.MovePosition(groundInfo.groundHit.point);
+            rigidbody.MovePosition(GetGroundInformation().point);
         }
     }
 
@@ -602,7 +585,7 @@ public class Player : MonoBehaviour, IDamageable
         float brakeAngleMax = 120;
         float brakeAngle = Vector3.Angle(transform.forward, leftStickDirection);
 
-        bool wallCeiling = groundInfo.groundState == GroundState.onCeiling || groundInfo.groundState == GroundState.onWall;
+        bool wallCeiling = transform.GetGroundState() == GroundState.onCeiling || transform.GetGroundState() == GroundState.onWall;
 
         if (brakeAngle > brakeAngleMax && absoluteVelocity > 0.1f && !wallCeiling)
         {
@@ -674,9 +657,9 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void StateTransition()
     {
-        SearchGround();
+        
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             if (rigidbody.velocity.magnitude > 2)
             {
@@ -725,8 +708,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public virtual void StateIdle()
     {
-        groundInfo.SearchGround();
-        AlignPlayer();
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
 
         if (closestLightSpeedDashRing && Input.GetButtonDown(XboxButton.Y))
         {
@@ -775,7 +757,7 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateMove);
         }
 
-        if (!groundInfo.grounded)
+        if (!IsGrounded())
         {
             stateMachine.ChangeState(StateFall);
         }
@@ -795,7 +777,7 @@ public class Player : MonoBehaviour, IDamageable
     public void StateHurdle()
     {
         FindClosestTarget();
-        SearchGround();
+        
 
         if (Input.GetButtonUp(XboxButton.A))
         {
@@ -853,13 +835,13 @@ public class Player : MonoBehaviour, IDamageable
     private void StateMove3DStart()
     {
         velocity = horizontalVelocity.magnitude;
-        rigidbody.useGravity = false;
+        stateMachine.useFixedUpdate = true;
+        stateMachine.physicsState = StateMove3DPhysics;
     }
-
-    Quaternion rott;
-
     public void StateMove3D()
     {
+
+
         if (pathType != BezierPathType.None)
         {
             stateMachine.ChangeState(StateMove);
@@ -924,35 +906,53 @@ public class Player : MonoBehaviour, IDamageable
             return;
         }
 
-        rigidbody.AddForce(-transform.up * 35);
 
-        if(absoluteLeftStick > deadZone)
-        {
-            rigidbody.AddForce(leftStickDirection * 40, ForceMode.Acceleration);
-            
-        }
+
+    }
+    private void StateMove3DEnd()
+    {
+        stickToGround = true;
+        stateMachine.useFixedUpdate = false;
+        rigidbody.useGravity = true;
+        stateMachine.physicsState = stateMachine.Zero;
+    }
+    public void StateMove3DPhysics()
+    {
+
+        RaycastHit groundInfo = GetGroundInformation();
 
         if (rigidbody.velocity.magnitude > 0.1f)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
         }
-        transform.rotation = Quaternion.FromToRotation(transform.up, groundHit.normal) * transform.rotation;        
 
-        if (!isGrounded)
+
+        if (!IsGrounded())
         {
             stateMachine.ChangeState(StateFall);
-            return;           
+            return;
         }
 
-        transform.StickToGround(groundHit);
+        AlignPlayerToNormalDirection(groundInfo.normal);
 
-        rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
-    }
-    private void StateMove3DEnd()
-    {
-        stickToGround = true;
+        if (absoluteLeftStick > deadZone)
+        {
+            float dot = Vector3.Dot(transform.forward, Vector3.up);
+            rigidbody.AddForce(leftStickDirection * (40 + (dot * 100)), ForceMode.Acceleration);
+        }
+        GroundState groundState = transform.GetGroundState();
 
-        rigidbody.useGravity = true;
+        if (groundState == GroundState.onWall || groundState == GroundState.onCeiling)
+        {
+            rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
+
+            if (rigidbody.velocity.magnitude < 15)
+            {
+                stateMachine.ChangeState(StateFall);
+            }
+        }
+
+        transform.StickToGround(groundInfo);
     }
     #endregion State Move 3D
 
@@ -963,15 +963,11 @@ public class Player : MonoBehaviour, IDamageable
         tangentMultiplier = Mathf.Sign(Vector3.Dot(transform.forward, knot.tangent));
         rigidbody.useGravity = false;
     }
-
-    private Ray groundRay;
-    private RaycastHit groundHit;
-
-    private Vector3 pointPos;
-
     private void StateMove2D()
     {
-        direction = Vector3.Cross(transform.right, groundHit.normal);
+        RaycastHit groundInfo = GetGroundInformation();
+
+        direction = Vector3.Cross(transform.right, groundInfo.normal);
 
         if (Input.GetButtonDown(XboxButton.A))
         {
@@ -1031,7 +1027,7 @@ public class Player : MonoBehaviour, IDamageable
         tangent = knot.tangent * tangentMultiplier;
 
         transform.rotation = Quaternion.LookRotation(tangent);
-        transform.rotation = Quaternion.FromToRotation(transform.up, groundHit.normal) * transform.rotation;
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
 
         float dot = Vector3.Dot(transform.forward, -Vector3.up);
 
@@ -1070,13 +1066,13 @@ public class Player : MonoBehaviour, IDamageable
 
         rigidbody.velocity = direction * velocity;
 
-        print(groundHit.distance);
+        print(groundInfo.distance);
 
-        //groundInfo.grounded = Physics.Raycast(collider.bounds.center, -transform.up, .55f);
+        //IsGrounded() = Physics.Raycast(collider.bounds.center, -transform.up, .55f);
 
-        if (isGrounded)
+        if (IsGrounded())
         {
-            transform.StickToGround(groundHit);
+            transform.StickToGround(groundInfo);
         }
         else
         {
@@ -1090,8 +1086,6 @@ public class Player : MonoBehaviour, IDamageable
 
     #endregion State Move 2D  
 
-
-
     #region State Move Quickstep
     private void StateMoveQuickStepStart()
     {
@@ -1099,7 +1093,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     private void StateMoveQuickStep()
     {
-        groundInfo.SearchGroundHighSpeed();
+        
         SearchWall();
 
         if (pathType != BezierPathType.QuickStep)
@@ -1188,12 +1182,12 @@ public class Player : MonoBehaviour, IDamageable
         {
             bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out _, 0, binormalTargetOffset);
 
-            transform.rotation = Quaternion.FromToRotation(transform.forward, tangent) * transform.rotation;////Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, groundInfo.groundHit.normal), 30 * Time.deltaTime);
+            transform.rotation = Quaternion.FromToRotation(transform.forward, tangent) * transform.rotation;////Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, GetGroundInformation().normal), 30 * Time.deltaTime);
         }
 
         SearchWall();
-        groundInfo.SearchGroundHighSpeed();
-        AlignPlayer();
+        
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
         MovementRules();
 
 
@@ -1205,7 +1199,7 @@ public class Player : MonoBehaviour, IDamageable
 
         rigidbody.velocity = direction * velocity;
 
-        if (!groundInfo.grounded)
+        if (!IsGrounded())
         {
             stateMachine.ChangeState(StateFall);
         }
@@ -1323,21 +1317,21 @@ public class Player : MonoBehaviour, IDamageable
         //    velocity = Mathf.MoveTowards(velocity, rigidbody.velocity.magnitude, (25f + rigidbody.velocity.y) * Time.deltaTime);
         //}
 
-        //SearchGround();
+        //
         //SearchWall();
         //BezierKnot knot = new BezierKnot();
         //float closestTimeOnSpline = 0;
         //if (speedMode == SpeedMode.High)
         //{
         //    bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out closestTimeOnSpline, 0, 0.5f);
-        //    transform.rotation = Quaternion.FromToRotation(transform.forward, knot.tangent) * transform.rotation;////Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, groundInfo.groundHit.normal), 30 * Time.deltaTime);
+        //    transform.rotation = Quaternion.FromToRotation(transform.forward, knot.tangent) * transform.rotation;////Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, GetGroundInformation().normal), 30 * Time.deltaTime);
         //}
-        //AlignPlayer();
+        //AlignPlayerToNormalDirection(GetGroundInformation().normal);
         //rigidbody.velocity = transform.forward * velocity;
         //PutOnGround();
 
         ////If Sonic isn't on ground change to state fall
-        //if (!groundInfo.grounded)
+        //if (!IsGrounded())
         //{
         //    stateMachine.ChangeState( StateFall);
         //    return;
@@ -1394,8 +1388,8 @@ public class Player : MonoBehaviour, IDamageable
     private void StateSpindash()
     {
         FreeMovement();
-        SearchGround();
-        AlignPlayer();
+        
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
         PutOnGround();
 
         rigidbody.velocity = Vector3.zero;
@@ -1436,18 +1430,18 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateMove);
         }
 
-        SearchGround();
-        AlignPlayer();
+        
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
         if (absoluteLeftStick < deadZone && absoluteVelocity > 1)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
         }
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             velocity = Mathf.MoveTowards(rigidbody.velocity.magnitude, 0, (2 * rigidbody.velocity.y) * Time.deltaTime);
 
-            Vector3 direction = Vector3.Cross(transform.right, groundInfo.groundHit.normal);
+            Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
 
             rigidbody.velocity = direction * velocity;
         }
@@ -1504,7 +1498,7 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateJump);
         }
 
-        if (absoluteLeftStick > 0.1f && groundInfo.groundState == GroundState.onGround && Time.time > stateMachine.lastStateTime + 0.5f)
+        if (absoluteLeftStick > 0.1f && transform.GetGroundState() == GroundState.onGround && Time.time > stateMachine.lastStateTime + 0.5f)
         {
             stateMachine.ChangeState(StateCrawling);
         }
@@ -1588,7 +1582,7 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateJump);
         }
 
-        if (!groundInfo.grounded)
+        if (!IsGrounded())
         {
             stateMachine.ChangeState(StateFall);
         }
@@ -1602,10 +1596,10 @@ public class Player : MonoBehaviour, IDamageable
 
         ForwardView();
         SearchWall();
-        SearchGround();
-        AlignPlayer();
+        
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
 
-        Vector3 direction = Vector3.Cross(transform.right, groundInfo.groundHit.normal);
+        Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
         rigidbody.velocity = direction * velocity;
 
         if (speedMode == SpeedMode.High)
@@ -1647,9 +1641,9 @@ public class Player : MonoBehaviour, IDamageable
     {
         transform.rotation = Quaternion.LookRotation(-contactPoint.normal);
 
-        SearchGround();
+        
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             stateMachine.ChangeState(StateIdle);
         }
@@ -1691,7 +1685,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            rigidbody.velocity = Vector3Extension.Direction(transform.position, closestLightSpeedDashRing.transform.position + Vector3.down * 0.5f) * lightSpeedDashVelocity;
+            rigidbody.velocity = transform.DirectionTo(closestLightSpeedDashRing.transform.position + Vector3.down * 0.5f) * lightSpeedDashVelocity;
             transform.forward = rigidbody.velocity.normalized;
         }
     }
@@ -1707,7 +1701,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         isGrinding = true;
         rigidbody.useGravity = false;
-        groundInfo.grindGrounded = true;
+        isGrindGrounded = true;
 
         GrindSensorSetActive(true);
         velocity = rigidbody.velocity.magnitude;
@@ -1777,7 +1771,7 @@ public class Player : MonoBehaviour, IDamageable
     private void StateGrindEnd()
     {
         rigidbody.useGravity = true;
-        groundInfo.grindGrounded = false;
+        isGrindGrounded = false;
     }
     #endregion State Grind
 
@@ -1785,7 +1779,7 @@ public class Player : MonoBehaviour, IDamageable
     private void StateGrindJumpStart()
     {
         rigidbody.velocity = new Vector3(rigidbody.velocity.x, 10, rigidbody.velocity.z);
-        groundInfo.grindGrounded = true;
+        isGrindGrounded = true;
     }
     private void StateGrindJump()
     {
@@ -1830,7 +1824,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     private void StateGrindJumpEnd()
     {
-        groundInfo.grindGrounded = false;
+        isGrindGrounded = false;
         splineSensor.transform.localPosition = Vector3.zero;
     }
     #endregion State Grind
@@ -1839,7 +1833,7 @@ public class Player : MonoBehaviour, IDamageable
     private void StateGrindSwitchStart()
     {
         rigidbody.useGravity = false;
-        groundInfo.grindGrounded = true;
+        isGrindGrounded = true;
 
     }
     private void StateGrindSwitch()
@@ -1869,7 +1863,7 @@ public class Player : MonoBehaviour, IDamageable
     private void StateGrindSwitchEnd()
     {
         rigidbody.useGravity = true;
-        groundInfo.grindGrounded = false;
+        isGrindGrounded = false;
     }
     #endregion
 
@@ -1930,10 +1924,10 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         SearchWall();
-        groundInfo.SearchGroundHighSpeed();
-        AlignPlayer();
+        
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
 
-        Vector3 direction = Vector3.Cross(transform.right, groundInfo.groundHit.normal);
+        Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
         rigidbody.velocity = direction * velocity;
 
         if (speedMode == SpeedMode.High)
@@ -1943,7 +1937,7 @@ public class Player : MonoBehaviour, IDamageable
 
 
         //If Sonic isn't on ground change to state fall
-        if (!groundInfo.grounded)
+        if (!IsGrounded())
         {
             stateMachine.ChangeState(StateFall);
             return;
@@ -1994,9 +1988,7 @@ public class Player : MonoBehaviour, IDamageable
     public virtual void StateFall()
     {
         FindClosestTarget();
-        SearchGround();
-        AlignPlayer();
-
+        AlignPlayerUpToWorldUp();
 
         //float dotTForwardSDirection = Vector3.Dot(transform.forward.normalized, leftStickDirection.normalized);
         if (stateMachine.lastStateName == "StateWallJump")
@@ -2026,7 +2018,7 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             stateMachine.ChangeState(StateIdle);
         }
@@ -2037,7 +2029,7 @@ public class Player : MonoBehaviour, IDamageable
 
             AirMotion();
 
-            transform.rotation = Quaternion.LookRotation(tangent, groundInfo.groundHit.normal);
+            transform.rotation = Quaternion.LookRotation(tangent, GetGroundInformation().normal);
         }
         else
         {
@@ -2056,7 +2048,7 @@ public class Player : MonoBehaviour, IDamageable
         //MainCamera.cameraMode = CameraMode.defaultCameraMode;
         //playerMesh.transform.localRotation = Quaternion.Euler(90, 0, 0);
         velocity = horizontalVelocity.magnitude;
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             AlignPlayerToMovingDirection(1);
         }
@@ -2074,7 +2066,7 @@ public class Player : MonoBehaviour, IDamageable
     public virtual void StateJump()
     {
         FindClosestTarget();
-        SearchGround();
+        
 
         if (Input.GetButtonUp(XboxButton.A))
         {
@@ -2116,7 +2108,7 @@ public class Player : MonoBehaviour, IDamageable
     public virtual void StateBall()
     {
         FindClosestTarget();
-        SearchGround();
+        
 
         if (Input.GetButtonDown(XboxButton.A))
         {
@@ -2160,7 +2152,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             stateMachine.ChangeState(StateIdle);
         }
@@ -2189,7 +2181,7 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
 
-        AlignPlayer();
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
         rigidbody.velocity = ClampVelocity(rigidbody.velocity, maxVelocity, maxDownVelocity, maxUpVelocity);
     }
     private void StateBallEnd()
@@ -2220,7 +2212,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void StateCarry()
     {
-        SearchGround();
+        
 
         float currentVerticalSpeed = rigidbody.velocity.y;
 
@@ -2249,7 +2241,7 @@ public class Player : MonoBehaviour, IDamageable
 
         rigidbody.velocity = new Vector3(rigidbody.velocity.x, currentVerticalSpeed, rigidbody.velocity.z);
 
-        if (groundInfo.groundHit.distance < 1)
+        if (GetGroundInformation().distance < 1)
         {
             stateMachine.ChangeState(StateFall);
         }
@@ -2271,7 +2263,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void StateDie()
     {
-        SearchGround();
+        
         if (Time.time > stateMachine.lastStateTime + 3)
         {
             //Main.lives--;
@@ -2294,7 +2286,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void StateHurt()
     {
-        SearchGround();
+        
 
         if (Time.time > stateMachine.lastStateTime + 1.8f)
         {
@@ -2411,7 +2403,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void StateSkydive()
     {
-        SearchGround();
+        
         if (Input.GetAxis(XboxAxis.LeftStickY) > 0)
         {
             frontAcceleration += 0.7f * Time.deltaTime;
@@ -2507,7 +2499,7 @@ public class Player : MonoBehaviour, IDamageable
 
         //transform.Rotate(0, Input.GetAxis(XboxAxis.LeftStickX) * Time.deltaTime * 45, 0);
 
-        if (groundInfo.groundHit.distance > 0 && groundInfo.groundHit.distance < 20)
+        if (GetGroundInformation().distance > 0 && GetGroundInformation().distance < 20)
         {
             stateMachine.ChangeState(StateFall);
         }
@@ -2552,8 +2544,8 @@ public class Player : MonoBehaviour, IDamageable
 
 
         //SearchWall();
-        groundInfo.SearchGroundHighSpeed();
-        AlignPlayer();
+        
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
 
         if (Input.GetAxis(XboxAxis.LeftStickY) > 0.1f)
         {
@@ -2594,7 +2586,7 @@ public class Player : MonoBehaviour, IDamageable
 
 
 
-        if (!groundInfo.grounded)
+        if (!IsGrounded())
         {
             stateMachine.ChangeState(StateSnowBoardFall);
             return;
@@ -2621,10 +2613,9 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void StateSnowBoardFall()
     {
-        groundInfo.SearchGround();
-        AlignPlayer();
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             stateMachine.ChangeState(StateSnowBoard);
         }
@@ -2649,13 +2640,13 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         SearchWall();
-        groundInfo.SearchGroundHighSpeed();
-        AlignPlayer();
+        
+        AlignPlayerToNormalDirection(GetGroundInformation().normal);
         Drift();
 
         rigidbody.velocity = direction * velocity;
 
-        if (!groundInfo.grounded)
+        if (!IsGrounded())
         {
             stateMachine.ChangeState(StateSnowBoardFall);
         }
@@ -2706,7 +2697,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         isGrinding = true;
         rigidbody.useGravity = false;
-        groundInfo.grindGrounded = true;
+        isGrindGrounded = true;
 
         GrindSensorSetActive(true);
     }
@@ -2774,7 +2765,7 @@ public class Player : MonoBehaviour, IDamageable
     void StateSnowBoardGrindEnd()
     {
         rigidbody.useGravity = true;
-        groundInfo.grindGrounded = false;
+        isGrindGrounded = false;
     }
     #endregion
 
@@ -2813,7 +2804,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             Vector3 otherPositionNormalized = new Vector3(collision.transform.position.x, transform.position.y, collision.transform.position.z);
 
-            playerToEnemyDirection = Vector3Extension.Direction(transform.position, otherPositionNormalized).normalized;
+            playerToEnemyDirection = transform.DirectionTo(otherPositionNormalized).normalized;
 
             if (collision.collider.CompareTag(GameTags.enemyTag) || collision.collider.CompareTag("Boss"))
             {
@@ -2911,7 +2902,7 @@ public class Player : MonoBehaviour, IDamageable
 
         Vector3 senderPosition = sender.transform.position;
         senderPosition.y = transform.position.y;
-        Vector3 playerToSenderDirection = Vector3Extension.Direction(transform.position, senderPosition);
+        Vector3 playerToSenderDirection = transform.DirectionTo(senderPosition);
 
         transform.forward = playerToSenderDirection;
         rigidbody.velocity = -playerToSenderDirection * 15;

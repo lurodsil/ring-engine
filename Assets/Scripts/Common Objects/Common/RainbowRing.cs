@@ -1,4 +1,3 @@
-using RingEngine;
 using UnityEngine;
 
 public class RainbowRing : GenerationsObject
@@ -32,7 +31,7 @@ public class RainbowRing : GenerationsObject
 
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + (-transform.forward * KeepVelocityDistance));
-        GizmosExtension.DrawTrajectory(transform.position + (-transform.forward * KeepVelocityDistance), -transform.forward, FirstSpeed, OutOfControl - MathfExtension.Time(KeepVelocityDistance, FirstSpeed));
+        GizmosExtension.DrawTrajectory(transform.position + (-transform.forward * KeepVelocityDistance), -transform.forward, FirstSpeed, OutOfControl - PhysicsExtension.Time(KeepVelocityDistance, FirstSpeed));
 
     }
 }

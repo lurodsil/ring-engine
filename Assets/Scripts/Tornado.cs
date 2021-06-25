@@ -112,13 +112,10 @@ public class Tornado : GenerationsObject
         player.rigidbody.velocity = Vector3.zero;
         player.rigidbody.isKinematic = true;
         player.rigidbody.useGravity = false;
-        player.groundInfo.grounded = false;
 
         player.transform.parent = sonicPosition;
         player.transform.localPosition = Vector3.zero;
         player.transform.rotation = Quaternion.identity;
-
-        player.meshRenderer.enabled = false;
 
         sonicAnimator.gameObject.SetActive(true);
 
@@ -207,7 +204,7 @@ public class Tornado : GenerationsObject
     }
     private void StateTornadoEnd()
     {
-        player.meshRenderer.enabled = false;
+
         sonicAnimator.gameObject.SetActive(false);
     }
     #endregion

@@ -26,15 +26,15 @@ public class RingEngineDebug : MonoBehaviour
             "Horizontal velocity: " + new Vector3(player.rigidbody.velocity.x, 0, player.rigidbody.velocity.z).magnitude.ToString("f2") + "\r\n" +
             "Vertical velocity: " + player.rigidbody.velocity.y.ToString("f2") + "\r\n" +
             "Applied velocity: " + player.velocity.ToString("f2") + "\r\n" +
-            "Ground distance: " + (player.groundInfo.groundHit.distance - 0.5f).ToString("f2") + "\r\n" +
+            "Ground distance: " + (player.GetGroundInformation().distance - 0.5f).ToString("f2") + "\r\n" +
             "Is Kinematic: " + player.rigidbody.isKinematic + "\r\n" +
             "Use gravity: " + player.rigidbody.useGravity + "\r\n" +
             "Gravity: " + Physics.gravity;
 
         playerContent.text =
-            "Is grounded: " + player.isGrounded + "\r\n" +
-            "Ground state: " + player.groundInfo.groundState + "\r\n" +
-            "Is grind grounded: " + player.groundInfo.grindGrounded + "\n\r" +
+            "Is grounded: " + player.IsGrounded() + "\r\n" +
+            "Ground state: " + player.transform.GetGroundState() + "\r\n" +
+            "Is grind grounded: " + player.isGrindGrounded + "\n\r" +
             "Can homming: " + player.canHomming + "\n\r" +
             "Is attacking: " + player.isAttacking + "\n\r" +
             "Ignore damage: " + player.ignoreDamage;

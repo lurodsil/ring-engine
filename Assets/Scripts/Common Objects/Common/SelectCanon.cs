@@ -154,15 +154,13 @@ public class SelectCanon : RingEngineObject
     }
     void StateSelectCanonSuccess()
     {
-        player.SearchGround();
-
         if (selectCanonID != 5)
         {
             player.rigidbody.velocity = -animator.transform.up * ShotForce;
 
             player.stateMachine.ChangeState(player.StateTransition, gameObject, OutOfControl);
         }
-        else if (player.groundInfo.grounded)
+        else if (player.IsGrounded())
         {
             player.stateMachine.ChangeState(player.StateIdle, gameObject);
         }
@@ -187,9 +185,7 @@ public class SelectCanon : RingEngineObject
     }
     void StateSelectCanonFail()
     {
-        player.SearchGround();
-
-        if (player.groundInfo.grounded)
+        if (player.IsGrounded())
         {
             player.stateMachine.ChangeState(player.StateIdle, gameObject, 2.8f);
         }

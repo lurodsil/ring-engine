@@ -19,8 +19,6 @@ public class StumbleCollision : RingEngineObject
     }
     private void StateStumble()
     {
-        player.SearchGround();
-
         player.stateMachine.ChangeState(player.StateMove3D, gameObject, outOfControl);
     }
     private void StateStumbleEnd()

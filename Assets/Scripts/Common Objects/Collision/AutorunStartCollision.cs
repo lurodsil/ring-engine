@@ -39,14 +39,14 @@ public class AutorunStartCollision : GenerationsObject
 
     public void StateAutorun()
     {
-        player.groundInfo.SearchGroundHighSpeed();
-        player.AlignPlayer();
+        //player.groundInfo.SearchGroundHighSpeed();
+        //player.AlignPlayer();
         player.PutOnGround();
 
         BezierKnot bezierKnot = new BezierKnot();
         bezierPath.PutOnPath(player.transform, PutOnPathMode.BinormalOnly, out bezierKnot);
         Vector3 tangent = Vector3.Dot(player.transform.forward, bezierKnot.tangent) > 0 ? bezierKnot.tangent : -bezierKnot.tangent;
-        //tangent.y = player.groundInfo.groundHit.normal.y;
+        //tangent.y = player.GetGroundInformation().normal.y;
         player.transform.rotation = Quaternion.FromToRotation(player.transform.forward, tangent) * player.transform.rotation;
         Speed = Mathf.MoveTowards(Speed, 44, 12 * Time.deltaTime);
         player.rigidbody.velocity = player.transform.forward * Speed;

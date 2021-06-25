@@ -9,7 +9,7 @@ public class StruggleStartCollision : GenerationsObject
     #region State Struggle
     private void StateStruggleStart()
     {
-        player.groundInfo.grounded = false;
+
     }
 
     private void StateStruggle()

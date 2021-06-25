@@ -226,11 +226,11 @@ public class PlayerSound : MonoBehaviour
     {
         if (player.absoluteVelocity < 50 && player.absoluteVelocity > 21)
         {
-            if (player.groundInfo.grounded && player.groundInfo.groundHit.collider.sharedMaterial)
+            if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
             {
                 foreach (GroundMaterial gm in groundMaterials)
                 {
-                    if (player.groundInfo.groundHit.collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
+                    if (player.GetGroundInformation().collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
                     {
                         audioSource.PlayOneShot(gm.brake);
                     }
@@ -318,11 +318,11 @@ public class PlayerSound : MonoBehaviour
 
     void Land()
     {
-        if (player.groundInfo.grounded && player.groundInfo.groundHit.collider.sharedMaterial)
+        if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
         {
             foreach (GroundMaterial gm in groundMaterials)
             {
-                if (player.groundInfo.groundHit.collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
+                if (player.GetGroundInformation().collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
                 {
                     audioSource.PlayOneShot(gm.land);
                 }
@@ -336,11 +336,11 @@ public class PlayerSound : MonoBehaviour
 
     void Footstep()
     {
-        if (player.groundInfo.grounded && player.groundInfo.groundHit.collider.sharedMaterial)
+        if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
         {
             foreach (GroundMaterial gm in groundMaterials)
             {
-                if (player.groundInfo.groundHit.collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
+                if (player.GetGroundInformation().collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
                 {
                     audioSource.PlayOneShot(gm.footstep[Random.Range(0, gm.footstep.Length - 1)]);
                 }

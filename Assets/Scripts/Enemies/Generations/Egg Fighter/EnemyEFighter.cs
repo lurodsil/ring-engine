@@ -1,5 +1,4 @@
-﻿using RingEngine;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyEFighter : Enemy
 {
@@ -89,7 +88,7 @@ public class EnemyEFighter : Enemy
     {
         velocity = Mathf.MoveTowards(velocity, 2, 2 * Time.deltaTime);
 
-        Quaternion rotation = Quaternion.LookRotation(Vector3Extension.Direction(transform.position, waypoints[waypointIndex]), transform.up);
+        Quaternion rotation = Quaternion.LookRotation(transform.DirectionTo(waypoints[waypointIndex]), transform.up);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 5 * Time.deltaTime);
 
@@ -126,7 +125,7 @@ public class EnemyEFighter : Enemy
 
         if (startRotation)
         {
-            Quaternion rotation = Quaternion.LookRotation(Vector3Extension.Direction(transform.position, waypoints[waypointIndex]), transform.up);
+            Quaternion rotation = Quaternion.LookRotation(transform.DirectionTo(waypoints[waypointIndex]), transform.up);
 
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 5 * Time.deltaTime);
         }
@@ -206,7 +205,7 @@ public class EnemyEFighter : Enemy
     }
     void StateChase()
     {
-        Quaternion rotation = Quaternion.LookRotation(Vector3Extension.Direction(transform.position, lastTargetPosition), transform.up);
+        Quaternion rotation = Quaternion.LookRotation(transform.DirectionTo(lastTargetPosition), transform.up);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 10 * Time.deltaTime);
 

@@ -1,5 +1,4 @@
-﻿using RingEngine;
-using UnityEngine;
+﻿using UnityEngine;
 
 [AddComponentMenu("Ring Engine/Player/Player Animation")]
 [RequireComponent(typeof(Player))]
@@ -288,7 +287,7 @@ public class PlayerAnimation : MonoBehaviour
         horizontalSpeed = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z).magnitude;
         verticalSpeed = rigidbody.velocity.y;
 
-        leftStickDirection = MathfExtension.StickDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), cameraMain);
+        leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), transform.up);
 
         if (player.speedMode == SpeedMode.High)
         {
@@ -310,7 +309,7 @@ public class PlayerAnimation : MonoBehaviour
 
         //if(player.aligninput)
         animator.SetFloat(directionNameHash, direction);
-        animator.SetBool(groundedNameHash, player.groundInfo.grounded);
+        animator.SetBool(groundedNameHash, player.IsGrounded());
         animator.SetFloat(verticalSpeedNameHash, verticalSpeed);
         animator.SetBool(brakeNameHash, player.isBraking);
         animator.SetFloat(horizontalSpeedNameHash, horizontalSpeed);
@@ -333,7 +332,7 @@ public class PlayerAnimation : MonoBehaviour
 
         }
 
-        dir = Vector3Extension.Direction(transform, player.hitPoint);
+        dir = VectorExtension.Direction(transform, player.hitPoint);
 
         animator.SetInteger("DamageDirection", (int)dir);
         animator.SetFloat("LeftStickX", Input.GetAxis(XboxAxis.LeftStickX));
@@ -345,7 +344,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetFloat("Abs Speed", absSpeed);
         animator.SetFloat(dotVUpTForwardNameHash, Vector3.Dot(Vector3.up, transform.forward));
-        animator.SetFloat(groundDistanceNameHash, player.groundInfo.groundHit.distance);
+        animator.SetFloat(groundDistanceNameHash, player.GetGroundInformation().distance);
         animator.SetBool(lightSpeedDashNameHash, lightSpeedDash);
         animator.SetBool(hommingNameHash, homming);
         //animator.SetBool(underwaterNameHash, underwater);
@@ -373,7 +372,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void LateUpdate()
     {
-        Tasks.ChangeMouthSide(transform, leftMouth, rightMouth);
+        ChangeMouthSide(transform, leftMouth, rightMouth);
 
         meshHolder.rotation = Quaternion.identity;
         mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, transform.rotation, meshDamping * Time.deltaTime);
@@ -382,9 +381,23 @@ public class PlayerAnimation : MonoBehaviour
 
         //if(player.stateMachine.currentStateName == "StateIdle")
         //{
-        //    leftFeet.rotation = Quaternion.FromToRotation(leftFeet.right, player.groundInfo.groundHit.normal) * leftFeet.rotation;
-        //    rightFeet.rotation = Quaternion.FromToRotation(rightFeet.right, player.groundInfo.groundHit.normal) * rightFeet.rotation;
+        //    leftFeet.rotation = Quaternion.FromToRotation(leftFeet.right, player.GetGroundInformation().normal) * leftFeet.rotation;
+        //    rightFeet.rotation = Quaternion.FromToRotation(rightFeet.right, player.GetGroundInformation().normal) * rightFeet.rotation;
         //}
+    }
+
+    private void ChangeMouthSide(Transform target, Transform leftMouth, Transform rightMouth)
+    {
+        if (Vector3.Dot(target.right, Camera.main.transform.forward) < 0)
+        {
+            leftMouth.localScale = Vector3.zero;
+            rightMouth.localScale = Vector3.one;
+        }
+        else
+        {
+            leftMouth.localScale = Vector3.one;
+            rightMouth.localScale = Vector3.zero;
+        }
     }
 
     void StateIdle()
@@ -732,7 +745,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateWallJumpEnd()
     {
-        if (!player.groundInfo.grounded)
+        if (!player.IsGrounded())
         {
             if (player.contactPoint.point == Vector3.zero)
             {

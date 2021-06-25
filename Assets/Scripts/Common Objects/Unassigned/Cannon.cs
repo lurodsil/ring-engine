@@ -1,4 +1,3 @@
-using RingEngine;
 using UnityEngine;
 
 public enum CannonState
@@ -80,7 +79,7 @@ public class Cannon : GenerationsObject
         if (cannonState != CannonState.Shot)
         {
             float distance = Vector3.Distance(shotPosition.position, target.position);
-            duration = Time.time + MathfExtension.Time(distance, BaseVel);
+            duration = Time.time + PhysicsExtension.Time(distance, BaseVel);
             outOfControl = Time.time + OutOfControl;
         }
     }
@@ -146,13 +145,12 @@ public class Cannon : GenerationsObject
                 break;
 
             case CannonState.Shot:
-                player.SearchGround();
 
                 if (Time.time < duration)
                 {
                     player.rigidbody.velocity = shotPosition.forward * BaseVel;
                 }
-                else if (player.groundInfo.groundHit.distance > 0 && player.groundInfo.groundHit.distance < 20)
+                else if (player.GetGroundInformation().distance > 0 && player.GetGroundInformation().distance < 20)
                 {
                     
                     player.stateMachine.ChangeState(player.StateTransition, gameObject);

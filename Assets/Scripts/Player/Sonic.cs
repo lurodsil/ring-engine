@@ -14,18 +14,13 @@ public class Sonic : Player
     public float airboostTime = 0.25f;
     public float airboostKeepVelocity = 0.8f;
 
+    
+
     private void FixedUpdate()
     {
-        if (GameManager.instance.gameState == GameState.Playing)
+        if (stateMachine.initiated)
         {
-            if (stateMachine.initiated)
-            {
-                stateMachine.Update();
-            }
-            else
-            {
-                stateMachine.Initialize(gameObject, StateIdle);
-            }
+            stateMachine.physicsState();
         }
     }
 
@@ -33,12 +28,20 @@ public class Sonic : Player
     {
         base.Update();
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             canStomp = true;
             canAirboost = true;
-        }      
+        }
 
+        if (stateMachine.initiated)
+        {
+            stateMachine.Update();
+        }
+        else
+        {
+            stateMachine.Initialize(gameObject, StateIdle);
+        }
 
         if (Input.GetButtonDown(XboxButton.DPadUp))
         {
@@ -49,15 +52,12 @@ public class Sonic : Player
     #region State Stomp
     void StateStompStart()
     {
-
     }
     void StateStomp()
     {
-        SearchGround();
-
         rigidbody.velocity = Vector3.down * 40;
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             stateMachine.ChangeState(StateTransition);
         }
@@ -65,7 +65,6 @@ public class Sonic : Player
     void StateStompEnd()
     {
         //cameraTarget.Shake(0.2f);
-
     }
     #endregion
 

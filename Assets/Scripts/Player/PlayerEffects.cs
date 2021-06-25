@@ -16,7 +16,6 @@ public class PlayerEffects : MonoBehaviour
     public ParticleSystem smoke;
     public ParticleSystem waterEnter;
     public ParticleSystem waterExit;
-    GroundInfo groundInfo;
     public ParticleSystem landing;
     public ParticleSystem boostWave;
     public ParticleSystem waterRun;
@@ -86,9 +85,9 @@ public class PlayerEffects : MonoBehaviour
     {
         underwaterBubble.SetActive(player.underwater);
 
-        if (player.groundInfo.grounded && player.groundInfo.groundHit.collider.sharedMaterial)
+        if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
         {
-            string materialName = player.groundInfo.groundHit.collider.sharedMaterial.name;
+            string materialName = player.GetGroundInformation().collider.sharedMaterial.name;
 
             if (materialName.Contains("Stone"))
             {
@@ -116,9 +115,9 @@ public class PlayerEffects : MonoBehaviour
             smokeMaterial.SetTexture("_MainTex", stone);
         }
 
-        if (player.groundInfo.grounded && !player.underwater)
+        if (player.IsGrounded() && !player.underwater)
         {
-            if (player.groundInfo.groundHit.collider.sharedMaterial && player.groundInfo.groundHit.collider.sharedMaterial.name != "Water")
+            if (player.GetGroundInformation().collider.sharedMaterial && player.GetGroundInformation().collider.sharedMaterial.name != "Water")
             {
                 if (smoke.isStopped)
                 {

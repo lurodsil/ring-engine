@@ -1,5 +1,4 @@
-﻿using RingEngine;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GaniganiMissile : MonoBehaviour
 {
@@ -39,7 +38,7 @@ public class GaniganiMissile : MonoBehaviour
             }
             else
             {
-                if (Time.time < lastStateTime + MathfExtension.Time(keepVelocityDistance, velocity))
+                if (Time.time < lastStateTime + PhysicsExtension.Time(keepVelocityDistance, velocity))
                 {
 
                     rigidbody.velocity = transform.forward * velocity;

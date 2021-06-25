@@ -1,4 +1,3 @@
-using RingEngine;
 using UnityEngine;
 
 public class DashRing : GenerationsObject
@@ -33,15 +32,13 @@ public class DashRing : GenerationsObject
     private void StateDashRingStart()
     {
         player.transform.position = startPoint.position;
-        duration = player.stateMachine.lastStateTime + MathfExtension.Time(KeepVelocityDistance, FirstSpeed);
+        duration = player.stateMachine.lastStateTime + PhysicsExtension.Time(KeepVelocityDistance, FirstSpeed);
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
         player.rigidbody.velocity = Vector3.zero;
         player.isBoosting = false;
     }
     private void StateDashRing()
     {
-        player.SearchGround();
-
         if (Time.time < duration)
         {
             player.rigidbody.velocity = -transform.forward * FirstSpeed;

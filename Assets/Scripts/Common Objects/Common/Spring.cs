@@ -1,4 +1,3 @@
-using RingEngine;
 using UnityEngine;
 
 public class Spring : RingEngineObject
@@ -34,7 +33,7 @@ public class Spring : RingEngineObject
         {
             player.transform.position = startPoint.position;
         }
-        duration = player.stateMachine.lastStateTime + MathfExtension.Time(keepVelocityDistance, firstSpeed);
+        duration = player.stateMachine.lastStateTime + PhysicsExtension.Time(keepVelocityDistance, firstSpeed);
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
         player.rigidbody.velocity = Vector3.zero;
         if (isBoostCancel)
@@ -43,11 +42,7 @@ public class Spring : RingEngineObject
         }
     }
     private void StateSpring()
-    {
-
-            player.SearchGround();
-        
-
+    {     
         if (Time.time < duration)
         {
             player.rigidbody.velocity = transform.up * firstSpeed;

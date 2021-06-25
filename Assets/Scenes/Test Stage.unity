@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5934837, g: 0.60033906, b: 0.54357994, a: 1}
+  m_IndirectSpecularColor: {r: 0.59348345, g: 0.6003387, b: 0.54357904, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -59935,6 +59935,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
+      propertyPath: isGroundedRadius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: groundInformationRadius
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
       propertyPath: accelerationForceLowSpeed
       value: 50
       objectReference: {fileID: 0}
@@ -59978,7 +59988,8 @@ PrefabInstance:
       propertyPath: distance
       value: 12
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114526522167336042, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
 --- !u!1 &1721143976
 GameObject:

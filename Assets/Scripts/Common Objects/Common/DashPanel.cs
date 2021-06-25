@@ -41,10 +41,7 @@ public class DashPanel : GenerationsObject
     }
     void StateDashPanel()
     {
-        player.groundInfo.SearchGroundHighSpeed();
-        player.AlignPlayer();
-
-        if (player.groundInfo.grounded)
+        if (player.IsGrounded())
         {
             player.rigidbody.velocity = player.transform.forward * Speed;
             player.PutOnGround();

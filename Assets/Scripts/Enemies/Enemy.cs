@@ -175,7 +175,7 @@ public class Enemy : GenerationsObject, IDamageable
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
-        RingEngine.GizmosExtension.DrawViewRange(transform.position, transform.forward, viewAngle, viewRange);
+        GizmosExtension.DrawViewRange(transform.position, transform.forward, viewAngle, viewRange);
     }
 
     private IEnumerator ExplodeDelayed(float delay)

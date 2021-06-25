@@ -29,7 +29,7 @@ public class SuperSonic : Player
     {
         base.Update();
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             canStomp = true;
             canAirboost = true;
@@ -70,11 +70,6 @@ public class SuperSonic : Player
     }
     void StateFly()
     {
-
-
-        SearchGround();
-
-
         if (Input.GetButtonDown(XboxButton.X))
         {
             if (isBoosting == false)
@@ -161,11 +156,9 @@ public class SuperSonic : Player
     }
     void StateStomp()
     {
-        SearchGround();
-
         rigidbody.velocity = Vector3.down * 40;
 
-        if (groundInfo.grounded)
+        if (IsGrounded())
         {
             stateMachine.ChangeState(StateTransition);
         }
