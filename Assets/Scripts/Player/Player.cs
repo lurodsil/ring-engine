@@ -425,7 +425,7 @@ public class Player : MonoBehaviour, IDamageable
         //Clamp X and Y of left stick in a number between 0 and 1
         absoluteLeftStick = Mathf.Clamp01(Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) + Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickY)));
         //Convert the X and Y of left stick to the stick pointing direction relative to the camera
-        leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), transform);
+        leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY),Camera.main.transform, transform);
         Debug.DrawRay(collider.bounds.center, leftStickDirection, Color.magenta);
     }
 
@@ -919,40 +919,40 @@ public class Player : MonoBehaviour, IDamageable
     public void StateMove3DPhysics()
     {
 
-        RaycastHit groundInfo = GetGroundInformation();
+        //RaycastHit groundInfo = GetGroundInformation();
 
-        if (rigidbody.velocity.magnitude > 0.1f)
-        {
-            transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
-        }
+        //if (rigidbody.velocity.magnitude > 0.1f)
+        //{
+        //    transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
+        //}
 
 
-        if (!IsGrounded())
-        {
-            stateMachine.ChangeState(StateFall);
-            return;
-        }
+        ////if (!IsGrounded())
+        ////{
+        ////    stateMachine.ChangeState(StateFall);
+        ////    return;
+        ////}
 
-        AlignPlayerToNormalDirection(groundInfo.normal);
+        ////AlignPlayerToNormalDirection(groundInfo.normal);
 
-        if (absoluteLeftStick > deadZone)
-        {
-            float dot = Vector3.Dot(transform.forward, Vector3.up);
-            rigidbody.AddForce(leftStickDirection * (40 + (dot * 100)), ForceMode.Acceleration);
-        }
-        GroundState groundState = transform.GetGroundState();
+        //if (absoluteLeftStick > deadZone)
+        //{
+        //    float dot = Vector3.Dot(transform.forward, Vector3.up);
+        //    //rigidbody.AddForce(leftStickDirection * (40 + (dot * 100)), ForceMode.Acceleration);
+        //}
+        //GroundState groundState = transform.GetGroundState();
 
-        if (groundState == GroundState.onWall || groundState == GroundState.onCeiling)
-        {
-            rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
+        //if (groundState == GroundState.onWall || groundState == GroundState.onCeiling)
+        //{
+        //    rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
 
-            if (rigidbody.velocity.magnitude < 15)
-            {
-                stateMachine.ChangeState(StateFall);
-            }
-        }
+        //    if (rigidbody.velocity.magnitude < 15)
+        //    {
+        //        stateMachine.ChangeState(StateFall);
+        //    }
+        //}
 
-        transform.StickToGround(groundInfo);
+        //transform.StickToGround(groundInfo);
     }
     #endregion State Move 3D
 

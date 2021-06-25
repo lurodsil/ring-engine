@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.59348345, g: 0.6003387, b: 0.54357904, a: 1}
+  m_IndirectSpecularColor: {r: 0.5934837, g: 0.60033906, b: 0.54357994, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -54666,7 +54666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000013382582398, guid: f25b4907b54c9324b82ca3a37ccddbc9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000014013012562, guid: f25b4907b54c9324b82ca3a37ccddbc9, type: 3}
       propertyPath: m_RootOrder
@@ -59848,7 +59848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566319339129236, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 11.37
       objectReference: {fileID: 0}
     - target: {fileID: 4566319339129236, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_LocalRotation.w
@@ -59890,6 +59890,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 54606193065811322, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54606193065811322, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
@@ -59900,8 +59905,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 54606193065811322, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
-      propertyPath: m_CollisionDetection
+      propertyPath: m_IsKinematic
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 54606193065811322, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 95497090924966508, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
@@ -59926,12 +59936,12 @@ PrefabInstance:
     - target: {fileID: 114536466606485236, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: UpOffset
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 114536466606485236, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: UpOffsetInAir
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
@@ -59986,7 +59996,7 @@ PrefabInstance:
     - target: {fileID: 7131656685820691699, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: distance
-      value: 12
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114526522167336042, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}

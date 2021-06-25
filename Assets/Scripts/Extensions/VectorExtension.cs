@@ -33,7 +33,15 @@ public class VectorExtension
         Quaternion rotation = Quaternion.LookRotation(camera.forward, upwards);
         Vector3 direction = rotation * input;
 
-        return direction.normalized;
+        return Vector3.ProjectOnPlane(direction, upwards).normalized;
+    }
+
+    public static Vector3 InputDirection(float inputX, float inputY, Transform camera, Transform target)
+    {
+        Vector3 input = new Vector3(inputX, 0, inputY);
+        Vector3 direction = camera.TransformDirection(input);
+        direction.y = 0;
+        return Vector3.ProjectOnPlane(direction, target.forward);
     }
 
     //public static Vector3 Direction(Vector3 from, Vector3 to)
