@@ -456,7 +456,6 @@ public class Player : MonoBehaviour, IDamageable
         Physics.SphereCast(groundInformationRay, groundInformationRadius, out groundInformationHit, groundInformationMaxDistance);
         return groundInformationHit;
     }
-
     public void ForwardView()
     {
         //Apply Rotation to Sonic
@@ -472,41 +471,25 @@ public class Player : MonoBehaviour, IDamageable
         transform.Rotate(0, -driftStartDirection * 100 * Time.deltaTime, 0);
     }
 
-    private void AlignPlayerToMovingDirection(float minVelocity)
+    private void AlignPlayerToMovingDirection()
     {
-        //If player absolute velocity is greater than min velocity.
-        if (horizontalVelocity.magnitude > minVelocity)
+        AlignPlayerForwardToDirection(rigidbody.velocity.normalized);
+    }
+    private void AlignPlayerForwardToDirection(Vector3 forward)
+    {
+        if (direction.sqrMagnitude > 0.01f)
         {
-            //switch (speedMode)
-            //{
-            //    case SpeedMode.Low:
-            //        transform.rotation = Quaternion.LookRotation(direction, groundHit.normal);
-            //        break;
-            //    case SpeedMode.High:
-            //        transform.rotation = Quaternion.LookRotation(direction, groundHit.normal);
-            //        break;
-            //}
-
+            transform.rotation = Quaternion.LookRotation(forward);
         }
     }
-
-    public void AlignPlayerUpToWorldUp()
+    public void AlignPlayerUpToDirection()
     {
-        if (Vector3.Angle(transform.up, Vector3.up) > 45)
-        {
-            transform.Rotate(-360 * Time.deltaTime, 0, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
-        }
+        AlignPlayerUpToDirection(Vector3.up);
     }
-
-    public void AlignPlayerToNormalDirection(Vector3 normal)
+    public void AlignPlayerUpToDirection(Vector3 up)
     {
-        transform.rotation = transform.rotation = Quaternion.FromToRotation(transform.up, normal) * transform.rotation;
+        transform.rotation = Quaternion.FromToRotation(transform.up, normal) * transform.rotation;
     }
-
     public void PutOnGround()
     {
         if (IsGrounded())
@@ -514,12 +497,10 @@ public class Player : MonoBehaviour, IDamageable
             rigidbody.MovePosition(GetGroundInformation().point);
         }
     }
-
     private void BubbleBreath()
     {
         stateMachine.ChangeState(StateBubbleBreath);
     }
-
     private void StateBoostStart()
     {
         //MainCamera.instance.ResetSensitivity();
@@ -527,13 +508,11 @@ public class Player : MonoBehaviour, IDamageable
         isAttacking = true;
         cameraTarget.Shake(0.1f);
     }
-
     private void StateBoostEnd()
     {
         isBoosting = false;
         isAttacking = false;
     }
-
     public void DoDamageOrDie()
     {
         if (GameManager.instance.rings > 0)
@@ -545,11 +524,9 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateDie);
         }
     }
-
     private void Zero()
     {
     }
-
     private void CalculateVelocity()
     {
         float lowToHigh = rigidbody.velocity.magnitude / lowToHighVelocity;
@@ -563,7 +540,6 @@ public class Player : MonoBehaviour, IDamageable
             accelerationForce *= 0.5f;
         }
     }
-
     private bool RigidbodyStepClimb()
     {
         Ray ray = new Ray(transform.position + (transform.up * 0.2f) + (transform.forward * 0.3f), -transform.up);
@@ -579,7 +555,6 @@ public class Player : MonoBehaviour, IDamageable
             return false;
         }
     }
-
     private void MovementRules()
     {
         float brakeAngleMax = 120;
@@ -644,7 +619,7 @@ public class Player : MonoBehaviour, IDamageable
 
             if (Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) < deadZone)
             {
-                AlignPlayerToMovingDirection(0.02f);
+                //AlignPlayerToMovingDirection(0.02f);
             }
         }
 
@@ -708,7 +683,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public virtual void StateIdle()
     {
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         if (closestLightSpeedDashRing && Input.GetButtonDown(XboxButton.Y))
         {
@@ -840,8 +815,6 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void StateMove3D()
     {
-
-
         if (pathType != BezierPathType.None)
         {
             stateMachine.ChangeState(StateMove);
@@ -905,9 +878,6 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateDrift);
             return;
         }
-
-
-
     }
     private void StateMove3DEnd()
     {
@@ -917,42 +887,32 @@ public class Player : MonoBehaviour, IDamageable
         stateMachine.physicsState = stateMachine.Zero;
     }
     public void StateMove3DPhysics()
-    {
+    {     
+        GroundState groundState = transform.GetGroundState();        
 
-        //RaycastHit groundInfo = GetGroundInformation();
+        if (absoluteLeftStick > deadZone)
+        {
+            float dot = Vector3.Dot(transform.forward, Vector3.up);
+            rigidbody.AddForce(leftStickDirection * 35, ForceMode.Acceleration);
+        }
 
-        //if (rigidbody.velocity.magnitude > 0.1f)
-        //{
-        //    transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
-        //}
+        RaycastHit groundInfo = GetGroundInformation();
 
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
+        if (rigidbody.velocity.magnitude > 0.1)
+        {
+            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized);
+        }
 
-        ////if (!IsGrounded())
-        ////{
-        ////    stateMachine.ChangeState(StateFall);
-        ////    return;
-        ////}
-
-        ////AlignPlayerToNormalDirection(groundInfo.normal);
-
-        //if (absoluteLeftStick > deadZone)
-        //{
-        //    float dot = Vector3.Dot(transform.forward, Vector3.up);
-        //    //rigidbody.AddForce(leftStickDirection * (40 + (dot * 100)), ForceMode.Acceleration);
-        //}
-        //GroundState groundState = transform.GetGroundState();
-
-        //if (groundState == GroundState.onWall || groundState == GroundState.onCeiling)
-        //{
-        //    rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
-
-        //    if (rigidbody.velocity.magnitude < 15)
-        //    {
-        //        stateMachine.ChangeState(StateFall);
-        //    }
-        //}
-
-        //transform.StickToGround(groundInfo);
+        if (IsGrounded())
+        {
+            transform.StickToGround(groundInfo, 20);
+        }
+        else
+        {
+            stateMachine.ChangeState(StateFall);
+            return;
+        }
     }
     #endregion State Move 3D
 
@@ -1187,7 +1147,7 @@ public class Player : MonoBehaviour, IDamageable
 
         SearchWall();
         
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
         MovementRules();
 
 
@@ -1326,7 +1286,7 @@ public class Player : MonoBehaviour, IDamageable
         //    bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out closestTimeOnSpline, 0, 0.5f);
         //    transform.rotation = Quaternion.FromToRotation(transform.forward, knot.tangent) * transform.rotation;////Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, GetGroundInformation().normal), 30 * Time.deltaTime);
         //}
-        //AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        //AlignPlayerUpToDirection(GetGroundInformation().normal);
         //rigidbody.velocity = transform.forward * velocity;
         //PutOnGround();
 
@@ -1389,7 +1349,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         FreeMovement();
         
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
         PutOnGround();
 
         rigidbody.velocity = Vector3.zero;
@@ -1431,7 +1391,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
         if (absoluteLeftStick < deadZone && absoluteVelocity > 1)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
@@ -1589,7 +1549,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (Input.GetAxisRaw(XboxAxis.LeftStickX) == 0)
         {
-            AlignPlayerToMovingDirection(1);
+            //AlignPlayerToMovingDirection(1);
         }
 
         velocity = Mathf.MoveTowards(rigidbody.velocity.magnitude, 0, (10 + rigidbody.velocity.y) * Time.deltaTime);
@@ -1597,7 +1557,7 @@ public class Player : MonoBehaviour, IDamageable
         ForwardView();
         SearchWall();
         
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
         rigidbody.velocity = direction * velocity;
@@ -1925,7 +1885,7 @@ public class Player : MonoBehaviour, IDamageable
 
         SearchWall();
         
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
         rigidbody.velocity = direction * velocity;
@@ -1988,7 +1948,12 @@ public class Player : MonoBehaviour, IDamageable
     public virtual void StateFall()
     {
         FindClosestTarget();
-        AlignPlayerUpToWorldUp();
+
+        Vector3 velocityDirection = rigidbody.velocity.normalized;
+        velocityDirection.y = 0;
+        transform.rotation = Quaternion.LookRotation(velocityDirection, Vector3.up);
+
+        //transform.rotation = Quaternion.FromToRotation(transform.up, ) * transform.rotation;
 
         //float dotTForwardSDirection = Vector3.Dot(transform.forward.normalized, leftStickDirection.normalized);
         if (stateMachine.lastStateName == "StateWallJump")
@@ -2001,7 +1966,6 @@ public class Player : MonoBehaviour, IDamageable
                 stateMachine.ChangeState(StateWallJump);
             }
         }
-
 
         if (Input.GetButtonDown(XboxButton.A))
         {
@@ -2027,21 +1991,16 @@ public class Player : MonoBehaviour, IDamageable
         {
             AirAlign();
 
-            AirMotion();
-
-            transform.rotation = Quaternion.LookRotation(tangent, GetGroundInformation().normal);
+            transform.rotation = Quaternion.LookRotation(tangent);
         }
         else
         {
-            AirMotion();
+            
 
-            if (rigidbody.HorizontalVelocity().magnitude > 1)
-            {
-                transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity().normalized);
-            }
         }
 
-        rigidbody.velocity = ClampVelocity(rigidbody.velocity, maxVelocity, maxDownVelocity, maxUpVelocity);
+        rigidbody.AddForce(leftStickDirection * 30);
+
     }
     private void StateFallEnd()
     {
@@ -2050,7 +2009,7 @@ public class Player : MonoBehaviour, IDamageable
         velocity = horizontalVelocity.magnitude;
         if (IsGrounded())
         {
-            AlignPlayerToMovingDirection(1);
+            //AlignPlayerToMovingDirection(1);
         }
 
 
@@ -2084,7 +2043,7 @@ public class Player : MonoBehaviour, IDamageable
         rbVel.y = JumpPower;
         rigidbody.velocity = rbVel;
 
-        AirMotion();
+        
 
         if (rigidbody.HorizontalVelocity().magnitude > 1)
         {
@@ -2169,11 +2128,9 @@ public class Player : MonoBehaviour, IDamageable
         {
             AirAlign();
 
-            AirMotion();
         }
         else
         {
-            AirMotion();
 
             if (rigidbody.HorizontalVelocity().magnitude > 1)
             {
@@ -2181,7 +2138,7 @@ public class Player : MonoBehaviour, IDamageable
             }
         }
 
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
         rigidbody.velocity = ClampVelocity(rigidbody.velocity, maxVelocity, maxDownVelocity, maxUpVelocity);
     }
     private void StateBallEnd()
@@ -2190,16 +2147,6 @@ public class Player : MonoBehaviour, IDamageable
         isAttacking = false;
     }
     #endregion State Ball
-
-    private void AirMotion()
-    {
-        //FreeMovement();
-
-        if (absoluteLeftStick > 0.1)
-        {
-            rigidbody.Accelerate(15, rigidbody.velocity.magnitude, true);
-        }
-    }
 
     #region State Carry
 
@@ -2545,7 +2492,7 @@ public class Player : MonoBehaviour, IDamageable
 
         //SearchWall();
         
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         if (Input.GetAxis(XboxAxis.LeftStickY) > 0.1f)
         {
@@ -2613,7 +2560,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void StateSnowBoardFall()
     {
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         if (IsGrounded())
         {
@@ -2641,7 +2588,7 @@ public class Player : MonoBehaviour, IDamageable
 
         SearchWall();
         
-        AlignPlayerToNormalDirection(GetGroundInformation().normal);
+        AlignPlayerUpToDirection(GetGroundInformation().normal);
         Drift();
 
         rigidbody.velocity = direction * velocity;
