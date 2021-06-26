@@ -4,202 +4,152 @@ using UnityEngine;
 public class StateMachine
 {
     public delegate void State();
-    private State state;
-    public State physicsState;
+    private event State updateState;
+    private event State fixedUpdateState;
+    private Component owner;
 
-
-    public bool canTransitToSameState;
-
-    private const string errorMessage = "State Machine not initialized, please initialize State Machine on the Awake or Start method.";
-    private float LastStateTime;
-    private string LastStateName;
-    private string CurrentStateName;
-    private string NextStateName;
-    private bool paused;
+    public bool canTransitToSameState { get; set; }
     public bool initiated { get; private set; }
+    public string lastStateName { get; private set; }
+    public string currentStateName { get; private set; }
+    public string currentPhysicsStateName { get; private set; }
+    public string nextStateName { get; private set; }
+    public float lastStateTime { get; private set; } 
+    public bool paused { get; private set; }
 
-    public bool useFixedUpdate;
-
-    public string lastStateName
+    public void Initialize(Component initializer, State startState)
     {
-        get
-        {
-            return LastStateName;
-        }
-    }
-    public string currentStateName
-    {
-        get
-        {
-            return CurrentStateName;
-        }
-    }
-    public string nextStateName
-    {
-        get
-        {
-            return NextStateName;
-        }
-    }
-    public float lastStateTime
-    {
-        get
-        {
-            return LastStateTime;
-        }
-    }
+        owner = initializer;
 
-    private GameObject gameObject;
+        lastStateTime = Time.time;
 
+        updateState = startState;
 
-    public void Initialize(GameObject gameObject, State startState)
-    {
-        this.gameObject = gameObject;
+        lastStateName = updateState.Method.Name;
 
-        LastStateTime = Time.time;
+        currentStateName = updateState.Method.Name;
 
-        state = startState;
+        nextStateName = string.Empty;
 
-        LastStateName = state.Method.Name;
+        fixedUpdateState = GetPhysicsState(initializer, nextStateName);
 
-        CurrentStateName = state.Method.Name;
-
-        NextStateName = string.Empty;
-
-        physicsState = Zero;
+        currentPhysicsStateName = fixedUpdateState.Method.Name;
 
         initiated = true;
     }
-
-    public void Update()
+    public void OnUpdate()
     {
         if (!paused)
         {
-            if (state == null)
-            {
-                initiated = false;
-            }
-            else
-            {
-                state();
-            }
+            updateState?.Invoke();
         }        
     }
-
-    public void ChangeState(State nextState)
+    public void OnFixedUpdate()
     {
-        if (state.Method.Name == nextState.Method.Name)
-            return;
+        if (!paused)
+        {
+            fixedUpdateState?.Invoke();
+        }
+    }
+    public void EmptyState()
+    {
 
-        LastStateName = state.Method.Name;
-
-        NextStateName = nextState.Method.Name;
-
-        SendMessageAtEnd(gameObject, LastStateName);
-
-        LastStateTime = Time.time;
-
-        state = nextState;
-
-        CurrentStateName = state.Method.Name;
-
-        SendMessageAtStart(gameObject, CurrentStateName);
+    }
+    public void Play()
+    {
+        paused = false;
+    }
+    public void Pause()
+    {
+        paused = true;
     }
 
-    public void ChangeState(State nextState, float delay)
+    public void ChangeState(State nextState, State physicsState, GameObject[] listeners, float delay)
     {
         if (Time.time < lastStateTime + delay)
             return;
 
-        ChangeState(nextState);
-    }
-
-    public void ChangeState(State nextState, GameObject listener)
-    {
-        if (state.Method.Name == nextState.Method.Name)
+        if (updateState.Method.Name == nextState.Method.Name)
             return;
 
-        LastStateName = state.Method.Name;
+        lastStateName = updateState.Method.Name;
+        nextStateName = nextState.Method.Name;
 
-        NextStateName = nextState.Method.Name;
+        foreach (GameObject listener in listeners)
+        {
+            SendMessageAtEnd(listener, lastStateName);
+        }
 
-        SendMessageAtEnd(gameObject, LastStateName);
-        SendMessageAtEnd(listener, LastStateName);
+        lastStateTime = Time.time;
 
-        LastStateTime = Time.time;
+        updateState = nextState;
 
-        state = nextState;
+        fixedUpdateState = physicsState;
 
-        CurrentStateName = state.Method.Name;
+        currentStateName = updateState.Method.Name;
 
-        SendMessageAtStart(gameObject, CurrentStateName);
-        SendMessageAtStart(listener, CurrentStateName);
+        currentPhysicsStateName = fixedUpdateState.Method.Name;
+
+        foreach (GameObject listener in listeners)
+        {
+            SendMessageAtStart(listener, currentStateName);
+        }
     }
-
+    public void ChangeState(State nextState, State physicsState, GameObject[] listeners)
+    {
+        ChangeState(nextState, physicsState, listeners, 0);
+    }
+    public void ChangeState(State nextState, State physicsState, GameObject listener, float delay)
+    {
+        ChangeState(nextState, physicsState, new GameObject[2] { owner.gameObject, listener }, delay);
+    }
+    public void ChangeState(State nextState, State physicsState, GameObject listener)
+    {
+        ChangeState(nextState, physicsState, new GameObject[2] { owner.gameObject, listener }, 0);
+    }
     public void ChangeState(State nextState, GameObject listener, float delay)
     {
-        if (Time.time < lastStateTime + delay)
-            return;
-
-        ChangeState(nextState, listener);
+        ChangeState(nextState, GetPhysicsState(owner, nextState.Method.Name), new GameObject[2] { owner.gameObject, listener }, delay);
     }
-
-    public void ChangeState(State nextState, GameObject[] listeners)
+    public void ChangeState(State nextState, GameObject listener)
     {
-        if (state.Method.Name == nextState.Method.Name)
-            return;
-
-        LastStateName = state.Method.Name;
-
-        NextStateName = nextState.Method.Name;
-
-        foreach (GameObject listener in listeners)
-        {
-            SendMessageAtEnd(listener, LastStateName);
-        }
-
-        LastStateTime = Time.time;
-
-        state = nextState;
-
-        CurrentStateName = state.Method.Name;
-
-        foreach (GameObject listener in listeners)
-        {
-            SendMessageAtStart(listener, CurrentStateName);
-        }
+        ChangeState(nextState, GetPhysicsState(owner, nextState.Method.Name), new GameObject[2] { owner.gameObject, listener }, 0);
     }
-
-    public void ChangeState(State nextState, GameObject[] listeners, float delay)
+    public void ChangeState(State nextState, State physicsState, float delay)
     {
-        if (Time.time < lastStateTime + delay)
-            return;
-
-        ChangeState(nextState, listeners);
+        ChangeState(nextState, physicsState, new GameObject[1] { owner.gameObject }, delay);
+    }
+    public void ChangeState(State nextState, State physicsState)
+    {
+        ChangeState(nextState, physicsState, new GameObject[1] { owner.gameObject }, 0);
+    }
+    public void ChangeState(State nextState, float delay)
+    {
+        ChangeState(nextState, GetPhysicsState(owner, nextState.Method.Name), new GameObject[1] { owner.gameObject }, delay);
+    }
+    public void ChangeState(State nextState)
+    {
+        ChangeState(nextState, GetPhysicsState(owner, nextState.Method.Name), new GameObject[1] { owner.gameObject }, 0);
     }
 
     private void SendMessageAtStart(GameObject sender, string stateName)
     {
         sender.SendMessage(stateName + "Start", SendMessageOptions.DontRequireReceiver);
     }
-
     private void SendMessageAtEnd(GameObject sender, string stateName)
     {
         sender.SendMessage(stateName + "End", SendMessageOptions.DontRequireReceiver);
     }
-
-    public void Zero()
+    private State GetPhysicsState(Component owner, string stateName)
     {
-
-    }
-
-    public void Play()
-    {
-        paused = false;
-    }
-
-    public void Pause()
-    {
-        paused = true;
+        var method = owner.GetType().GetMethod(stateName + "Physics");
+        if (method == null)
+        {
+            return EmptyState;
+        }
+        else
+        {
+            return Delegate.CreateDelegate(typeof(State), owner, method) as State;
+        }    
     }
 }
