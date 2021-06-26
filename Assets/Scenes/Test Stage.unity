@@ -15277,7 +15277,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 437988683}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a1d696d073559314e977901eaf13442b, type: 3}
@@ -21043,7 +21043,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1326434573397928, guid: 4d442c3f012c91e489f6d3468f25826e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1849931859358852, guid: 4d442c3f012c91e489f6d3468f25826e, type: 3}
       propertyPath: m_Name
@@ -59964,7 +59964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1280421039807724, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4566319339129236, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_RootOrder
@@ -59972,15 +59972,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566319339129236, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 355.769
       objectReference: {fileID: 0}
     - target: {fileID: 4566319339129236, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 27.702
       objectReference: {fileID: 0}
     - target: {fileID: 4566319339129236, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 597.091
       objectReference: {fileID: 0}
     - target: {fileID: 4566319339129236, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_LocalRotation.w
@@ -60078,12 +60078,27 @@ PrefabInstance:
     - target: {fileID: 114597763990362862, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: collisionRadius
-      value: 0.25
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: velocity
       value: 0.27173546
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: brakeMinSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: maxBoostSpeed
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
@@ -60097,13 +60112,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
+      propertyPath: decelerationForceAir
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
       propertyPath: isGroundedMaxDistance
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: groundInformationRadius
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
@@ -60127,13 +60147,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
+      propertyPath: groundInformationFrontOffsetMax
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114856585982562966, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
       propertyPath: groundInformationFrontOffsetMin
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 135694486747003068, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: m_Radius
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136460019044845308, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 136460019044845308, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
@@ -60157,6 +60187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114526522167336042, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
+    - {fileID: 136813344589208364, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
 --- !u!1 &1721143976
 GameObject:
