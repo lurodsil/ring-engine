@@ -275,7 +275,7 @@ public class Player : MonoBehaviour, IDamageable
         playerAnimation = GetComponent<PlayerAnimation>();
     }
 
-    void Start()
+    public virtual void Start()
     {
         SetCameraTarget();
         UpdateTargets();
@@ -283,8 +283,6 @@ public class Player : MonoBehaviour, IDamageable
 
     public virtual void Update()
     {
-        print(Vector3.Angle(transform.up, Vector3.up));
-
         if (pathType == BezierPathType.SideView && !isGrinding)
         {
             try
@@ -425,7 +423,7 @@ public class Player : MonoBehaviour, IDamageable
         //Clamp X and Y of left stick in a number between 0 and 1
         absoluteLeftStick = Mathf.Clamp01(Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) + Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickY)));
         //Convert the X and Y of left stick to the stick pointing direction relative to the camera
-        leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY),Camera.main.transform, transform);
+        leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), Camera.main.transform, transform);
         Debug.DrawRay(collider.bounds.center, leftStickDirection, Color.magenta);
     }
 
@@ -632,7 +630,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void StateTransition()
     {
-        
+
 
         if (IsGrounded())
         {
@@ -752,7 +750,7 @@ public class Player : MonoBehaviour, IDamageable
     public void StateHurdle()
     {
         FindClosestTarget();
-        
+
 
         if (Input.GetButtonUp(XboxButton.A))
         {
@@ -810,8 +808,6 @@ public class Player : MonoBehaviour, IDamageable
     private void StateMove3DStart()
     {
         velocity = horizontalVelocity.magnitude;
-        stateMachine.useFixedUpdate = true;
-        stateMachine.physicsState = StateMove3DPhysics;
     }
     public void StateMove3D()
     {
@@ -882,13 +878,12 @@ public class Player : MonoBehaviour, IDamageable
     private void StateMove3DEnd()
     {
         stickToGround = true;
-        stateMachine.useFixedUpdate = false;
         rigidbody.useGravity = true;
-        stateMachine.physicsState = stateMachine.Zero;
     }
     public void StateMove3DPhysics()
-    {     
-        GroundState groundState = transform.GetGroundState();        
+    {
+        GroundState groundState = transform.GetGroundState();
+        RaycastHit groundInfo = GetGroundInformation();
 
         if (absoluteLeftStick > deadZone)
         {
@@ -896,17 +891,16 @@ public class Player : MonoBehaviour, IDamageable
             rigidbody.AddForce(leftStickDirection * 35, ForceMode.Acceleration);
         }
 
-        RaycastHit groundInfo = GetGroundInformation();
-
-        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
-        if (rigidbody.velocity.magnitude > 0.1)
+        if (rigidbody.velocity.magnitude > 0.01f)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized);
         }
 
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
+
         if (IsGrounded())
         {
-            transform.StickToGround(groundInfo, 20);
+            transform.StickToGround(groundInfo, 30);
         }
         else
         {
@@ -1053,7 +1047,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     private void StateMoveQuickStep()
     {
-        
+
         SearchWall();
 
         if (pathType != BezierPathType.QuickStep)
@@ -1146,7 +1140,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         SearchWall();
-        
+
         AlignPlayerUpToDirection(GetGroundInformation().normal);
         MovementRules();
 
@@ -1348,7 +1342,7 @@ public class Player : MonoBehaviour, IDamageable
     private void StateSpindash()
     {
         FreeMovement();
-        
+
         AlignPlayerUpToDirection(GetGroundInformation().normal);
         PutOnGround();
 
@@ -1390,7 +1384,7 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateMove);
         }
 
-        
+
         AlignPlayerUpToDirection(GetGroundInformation().normal);
         if (absoluteLeftStick < deadZone && absoluteVelocity > 1)
         {
@@ -1556,7 +1550,7 @@ public class Player : MonoBehaviour, IDamageable
 
         ForwardView();
         SearchWall();
-        
+
         AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
@@ -1601,7 +1595,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         transform.rotation = Quaternion.LookRotation(-contactPoint.normal);
 
-        
+
 
         if (IsGrounded())
         {
@@ -1884,7 +1878,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         SearchWall();
-        
+
         AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
@@ -1995,7 +1989,7 @@ public class Player : MonoBehaviour, IDamageable
         }
         else
         {
-            
+
 
         }
 
@@ -2025,7 +2019,7 @@ public class Player : MonoBehaviour, IDamageable
     public virtual void StateJump()
     {
         FindClosestTarget();
-        
+
 
         if (Input.GetButtonUp(XboxButton.A))
         {
@@ -2043,7 +2037,7 @@ public class Player : MonoBehaviour, IDamageable
         rbVel.y = JumpPower;
         rigidbody.velocity = rbVel;
 
-        
+
 
         if (rigidbody.HorizontalVelocity().magnitude > 1)
         {
@@ -2067,7 +2061,7 @@ public class Player : MonoBehaviour, IDamageable
     public virtual void StateBall()
     {
         FindClosestTarget();
-        
+
 
         if (Input.GetButtonDown(XboxButton.A))
         {
@@ -2159,7 +2153,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void StateCarry()
     {
-        
+
 
         float currentVerticalSpeed = rigidbody.velocity.y;
 
@@ -2210,7 +2204,7 @@ public class Player : MonoBehaviour, IDamageable
 
     private void StateDie()
     {
-        
+
         if (Time.time > stateMachine.lastStateTime + 3)
         {
             //Main.lives--;
@@ -2233,7 +2227,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void StateHurt()
     {
-        
+
 
         if (Time.time > stateMachine.lastStateTime + 1.8f)
         {
@@ -2350,7 +2344,7 @@ public class Player : MonoBehaviour, IDamageable
     }
     public void StateSkydive()
     {
-        
+
         if (Input.GetAxis(XboxAxis.LeftStickY) > 0)
         {
             frontAcceleration += 0.7f * Time.deltaTime;
@@ -2491,7 +2485,7 @@ public class Player : MonoBehaviour, IDamageable
 
 
         //SearchWall();
-        
+
         AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         if (Input.GetAxis(XboxAxis.LeftStickY) > 0.1f)
@@ -2587,7 +2581,7 @@ public class Player : MonoBehaviour, IDamageable
         }
 
         SearchWall();
-        
+
         AlignPlayerUpToDirection(GetGroundInformation().normal);
         Drift();
 
@@ -2865,5 +2859,11 @@ public class Player : MonoBehaviour, IDamageable
     {
         yield return new WaitForSeconds(time);
         ignoreDamage = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (collider)
+            Gizmos.DrawWireSphere(transform.position, isGroundedRadius);
     }
 }

@@ -8,7 +8,7 @@ public class EnemyGaniganiLW : Enemy
     {
         base.Start();
 
-        stateMachine.Initialize(gameObject, StateIdle);
+        stateMachine.Initialize(this, StateIdle);
     }
 
     #region State Idle

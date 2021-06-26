@@ -39,11 +39,11 @@ public class SuperSonic : Player
         {
             if (stateMachine.initiated)
             {
-                stateMachine.Update();
+                stateMachine.OnUpdate();
             }
             else
             {
-                stateMachine.Initialize(gameObject, StateIdle);
+                stateMachine.Initialize(this, StateIdle);
             }
         }
 

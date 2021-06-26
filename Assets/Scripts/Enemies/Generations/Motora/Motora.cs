@@ -8,20 +8,15 @@ public class Motora : Enemy
     public override void Start()
     {
         base.Start();
+
+        stateMachine.Initialize(this, StateIdle);
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (stateMachine.initiated)
-        {
-            stateMachine.Update();
-        }
-        else
-        {
-            stateMachine.Initialize(gameObject, StateIdle);
-        }
+        stateMachine.OnUpdate();
     }
 
     #region State Idle

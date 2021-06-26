@@ -47,18 +47,13 @@ public class HidrocityBoss : GenerationsObject
         waterSwirlPosA = waterSwirlPos.position + Vector3.up;
         waterSwirlPosB = waterSwirlPos.position + Vector3.up * 6;
         animatorHydro.speed = 0;
+
+        stateMachine.Initialize(this, StateWait);
     }
 
     void Update()
     {
-        if (stateMachine.initiated)
-        {
-            stateMachine.Update();
-        }
-        else
-        {
-            stateMachine.Initialize(gameObject, StateWait);
-        }
+        stateMachine.OnUpdate();
 
         waterSwirl.transform.position = new Vector3(transform.position.x, waterSwirlPos.position.y, transform.position.z);
     }

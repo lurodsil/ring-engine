@@ -15,14 +15,12 @@ public class Sonic : Player
     public float airboostKeepVelocity = 0.8f;
 
     
-
-    private void FixedUpdate()
+    public override void Start()
     {
-        if (stateMachine.initiated)
-        {
-            stateMachine.physicsState();
-        }
-    }
+        base.Start();
+
+        stateMachine.Initialize(this, StateIdle);
+    }    
 
     public override void Update()
     {
@@ -34,19 +32,17 @@ public class Sonic : Player
             canAirboost = true;
         }
 
-        if (stateMachine.initiated)
-        {
-            stateMachine.Update();
-        }
-        else
-        {
-            stateMachine.Initialize(gameObject, StateIdle);
-        }
-
         if (Input.GetButtonDown(XboxButton.DPadUp))
         {
             stateMachine.ChangeState(StateChangeToSuperSonic);
         }
+
+        stateMachine.OnUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        stateMachine.OnFixedUpdate();
     }
 
     #region State Stomp

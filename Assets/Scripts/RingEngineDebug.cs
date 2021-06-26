@@ -41,7 +41,8 @@ public class RingEngineDebug : MonoBehaviour
 
         statemachineContent.text =
             "Last state: " + player.stateMachine.lastStateName.Replace("State", "") + "\n\r" +
-            "Current state: " + player.stateMachine.currentStateName.Replace("State", "");
+            "Current state: " + player.stateMachine.currentStateName.Replace("State", "") + "\n\r" +
+            "Physics state: " + player.stateMachine.currentPhysicsStateName.Replace("State", "");
 
         animationContent.text =
             "Current animation: " + playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
