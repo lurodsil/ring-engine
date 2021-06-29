@@ -5,7 +5,7 @@ using UnityEngine.Events;
 [AddComponentMenu("Ring Engine/Player/Player Script")]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public class Player : MonoBehaviour, IDamageable
+public abstract class Player : MonoBehaviour, IDamageable
 {
     public float rotationForceMin = 1;
     public float rotationForceMax = 10;
@@ -17,17 +17,11 @@ public class Player : MonoBehaviour, IDamageable
     public float groundInformationRadius = 0.3f;
     public float groundInformationFrontOffsetMin = 0.2f;
     public float groundInformationFrontOffsetMax = 0.5f;
-    [Header("Ground Motion")]
-    public float accelerationForce = 35;
-    public float decelerationForce = 35;
-    public float accelerationForceBoost = 150;
-    public float brakeForce = 50;
-    public float brakeMinSpeed = 15;
-    public float maxSpeed = 44;
-    public float maxBoostSpeed = 44;
-    [Header("Air Motion")]
-    public float accelerationForceAir = 20;
-    public float decelerationForceAir = 20;
+    public PhysicsMotionValues groundMotion;
+    public PhysicsMotionValues boostMotion;
+    public PhysicsMotionValues iceMotion;
+    public PhysicsMotionValues airMotion;
+    private PhysicsMotionValues currentPhysicsMotion;
 
     public LayerMask targetFindLayerMask;
     public float binormalTargetOffset;
@@ -202,7 +196,7 @@ public class Player : MonoBehaviour, IDamageable
     public Vector3 hitPoint;
     public Vector3 leftStickDirection { get; set; }
     private Vector3 horizontalVelocity { get; set; }
-    private float absoluteLeftStick { get; set; }
+    public float absoluteLeftStick { get; set; }
     private float activeStick { get; set; }
 
     private float deadZone { get; set; } = 0.1f;
@@ -290,6 +284,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         SetCameraTarget();
         UpdateTargets();
+        currentPhysicsMotion = groundMotion;
     }
 
     public virtual void Update()
@@ -299,6 +294,31 @@ public class Player : MonoBehaviour, IDamageable
             try
             {
                 bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out _, 15);
+
+                Vector3 horizontalVelocity = rigidbody.velocity;
+                horizontalVelocity.y = 0;
+
+                float x = Input.GetAxis(XboxAxis.LeftStickX);
+                float y = Input.GetAxis(XboxAxis.LeftStickY);
+                float xy = Mathf.Clamp(x + y, -1, 1);
+
+                if (horizontalVelocity.magnitude < 1f)
+                {
+                    if (xy > 0)
+                    {
+                        tangentMultiplier = 1;
+                    }
+                    else if (xy < 0)
+                    {
+                        tangentMultiplier = -1;
+                    }
+                    else
+                    {
+                        tangentMultiplier = Mathf.Sign(Vector3.Dot(horizontalVelocity.normalized, knot.tangent));
+                    }
+                }
+
+                tangent = knot.tangent * tangentMultiplier;
             }
             catch
             {
@@ -350,6 +370,10 @@ public class Player : MonoBehaviour, IDamageable
             jumpReachedApex = false;
             canHomming = true;
             //lastGroundedNormal = GetGroundInformation().normal;
+        }
+        else
+        {
+            currentPhysicsMotion = groundMotion;
         }
 
         if (Input.GetAxisRaw(XboxAxis.LeftStickX) > 0)
@@ -459,7 +483,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public RaycastHit GetGroundInformation()
     {
-        float groundInformationOffsetFront = Mathf.Lerp(groundInformationFrontOffsetMin, groundInformationFrontOffsetMax, rigidbody.velocity.magnitude / maxBoostSpeed);
+        float groundInformationOffsetFront = Mathf.Lerp(groundInformationFrontOffsetMin, groundInformationFrontOffsetMax, rigidbody.velocity.magnitude / currentPhysicsMotion.maxSpeed);
         Ray groundInformationRay = new Ray(collider.bounds.center + transform.forward * groundInformationOffsetFront, -transform.up);
         RaycastHit groundInformationHit = new RaycastHit();
         Physics.SphereCast(groundInformationRay, groundInformationRadius, out groundInformationHit, groundInformationMaxDistance);
@@ -547,22 +571,21 @@ public class Player : MonoBehaviour, IDamageable
             return false;
         }
     }
-
     private void AirMotion()
     {
-        if(leftStickDirection.magnitude > deadZone)
+        if (leftStickDirection.magnitude > deadZone)
         {
-            rigidbody.AddForce(leftStickDirection * accelerationForceAir);
+            rigidbody.AddForce(leftStickDirection * airMotion.accelerationForce);
         }
         else
         {
             Vector3 horizontalVelocity = rigidbody.velocity;
             horizontalVelocity.y = 0;
-            if(horizontalVelocity.magnitude > 0.01f)
+            if (horizontalVelocity.magnitude > 0.01f)
             {
-                rigidbody.AddForce(-horizontalVelocity * decelerationForceAir);
-            }           
-        }        
+                rigidbody.AddForce(-horizontalVelocity * airMotion.decelerationForce);
+            }
+        }
     }
 
     #region State Transition
@@ -814,7 +837,7 @@ public class Player : MonoBehaviour, IDamageable
         {
             stateMachine.ChangeState(StateQuickstepRight);
             return;
-        }       
+        }
 
         RaycastHit groundInfo = GetGroundInformation();
 
@@ -827,7 +850,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (IsGrounded())
         {
-            transform.StickToGround(groundInfo, 30);
+            transform.StickToGround(groundInfo, 40);
         }
         else
         {
@@ -841,52 +864,50 @@ public class Player : MonoBehaviour, IDamageable
     float groundSpeed;
     public void StateMove3DPhysics()
     {
-        if (!isBraking && rigidbody.velocity.magnitude > brakeMinSpeed && leftStickDirection.magnitude > deadZone && Vector3.Angle(-rigidbody.velocity.normalized, leftStickDirection) < 45)
+        if (!isBraking && rigidbody.velocity.magnitude > currentPhysicsMotion.brakeMinSpeed && leftStickDirection.magnitude > deadZone && Vector3.Angle(-rigidbody.velocity.normalized, leftStickDirection) < 45)
         {
             SendMessage("StateBrakeStart");
             SendMessage("StateBoostEnd");
             isBraking = true;
-        }      
+        }
 
         if (leftStickDirection.magnitude > deadZone && !isBraking && !isBoosting)
         {
-            if (rigidbody.velocity.magnitude < maxSpeed)
+            if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeed)
             {
-                rigidbody.AddForce(leftStickDirection * accelerationForce, ForceMode.Acceleration);
+                rigidbody.AddForce(leftStickDirection * currentPhysicsMotion.accelerationForce, ForceMode.Acceleration);
             }
-
-            rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
         }
         else if (isBraking)
         {
-            rigidbody.AddForce(-rigidbody.velocity.normalized * brakeForce, ForceMode.Acceleration);
+            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.brakeForce, ForceMode.Acceleration);
 
-            if (rigidbody.velocity.sqrMagnitude < 0.1f)
+            if (rigidbody.velocity.sqrMagnitude < 1f)
             {
                 isBraking = false;
-                rigidbody.Sleep(); 
+                rigidbody.Sleep();
             }
         }
         else if (isBoosting)
         {
             Vector3 boostMovementDirection = leftStickDirection == Vector3.zero ? transform.forward : leftStickDirection;
 
-            if (rigidbody.velocity.magnitude < maxBoostSpeed)
+            if (rigidbody.velocity.magnitude < boostMotion.maxSpeed)
             {
-                rigidbody.AddForce(boostMovementDirection * accelerationForceBoost, ForceMode.Acceleration);
+                rigidbody.AddForce(boostMovementDirection * boostMotion.accelerationForce, ForceMode.Acceleration);
             }
-
-            rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
         }
         else
         {
-            rigidbody.AddForce(-rigidbody.velocity.normalized * decelerationForce, ForceMode.Acceleration);
+            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.decelerationForce, ForceMode.Acceleration);
 
             if (rigidbody.velocity.sqrMagnitude < 0.1f)
             {
                 rigidbody.Sleep();
             }
         }
+
+        rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
     }
     #endregion State Move 3D
 
@@ -895,13 +916,10 @@ public class Player : MonoBehaviour, IDamageable
     {
         velocity = horizontalVelocity.magnitude;
         tangentMultiplier = Mathf.Sign(Vector3.Dot(transform.forward, knot.tangent));
-        rigidbody.useGravity = false;
+
     }
     private void StateMove2D()
     {
-        RaycastHit groundInfo = GetGroundInformation();
-
-        direction = Vector3.Cross(transform.right, groundInfo.normal);
 
         if (Input.GetButtonDown(XboxButton.A))
         {
@@ -911,6 +929,36 @@ public class Player : MonoBehaviour, IDamageable
 
         CheckBoost();
 
+
+
+        tangent = knot.tangent * tangentMultiplier;
+
+        
+
+        RaycastHit groundInfo = GetGroundInformation();
+
+        if (rigidbody.velocity.magnitude > 0.1f)
+        {
+            transform.rotation = Quaternion.LookRotation(tangent);
+        }
+
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
+
+        if (IsGrounded())
+        {
+            transform.StickToGround(groundInfo, 40);
+        }
+        else
+        {
+            stateMachine.ChangeState(StateFall);
+        }
+    }
+    private void StateMove2DEnd()
+    {
+        rigidbody.useGravity = true;
+    }
+    public void StateMove2DPhysics()
+    {
         float x = Input.GetAxis(XboxAxis.LeftStickX);
         float y = Input.GetAxis(XboxAxis.LeftStickY);
         float xy = Mathf.Clamp(x + y, -1, 1);
@@ -924,7 +972,7 @@ public class Player : MonoBehaviour, IDamageable
                 {
                     SendMessage("StateBrakeStart");
                     SendMessage("StateBoostEnd");
-                    //isBraking = true;
+                    isBraking = true;
                 }
             }
             else if (tangentMultiplier == -1 && xy > 0)
@@ -946,77 +994,58 @@ public class Player : MonoBehaviour, IDamageable
             isBraking = false;
         }
 
-        if (absoluteVelocity < 1f)
-        {
-            if (xy > 0)
-            {
-                tangentMultiplier = 1;
-            }
-            else if (xy < 0)
-            {
-                tangentMultiplier = -1;
-            }
-        }
+       
 
-        tangent = knot.tangent * tangentMultiplier;
+        RaycastHit groundInfo = GetGroundInformation();
 
-        transform.rotation = Quaternion.LookRotation(tangent);
-
-        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
+        direction = Vector3.Cross(transform.right, groundInfo.normal).normalized;
 
         float dot = Vector3.Dot(transform.forward, -Vector3.up);
 
-        if (Mathf.Abs(xy) > deadZone && !isBraking && !isBoosting)
+        //if (!isBraking && rigidbody.velocity.magnitude > currentPhysicsMotion.brakeMinSpeed && leftStickDirection.magnitude > deadZone && Vector3.Angle(-rigidbody.velocity.normalized, direction) < 45)
+        //{
+        //    SendMessage("StateBrakeStart");
+        //    SendMessage("StateBoostEnd");
+        //    isBraking = true;
+        //}
+
+        if (leftStickDirection.magnitude > deadZone && !isBraking && !isBoosting)
         {
-
-            if (velocity < 44)
+            if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeed)
             {
-                velocity += (dot * 40) * Time.deltaTime;
+                rigidbody.AddForce(direction * currentPhysicsMotion.accelerationForce, ForceMode.Acceleration);
+            }
+        }
+        else if (isBraking)
+        {
+            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.brakeForce, ForceMode.Acceleration);
 
-
-                velocity += 20 * Time.deltaTime;
+            if (rigidbody.velocity.sqrMagnitude < 1f)
+            {
+                isBraking = false;
+                rigidbody.Sleep();
             }
         }
         else if (isBoosting)
         {
-            if (velocity < 60)
+            Vector3 boostMovementDirection = direction == Vector3.zero ? transform.forward : leftStickDirection;
+
+            if (rigidbody.velocity.magnitude < boostMotion.maxSpeed)
             {
-                velocity += accelerationForceBoost * Time.deltaTime;
+                rigidbody.AddForce(boostMovementDirection * boostMotion.accelerationForce, ForceMode.Acceleration);
             }
         }
         else
         {
-            if (velocity > 0)
+            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.decelerationForce, ForceMode.Acceleration);
+
+            if (rigidbody.velocity.sqrMagnitude < 0.1f)
             {
-                velocity += (dot * 80f) * Time.deltaTime;
-
-                velocity -= 40 * Time.deltaTime;
-
-                if (velocity < 0)
-                {
-                    velocity = 0;
-                }
+                rigidbody.Sleep();
             }
         }
 
-        rigidbody.velocity = transform.forward * velocity;
-
-        print(groundInfo.distance);
-
-        //IsGrounded() = Physics.Raycast(collider.bounds.center, -transform.up, .55f);
-
-        if (IsGrounded())
-        {
-            transform.StickToGround(groundInfo, 20);
-        }
-        else
-        {
-            stateMachine.ChangeState(StateFall);
-        }
-    }
-    private void StateMove2DEnd()
-    {
-        rigidbody.useGravity = true;
+        rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
     }
 
     #endregion State Move 2D  
@@ -1494,12 +1523,9 @@ public class Player : MonoBehaviour, IDamageable
     #endregion State Crawling
 
     #region State Sliding
-
     private void StateSlidingStart()
     {
-        ForwardView();
     }
-
     private void StateSliding()
     {
         if (!Input.GetButton(XboxButton.B))
@@ -1517,32 +1543,28 @@ public class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateJump);
         }
 
-        if (!IsGrounded())
+        RaycastHit groundInfo = GetGroundInformation();
+
+        if (rigidbody.velocity.magnitude > 0.1f)
+        {
+            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+        }
+
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
+
+        if (IsGrounded())
+        {
+            transform.StickToGround(groundInfo, 10);
+        }
+        else
         {
             stateMachine.ChangeState(StateFall);
         }
-
-        if (Input.GetAxisRaw(XboxAxis.LeftStickX) == 0)
-        {
-            //AlignPlayerToMovingDirection(1);
-        }
-
-        velocity = Mathf.MoveTowards(rigidbody.velocity.magnitude, 0, (10 + rigidbody.velocity.y) * Time.deltaTime);
-
-        ForwardView();
-        SearchWall();
-
-        AlignPlayerUpToDirection(GetGroundInformation().normal);
-
-        Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
-        rigidbody.velocity = direction * velocity;
-
-        if (speedMode == SpeedMode.High)
-        {
-            PutOnGround();
-        }
     }
-
+    public void StateSlidingPhysics()
+    {
+        rigidbody.AddForce(leftStickDirection * 10, ForceMode.Acceleration);
+    }
     private void StateSlidingEnd()
     {
     }
@@ -1927,7 +1949,7 @@ public class Player : MonoBehaviour, IDamageable
 
         Vector3 horizontalVelocity = rigidbody.velocity.normalized;
         horizontalVelocity.y = 0;
-        if(horizontalVelocity.magnitude > 0.1)
+        if (horizontalVelocity.magnitude > 0.1)
             transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
 
         if (stateMachine.lastStateName == "StateWallJump")
@@ -1963,15 +1985,8 @@ public class Player : MonoBehaviour, IDamageable
 
         if (pathType == BezierPathType.SideView)
         {
-            AirAlign();
-
-            transform.rotation = Quaternion.LookRotation(tangent);
+            transform.rotation = Quaternion.LookRotation(tangent, transform.up);
         }
-        else
-        {
-
-
-        }        
     }
     public void StateFallPhysics()
     {
@@ -2011,9 +2026,12 @@ public class Player : MonoBehaviour, IDamageable
         rbVel.y = JumpPower;
         rigidbody.velocity = rbVel;
 
+        if (pathType == BezierPathType.SideView)
+        {
+            transform.rotation = Quaternion.LookRotation(tangent, transform.up);
+        }
 
-
-        if (rigidbody.HorizontalVelocity().magnitude > 1)
+        else if (rigidbody.HorizontalVelocity().magnitude > 1)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity().normalized);
         }
@@ -2095,8 +2113,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (pathType == BezierPathType.SideView)
         {
-            AirAlign();
-
+            transform.rotation = Quaternion.LookRotation(tangent, transform.up);
         }
         else
         {
@@ -2704,6 +2721,15 @@ public class Player : MonoBehaviour, IDamageable
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.sharedMaterial)
+        {
+            if (collision.collider.sharedMaterial.name == "Ice")
+            {
+                currentPhysicsMotion = iceMotion;
+            }
+        }
+
+
         if (collision.collider.CompareTag("Pushable"))
         {
             RaycastHit hit = new RaycastHit();
@@ -2737,6 +2763,17 @@ public class Player : MonoBehaviour, IDamageable
                     stateMachine.ChangeState(StateHomingTrick);
                     damageable.TakeDamage(gameObject);
                 }
+            }
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.sharedMaterial)
+        {
+            if (collision.collider.sharedMaterial.name == "Ice")
+            {
+
             }
         }
     }

@@ -22,134 +22,134 @@ public class PlayerCollision : MonoBehaviour
     public CapsuleCollider itemCollision;
     Player player;
 
-    void Awake()
-    {
-        player = GetComponent<Player>();
-        collision = GetComponent<CapsuleCollider>();
-        //itemCollision = new GameObject("Item Collision").AddComponent<CapsuleCollider>();
-        itemCollision.tag = "Item Collision";
-        itemCollision.isTrigger = true;
-        itemCollision.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-        //itemCollision.hideFlags = HideFlags.HideInHierarchy;
-    }
+    //void Awake()
+    //{
+    //    player = GetComponent<Player>();
+    //    collision = GetComponent<CapsuleCollider>();
+    //    //itemCollision = new GameObject("Item Collision").AddComponent<CapsuleCollider>();
+    //    itemCollision.tag = "Item Collision";
+    //    itemCollision.isTrigger = true;
+    //    itemCollision.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+    //    //itemCollision.hideFlags = HideFlags.HideInHierarchy;
+    //}
 
-    void Start()
-    {
-        collision.height = collisionStandHeight;
-        collision.radius = collisionRadius;
-        itemCollision.height = itemCollisionStandHeight;
-        itemCollision.radius = itemCollisionRadius;
-    }
+    //void Start()
+    //{
+    //    collision.height = collisionStandHeight;
+    //    collision.radius = collisionRadius;
+    //    itemCollision.height = itemCollisionStandHeight;
+    //    itemCollision.radius = itemCollisionRadius;
+    //}
 
-    void Update()
-    {
+    //void Update()
+    //{
 
-        if (player.isBoosting)
-        {
-            itemCollision.height = itemCollisionStandHeightInBoost;
-            itemCollision.radius = itemCollisionRadiusInBoost;
-        }
-        else
-        {
-            itemCollision.height = itemCollisionStandHeight;
-            itemCollision.radius = itemCollisionRadius;
-        }
-    }
+    //    if (player.isBoosting)
+    //    {
+    //        itemCollision.height = itemCollisionStandHeightInBoost;
+    //        itemCollision.radius = itemCollisionRadiusInBoost;
+    //    }
+    //    else
+    //    {
+    //        itemCollision.height = itemCollisionStandHeight;
+    //        itemCollision.radius = itemCollisionRadius;
+    //    }
+    //}
 
-    void StateRollStart()
-    {
-        SquatCollider();
-    }
+    //void StateRollStart()
+    //{
+    //    SquatCollider();
+    //}
 
-    void StateRollEnd()
-    {
-        StandCollider();
-    }
+    //void StateRollEnd()
+    //{
+    //    StandCollider();
+    //}
 
-    void StateSquatStart()
-    {
-        SquatCollider();
-    }
+    //void StateSquatStart()
+    //{
+    //    SquatCollider();
+    //}
 
-    void StateSquatEnd()
-    {
-        StandCollider();
-    }
+    //void StateSquatEnd()
+    //{
+    //    StandCollider();
+    //}
 
-    void StateSlidingStart()
-    {
-        SquatCollider();
-    }
+    //void StateSlidingStart()
+    //{
+    //    SquatCollider();
+    //}
 
-    void StateSlidingEnd()
-    {
-        StandCollider();
-    }
+    //void StateSlidingEnd()
+    //{
+    //    StandCollider();
+    //}
 
-    void StateCrawlingStart()
-    {
-        SquatCollider();
-    }
+    //void StateCrawlingStart()
+    //{
+    //    SquatCollider();
+    //}
 
-    void StateCrawlingEnd()
-    {
-        StandCollider();
-    }
+    //void StateCrawlingEnd()
+    //{
+    //    StandCollider();
+    //}
 
 
-    void StateStompStart()
-    {
-        itemCollision.height = itemCollisionStandHeightInBoost;
-        itemCollision.radius = 2;
-    }
+    //void StateStompStart()
+    //{
+    //    itemCollision.height = itemCollisionStandHeightInBoost;
+    //    itemCollision.radius = 2;
+    //}
 
-    void StateStompEnd()
-    {
-        itemCollision.height = itemCollisionStandHeight;
-        itemCollision.radius = itemCollisionRadius;
-    }
+    //void StateStompEnd()
+    //{
+    //    itemCollision.height = itemCollisionStandHeight;
+    //    itemCollision.radius = itemCollisionRadius;
+    //}
 
-    void SquatCollider()
-    {
-        collision.height = collisionSquatHeight;
-        itemCollision.height = itemCollisionSquatHeight;
-        wallCollider.height = wallColliderSquatHeight;
-        CenterCollider();
-    }
+    //void SquatCollider()
+    //{
+    //    collision.height = collisionSquatHeight;
+    //    itemCollision.height = itemCollisionSquatHeight;
+    //    wallCollider.height = wallColliderSquatHeight;
+    //    CenterCollider();
+    //}
 
-    void StandCollider()
-    {
-        collision.height = collisionStandHeight;
-        collision.radius = collisionRadius;
-        itemCollision.height = itemCollisionStandHeight;
-        itemCollision.radius = itemCollisionRadius;
-        wallCollider.height = wallColliderHeight;
-        CenterCollider();
-    }
+    //void StandCollider()
+    //{
+    //    collision.height = collisionStandHeight;
+    //    collision.radius = collisionRadius;
+    //    itemCollision.height = itemCollisionStandHeight;
+    //    itemCollision.radius = itemCollisionRadius;
+    //    wallCollider.height = wallColliderHeight;
+    //    CenterCollider();
+    //}
 
-    void PushingCollider()
-    {
-        collision.height = collisionStandHeight;
-        collision.radius = collisionPushingRadius;
-        itemCollision.height = itemCollisionStandHeight;
-        itemCollision.radius = itemCollisionRadius;
-        CenterCollider();
-    }
+    //void PushingCollider()
+    //{
+    //    collision.height = collisionStandHeight;
+    //    collision.radius = collisionPushingRadius;
+    //    itemCollision.height = itemCollisionStandHeight;
+    //    itemCollision.radius = itemCollisionRadius;
+    //    CenterCollider();
+    //}
 
-    void DivingCollider()
-    {
-        collision.height = collisionStandHeight;
-        collision.radius = collisionRadius;
-        itemCollision.height = itemCollisionHeightInDiving;
-        itemCollision.radius = itemCollisionRadiusInDiving;
+    //void DivingCollider()
+    //{
+    //    collision.height = collisionStandHeight;
+    //    collision.radius = collisionRadius;
+    //    itemCollision.height = itemCollisionHeightInDiving;
+    //    itemCollision.radius = itemCollisionRadiusInDiving;
 
-        CenterCollider();
-    }
+    //    CenterCollider();
+    //}
 
-    void CenterCollider()
-    {
-        collision.center = new Vector3(0, collision.height / 2, 0);
-        itemCollision.center = new Vector3(0, itemCollision.height / 2, 0);
-        wallCollider.center = collision.center;
-    }
+    //void CenterCollider()
+    //{
+    //    collision.center = new Vector3(0, collision.height / 2, 0);
+    //    itemCollision.center = new Vector3(0, itemCollision.height / 2, 0);
+    //    wallCollider.center = collision.center;
+    //}
 }
