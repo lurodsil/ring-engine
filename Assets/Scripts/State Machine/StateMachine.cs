@@ -7,7 +7,6 @@ public class StateMachine
     private event State updateState;
     private event State fixedUpdateState;
     private Component owner;
-
     public bool canTransitToSameState { get; set; }
     public bool initiated { get; private set; }
     public string lastStateName { get; private set; }

@@ -259,6 +259,8 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("Abs Left Stick", player.absoluteLeftStick);
+
         if (player.stateMachine.currentStateName == "StateGrind" || player.stateMachine.currentStateName == "StateSnowBoard")
         {
             if (Input.GetButtonDown(XboxButton.B))
@@ -810,5 +812,16 @@ public class PlayerAnimation : MonoBehaviour
     private void StateJumpPoleEnd()
     {
         StateSpringEnd();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.sharedMaterial)
+        {
+            if (collision.collider.sharedMaterial.name == "Ice")
+            {
+                animator.SetTrigger("State Skate Start");
+            }
+        }
     }
 }
