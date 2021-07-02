@@ -916,7 +916,6 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         velocity = horizontalVelocity.magnitude;
         tangentMultiplier = Mathf.Sign(Vector3.Dot(transform.forward, knot.tangent));
-
     }
     private void StateMove2D()
     {
@@ -929,17 +928,21 @@ public abstract class Player : MonoBehaviour, IDamageable
 
         CheckBoost();
 
-
-
-        tangent = knot.tangent * tangentMultiplier;
-
-        
+        tangent = knot.tangent * tangentMultiplier;        
 
         RaycastHit groundInfo = GetGroundInformation();
 
         if (rigidbody.velocity.magnitude > 0.1f)
         {
-            transform.rotation = Quaternion.LookRotation(tangent);
+            if(Vector3.Distance(transform.position, knot.point) < 1)
+            {
+                transform.rotation = Quaternion.LookRotation(tangent, groundInfo.normal);
+            }
+            else
+            {
+                transform.rotation = Quaternion.LookRotation(tangent);
+            }
+            
         }
 
         transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
@@ -992,9 +995,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         else
         {
             isBraking = false;
-        }
-
-       
+        }       
 
         RaycastHit groundInfo = GetGroundInformation();
 
@@ -1032,7 +1033,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
             if (rigidbody.velocity.magnitude < boostMotion.maxSpeed)
             {
-                rigidbody.AddForce(boostMovementDirection * boostMotion.accelerationForce, ForceMode.Acceleration);
+                rigidbody.AddForce(transform.forward * boostMotion.accelerationForce, ForceMode.Acceleration);
             }
         }
         else
