@@ -13,6 +13,8 @@ public abstract class Player : MonoBehaviour, IDamageable
     [Header("Ground Insformation")]
     public float isGroundedMaxDistance = 0.05f;
     public float isGroundedRadius = 0.2f;
+    public float isGroundedFrontOffsetMin = 0.2f;
+    public float isGroundedFrontOffsetMax = 0.5f;
     public float groundInformationMaxDistance = 1;
     public float groundInformationRadius = 0.3f;
     public float groundInformationFrontOffsetMin = 0.2f;
@@ -477,7 +479,8 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     public bool IsGrounded()
     {
-        Ray isGroundedRay = new Ray(collider.bounds.center, -transform.up);
+        float isGroundedOffsetFront = Mathf.Lerp(isGroundedFrontOffsetMin, isGroundedFrontOffsetMax, rigidbody.velocity.magnitude / currentPhysicsMotion.maxSpeed);
+        Ray isGroundedRay = new Ray(collider.bounds.center + transform.forward * isGroundedOffsetFront, -transform.up);
         return Physics.SphereCast(isGroundedRay, isGroundedRadius, (collider.height * 0.5f) + isGroundedMaxDistance);
     }
 

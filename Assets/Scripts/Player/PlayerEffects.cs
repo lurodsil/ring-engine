@@ -83,11 +83,16 @@ public class PlayerEffects : MonoBehaviour
     }
     private void Update()
     {
-        underwaterBubble.SetActive(player.underwater);
+        underwaterBubble.SetActive(player.underwater);        
 
-        if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
+        if (player.IsGrounded())
         {
-            string materialName = player.GetGroundInformation().collider.sharedMaterial.name;
+            PhysicMaterial? physicMaterial = player.GetGroundInformation().collider.sharedMaterial;
+
+            if (physicMaterial == null)
+                return;
+
+            string materialName = physicMaterial.name;
 
             if (materialName.Contains("Stone"))
             {

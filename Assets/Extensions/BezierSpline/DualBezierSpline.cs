@@ -114,7 +114,7 @@ public class DualBezierSpline : MonoBehaviour
         return (left.GetLength(0.0001f) + right.GetLength(0.0001f)) / 2;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         if (drawDirections)
         {

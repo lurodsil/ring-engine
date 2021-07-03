@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 3712327467278456451}
   - component: {fileID: 1174262242}
   - component: {fileID: 114000013428584468}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: JumpPole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -577,5 +577,6 @@ MonoBehaviour:
   OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
-  AddMaxVelocity: 30
-  AddMinVelocity: 20
+  addMinVelocity: 10
+  addMaxVelocity: 30
+  acceleration: 5

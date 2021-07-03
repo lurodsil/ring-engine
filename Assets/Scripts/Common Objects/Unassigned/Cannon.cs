@@ -81,6 +81,7 @@ public class Cannon : GenerationsObject
             float distance = Vector3.Distance(shotPosition.position, target.position);
             duration = Time.time + PhysicsExtension.Time(distance, BaseVel);
             outOfControl = Time.time + OutOfControl;
+            
         }
     }
 
@@ -92,6 +93,7 @@ public class Cannon : GenerationsObject
         player.rigidbody.useGravity = false;
         player.rigidbody.velocity = Vector3.zero;
         cannonState = CannonState.EnteringUp;
+        player.bezierPath = null;
     }
 
     private void StateCanon()
@@ -150,16 +152,10 @@ public class Cannon : GenerationsObject
                 {
                     player.rigidbody.velocity = shotPosition.forward * BaseVel;
                 }
-                else if (player.GetGroundInformation().distance > 0 && player.GetGroundInformation().distance < 20)
+                
+                if (player.IsGrounded())
                 {
-                    
-                    player.stateMachine.ChangeState(player.StateTransition, gameObject);
-                    
-                }
-                else
-                {
-                    aimCannon = false;
-                    cannonState = CannonState.Wait;
+                    player.stateMachine.ChangeState(player.StateMove3D, gameObject);
                 }
 
                 player.transform.forward = player.rigidbody.velocity.normalized;
@@ -170,6 +166,8 @@ public class Cannon : GenerationsObject
 
     private void StateCanonEnd()
     {
+        aimCannon = false;
+        cannonState = CannonState.Wait;
     }
 
     #endregion State

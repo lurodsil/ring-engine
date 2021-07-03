@@ -45,7 +45,7 @@ public class RingEngineDebug : MonoBehaviour
             "Physics state: " + player.stateMachine.currentPhysicsStateName.Replace("State", "");
 
         animationContent.text =
-            "Current animation: " + playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+            "Current animation: " + (playerAnimator.GetCurrentAnimatorClipInfo(0).Length != 0 ? playerAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.name : "");
 
         miscContent.text =
             "FPS: " + GameManager.fps.ToString("f0");
