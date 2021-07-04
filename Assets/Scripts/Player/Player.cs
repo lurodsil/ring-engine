@@ -845,8 +845,15 @@ public abstract class Player : MonoBehaviour, IDamageable
         RaycastHit groundInfo = GetGroundInformation();
 
         if (rigidbody.velocity.magnitude > 0.1f)
-        {
-            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+        {       
+            if(rigidbody.velocity.magnitude >= currentPhysicsMotion.maxSpeed)
+            {
+                transform.Rotate(0, 45 * Input.GetAxis(XboxAxis.LeftStickX) * Mathf.RoundToInt(Vector3.Dot(transform.forward.normalized, Camera.main.transform.forward.normalized)) * Time.deltaTime, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+            }
         }
 
         transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;

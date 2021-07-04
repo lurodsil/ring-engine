@@ -85,9 +85,9 @@ public class PlayerEffects : MonoBehaviour
     {
         underwaterBubble.SetActive(player.underwater);        
 
-        if (player.IsGrounded())
+        if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
         {
-            PhysicMaterial? physicMaterial = player.GetGroundInformation().collider.sharedMaterial;
+            PhysicMaterial physicMaterial = player.GetGroundInformation().collider.sharedMaterial;
 
             if (physicMaterial == null)
                 return;

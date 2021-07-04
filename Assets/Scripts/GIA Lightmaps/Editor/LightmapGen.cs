@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -95,9 +96,9 @@ public class LightmapGen : EditorWindow
                         Texture diffuse = AssetDatabase.LoadAssetAtPath(textures[GetArrayIndex(textureNames, materialsNames[i])], typeof(Texture)) as Texture;
                         mat.SetTexture("_MainTex", diffuse);
                     }
-                    catch
+                    catch(Exception e)
                     {
-
+                        Debug.Log(e);
                     }
                 }
 
