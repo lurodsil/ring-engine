@@ -13,6 +13,12 @@ public class EventManager : MonoBehaviour
     public delegate void RedStarsChanged();
     public static event RedStarsChanged OnRedStarsChanged;
 
+    public delegate void TrickStart();
+    public static event TrickStart OnTrickStart;
+
+    public delegate void TrickEnd();
+    public static event TrickEnd OnTrickEnd;
+
     public static void UpdateTargetObjects()
     {
         OnTargetObjectsChanged?.Invoke();
@@ -28,5 +34,16 @@ public class EventManager : MonoBehaviour
     {
         GameManager.instance.redStars++;
         OnRedStarsChanged?.Invoke();
+    }
+
+    public static void TrickPanelRainbowStart(string seed)
+    {
+        UpdateTrickButtons.seed = seed;
+        OnTrickStart?.Invoke();
+    }
+
+    public static void TrickPanelRainbowEnd()
+    {
+        OnTrickEnd?.Invoke();
     }
 }

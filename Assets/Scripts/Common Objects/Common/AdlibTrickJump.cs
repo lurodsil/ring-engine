@@ -11,6 +11,13 @@ public class AdlibTrickJump : RingEngineObject
     public AudioClip sound;
     float duration;
     float outOfControl;
+    string seed = "";
+    char[] seedArray;
+    char[] buttonArray;
+    int index = -1;
+    public AudioClip success;
+    public AudioClip fail;
+
 
     private void Start()
     {
@@ -20,7 +27,24 @@ public class AdlibTrickJump : RingEngineObject
     #region State Jump Board
     void StateAdlibTrickJumpStart()
     {
-        Time.timeScale = 0.7f;
+
+
+        seed = "";
+
+        for (int i = 0; i < 4; i++)
+        {
+            seed += Random.Range(0, 4);
+        }
+
+        EventManager.TrickPanelRainbowStart(seed);
+
+        print(seed);
+
+        seedArray = seed.ToCharArray();
+        buttonArray = new char[4] { ' ',' ',' ',' '};
+        index = -1;
+
+        Time.timeScale = 0.2f;
 
         player.transform.position = startPoint.position;
 
@@ -39,7 +63,58 @@ public class AdlibTrickJump : RingEngineObject
     }
     void StateAdlibTrickJump()
     {
-        if (Time.time > outOfControl)
+        if (Input.GetButtonDown(XboxButton.A))
+        {
+            index++;
+            buttonArray[index] = '0';
+            print(buttonArray[0] +" "+ buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+        }
+        if (Input.GetButtonDown(XboxButton.B))
+        {
+            index++;
+            buttonArray[index] = '1';
+            print(buttonArray[0] + " " + buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+        }
+        if (Input.GetButtonDown(XboxButton.X))
+        {
+            index++;
+            buttonArray[index] = '2';
+            print(buttonArray[0] + " " + buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+        }
+        if (Input.GetButtonDown(XboxButton.Y))
+        {
+            index++;
+            buttonArray[index] = '3';
+            print(buttonArray[0] + " " + buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+        }
+
+        if(index >= 0)
+        {
+            if (buttonArray[index] != seedArray[index])
+            {
+                print("fail");
+                audioSource.PlayOneShot(fail);
+
+                player.stateMachine.ChangeState(player.StateTransition, gameObject);
+            }
+            else
+            {
+                if (index == 3)
+                {
+                    print("success");
+                    audioSource.PlayOneShot(success);
+
+                    player.SendMessage("TrickJumpSuccess");
+                    player.rigidbody.AddForce(transform.up * 20, ForceMode.Impulse);
+                    player.stateMachine.ChangeState(player.StateTransition, gameObject);
+                }
+            }
+        }
+        
+
+        
+
+        if (Time.time > player.stateMachine.lastStateTime  + 0.6f)
         {
             player.stateMachine.ChangeState(player.StateTransition, gameObject);
         }
@@ -47,6 +122,8 @@ public class AdlibTrickJump : RingEngineObject
     void StateAdlibTrickJumpEnd()
     {
         Time.timeScale = 1f;
+
+        EventManager.TrickPanelRainbowEnd();
     }
     #endregion
 
@@ -62,7 +139,7 @@ public class AdlibTrickJump : RingEngineObject
         GizmosExtension.DrawTrajectory(startPoint.position, startPoint.forward, ImpulseSpeedOnBoost, OutOfControl);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
