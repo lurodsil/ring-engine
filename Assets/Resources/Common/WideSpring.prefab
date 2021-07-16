@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000012602500148}
-  m_LocalRotation: {x: -0.30070576, y: 0, z: 0, w: 0.953717}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: 24.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -274,6 +274,7 @@ MonoBehaviour:
   IsHomingAttackEnable: 0
   isStartPositionConstant: 0
   isBoostCancel: 0
+  isTo3D: 0
   firstSpeed: 30
   keepVelocityDistance: 5
   OutOfControl: 0.8
@@ -420,7 +421,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448104795437788}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.92387956, y: 0, z: 0, w: 0.38268343}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -428,7 +429,7 @@ Transform:
   - {fileID: 4891496559138076}
   m_Father: {fileID: 4000010119268630}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 135, y: 0, z: 0}
 --- !u!1 &1503960526741658
 GameObject:
   m_ObjectHideFlags: 0

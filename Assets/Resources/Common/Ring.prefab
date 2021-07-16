@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 95199001518092858}
   - component: {fileID: 135016386729997524}
   - component: {fileID: 114506058127783458}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 417c71249e82b7347aae44036c85c7a7, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -146,7 +146,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114506058127783458
 MonoBehaviour:
@@ -160,20 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdf16cbb199b1446a5d153a381d1a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  active: 1
-  SetObjectID: 0
   InitDisp: 0
   IsLightSpeedDashTarget: 0
   IsReset: 0

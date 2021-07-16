@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc19a7155611ec4386c069690873c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []
@@ -224,13 +225,14 @@ MonoBehaviour:
   OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
-  active: 1
-  ImpulseSpeedOnBoost: 46
-  ImpulseSpeedOnNormal: 41
+  ImpulseSpeedOnBoost: 50
+  ImpulseSpeedOnNormal: 50
   IsTo3D: 1
-  OutOfControl: 0.2
+  OutOfControl: 1.21
   startPoint: {fileID: 4000013901886866}
   sound: {fileID: 8300000, guid: 8751b50bb5399e24786ca5458ad64d8d, type: 3}
+  success: {fileID: 8300000, guid: 03186827471940044ba4939e84f8a754, type: 3}
+  fail: {fileID: 8300000, guid: bcc7e47f17d7c5a4aaff00de7ed8768f, type: 3}
 --- !u!1 &1000012017554694
 GameObject:
   m_ObjectHideFlags: 0

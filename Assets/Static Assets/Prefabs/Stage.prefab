@@ -44,14 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3c08905bcd315448de085273f48001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageName: test stage
+  stageName: dragon road
   act: act 1
   checkpoints: []
   spawnPoint: {fileID: 0}
   musicVelocityModes: 0
-  playMusicOnStart: 0
+  playMusicOnStart: 1
   start: {fileID: 0}
-  loop: {fileID: 0}
+  loop: {fileID: 8300000, guid: 6e9a5df5ba10b7b4c8600a1d09746218, type: 3}
   startFast: {fileID: 0}
   loopFast: {fileID: 0}
   startBoost: {fileID: 0}
@@ -69,6 +69,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -81,6 +126,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
@@ -99,12 +149,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
-      propertyPath: m_RootOrder
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
@@ -122,55 +172,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+    - target: {fileID: 4209845386320478589, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4140148620244310749, guid: 5180b92c0f7e75a4ba46276c83081cb0,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4209851815867221777, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
@@ -187,6 +192,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: stage name
       objectReference: {fileID: 0}
+    - target: {fileID: 4210116700798279235, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4267428423093331757, guid: 5180b92c0f7e75a4ba46276c83081cb0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: df3904c2258eb6d4d9f87b333258daab, type: 2}
     - target: {fileID: 4322533160037179609, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
       propertyPath: m_Text
@@ -195,7 +210,7 @@ PrefabInstance:
     - target: {fileID: 4323135142752478127, guid: 5180b92c0f7e75a4ba46276c83081cb0,
         type: 3}
       propertyPath: m_Text
-      value: test stage
+      value: dragon road
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4272251445276937723, guid: 5180b92c0f7e75a4ba46276c83081cb0, type: 3}

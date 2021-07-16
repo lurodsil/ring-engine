@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 33807571679143196}
   - component: {fileID: 23028923947282556}
   - component: {fileID: 65000011350692694}
-  m_Layer: 14
+  m_Layer: 2
   m_Name: ChangeVolumeCamera
   m_TagString: Untagged
   m_Icon: {fileID: 3932251862328519117, guid: 0000000000000000d000000000000000, type: 0}
@@ -47,8 +47,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  OnBecomeActive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBecomeInactive:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStateEnd:
+    m_PersistentCalls:
+      m_Calls: []
   SetObjectID: 0
-  player: {fileID: 0}
   Collision_Height: 10
   Collision_Length: 10
   Collision_Width: 10
@@ -85,6 +96,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:

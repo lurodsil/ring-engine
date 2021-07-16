@@ -19,8 +19,8 @@ QualitySettings:
     shadowCascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
     shadowmaskMode: 0
     skinWeights: 1
-    textureQuality: 0
-    anisotropicTextures: 2
+    textureQuality: 1
+    anisotropicTextures: 0
     antiAliasing: 0
     softParticles: 0
     softVegetation: 0
@@ -202,7 +202,7 @@ QualitySettings:
     textureQuality: 0
     anisotropicTextures: 2
     antiAliasing: 0
-    softParticles: 0
+    softParticles: 1
     softVegetation: 1
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
