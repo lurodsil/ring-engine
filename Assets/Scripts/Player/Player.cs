@@ -10,6 +10,8 @@ public abstract class Player : MonoBehaviour, IDamageable
     public float rotationForceMin = 1;
     public float rotationForceMax = 10;
 
+    public float grindSwitchDelay = 0.15f;
+
     [Header("Ground Insformation")]
     public float isGroundedMaxDistance = 0.05f;
     public float isGroundedRadius = 0.2f;
@@ -35,6 +37,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     public BezierPath bezierPath { get; set; }
     public BezierPathType pathType { get; set; }
     public BezierKnot knot = new BezierKnot();
+    public BezierKnot grindKnot = new BezierKnot();
 
     public ContactPoint contactPoint { get; set; }
 
@@ -59,7 +62,8 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     public GameObject playerCenter;
 
-
+    public Quaternion meshRotation;
+    public Quaternion targetMeshRotation;
     public bool isSnowboarding;
 
     //Find Closest Target Settings
@@ -119,7 +123,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     private float isBrakingForce { get; set; }
 
-    public float lightSpeedDashVelocity = 30;
+    public float lightSpeedDashVelocity = 50;
 
     //public float AccelerationForceBaseUp = 20;
     //public float AccelerationForceBySkill = 30;
@@ -255,6 +259,8 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     public bool isGrindGrounded { get; private set; }
 
+    public BezierPath sideViewPath;
+
     private void SetCameraTarget()
     {
         //CameraTarget.instance.player = this;
@@ -287,45 +293,30 @@ public abstract class Player : MonoBehaviour, IDamageable
         SetCameraTarget();
         UpdateTargets();
         currentPhysicsMotion = groundMotion;
+        targetMeshRotation = Quaternion.identity;
+
+    }
+
+    public bool afectMeshRotation;
+
+    private void StateSpringEnd()
+    {
+
+        afectMeshRotation = false;
+
     }
 
     public virtual void Update()
     {
-        if (pathType == BezierPathType.SideView && !isGrinding)
+
+        if(afectMeshRotation)
         {
-            try
-            {
-                bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out _, 15);
-
-                Vector3 horizontalVelocity = rigidbody.velocity;
-                horizontalVelocity.y = 0;
-
-                float x = Input.GetAxis(XboxAxis.LeftStickX);
-                float y = Input.GetAxis(XboxAxis.LeftStickY);
-                float xy = Mathf.Clamp(x + y, -1, 1);
-
-                if (horizontalVelocity.magnitude < 1f)
-                {
-                    if (xy > 0)
-                    {
-                        tangentMultiplier = 1;
-                    }
-                    else if (xy < 0)
-                    {
-                        tangentMultiplier = -1;
-                    }
-                    else
-                    {
-                        tangentMultiplier = Mathf.Sign(Vector3.Dot(horizontalVelocity.normalized, knot.tangent));
-                    }
-                }
-
-                tangent = knot.tangent * tangentMultiplier;
-            }
-            catch
-            {
-
-            }
+            meshRotation = targetMeshRotation;
+             
+        }
+        else
+        {
+            meshRotation = transform.rotation;
         }
 
         speedMode = rigidbody.velocity.magnitude <= 15f ? SpeedMode.Low : SpeedMode.High;
@@ -351,14 +342,15 @@ public abstract class Player : MonoBehaviour, IDamageable
                 }
             }
 
-            if (pathType == BezierPathType.SideView && bezierPath != splineSensor.bezierPath)
-            {
-                if (splineSensor.bezierPath.name.Contains("@SV"))
-                {
-                    bezierPath = splineSensor.bezierPath;
-                }
-            }
+            //if (pathType == BezierPathType.SideView && bezierPath != splineSensor.bezierPath)
+            //{
+            //    if (splineSensor.bezierPath.name.Contains("@SV"))
+            //    {
+            //        bezierPath = splineSensor.bezierPath;
+            //    }
+            //}
         }
+
         absoluteVelocity = rigidbody.velocity.magnitude;
         horizontalVelocity = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
         verticalVelocity = rigidbody.velocity.y;
@@ -366,6 +358,11 @@ public abstract class Player : MonoBehaviour, IDamageable
         UpdateInputAxis();
 
         closestLightSpeedDashRing = gameObject.Closest(GameObject.FindGameObjectsWithTag("LightSpeedDashRing"), 1, 5, true, transform.forward, 180);
+
+        if (closestLightSpeedDashRing && Input.GetButtonDown(XboxButton.Y))
+        {
+            stateMachine.ChangeState(StateLightSpeedDash);
+        }
 
         if (IsGrounded())
         {
@@ -409,6 +406,58 @@ public abstract class Player : MonoBehaviour, IDamageable
 
         //    Physics.gravity = new Vector3(0, -35 - 0);
         //}
+
+        if (bezierPath)
+        {
+
+            Debug.DrawLine(collider.bounds.center, knot.point, Color.yellow);
+        }
+    }
+
+    public virtual void FixedUpdate()
+    {
+        if (!splineSensor.bezierPath && sideViewPath && !isGrinding)
+        {
+            try
+            {
+                sideViewPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out knot, out _, 15);
+
+                Vector3 horizontalVelocity = rigidbody.velocity;
+                horizontalVelocity.y = 0;
+
+                float x = Input.GetAxis(XboxAxis.LeftStickX);
+                float y = Input.GetAxis(XboxAxis.LeftStickY);
+                float xy = Mathf.Clamp(x + y, -1, 1);
+
+                if (horizontalVelocity.magnitude < 1f)
+                {
+                    if (xy > 0)
+                    {
+                        tangentMultiplier = 1;
+                    }
+                    else if (xy < 0)
+                    {
+                        tangentMultiplier = -1;
+                    }
+                    else
+                    {
+                        tangentMultiplier = Mathf.Sign(Vector3.Dot(horizontalVelocity.normalized, knot.tangent));
+                    }
+                }
+
+                tangent = knot.tangent * tangentMultiplier;
+
+                Debug.DrawRay(collider.bounds.center, tangent, Color.blue);
+                Vector3 nTan = tangent;
+                nTan.y = 0;
+                Debug.DrawRay(collider.bounds.center, nTan, Color.yellow);
+            }
+            catch
+            {
+
+            }
+        }
+
     }
 
     public void CheckBoost()
@@ -438,7 +487,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         Vector3 closestDirection = leftStickDirection != Vector3.zero ? leftStickDirection : transform.forward;
 
-        closestTarget = playerCenter.Closest(targets, 1, targetFindRange, false, closestDirection, targetFindAngle, camera.transform.forward, 180, targetFindLayerMask);
+        closestTarget = playerCenter.Closest(targets, 1, targetFindRange, false, transform.forward, targetFindAngle, camera.transform.forward, 360, targetFindLayerMask);
     }
 
     public void SearchWall()
@@ -538,7 +587,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         //MainCamera.instance.ResetSensitivity();
         isBoosting = true;
         isAttacking = true;
-        cameraTarget.Shake(0.1f);
+        cameraTarget.Shake(0.2f);
     }
     private void StateBoostEnd()
     {
@@ -746,24 +795,34 @@ public abstract class Player : MonoBehaviour, IDamageable
     #region State Move
     private void StateMoveStart()
     {
+        
     }
-    private void StateMove()
+    public void StateMove()
     {
-        switch (pathType)
+        if (sideViewPath)
         {
-            case BezierPathType.Dash:
-                stateMachine.ChangeState(StateDash);
-                break;
-            case BezierPathType.QuickStep:
-                stateMachine.ChangeState(StateMoveQuickStep);
-                break;
-            case BezierPathType.SideView:
-                stateMachine.ChangeState(StateMove2D);
-                break;
-            default:
-                stateMachine.ChangeState(StateMove3D);
-                break;
+            stateMachine.ChangeState(StateMove2D);
         }
+        else
+        {
+            stateMachine.ChangeState(StateMove3D);
+        }
+
+        //switch (pathType)
+        //{
+        //    case BezierPathType.Dash:
+        //        stateMachine.ChangeState(StateDash);
+        //        break;
+        //    case BezierPathType.QuickStep:
+        //        stateMachine.ChangeState(StateMoveQuickStep);
+        //        break;
+        //    case BezierPathType.SideView:
+        //        stateMachine.ChangeState(StateMove2D);
+        //        break;
+        //    default:
+        //        stateMachine.ChangeState(StateMove3D);
+        //        break;
+        //}
     }
     private void StateMoveEnd()
     {
@@ -778,7 +837,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     }
     public void StateMove3D()
     {
-        if (pathType != BezierPathType.None)
+        if (sideViewPath)
         {
             stateMachine.ChangeState(StateMove);
             return;
@@ -840,32 +899,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         {
             stateMachine.ChangeState(StateQuickstepRight);
             return;
-        }
-
-        RaycastHit groundInfo = GetGroundInformation();
-
-        if (rigidbody.velocity.magnitude > 0.1f)
-        {       
-            if(rigidbody.velocity.magnitude >= currentPhysicsMotion.maxSpeed)
-            {
-                transform.Rotate(0, 45 * Input.GetAxis(XboxAxis.LeftStickX) * Mathf.RoundToInt(Vector3.Dot(transform.forward.normalized, Camera.main.transform.forward.normalized)) * Time.deltaTime, 0);
-            }
-            else
-            {
-                transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
-            }
-        }
-
-        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
-
-        if (IsGrounded())
-        {
-            transform.StickToGround(groundInfo, 40);
-        }
-        else
-        {
-            stateMachine.ChangeState(StateFall);
-        }
+        }   
     }
     private void StateMove3DEnd()
     {
@@ -915,6 +949,32 @@ public abstract class Player : MonoBehaviour, IDamageable
             {
                 rigidbody.Sleep();
             }
+        }      
+
+
+        RaycastHit groundInfo = GetGroundInformation();
+
+        if (rigidbody.velocity.magnitude > 0.1f)
+        {
+            if (rigidbody.velocity.magnitude >= currentPhysicsMotion.maxSpeed)
+            {
+                transform.Rotate(0, 45 * Input.GetAxis(XboxAxis.LeftStickX) * Mathf.RoundToInt(Vector3.Dot(transform.forward.normalized, Camera.main.transform.forward.normalized)) * Time.deltaTime, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+            }
+        }
+
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
+
+        if (IsGrounded())
+        {
+            transform.StickToGround(groundInfo, 10);
+        }
+        else
+        {
+            stateMachine.ChangeState(StateFall);
         }
 
         rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
@@ -929,7 +989,6 @@ public abstract class Player : MonoBehaviour, IDamageable
     }
     private void StateMove2D()
     {
-
         if (Input.GetButtonDown(XboxButton.A))
         {
             stateMachine.ChangeState(StateJump);
@@ -938,37 +997,11 @@ public abstract class Player : MonoBehaviour, IDamageable
 
         CheckBoost();
 
-        tangent = knot.tangent * tangentMultiplier;        
-
-        RaycastHit groundInfo = GetGroundInformation();
-
-        if (rigidbody.velocity.magnitude > 0.1f)
-        {
-            if(Vector3.Distance(transform.position, knot.point) < 1)
-            {
-                transform.rotation = Quaternion.LookRotation(tangent, groundInfo.normal);
-            }
-            else
-            {
-                transform.rotation = Quaternion.LookRotation(tangent);
-            }
-            
-        }
-
-        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
-
-        if (IsGrounded())
-        {
-            transform.StickToGround(groundInfo, 40);
-        }
-        else
-        {
-            stateMachine.ChangeState(StateFall);
-        }
+        tangent = knot.tangent * tangentMultiplier;      
     }
     private void StateMove2DEnd()
     {
-        rigidbody.useGravity = true;
+
     }
     public void StateMove2DPhysics()
     {
@@ -1054,6 +1087,30 @@ public abstract class Player : MonoBehaviour, IDamageable
             {
                 rigidbody.Sleep();
             }
+        }
+
+        if (rigidbody.velocity.magnitude > 0.1f)
+        {
+            if (Vector3.Distance(transform.position, knot.point) < 1)
+            {
+                transform.rotation = Quaternion.LookRotation(tangent, groundInfo.normal);
+            }
+            else
+            {
+                transform.rotation = Quaternion.LookRotation(tangent);
+            }
+
+        }
+
+        transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
+
+        if (IsGrounded())
+        {
+            transform.StickToGround(groundInfo);
+        }
+        else
+        {
+            stateMachine.ChangeState(StateFall);
         }
 
         rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
@@ -1668,25 +1725,17 @@ public abstract class Player : MonoBehaviour, IDamageable
     private void StateGrindStart()
     {
         isGrinding = true;
-        rigidbody.useGravity = false;
+      
         isGrindGrounded = true;
 
         GrindSensorSetActive(true);
         velocity = rigidbody.velocity.magnitude;
     }
-    private void StateGrind()
+    public void StateGrind()
     {
-        if (!splineSensor.bezierPath)
+        if (Time.time > stateMachine.lastStateTime)
         {
-            isGrinding = false;
-            GrindSensorSetActive(false);
-            stateMachine.ChangeState(StateFall);
-            return;
-        }
-
-        if (Time.time > stateMachine.lastStateTime + 0.5f)
-        {
-            if (grindSplineSensorL.bezierPath && Input.GetButtonDown(XboxButton.LeftShoulder))
+            if (grindSplineSensorL.bezierPath && Input.GetAxis(XboxAxis.LeftStickX) < -deadZone)
             {
                 tempSensor.bezierPath = grindSplineSensorL.bezierPath;
 
@@ -1694,7 +1743,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
                 return;
             }
-            else if (grindSplineSensorR.bezierPath && Input.GetButtonDown(XboxButton.RightShoulder))
+            else if (grindSplineSensorR.bezierPath && Input.GetAxisRaw(XboxAxis.LeftStickX) > deadZone)
             {
                 tempSensor.bezierPath = grindSplineSensorR.bezierPath;
 
@@ -1712,34 +1761,51 @@ public abstract class Player : MonoBehaviour, IDamageable
 
         CheckBoost();
 
-        splineSensor.bezierPath.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out knot, out _, 15);
+        if (!splineSensor.bezierPath)
+        {
+            isGrinding = false;
+            GrindSensorSetActive(false);
+            stateMachine.ChangeState(StateFall);
+            return;
+        }
+    }
+    private void StateGrindEnd()
+    {
+        rigidbody.useGravity = true;
+        isGrindGrounded = false;
+
+    }
+
+    public void StateGrindPhysics()
+    {
+
+        splineSensor.bezierPath.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out grindKnot, out _, 15);
 
         //Sign to get if player is moving forward on grind direction
-        float sign = Mathf.Sign(Vector3.Dot(transform.forward, knot.tangent));
+        float sign = Mathf.Sign(Vector3.Dot(transform.forward, grindKnot.tangent));
         //Multiply by grind direction, if sign is negative player will move in oposite direction
-        Vector3 tangent = knot.tangent * sign;
+        Vector3 tangent = grindKnot.tangent * sign;
         //Multiply by binormal direction to get bendings
-        Vector3 binormal = knot.binormal * sign;
+        Vector3 binormal = grindKnot.binormal * sign;
         //Calculate normal bending based on binormal and tangent
-        Vector3 normal = isBoosting ? knot.normal : Vector3.Lerp(knot.normal - binormal, knot.normal + binormal, 0.5f + playerAnimation.tangent * 0.2f);
+        Vector3 normal = isBoosting ? grindKnot.normal : Vector3.Lerp(grindKnot.normal - binormal, grindKnot.normal + binormal, 0.5f + playerAnimation.tangent * 0.2f);
 
         transform.rotation = Quaternion.LookRotation(tangent, normal);
 
         if (isBoosting)
         {
-            velocity = 50;
+            if(rigidbody.velocity.magnitude < 80)
+            {
+                rigidbody.AddForce(tangent * 80, ForceMode.Acceleration);
+            }
+
         }
         else
         {
             velocity = Mathf.Clamp(Mathf.MoveTowards(velocity, 0, (0.5f + rigidbody.velocity.y * 0.2f) * Time.deltaTime), 10, 40);
         }
 
-        rigidbody.velocity = tangent * velocity;
-    }
-    private void StateGrindEnd()
-    {
-        rigidbody.useGravity = true;
-        isGrindGrounded = false;
+        rigidbody.velocity = tangent * rigidbody.velocity.magnitude;
     }
     #endregion State Grind
 
@@ -1759,6 +1825,7 @@ public abstract class Player : MonoBehaviour, IDamageable
                 splineSensor.bezierPath = null;
                 rigidbody.velocity = new Vector3(rigidbody.velocity.x, 8, rigidbody.velocity.z);
                 stateMachine.ChangeState(StateBall);
+
                 return;
             }
         }
@@ -1769,6 +1836,7 @@ public abstract class Player : MonoBehaviour, IDamageable
             splineSensor.bezierPath = null;
             GrindSensorSetActive(false);
             stateMachine.ChangeState(StateFall);
+
             return;
         }
 
@@ -1802,36 +1870,30 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         rigidbody.useGravity = false;
         isGrindGrounded = true;
-
+        MainCamera.instance.ResetTime();
     }
-    private void StateGrindSwitch()
+    public void StateGrindSwitch()
     {
-        CheckBoost();
-
-        if (Time.time > stateMachine.lastStateTime + 0.15f)
+        stateMachine.ChangeState(StateGrind, .5f);
+    }
+    public void StateGrindSwitchPhysics()
+    {
+        if(Time.time > stateMachine.lastStateTime + grindSwitchDelay)
         {
-            tempSensor.bezierPath.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out knot, out _, 15 * (Time.time - stateMachine.lastStateTime));
-
-            if (Time.time > stateMachine.lastStateTime + 0.65f)
-            {
-                stateMachine.ChangeState(StateGrind);
-                return;
-            }
+            tempSensor.bezierPath.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out grindKnot, out _, 10 * (Time.time - stateMachine.lastStateTime));
         }
-
         //Sign to get if player is moving forward on grind direction
-        float sign = Mathf.Sign(Vector3.Dot(transform.forward, knot.tangent));
+        float sign = Mathf.Sign(Vector3.Dot(transform.forward, grindKnot.tangent));
         //Multiply by grind direction, if sign is negative player will move in oposite direction
-        Vector3 tangent = knot.tangent * sign;
+        Vector3 tangent = grindKnot.tangent * sign;
 
-        transform.rotation = Quaternion.LookRotation(tangent, knot.normal);
-
-        rigidbody.velocity = tangent * velocity;
+        transform.rotation = Quaternion.LookRotation(tangent, grindKnot.normal);
     }
     private void StateGrindSwitchEnd()
     {
         rigidbody.useGravity = true;
         isGrindGrounded = false;
+        tempSensor.bezierPath = null;
     }
     #endregion
 
@@ -1840,9 +1902,13 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         StateGrindSwitchStart();
     }
-    private void StateGrindSwitchLeft()
+    public void StateGrindSwitchLeft()
     {
         StateGrindSwitch();
+    }
+    public void StateGrindSwitchLeftPhysics()
+    {
+        StateGrindSwitchPhysics();
     }
     private void StateGrindSwitchLeftEnd()
     {
@@ -1855,9 +1921,13 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         StateGrindSwitchStart();
     }
-    private void StateGrindSwitchRight()
+    public void StateGrindSwitchRight()
     {
         StateGrindSwitch();
+    }
+    public void StateGrindSwitchRightPhysics()
+    {
+        StateGrindSwitchPhysics();
     }
     private void StateGrindSwitchRightEnd()
     {
@@ -1884,7 +1954,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
         Drift();
 
-        rigidbody.velocity = transform.forward * velocity;
+        rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
 
         if (Input.GetAxisRaw(XboxAxis.RightTrigger) == 0)
         {
@@ -1896,7 +1966,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
-        rigidbody.velocity = direction * velocity;
+        rigidbody.velocity = direction * rigidbody.velocity.magnitude;
 
         if (speedMode == SpeedMode.High)
         {
@@ -1948,6 +2018,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     #region State Fall
     private void StateFallStart()
     {
+        isGrinding = false;
         isBoosting = false;
         contactPoint = new ContactPoint();
         isAttacking = false;
@@ -1956,12 +2027,21 @@ public abstract class Player : MonoBehaviour, IDamageable
     }
     public virtual void StateFall()
     {
-        FindClosestTarget();
+        if (sideViewPath)
+        {
+            Vector3 tangentCopy = tangent;
+            tangentCopy.y = 0;
+            transform.rotation = Quaternion.LookRotation(tangentCopy, Vector3.up);
+        }
+        else
+        {
+            Vector3 horizontalVelocity = rigidbody.velocity.normalized;
+            horizontalVelocity.y = 0;
+            if (horizontalVelocity.magnitude > 0.1)
+                transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
+        }
 
-        Vector3 horizontalVelocity = rigidbody.velocity.normalized;
-        horizontalVelocity.y = 0;
-        if (horizontalVelocity.magnitude > 0.1)
-            transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
+
 
         if (stateMachine.lastStateName == "StateWallJump")
         {
@@ -1994,14 +2074,14 @@ public abstract class Player : MonoBehaviour, IDamageable
             stateMachine.ChangeState(StateIdle);
         }
 
-        if (pathType == BezierPathType.SideView)
-        {
-            transform.rotation = Quaternion.LookRotation(tangent, transform.up);
-        }
+
+
+
     }
     public void StateFallPhysics()
     {
         AirMotion();
+        FindClosestTarget();
     }
     private void StateFallEnd()
     {
@@ -2037,15 +2117,20 @@ public abstract class Player : MonoBehaviour, IDamageable
         rbVel.y = JumpPower;
         rigidbody.velocity = rbVel;
 
-        if (pathType == BezierPathType.SideView)
+        if (sideViewPath)
         {
-            transform.rotation = Quaternion.LookRotation(tangent, transform.up);
+            Vector3 tangentCopy = tangent;
+            tangentCopy.y = 0;
+            transform.rotation = Quaternion.LookRotation(tangentCopy, Vector3.up);
+        }
+        else
+        {
+            Vector3 horizontalVelocity = rigidbody.velocity.normalized;
+            horizontalVelocity.y = 0;
+            if (horizontalVelocity.magnitude > 0.1)
+                transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
         }
 
-        else if (rigidbody.HorizontalVelocity().magnitude > 1)
-        {
-            transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity().normalized);
-        }
 
         rigidbody.velocity = ClampVelocity(rigidbody.velocity, maxVelocity, maxDownVelocity, maxUpVelocity);
     }
@@ -2122,17 +2207,18 @@ public abstract class Player : MonoBehaviour, IDamageable
             rigidbody.velocity = rbVel;
         }
 
-        if (pathType == BezierPathType.SideView)
+        if (sideViewPath)
         {
-            transform.rotation = Quaternion.LookRotation(tangent, transform.up);
+            Vector3 tangentCopy = tangent;
+            tangentCopy.y = 0;
+            transform.rotation = Quaternion.LookRotation(tangentCopy, Vector3.up);
         }
         else
         {
-
-            if (rigidbody.HorizontalVelocity().magnitude > 1)
-            {
-                transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity().normalized);
-            }
+            Vector3 horizontalVelocity = rigidbody.velocity.normalized;
+            horizontalVelocity.y = 0;
+            if (horizontalVelocity.magnitude > 0.1)
+                transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
         }
 
         AlignPlayerUpToDirection(GetGroundInformation().normal);
