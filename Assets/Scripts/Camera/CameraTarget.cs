@@ -25,11 +25,11 @@ public class CameraTarget : MonoBehaviour
     public Vector3 lookAt;
     public Transform subTarget;
 
+    public float delay = 15;
+
     void Start()
     {
         instance = GetComponent<CameraTarget>();
-        //player = GetComponentInParent<Player>();
-        //playerMesh = transform.parent;
         transform.parent = null;
         localOffset = new Vector3(0, UpOffset, 0);
     }
@@ -52,16 +52,9 @@ public class CameraTarget : MonoBehaviour
             lastIdleTime = Time.time;
         }
 
-
         float dot = Vector3.Dot(transform.forward, player.transform.forward);
 
-        Vector3 desiredPosition = player.transform.position;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, OffsetSensitive * Time.deltaTime);
-        smoothedPosition.y = player.transform.position.y;
-        smoothedPosition += localOffset;
-
         transform.position = player.transform.position + localOffset;
-
         transform.rotation = Quaternion.Lerp(transform.rotation, player.transform.rotation, damping * Time.deltaTime);
         lookAt = player.transform.TransformPoint(offset * dot) + localOffset;
         subTarget.transform.position = Vector3.SmoothDamp(subTarget.transform.position, lookAt, ref velocity, damping * 0.5f);

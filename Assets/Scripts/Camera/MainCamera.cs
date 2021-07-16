@@ -55,7 +55,7 @@ public class MainCamera : MonoBehaviour
             lastCameraSetTime = Time.time;
         }
 
-        if (GameManager.instance.cameras.Count <= 0)
+        if (CameraManager.activeCamera == gameObject)
         {
             inputAxis = new Vector2(Input.GetAxis(XboxAxis.RightStickX), Input.GetAxis(XboxAxis.RightStickY));
             inputAxisDamped = Vector2.Lerp(inputAxisDamped, inputAxis, 5 * Time.deltaTime);
@@ -96,6 +96,7 @@ public class MainCamera : MonoBehaviour
     {
         GetComponent<Animator>().enabled = false;
         GetComponent<MainCamera>().enabled = true;
+        lastCameraSetTime = Time.time;
 
     }
 
@@ -107,5 +108,10 @@ public class MainCamera : MonoBehaviour
     public void Disable()
     {
         enabled = false;
+    }
+
+    public void ResetTime()
+    {
+        lastStateTime = Time.time;
     }
 }

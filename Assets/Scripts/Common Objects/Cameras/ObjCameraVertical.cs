@@ -36,17 +36,16 @@ public class ObjCameraVertical : GenerationsObject
         camera = Camera.main;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-        if (GameManager.instance.cameras.Count > 0)
-        {
-            if (GameManager.instance.cameras[0] == gameObject)
+
+            if (CameraManager.activeCamera == gameObject)
             {
                 sensitivity = 1;
 
                 offset.x = TargetOffset_Right;
 
-                offset.y = TargetOffset_Up;
+                offset.y = -TargetOffset_Up;
 
                 offset.z = -TargetOffset_Front;
 
@@ -68,11 +67,7 @@ public class ObjCameraVertical : GenerationsObject
 
                 sensitivity = 0;
             }
-        }
-        else
-        {
-            startTime = Time.time;
-        }
+
 
     }
 

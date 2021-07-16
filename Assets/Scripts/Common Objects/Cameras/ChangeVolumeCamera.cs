@@ -18,32 +18,36 @@ public class ChangeVolumeCamera : GenerationsObject
     public GameObject target;
 
 
-    public override void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.CompareTag(GameTags.playerTag))
+        if (!target)
         {
             try
             {
-                target.SendMessage("EaseTimeEnter", Ease_Time_Enter, SendMessageOptions.DontRequireReceiver);
-                target.SendMessage("EaseTimeLeave", Ease_Time_Leave, SendMessageOptions.DontRequireReceiver);
-
-                if (!GameManager.instance.cameras.Contains(target))
-                {
-                    try
-                    {
-                        GameManager.instance.cameras.Insert(0, target);
-                    }
-                    catch
-                    {
-
-                    }
-                }
+                target = FindObjectByID(Target).gameObject;
             }
             catch
             {
 
             }
+        }      
 
+    }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(GameTags.playerTag))
+        {
+            target.SendMessage("EaseTimeEnter", Ease_Time_Enter, SendMessageOptions.DontRequireReceiver);
+            target.SendMessage("EaseTimeLeave", Ease_Time_Leave, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(GameTags.playerTag))
+        {
+            CameraManager.cameras[(int)Priority] = target;
         }
     }
 
@@ -51,34 +55,13 @@ public class ChangeVolumeCamera : GenerationsObject
     {
         if (other.CompareTag(GameTags.playerTag))
         {
-            if (GameManager.instance.cameras.Count > 0)
-            {
-                try
-                {
-                    GameManager.instance.cameras.Remove(target);
-                }
-                catch
-                {
-
-                }
-            }
-
+            CameraManager.cameras[(int)Priority] = null;
         }
     }
 
     private void OnDestroy()
     {
-        if (GameManager.instance.cameras.Count > 0)
-        {
-            try
-            {
-                GameManager.instance.cameras.Remove(target);
-            }
-            catch
-            {
-
-            }
-        }
+        CameraManager.cameras[(int)Priority] = null;
     }
 
     private void OnDrawGizmosSelected()

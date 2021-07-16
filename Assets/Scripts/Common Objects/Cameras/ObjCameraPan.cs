@@ -58,12 +58,13 @@ public class ObjCameraPan : GenerationsObject
             {
                 try
                 {
-                    if (GameManager.instance.cameras[0] == gameObject)
+                    if (CameraManager.activeCamera == gameObject)
                     {
-                        camera.transform.LookAt(target);
 
-                        camera.transform.position = Vector3.Lerp(camera.transform.position, transform.position + camera.transform.forward * Distance, (Time.time - lastStateTime) / Ease_Time_Enter);
+                        Vector3 direction = (target.transform.position - transform.position).normalized;
 
+                        camera.transform.position = transform.position;// target.transform.position - (direction * Distance);
+                            
                         camera.transform.LookAt(target);
 
                         Camera.main.fieldOfView = Fovy;

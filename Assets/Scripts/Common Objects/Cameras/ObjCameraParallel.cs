@@ -54,7 +54,7 @@ public class ObjCameraParallel : GenerationsObject
             {
                 try
                 {
-                    if (GameManager.instance.cameras[0] == gameObject)
+                    if (CameraManager.activeCamera == gameObject)
                     {
                         offset.z = Mathf.Lerp(offset.z, Distance, (Time.time - lastStateTime) / Ease_Time_Enter);
 

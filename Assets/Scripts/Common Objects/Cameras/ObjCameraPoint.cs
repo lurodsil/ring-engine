@@ -52,15 +52,15 @@ public class ObjCameraPoint : GenerationsObject
 
             try
             {
-                if (GameManager.instance.cameras[0] == gameObject)
+                if (CameraManager.activeCamera == gameObject)
                 {
-                    transform.LookAt(target);
+                    camera.transform.LookAt(transform);
 
                     offset.z = Mathf.Lerp(offset.z, Distance, (Time.time - lastStateTime) / Ease_Time_Enter);
 
                     rotation = Quaternion.Lerp(rotation, camera.transform.rotation, (Time.time - lastStateTime) / Ease_Time_Enter);
 
-                    camera.transform.position = target.transform.position - (rotation * offset);
+                    camera.transform.position = (target.transform.position + new Vector3(0,TargetOffset_Up, 0)) - (rotation * offset);
 
                     camera.transform.LookAt(transform);
 
