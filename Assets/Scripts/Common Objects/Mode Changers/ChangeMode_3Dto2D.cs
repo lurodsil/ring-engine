@@ -18,21 +18,12 @@ public class ChangeMode_3Dto2D : GenerationsObject
         transform.localScale = new Vector3(Collision_Width, Collision_Height, 0.5f);
     }
 
-    public void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
             player = other.GetComponent<Player>();
-            if (player.pathType != BezierPathType.SideView)
-            {
-                player.bezierPath = bezierPath;
-                player.pathType = BezierPathType.SideView;
-            }
-            else
-            {
-                player.bezierPath = null;
-                player.pathType = BezierPathType.None;
-            }
+            player.sideViewPath = bezierPath;
         }
     }
 

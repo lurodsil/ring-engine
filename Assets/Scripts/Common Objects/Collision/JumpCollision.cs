@@ -31,8 +31,6 @@ public class JumpCollision : GenerationsObject
     #region State Jump Collision
     private void StateJumpCollisionStart()
     {
-        player.transform.forward = transform.forward;
-
         if (player.isBoosting)
         {
             player.rigidbody.velocity = transform.forward * ImpulseSpeedOnBoost;
@@ -50,24 +48,27 @@ public class JumpCollision : GenerationsObject
     {
 
         //player.groundInfo.SearchGroundHighSpeed();
-        //player.AlignPlayer();
+        Vector3 horizontalVelocity = player.rigidbody.velocity.normalized;
+        horizontalVelocity.y = 0;
+        if (horizontalVelocity.magnitude > 0.1)
+            player.transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
 
-        if (Time.time > duration)
-        {
-            if (player.IsGrounded())
-            {
-                if (player.isBoosting)
-                {
-                    player.rigidbody.velocity = player.transform.forward * ImpulseSpeedOnBoost;
-                }
-                else
-                {
-                    player.rigidbody.velocity = player.transform.forward * ImpulseSpeedOnNormal;
-                }
+        //if (Time.time > duration)
+        //{
+        //    if (player.IsGrounded())
+        //    {
+        //        if (player.isBoosting)
+        //        {
+        //            player.rigidbody.velocity = player.transform.forward * ImpulseSpeedOnBoost;
+        //        }
+        //        else
+        //        {
+        //            player.rigidbody.velocity = player.transform.forward * ImpulseSpeedOnNormal;
+        //        }
 
-                player.PutOnGround();
-            }
-        }
+        //        player.PutOnGround();
+        //    }
+        //}
 
         if (Time.time > player.stateMachine.lastStateTime + OutOfControl)
         {

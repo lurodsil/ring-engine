@@ -29,4 +29,12 @@ public class EventCollision : GenerationsObject
 
         gameObject.GetComponent<BoxCollider>().size = new Vector3(Collision_Width, Collision_Height, Collision_Length);
     }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(GameTags.playerTag))
+        {
+            Activate();
+        }
+    }
 }

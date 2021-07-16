@@ -9,7 +9,7 @@ public class ChangePathCollision : RingEngineObject
         if (other.CompareTag(GameTags.playerTag))
         {
             player = other.GetComponent<Player>();
-            player.bezierPath = path;
+            player.sideViewPath = path;
         }
     }
 }
