@@ -41,10 +41,12 @@ public class DashPanel : GenerationsObject
     }
     void StateDashPanel()
     {
+        RaycastHit raycastHit = player.GetGroundInformation();
+
         if (player.IsGrounded())
         {
             player.rigidbody.velocity = player.transform.forward * Speed;
-            player.PutOnGround();
+            player.transform.StickToGround(raycastHit);
         }
         else
         {
@@ -63,13 +65,21 @@ public class DashPanel : GenerationsObject
     }
     #endregion
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
             audioSource.PlayOneShot(dashPanelSound);
             player = other.GetComponent<Player>();
-            player.stateMachine.ChangeState(StateDashPanel, gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (player)
+        {
+            player.transform.forward = transform.forward;
+            player.rigidbody.velocity = player.transform.forward * Speed;
         }
     }
 }

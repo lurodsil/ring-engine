@@ -100,6 +100,16 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger("HipHopSlideEnd");
     }
 
+    private void StateRocketStart()
+    {
+        animator.SetTrigger("StateRocketStart");
+    }
+
+    private void StateRocketEnd()
+    {
+        animator.SetTrigger("StateRocketEnd");
+    }
+
     void StateSnowBoardStart()
     {
         animator.SetTrigger("Snow Board Start");
@@ -246,6 +256,11 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger("Quick Step Left");
     }
 
+    void TrickJumpSuccess()
+    {
+        animator.ResetTrigger("TrickSuccess");
+        animator.SetTrigger("TrickSuccess");
+    }
     void QuickStepRight()
     {
         animator.SetTrigger("Quick Step Right");
@@ -259,6 +274,8 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("IsBoosting", player.isBoosting);
+
         animator.SetFloat("Abs Left Stick", player.absoluteLeftStick);
 
         if (player.stateMachine.currentStateName == "StateGrind" || player.stateMachine.currentStateName == "StateSnowBoard")
@@ -377,7 +394,7 @@ public class PlayerAnimation : MonoBehaviour
         ChangeMouthSide(transform, leftMouth, rightMouth);
 
         meshHolder.rotation = Quaternion.identity;
-        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, transform.rotation, meshDamping * Time.deltaTime);
+        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, player.meshRotation, meshDamping * Time.deltaTime);
 
 
 

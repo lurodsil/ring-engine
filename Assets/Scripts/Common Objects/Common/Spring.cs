@@ -5,6 +5,7 @@ public class Spring : RingEngineObject
     public bool IsHomingAttackEnable = false;
     public bool isStartPositionConstant = true;
     public bool isBoostCancel = false;
+    public bool isTo3D = false;
     public float firstSpeed = 30f;
     public float keepVelocityDistance = 5f;
     public float OutOfControl = 0.4f;
@@ -28,6 +29,11 @@ public class Spring : RingEngineObject
     #region State Spring
     private void StateSpringStart()
     {
+        if (isTo3D)
+        {
+            player.sideViewPath = null;
+        }
+
         OnStateStart?.Invoke();
         if (isStartPositionConstant)
         {
@@ -40,9 +46,12 @@ public class Spring : RingEngineObject
         {
             player.isBoosting = false;
         }
+
+        player.afectMeshRotation = true;
     }
     private void StateSpring()
     {     
+
         if (Time.time < duration)
         {
             player.rigidbody.velocity = transform.up * firstSpeed;
@@ -55,24 +64,37 @@ public class Spring : RingEngineObject
 
         if (Time.time < outOfControl)
         {
+
+            Vector3 horizontalVelocity = player.rigidbody.velocity.normalized;
+            horizontalVelocity.y = 0;
+            if (horizontalVelocity.magnitude > 0.1)
+                player.transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
+
             if (dotTransformUpVector3Up > 0.99f)
             {
-                player.transform.rotation = Quaternion.FromToRotation(player.transform.up, Vector3.up) * player.transform.rotation;
+                player.targetMeshRotation = Quaternion.FromToRotation(player.transform.up, Vector3.up) * player.transform.rotation;
             }
             else
             {
-                player.transform.rotation = Quaternion.LookRotation(-startPoint.up, startPoint.forward);
+                player.targetMeshRotation = Quaternion.LookRotation(-startPoint.up, startPoint.forward);
             }
         }
         else
         {
             player.stateMachine.ChangeState(player.StateFall, gameObject);
         }
+
+        if (player.IsGrounded())
+        {
+            player.stateMachine.ChangeState(player.StateMove3D, gameObject);
+        }
+
     }
     private void StateSpringEnd()
     {
         OnStateEnd?.Invoke();
         player.canHomming = IsHomingAttackEnable;
+        player.targetMeshRotation = Quaternion.Euler(Vector3.zero);
     }
     #endregion
 

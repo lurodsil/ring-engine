@@ -35,6 +35,7 @@ public class RingEngineDebug : MonoBehaviour
             "Is grounded: " + player.IsGrounded() + "\r\n" +
             "Ground state: " + player.transform.GetGroundState() + "\r\n" +
             "Is grind grounded: " + player.isGrindGrounded + "\n\r" +
+            "Is ggrinding: " + player.isGrinding + "\n\r" +
             "Can homming: " + player.canHomming + "\n\r" +
             "Is attacking: " + player.isAttacking + "\n\r" +
             "Ignore damage: " + player.ignoreDamage;

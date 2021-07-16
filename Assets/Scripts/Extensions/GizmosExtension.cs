@@ -7,7 +7,7 @@ public static class GizmosExtension
         Vector3 vel = direction * velocity;
         Vector3 pos = origin;
         Vector3 lastPos = origin;
-        float precision = 0.1f;
+        float precision = 0.01f;
 
         for (float t = 0f; t < length; t += precision)
         {

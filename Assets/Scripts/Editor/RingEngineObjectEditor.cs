@@ -3,6 +3,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 
 [CustomEditor(typeof(RingEngineObject), true)]
+[CanEditMultipleObjects]
 public class RingEngineObjectEditor : Editor
 {
     bool showEventsInInspector;

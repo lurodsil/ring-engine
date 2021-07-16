@@ -40,8 +40,10 @@ public class Sonic : Player
         stateMachine.OnUpdate();
     }
 
-    private void FixedUpdate()
+    public override void FixedUpdate()
     {
+        base.FixedUpdate();
+
         stateMachine.OnFixedUpdate();
     }
 
