@@ -7,7 +7,10 @@ public class MainCamera : MonoBehaviour
     public Transform target;
     [Range(0, 50)]
     public float distance = 5;
+    [Range(0, 50)]
+    public float distanceWhenBoosting = 2;
     public float fieldOfView = 45;
+    public float fieldOfWhenBoosting = 90;
     public float easeIn = 0.5f;
 
     public float minAngleX = -10;
@@ -77,11 +80,20 @@ public class MainCamera : MonoBehaviour
             euler.x = ClampAngle(euler.x, minAngleX, maxAngleX);
             transform.eulerAngles = euler;
 
-            offset.z = Mathf.Lerp(offset.z, distance, (Time.time - lastStateTime) / easeIn);
+            if (player.isBoosting)
+            {
+                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fieldOfWhenBoosting, 10 * Time.deltaTime);
+                offset.z = Mathf.Lerp(offset.z, distanceWhenBoosting, (Time.time - lastStateTime) / easeIn);
+            }
+            else
+            {
+                Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fieldOfView, 10 * Time.deltaTime);
+                offset.z = Mathf.Lerp(offset.z, distance, (Time.time - lastStateTime) / easeIn);
+            }
 
             transform.position = target.transform.position - (transform.rotation * offset);
 
-            Camera.main.fieldOfView = fieldOfView;
+            transform.LookAt(target);         
 
             CameraTarget.instance.offset = Vector3.zero;
         }

@@ -7,6 +7,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Player : MonoBehaviour, IDamageable
 {
+    public bool isGrounded { get; private set; }
+
     public float rotationForceMin = 1;
     public float rotationForceMax = 10;
 
@@ -31,6 +33,8 @@ public abstract class Player : MonoBehaviour, IDamageable
     public float binormalTargetOffset;
 
     public LayerMask wallSearchLayerMask;
+
+    public LayerMask groundSearchLayerMask;
     //Cross between ground normal and right
     public Vector3 direction { get; set; }
     public Vector3 tangentCopy;
@@ -231,7 +235,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     //Velocitys from rigidbody
     private float verticalVelocity { get; set; }
-
+    public float ringEnergy;
     private float forwardVelocity { get; set; }
 
     private Transform rope { get; set; }
@@ -257,6 +261,8 @@ public abstract class Player : MonoBehaviour, IDamageable
     public bool ignoreDamage = false;
     public float ignoreDamageTime = 5;
 
+    public RectTransform boostGauge;
+
     public bool isGrindGrounded { get; private set; }
 
     public BezierPath sideViewPath;
@@ -277,9 +283,10 @@ public abstract class Player : MonoBehaviour, IDamageable
         EventManager.OnTargetObjectsChanged -= UpdateTargets;
     }
 
+    
+
     private void Awake()
     {
-
         instance = GetComponent<Player>();
         rigidbody = GetComponent<Rigidbody>();
 
@@ -308,6 +315,19 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     public virtual void Update()
     {
+        boostGauge.sizeDelta = new Vector2(ringEnergy * 5, boostGauge.sizeDelta.y);
+
+        if (isBoosting)
+        {
+            ringEnergy -= 10 * Time.deltaTime;
+        }
+
+        ringEnergy = Mathf.Clamp(ringEnergy, 0, 100); 
+
+        if(ringEnergy <= 0)
+        {
+            isBoosting = false;
+        }
 
         if(afectMeshRotation)
         {
@@ -414,6 +434,8 @@ public abstract class Player : MonoBehaviour, IDamageable
         }
     }
 
+
+
     public virtual void FixedUpdate()
     {
         if (!splineSensor.bezierPath && sideViewPath && !isGrinding)
@@ -462,7 +484,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     public void CheckBoost()
     {
-        if (Input.GetButtonDown(XboxButton.X))
+        if (ringEnergy > 0 && Input.GetButtonDown(XboxButton.X))
         {
             SendMessage("StateBoostStart");
         }
@@ -530,7 +552,8 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         float isGroundedOffsetFront = Mathf.Lerp(isGroundedFrontOffsetMin, isGroundedFrontOffsetMax, rigidbody.velocity.magnitude / currentPhysicsMotion.maxSpeed);
         Ray isGroundedRay = new Ray(collider.bounds.center + transform.forward * isGroundedOffsetFront, -transform.up);
-        return Physics.SphereCast(isGroundedRay, isGroundedRadius, (collider.height * 0.5f) + isGroundedMaxDistance);
+        isGrounded = Physics.SphereCast(isGroundedRay, isGroundedRadius, (collider.height * 0.5f) + isGroundedMaxDistance, groundSearchLayerMask);
+        return isGrounded;
     }
 
     public RaycastHit GetGroundInformation()
@@ -538,7 +561,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         float groundInformationOffsetFront = Mathf.Lerp(groundInformationFrontOffsetMin, groundInformationFrontOffsetMax, rigidbody.velocity.magnitude / currentPhysicsMotion.maxSpeed);
         Ray groundInformationRay = new Ray(collider.bounds.center + transform.forward * groundInformationOffsetFront, -transform.up);
         RaycastHit groundInformationHit = new RaycastHit();
-        Physics.SphereCast(groundInformationRay, groundInformationRadius, out groundInformationHit, groundInformationMaxDistance);
+        Physics.SphereCast(groundInformationRay, groundInformationRadius, out groundInformationHit, groundInformationMaxDistance, groundSearchLayerMask);
         return groundInformationHit;
     }
     public void ForwardView()
@@ -860,7 +883,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         }
         if (Input.GetButtonDown(XboxButton.X))
         {
-            if (isBoosting == false)
+            if (isBoosting == false && ringEnergy > 0)
             {
                 SendMessage("StateBoostStart");
             }
@@ -1725,7 +1748,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     private void StateGrindStart()
     {
         isGrinding = true;
-      
+        rigidbody.useGravity = false;
         isGrindGrounded = true;
 
         GrindSensorSetActive(true);

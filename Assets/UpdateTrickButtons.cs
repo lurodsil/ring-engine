@@ -6,36 +6,53 @@ using UnityEngine.UI;
 public class UpdateTrickButtons : MonoBehaviour
 {
     public AudioClip navigation;
+    public AudioClip buttonPress;
     public GameObject buttonsHolder;
-    public Sprite[] buttonsSource;
+
+    public Sprite[] buttonsReleased;
+    public Sprite[] buttonsPressed;
+
     public Image[] buttons;
 
-    public static string seed;
-
+    private char[] seedChar;
+    private AudioSource audioSource;
 
     private void OnEnable()
     {
         EventManager.OnTrickStart += OnTrickStart;
         EventManager.OnTrickEnd += OnTrickEnd;
+        EventManager.OnButtonPress += OnButtonPress;
     }
 
     private void OnDisable()
     {
         EventManager.OnTrickStart -= OnTrickStart;
         EventManager.OnTrickEnd -= OnTrickEnd;
+        EventManager.OnButtonPress -= OnButtonPress;
     }
 
-    public void OnTrickStart()    
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void OnTrickStart(string seed)    
     {
         buttonsHolder.SetActive(true);
-        GetComponent<AudioSource>().PlayOneShot(navigation);
+        audioSource.PlayOneShot(navigation);
 
-        char[] valueChar = seed.ToCharArray();
+        seedChar = seed.ToCharArray();
 
-        for (int i = 0; i < valueChar.Length; i++)
+        for (int i = 0; i < seedChar.Length; i++)
         {
-            buttons[i].sprite = buttonsSource[int.Parse(valueChar[i].ToString())];
+            buttons[i].sprite = buttonsReleased[int.Parse(seedChar[i].ToString())];
         }
+    }
+
+    public void OnButtonPress(int index)
+    {
+        audioSource.PlayOneShot(buttonPress);
+        buttons[index].sprite = buttonsPressed[int.Parse(seedChar[index].ToString())];
     }
 
     public void OnTrickEnd()

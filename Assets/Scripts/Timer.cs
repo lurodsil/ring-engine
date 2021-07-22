@@ -30,10 +30,10 @@ public class Timer : MonoBehaviour
         }
 
 
-        if (pauseGame)
-            Time.timeScale = 0;
-        if (!pauseGame)
-            Time.timeScale = 1;
+        //if (pauseGame)
+        //    Time.timeScale = 0;
+        //if (!pauseGame)
+        //    Time.timeScale = 1;
 
         if (reset || resetTimer)
             StartCoroutine(ResetTimer());

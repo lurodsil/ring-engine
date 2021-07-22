@@ -40,6 +40,7 @@ public class Ring : MonoBehaviour
     {
         if (other.CompareTag(GameTags.playerTag))
         {
+            other.GetComponent<Player>().ringEnergy += 2;
             Instantiate(getRing, transform.position, Quaternion.identity);
             Destroy(gameObject);
             EventManager.UpdateRingAmount(1);

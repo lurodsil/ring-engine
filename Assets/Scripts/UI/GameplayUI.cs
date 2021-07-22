@@ -8,6 +8,7 @@ public class GameplayUI : MonoBehaviour
 
     public Image buttonA, buttonB, buttonX, buttonY;
     public GameObject buttonLBRB;
+    public GameObject leftStick;
     public AudioClip buttonShow;
     private AudioSource audioSource;
     private Vector3 worldPosition;
@@ -51,6 +52,9 @@ public class GameplayUI : MonoBehaviour
             case XboxButton.Y:
                 buttonY.enabled = true;
                 break;
+            case XboxButton.LeftStick:
+                leftStick.SetActive(true);
+                break;
             default:
                 buttonLBRB.SetActive(true);
                 break;
@@ -70,6 +74,7 @@ public class GameplayUI : MonoBehaviour
         buttonX.enabled = false;
         buttonY.enabled = false;
         buttonLBRB.SetActive(false);
+        leftStick.SetActive(false);
         worldPosition = Vector3.zero;
     }
 }

@@ -23,9 +23,9 @@ public class LockOn : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (player.closestTarget && !player.IsGrounded())
+        if (player.closestTarget && !player.isGrounded && !player.isGrindGrounded && player.stateMachine.currentStateName == "StateBall")
         {
             if (player.canHomming)
             {

@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Test Scene.unity
     guid: 36c03e1640451c14f90550d7f32d0d29
   - enabled: 0
     path: Assets/Scenes/Test Stage.unity
     guid: 8d2c2b2241d15b044b4d2df37de3a806
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dragon Road.unity
     guid: cb39a0618f3c0784788a7ac8db2c3df0
   m_configObjects: {}

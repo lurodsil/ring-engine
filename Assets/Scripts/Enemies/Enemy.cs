@@ -159,6 +159,8 @@ public class Enemy : GenerationsObject, IDamageable
         }
 
         Instantiate(explosion, transform.position, transform.rotation);
+
+        Player.instance.ringEnergy += 10;
     }
 
     public void Explode(float delay)

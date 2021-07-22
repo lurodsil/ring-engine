@@ -4118,6 +4118,7 @@ GameObject:
   - component: {fileID: 1849965806}
   - component: {fileID: 1800776527}
   - component: {fileID: 1401515124}
+  - component: {fileID: 1062754301}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4438,17 +4439,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navigation: {fileID: 8300000, guid: 55b40f2e320c128428f206175a1ab133, type: 3}
+  buttonPress: {fileID: 8300000, guid: 86cb0607dafdf334c98de74dc6b2bb39, type: 3}
   buttonsHolder: {fileID: 753426798}
-  buttonsSource:
+  buttonsReleased:
   - {fileID: 21300000, guid: 28bc53d4de6e9444d99015d2d94afcb1, type: 3}
   - {fileID: 21300000, guid: e3bcdf185c7919a458983cd77dbb5f7b, type: 3}
   - {fileID: 21300000, guid: be9094c2aee35044f8a606c0210af3ad, type: 3}
   - {fileID: 21300000, guid: f4ccf45d50f47db4f902514ccc404886, type: 3}
+  buttonsPressed:
+  - {fileID: 21300000, guid: b9856af48f9423443843dcee5617360e, type: 3}
+  - {fileID: 21300000, guid: 37cc45a2b631dad46a0ee8630fa146f5, type: 3}
+  - {fileID: 21300000, guid: a0138428a0307594bada86638ce845fb, type: 3}
+  - {fileID: 21300000, guid: 0dcd2b28c371c9c4385c903abab72dcf, type: 3}
   buttons:
   - {fileID: 1310138679}
   - {fileID: 1535200950}
   - {fileID: 916978797}
   - {fileID: 1529199163}
+--- !u!114 &1062754301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849931859358852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966dc57581833ba43ba9ecceead26a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTimer: 1
+  pauseGame: 0
+  resetTimer: 0
 --- !u!1 &1861095077149026
 GameObject:
   m_ObjectHideFlags: 0

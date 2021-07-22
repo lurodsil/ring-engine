@@ -27,8 +27,6 @@ public class AdlibTrickJump : RingEngineObject
     #region State Jump Board
     void StateAdlibTrickJumpStart()
     {
-
-
         seed = "";
 
         for (int i = 0; i < 4; i++)
@@ -37,8 +35,6 @@ public class AdlibTrickJump : RingEngineObject
         }
 
         EventManager.TrickPanelRainbowStart(seed);
-
-        print(seed);
 
         seedArray = seed.ToCharArray();
         buttonArray = new char[4] { ' ',' ',' ',' '};
@@ -67,32 +63,31 @@ public class AdlibTrickJump : RingEngineObject
         {
             index++;
             buttonArray[index] = '0';
-            print(buttonArray[0] +" "+ buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+            EventManager.ButtonPressAction(index);
         }
         if (Input.GetButtonDown(XboxButton.B))
         {
             index++;
             buttonArray[index] = '1';
-            print(buttonArray[0] + " " + buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+            EventManager.ButtonPressAction(index);
         }
         if (Input.GetButtonDown(XboxButton.X))
         {
             index++;
             buttonArray[index] = '2';
-            print(buttonArray[0] + " " + buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+            EventManager.ButtonPressAction(index);
         }
         if (Input.GetButtonDown(XboxButton.Y))
         {
             index++;
             buttonArray[index] = '3';
-            print(buttonArray[0] + " " + buttonArray[1] + " " + buttonArray[2] + " " + buttonArray[3]);
+            EventManager.ButtonPressAction(index);
         }
 
         if(index >= 0)
         {
             if (buttonArray[index] != seedArray[index])
             {
-                print("fail");
                 audioSource.PlayOneShot(fail);
 
                 player.stateMachine.ChangeState(player.StateTransition, gameObject);
@@ -101,10 +96,10 @@ public class AdlibTrickJump : RingEngineObject
             {
                 if (index == 3)
                 {
-                    print("success");
                     audioSource.PlayOneShot(success);
 
                     player.SendMessage("TrickJumpSuccess");
+                    player.ringEnergy += 10;
                     player.rigidbody.AddForce(transform.up * 20, ForceMode.Impulse);
                     player.stateMachine.ChangeState(player.StateTransition, gameObject);
                 }
