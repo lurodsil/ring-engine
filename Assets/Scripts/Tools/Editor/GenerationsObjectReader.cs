@@ -669,9 +669,9 @@ public class GenerationsObjectReader : EditorWindow
                 case "IsStartVelocityConstant":
                     component.IsStartVelocityConstant = bool.Parse(node.InnerText);
                     break;
-                case "SetObjectID":
-                    component.SetObjectID = int.Parse(node.InnerText);
-                    break;
+                //case "SetObjectID":
+                //    component.SetObjectID = int.Parse(node.InnerText);
+                //    break;
                 case "Position":
                     position = ReadPosition(node);
                     break;

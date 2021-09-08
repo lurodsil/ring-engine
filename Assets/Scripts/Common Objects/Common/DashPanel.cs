@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DashPanel : GenerationsObject
+public class DashPanel : RingEngineObject
 {
     public bool IsChangeCameraWhenChangePath = false;
     public bool IsChangePath = false;
@@ -31,12 +31,14 @@ public class DashPanel : GenerationsObject
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        objectState = StateDashPanel;
     }
 
     #region State Dash Panel
     void StateDashPanelStart()
     {
         player.transform.forward = transform.forward;
+        player.transform.position = transform.position;
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
     }
     void StateDashPanel()
@@ -56,7 +58,7 @@ public class DashPanel : GenerationsObject
 
         if (Time.time > outOfControl)
         {
-            player.stateMachine.ChangeState(player.StateMove3D, gameObject);
+            player.stateMachine.ChangeState(player.StateMove, gameObject);
         }
     }
     void StateDashPanelEnd()
@@ -64,22 +66,4 @@ public class DashPanel : GenerationsObject
 
     }
     #endregion
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            audioSource.PlayOneShot(dashPanelSound);
-            player = other.GetComponent<Player>();
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (player)
-        {
-            player.transform.forward = transform.forward;
-            player.rigidbody.velocity = player.transform.forward * Speed;
-        }
-    }
 }

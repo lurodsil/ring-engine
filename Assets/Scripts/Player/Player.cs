@@ -121,11 +121,9 @@ public abstract class Player : MonoBehaviour, IDamageable
     public float sonicToSpinVelocity = 85f;
     public float spinToSonicVelocity = 75f;
 
-
     float ignoreDamageCollision;
 
-
-    private float isBrakingForce { get; set; }
+    private float brakingForce { get; set; }
 
     public float lightSpeedDashVelocity = 50;
 
@@ -208,18 +206,12 @@ public abstract class Player : MonoBehaviour, IDamageable
     private Vector3 horizontalVelocity { get; set; }
     public float absoluteLeftStick { get; set; }
     private float activeStick { get; set; }
-
     private float deadZone { get; set; } = 0.1f;
-
     public SpeedMode speedMode { get; set; }
-
     private float lastBrakeTime;
-
     public bool underwater { get; set; }
-
     private float frontAcceleration { get; set; }
     private float sideAcceleration { get; set; }
-
     public StateMachine stateMachine = new StateMachine();
     private Vector3 playerToEnemyDirection { get; set; }
     public bool isAttacking { get; set; }
@@ -281,9 +273,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     private void OnDisable()
     {
         EventManager.OnTargetObjectsChanged -= UpdateTargets;
-    }
-
-    
+    }    
 
     private void Awake()
     {
@@ -301,38 +291,27 @@ public abstract class Player : MonoBehaviour, IDamageable
         UpdateTargets();
         currentPhysicsMotion = groundMotion;
         targetMeshRotation = Quaternion.identity;
-
     }
-
-    public bool afectMeshRotation;
-
-    private void StateSpringEnd()
-    {
-
-        afectMeshRotation = false;
-
-    }
-
     public virtual void Update()
     {
-        boostGauge.sizeDelta = new Vector2(ringEnergy * 5, boostGauge.sizeDelta.y);
+        //boostGauge.sizeDelta = new Vector2(ringEnergy * 5, boostGauge.sizeDelta.y);
 
         if (isBoosting)
         {
             ringEnergy -= 10 * Time.deltaTime;
         }
 
-        ringEnergy = Mathf.Clamp(ringEnergy, 0, 100); 
+        ringEnergy = Mathf.Clamp(ringEnergy, 0, 100);
 
-        if(ringEnergy <= 0)
+        if (ringEnergy <= 0)
         {
             isBoosting = false;
         }
 
-        if(afectMeshRotation)
+        if (afectMeshRotation)
         {
             meshRotation = targetMeshRotation;
-             
+
         }
         else
         {
@@ -433,9 +412,6 @@ public abstract class Player : MonoBehaviour, IDamageable
             Debug.DrawLine(collider.bounds.center, knot.point, Color.yellow);
         }
     }
-
-
-
     public virtual void FixedUpdate()
     {
         if (!splineSensor.bezierPath && sideViewPath && !isGrinding)
@@ -479,6 +455,14 @@ public abstract class Player : MonoBehaviour, IDamageable
 
             }
         }
+    }
+
+    public bool afectMeshRotation;
+
+    private void StateSpringEnd()
+    {
+
+        afectMeshRotation = false;
 
     }
 
@@ -509,7 +493,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         Vector3 closestDirection = leftStickDirection != Vector3.zero ? leftStickDirection : transform.forward;
 
-        closestTarget = playerCenter.Closest(targets, 1, targetFindRange, false, transform.forward, targetFindAngle, camera.transform.forward, 360, targetFindLayerMask);
+        closestTarget = playerCenter.Closest(targets, 0.5f, targetFindRange, false, closestDirection, targetFindAngle, camera.transform.forward, 360, targetFindLayerMask);
     }
 
     public void SearchWall()
@@ -2997,5 +2981,20 @@ public abstract class Player : MonoBehaviour, IDamageable
     {
         if (collider)
             Gizmos.DrawWireSphere(transform.position, isGroundedRadius);
+    }
+
+    public void DisablePhysics()
+    {
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.useGravity = false;
+        rigidbody.isKinematic = true;
+        rigidbody.interpolation = RigidbodyInterpolation.None;
+    }
+
+    public void EnablePhysics()
+    {
+        rigidbody.useGravity = true;
+        rigidbody.isKinematic = false;
+        rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
     }
 }

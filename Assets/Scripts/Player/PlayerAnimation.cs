@@ -317,7 +317,7 @@ public class PlayerAnimation : MonoBehaviour
             tangent = Vector3.Dot(leftStickDirection, transform.right);
         }
 
-        smoothTangent = Mathf.Lerp(smoothTangent, tangent, 2 * Time.deltaTime);
+        smoothTangent = Mathf.Lerp(smoothTangent, tangent, 30 * Time.deltaTime);
 
         animator.SetFloat("Tangent", tangent);
         animator.SetFloat("SmoothTangent", smoothTangent);

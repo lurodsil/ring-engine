@@ -13,7 +13,6 @@ public class Sonic : Player
     public float airboostVelocity = 70;
     public float airboostTime = 0.25f;
     public float airboostKeepVelocity = 0.8f;
-
     
     public override void Start()
     {
