@@ -270,6 +270,8 @@ public abstract class Player : MonoBehaviour, IDamageable
         EventManager.OnTargetObjectsChanged += UpdateTargets;
     }
 
+
+
     private void OnDisable()
     {
         EventManager.OnTargetObjectsChanged -= UpdateTargets;

@@ -2,7 +2,6 @@
 
 public class EggmanMissile : MonoBehaviour
 {
-
     new Rigidbody rigidbody;
 
     Transform target;
@@ -12,7 +11,6 @@ public class EggmanMissile : MonoBehaviour
 
     private float startTime;
 
-    // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -20,7 +18,6 @@ public class EggmanMissile : MonoBehaviour
         startTime = Time.time;
     }
 
-    // Update is called once per frame
     void Update()
     {
         rigidbody.velocity = transform.forward * speed;

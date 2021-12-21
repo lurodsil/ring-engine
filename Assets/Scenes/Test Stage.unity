@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.59348345, g: 0.6003387, b: 0.54357904, a: 1}
+  m_IndirectSpecularColor: {r: 0.5934827, g: 0.6003382, b: 0.5435789, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -40639,7 +40639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4541286174089946, guid: 83e7757a04cc55345a84c8e912663d1d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 771.77527
+      value: 771.61
       objectReference: {fileID: 0}
     - target: {fileID: 4541286174089946, guid: 83e7757a04cc55345a84c8e912663d1d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -66892,6 +66892,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2007374719, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1251045597006518, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
       propertyPath: m_Name
       value: StartPoint
@@ -66950,10 +66954,20 @@ PrefabInstance:
       propertyPath: isGroundedMaxDistance
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 7131656685820691699, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7145358332951852133, guid: 065e13b48a12cdd44b0e555b3465db22,
         type: 3}
       propertyPath: far clip plane
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347727438397473768, guid: 065e13b48a12cdd44b0e555b3465db22,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 065e13b48a12cdd44b0e555b3465db22, type: 3}
