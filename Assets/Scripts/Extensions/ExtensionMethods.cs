@@ -121,8 +121,6 @@ public static class ExtensionMethods
             return;
         }
 
-        //Quaternion rotation = transform.rotation;
-        //Vector3 position = transform.position;
         Matrix4x4 matrix = Matrix4x4.TRS(groundHit.point, transform.rotation, Vector3.one);
         pointOnGround = groundHit.normal * matrix.inverse.MultiplyPoint(transform.position).y;
         transform.position -= pointOnGround * damping * Time.deltaTime;
@@ -205,8 +203,6 @@ public static class ExtensionMethods
         }
         else
         {
-
-
             rigidbody.velocity = direction * Mathf.MoveTowards(rigidbody.velocity.magnitude, maxVelocity, acceleration * Time.deltaTime);
         }
     }

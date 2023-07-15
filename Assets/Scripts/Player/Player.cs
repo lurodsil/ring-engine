@@ -7,6 +7,11 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Player : MonoBehaviour, IDamageable
 {
+    //Components
+    new public CapsuleCollider collider { get; set; }
+    public new Rigidbody rigidbody { get; set; }
+    private PlayerAnimation playerAnimation { get; set; }
+
     public bool isGrounded { get; private set; }
 
     public float rotationForceMin = 1;
@@ -49,14 +54,14 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     private float quickstepBinormalRate { get; set; } = 0.5f;
 
-    new public CapsuleCollider collider { get; set; }
+    
 
     private Vector3 lastGroundedNormal;
     public bool stickToGround;
     public bool isGrinding;
     private float inputTime { get; set; }
 
-    public new Rigidbody rigidbody { get; set; }
+    
 
     //References
     new private Camera camera { get; set; }
@@ -97,28 +102,19 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     [Header("Velocity")]
     //Generations variables
-
     public float accelerationForceLowSpeed = 12.1f;
     public float accelerationForceHighSpeed = 25f;
-
-
     public float decelerationForceLowSpeed = 50.1f;
     public float decelerationForceHighSpeed = 25f;
-
     public float isBrakingForceLowSpeed = 150f;
     public float isBrakingForceHighSpeed = 100f;
-
     public float lowToHighVelocity = 15f;
-
     public float maxVelocity = 44f;
     public float maxBoostVelocity = 60f;
     public float maxDownVelocity = 60f;
     public float maxUpVelocity = 70f;
-
     public float sonicToSpinVelocity = 85f;
     public float spinToSonicVelocity = 75f;
-
-    float ignoreDamageCollision;
 
     private float brakingForce { get; set; }
 
@@ -166,7 +162,6 @@ public abstract class Player : MonoBehaviour, IDamageable
 
     [Header("Jump")]
     public float JumpGroundVelocityXZRate = 1;
-
     public float JumpGroundVelocityYRate = 1;
     public float JumpPower = 17;
     public float JumpPowerAllRounder = 4.5f;
@@ -177,7 +172,6 @@ public abstract class Player : MonoBehaviour, IDamageable
     public float JumpPowerOnBoard = 15;
     public float KickbackPower = 10;
     public float MaxUpSpeedWhenJump = 18;
-
     public float BallJumpAirDragRateScale = 5.9f;
     public float JumpShortGroundResetDistance = 5;
     public float JumpShortReleaseTime = 0.14f;
@@ -212,38 +206,28 @@ public abstract class Player : MonoBehaviour, IDamageable
     public StateMachine stateMachine = new StateMachine();
     private Vector3 playerToEnemyDirection { get; set; }
     public bool isAttacking { get; set; }
-
     private GameObject pushable { get; set; }
     public Vector3 pushableNormal { get; set; }
     public Vector3 pushableCenter { get; set; }
-
     public float absoluteVelocity { get; private set; }
-
     public float rawDirection { get; set; }
     public float driftStartDirection { get; set; }
-
     //Velocitys from rigidbody
     private float verticalVelocity { get; set; }
     public float ringEnergy;
     private float forwardVelocity { get; set; }
-
     private Transform rope { get; set; }
-
     public bool isBraking;
     public bool isBoosting;
     //Jump
     private bool jumpReachedApex { get; set; }
-
     public bool canHomming { get; set; }
     public bool canCancelState { get; set; }
-
     public CameraTarget cameraTarget;
 
     float tangentMultiplier { get; set; }
 
     public GameObject closestLightSpeedDashRing { get; set; }
-
-    private PlayerAnimation playerAnimation { get; set; }
 
     public bool drown { get; set; }
 
