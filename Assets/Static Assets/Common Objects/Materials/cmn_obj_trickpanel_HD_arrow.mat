@@ -2,14 +2,17 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: cmn_obj_trickpanel_HD_arrow
   m_Shader: {fileID: 4800000, guid: 189e50727d4b9e14ab23a5f8be56a58f, type: 3}
-  m_ShaderKeywords: _EMISSION _VERTEXBLEND_OFF
+  m_ValidKeywords:
+  - _EMISSION
+  m_InvalidKeywords:
+  - _VERTEXBLEND_OFF
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -52,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: c8c45297e58a1214d8d5e9570b53a66c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ac0cba3e168cfa4fa00a62e31590c43, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FalloffMap:
@@ -72,7 +75,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c8c45297e58a1214d8d5e9570b53a66c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2ac0cba3e168cfa4fa00a62e31590c43, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexB:
@@ -123,6 +126,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaToMask: 0
     - _BumpScale: 1

@@ -159,7 +159,7 @@
     <NegativeButton></NegativeButton>
     <PositiveButton>joystick button 0</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
-    <AltPositiveButton>s</AltPositiveButton>
+    <AltPositiveButton>space</AltPositiveButton>
     <Gravity>1000</Gravity>
     <Dead>1</Dead>
     <Sensitivity>1000</Sensitivity>
@@ -178,7 +178,7 @@
     <NegativeButton></NegativeButton>
     <PositiveButton>joystick button 1</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
-    <AltPositiveButton>d</AltPositiveButton>
+    <AltPositiveButton>left control</AltPositiveButton>
     <Gravity>1000</Gravity>
     <Dead>1</Dead>
     <Sensitivity>1000</Sensitivity>
@@ -197,7 +197,7 @@
     <NegativeButton></NegativeButton>
     <PositiveButton>joystick button 2</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
-    <AltPositiveButton>a</AltPositiveButton>
+    <AltPositiveButton>left shift</AltPositiveButton>
     <Gravity>1000</Gravity>
     <Dead>1</Dead>
     <Sensitivity>1000</Sensitivity>
@@ -216,7 +216,7 @@
     <NegativeButton></NegativeButton>
     <PositiveButton>joystick button 3</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
-    <AltPositiveButton>w</AltPositiveButton>
+    <AltPositiveButton>f</AltPositiveButton>
     <Gravity>1000</Gravity>
     <Dead>1</Dead>
     <Sensitivity>1000</Sensitivity>
@@ -292,7 +292,7 @@
     <NegativeButton></NegativeButton>
     <PositiveButton>joystick button 7</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
-    <AltPositiveButton>space</AltPositiveButton>
+    <AltPositiveButton>p</AltPositiveButton>
     <Gravity>1000</Gravity>
     <Dead>1</Dead>
     <Sensitivity>1000</Sensitivity>
@@ -365,8 +365,8 @@
     <Name>Left Stick X</Name>
     <DescriptiveName></DescriptiveName>
     <DescriptiveNegativeName></DescriptiveNegativeName>
-    <NegativeButton>left</NegativeButton>
-    <PositiveButton>right</PositiveButton>
+    <NegativeButton>a</NegativeButton>
+    <PositiveButton>d</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
     <Gravity>10</Gravity>
@@ -384,8 +384,8 @@
     <Name>Left Stick Y</Name>
     <DescriptiveName></DescriptiveName>
     <DescriptiveNegativeName></DescriptiveNegativeName>
-    <NegativeButton>down</NegativeButton>
-    <PositiveButton>up</PositiveButton>
+    <NegativeButton>s</NegativeButton>
+    <PositiveButton>w</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
     <Gravity>10</Gravity>
@@ -409,7 +409,7 @@
     <AltPositiveButton></AltPositiveButton>
     <Gravity>0</Gravity>
     <Dead>0</Dead>
-    <Sensitivity>0,015</Sensitivity>
+    <Sensitivity>0,2</Sensitivity>
     <Snap>False</Snap>
     <Invert>False</Invert>
     <Type>MouseMovement</Type>
@@ -428,7 +428,7 @@
     <AltPositiveButton></AltPositiveButton>
     <Gravity>0</Gravity>
     <Dead>0</Dead>
-    <Sensitivity>0,005</Sensitivity>
+    <Sensitivity>0,2</Sensitivity>
     <Snap>False</Snap>
     <Invert>False</Invert>
     <Type>MouseMovement</Type>

@@ -78,7 +78,7 @@ TextureImporter:
       213: 21300048
     second: ui_common_stg_icon_24
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -98,6 +98,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -108,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 2
     aniso: 16
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -129,13 +131,41 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -684,6 +714,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      ui_common_stg_icon_5: 21300010
+      ui_common_stg_icon_16: 21300032
+      ui_common_stg_icon_23: 21300046
+      ui_common_stg_icon_18: 21300036
+      ui_common_stg_icon_20: 21300040
+      ui_common_stg_icon_1: 21300002
+      ui_common_stg_icon_14: 21300028
+      ui_common_stg_icon_11: 21300022
+      ui_common_stg_icon_8: 21300016
+      ui_common_stg_icon_9: 21300018
+      ui_common_stg_icon_19: 21300038
+      ui_common_stg_icon_15: 21300030
+      ui_common_stg_icon_24: 21300048
+      ui_common_stg_icon_7: 21300014
+      ui_common_stg_icon_0: 21300000
+      ui_common_stg_icon_3: 21300006
+      ui_common_stg_icon_4: 21300008
+      ui_common_stg_icon_21: 21300042
+      ui_common_stg_icon_12: 21300024
+      ui_common_stg_icon_6: 21300012
+      ui_common_stg_icon_17: 21300034
+      ui_common_stg_icon_13: 21300026
+      ui_common_stg_icon_2: 21300004
+      ui_common_stg_icon_10: 21300020
+      ui_common_stg_icon_22: 21300044
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

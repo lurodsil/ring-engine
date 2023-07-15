@@ -357,7 +357,7 @@ TextureImporter:
       213: 21300234
     second: ui_gameplay_img_117
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -377,6 +377,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -387,7 +389,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: 2
     aniso: 16
-    mipBias: -100
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -408,13 +410,41 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
@@ -2916,6 +2946,125 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      ui_gameplay_img_18: 21300036
+      ui_gameplay_img_90: 21300180
+      ui_gameplay_img_4: 21300008
+      ui_gameplay_img_30: 21300060
+      ui_gameplay_img_111: 21300222
+      ui_gameplay_img_41: 21300082
+      ui_gameplay_img_28: 21300056
+      ui_gameplay_img_3: 21300006
+      ui_gameplay_img_84: 21300168
+      ui_gameplay_img_43: 21300086
+      ui_gameplay_img_88: 21300176
+      ui_gameplay_img_107: 21300214
+      ui_gameplay_img_87: 21300174
+      ui_gameplay_img_31: 21300062
+      ui_gameplay_img_109: 21300218
+      ui_gameplay_img_106: 21300212
+      ui_gameplay_img_12: 21300024
+      ui_gameplay_img_105: 21300210
+      ui_gameplay_img_6: 21300012
+      ui_gameplay_img_27: 21300054
+      ui_gameplay_img_68: 21300136
+      ui_gameplay_img_97: 21300194
+      ui_gameplay_img_20: 21300040
+      ui_gameplay_img_78: 21300156
+      ui_gameplay_img_102: 21300204
+      ui_gameplay_img_91: 21300182
+      ui_gameplay_img_60: 21300120
+      ui_gameplay_img_42: 21300084
+      ui_gameplay_img_113: 21300226
+      ui_gameplay_img_95: 21300190
+      ui_gameplay_img_77: 21300154
+      ui_gameplay_img_72: 21300144
+      ui_gameplay_img_73: 21300146
+      ui_gameplay_img_96: 21300192
+      ui_gameplay_img_117: 21300234
+      ui_gameplay_img_49: 21300098
+      ui_gameplay_img_81: 21300162
+      ui_gameplay_img_23: 21300046
+      ui_gameplay_img_17: 21300034
+      ui_gameplay_img_37: 21300074
+      ui_gameplay_img_86: 21300172
+      ui_gameplay_img_14: 21300028
+      ui_gameplay_img_75: 21300150
+      ui_gameplay_img_44: 21300088
+      ui_gameplay_img_101: 21300202
+      ui_gameplay_img_26: 21300052
+      ui_gameplay_img_7: 21300014
+      ui_gameplay_img_79: 21300158
+      ui_gameplay_img_89: 21300178
+      ui_gameplay_img_98: 21300196
+      ui_gameplay_img_22: 21300044
+      ui_gameplay_img_53: 21300106
+      ui_gameplay_img_65: 21300130
+      ui_gameplay_img_47: 21300094
+      ui_gameplay_img_38: 21300076
+      ui_gameplay_img_116: 21300232
+      ui_gameplay_img_82: 21300164
+      ui_gameplay_img_67: 21300134
+      ui_gameplay_img_35: 21300070
+      ui_gameplay_img_46: 21300092
+      ui_gameplay_img_25: 21300050
+      ui_gameplay_img_64: 21300128
+      ui_gameplay_img_104: 21300208
+      ui_gameplay_img_108: 21300216
+      ui_gameplay_img_52: 21300104
+      ui_gameplay_img_74: 21300148
+      ui_gameplay_img_9: 21300018
+      ui_gameplay_img_110: 21300220
+      ui_gameplay_img_80: 21300160
+      ui_gameplay_img_1: 21300002
+      ui_gameplay_img_85: 21300170
+      ui_gameplay_img_93: 21300186
+      ui_gameplay_img_61: 21300122
+      ui_gameplay_img_100: 21300200
+      ui_gameplay_img_66: 21300132
+      ui_gameplay_img_55: 21300110
+      ui_gameplay_img_50: 21300100
+      ui_gameplay_img_10: 21300020
+      ui_gameplay_img_34: 21300068
+      ui_gameplay_img_40: 21300080
+      ui_gameplay_img_33: 21300066
+      ui_gameplay_img_0: 21300000
+      ui_gameplay_img_69: 21300138
+      ui_gameplay_img_21: 21300042
+      ui_gameplay_img_99: 21300198
+      ui_gameplay_img_56: 21300112
+      ui_gameplay_img_83: 21300166
+      ui_gameplay_img_24: 21300048
+      ui_gameplay_img_114: 21300228
+      ui_gameplay_img_76: 21300152
+      ui_gameplay_img_62: 21300124
+      ui_gameplay_img_94: 21300188
+      ui_gameplay_img_103: 21300206
+      ui_gameplay_img_29: 21300058
+      ui_gameplay_img_8: 21300016
+      ui_gameplay_img_63: 21300126
+      ui_gameplay_img_51: 21300102
+      ui_gameplay_img_16: 21300032
+      ui_gameplay_img_32: 21300064
+      ui_gameplay_img_58: 21300116
+      ui_gameplay_img_19: 21300038
+      ui_gameplay_img_11: 21300022
+      ui_gameplay_img_70: 21300140
+      ui_gameplay_img_36: 21300072
+      ui_gameplay_img_59: 21300118
+      ui_gameplay_img_57: 21300114
+      ui_gameplay_img_15: 21300030
+      ui_gameplay_img_48: 21300096
+      ui_gameplay_img_112: 21300224
+      ui_gameplay_img_115: 21300230
+      ui_gameplay_img_54: 21300108
+      ui_gameplay_img_92: 21300184
+      ui_gameplay_img_39: 21300078
+      ui_gameplay_img_13: 21300026
+      ui_gameplay_img_71: 21300142
+      ui_gameplay_img_45: 21300090
+      ui_gameplay_img_2: 21300004
+      ui_gameplay_img_5: 21300010
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

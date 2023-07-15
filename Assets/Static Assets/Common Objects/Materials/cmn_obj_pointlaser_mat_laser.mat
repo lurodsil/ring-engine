@@ -2,14 +2,18 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: cmn_obj_pointlaser_mat_laser
   m_Shader: {fileID: 4800000, guid: 189e50727d4b9e14ab23a5f8be56a58f, type: 3}
-  m_ShaderKeywords: _ALPHABLEND_ON _EMISSION _VERTEXBLEND_OFF
+  m_ValidKeywords:
+  - _ALPHABLEND_ON
+  - _EMISSION
+  m_InvalidKeywords:
+  - _VERTEXBLEND_OFF
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -72,6 +76,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaToMask: 0
     - _BumpScale: 1
@@ -95,7 +100,7 @@ Material:
     m_Colors:
     - _BlendColorB: {r: 1, g: 1, b: 1, a: 1}
     - _BlendColorG: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.0390625, g: 0.0390625, b: 0.0390625, a: 0.0390625}
+    - _Color: {r: 0.17883301, g: 0.17883301, b: 0.17883301, a: 0.17883301}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FalloffColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectionColor: {r: 0, g: 0, b: 0, a: 1}

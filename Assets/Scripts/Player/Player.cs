@@ -52,11 +52,8 @@ public abstract class Player : MonoBehaviour, IDamageable
     new public CapsuleCollider collider { get; set; }
 
     private Vector3 lastGroundedNormal;
-
     public bool stickToGround;
-
     public bool isGrinding;
-
     private float inputTime { get; set; }
 
     public new Rigidbody rigidbody { get; set; }
@@ -275,7 +272,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     private void OnDisable()
     {
         EventManager.OnTargetObjectsChanged -= UpdateTargets;
-    }    
+    }
 
     private void Awake()
     {
@@ -804,7 +801,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     #region State Move
     private void StateMoveStart()
     {
-        
+
     }
     public void StateMove()
     {
@@ -908,7 +905,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         {
             stateMachine.ChangeState(StateQuickstepRight);
             return;
-        }   
+        }
     }
     private void StateMove3DEnd()
     {
@@ -958,7 +955,7 @@ public abstract class Player : MonoBehaviour, IDamageable
             {
                 rigidbody.Sleep();
             }
-        }      
+        }
 
 
         RaycastHit groundInfo = GetGroundInformation();
@@ -1006,7 +1003,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
         CheckBoost();
 
-        tangent = knot.tangent * tangentMultiplier;      
+        tangent = knot.tangent * tangentMultiplier;
     }
     private void StateMove2DEnd()
     {
@@ -1047,7 +1044,7 @@ public abstract class Player : MonoBehaviour, IDamageable
         else
         {
             isBraking = false;
-        }       
+        }
 
         RaycastHit groundInfo = GetGroundInformation();
 
@@ -1803,7 +1800,7 @@ public abstract class Player : MonoBehaviour, IDamageable
 
         if (isBoosting)
         {
-            if(rigidbody.velocity.magnitude < 80)
+            if (rigidbody.velocity.magnitude < 80)
             {
                 rigidbody.AddForce(tangent * 80, ForceMode.Acceleration);
             }
@@ -1887,7 +1884,7 @@ public abstract class Player : MonoBehaviour, IDamageable
     }
     public void StateGrindSwitchPhysics()
     {
-        if(Time.time > stateMachine.lastStateTime + grindSwitchDelay)
+        if (Time.time > stateMachine.lastStateTime + grindSwitchDelay)
         {
             tempSensor.bezierPath.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out grindKnot, out _, 10 * (Time.time - stateMachine.lastStateTime));
         }

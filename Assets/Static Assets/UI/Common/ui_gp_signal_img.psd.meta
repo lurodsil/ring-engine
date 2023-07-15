@@ -123,7 +123,7 @@ TextureImporter:
       213: 21300078
     second: ui_gp_signal_img_39
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -143,6 +143,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -151,12 +153,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
-    aniso: -1
-    mipBias: -100
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: -1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -174,9 +176,14 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -192,6 +199,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1055,6 +1074,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      ui_gp_signal_img_7: 21300014
+      ui_gp_signal_img_31: 21300062
+      ui_gp_signal_img_3: 21300006
+      ui_gp_signal_img_8: 21300016
+      ui_gp_signal_img_0: 21300000
+      ui_gp_signal_img_37: 21300074
+      ui_gp_signal_img_30: 21300060
+      ui_gp_signal_img_35: 21300070
+      ui_gp_signal_img_5: 21300010
+      ui_gp_signal_img_39: 21300078
+      ui_gp_signal_img_9: 21300018
+      ui_gp_signal_img_13: 21300026
+      ui_gp_signal_img_24: 21300048
+      ui_gp_signal_img_28: 21300056
+      ui_gp_signal_img_25: 21300050
+      ui_gp_signal_img_27: 21300054
+      ui_gp_signal_img_15: 21300030
+      ui_gp_signal_img_34: 21300068
+      ui_gp_signal_img_26: 21300052
+      ui_gp_signal_img_36: 21300072
+      ui_gp_signal_img_12: 21300024
+      ui_gp_signal_img_38: 21300076
+      ui_gp_signal_img_23: 21300046
+      ui_gp_signal_img_22: 21300044
+      ui_gp_signal_img_2: 21300004
+      ui_gp_signal_img_33: 21300066
+      ui_gp_signal_img_11: 21300022
+      ui_gp_signal_img_19: 21300038
+      ui_gp_signal_img_16: 21300032
+      ui_gp_signal_img_21: 21300042
+      ui_gp_signal_img_18: 21300036
+      ui_gp_signal_img_32: 21300064
+      ui_gp_signal_img_6: 21300012
+      ui_gp_signal_img_20: 21300040
+      ui_gp_signal_img_17: 21300034
+      ui_gp_signal_img_29: 21300058
+      ui_gp_signal_img_10: 21300020
+      ui_gp_signal_img_4: 21300008
+      ui_gp_signal_img_1: 21300002
+      ui_gp_signal_img_14: 21300028
   spritePackingTag: 
   pSDRemoveMatte: 1
   pSDShowRemoveMatteOption: 1
