@@ -1,0 +1,257 @@
+fileFormatVersion: 2
+guid: 4f0b85f61b5263d4b8240db72d039caf
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: '#0093'
+    100002: '#0098'
+    100004: '#0103'
+    100006: '#0108'
+    100008: '#0113'
+    100010: '#0127'
+    100012: '#0139'
+    100014: '#0144'
+    100016: '#0152'
+    100018: '#0190'
+    100020: '#0195'
+    100022: '#0219'
+    100024: '#0227'
+    100026: '#0397'
+    100028: '#0400'
+    100030: '#0405'
+    100032: '#0408'
+    100034: '#0413'
+    100036: '#0418'
+    100038: '#0423'
+    100040: '#0428'
+    100042: '#0433'
+    100044: '#0438'
+    100046: '#0443'
+    100048: '#0448'
+    100050: '#0468'
+    100052: '#0473'
+    100054: //RootNode
+    400000: '#0093'
+    400002: '#0098'
+    400004: '#0103'
+    400006: '#0108'
+    400008: '#0113'
+    400010: '#0127'
+    400012: '#0139'
+    400014: '#0144'
+    400016: '#0152'
+    400018: '#0190'
+    400020: '#0195'
+    400022: '#0219'
+    400024: '#0227'
+    400026: '#0397'
+    400028: '#0400'
+    400030: '#0405'
+    400032: '#0408'
+    400034: '#0413'
+    400036: '#0418'
+    400038: '#0423'
+    400040: '#0428'
+    400042: '#0433'
+    400044: '#0438'
+    400046: '#0443'
+    400048: '#0448'
+    400050: '#0468'
+    400052: '#0473'
+    400054: //RootNode
+    2300000: '#0093'
+    2300002: '#0098'
+    2300004: '#0103'
+    2300006: '#0108'
+    2300008: '#0113'
+    2300010: '#0127'
+    2300012: '#0139'
+    2300014: '#0144'
+    2300016: '#0152'
+    2300018: '#0190'
+    2300020: '#0195'
+    2300022: '#0219'
+    2300024: '#0227'
+    2300026: '#0397'
+    2300028: '#0400'
+    2300030: '#0405'
+    2300032: '#0408'
+    2300034: '#0413'
+    2300036: '#0418'
+    2300038: '#0423'
+    2300040: '#0428'
+    2300042: '#0433'
+    2300044: '#0438'
+    2300046: '#0443'
+    2300048: '#0448'
+    2300050: '#0468'
+    2300052: '#0473'
+    3300000: '#0093'
+    3300002: '#0098'
+    3300004: '#0103'
+    3300006: '#0108'
+    3300008: '#0113'
+    3300010: '#0127'
+    3300012: '#0139'
+    3300014: '#0144'
+    3300016: '#0152'
+    3300018: '#0190'
+    3300020: '#0195'
+    3300022: '#0219'
+    3300024: '#0227'
+    3300026: '#0397'
+    3300028: '#0400'
+    3300030: '#0405'
+    3300032: '#0408'
+    3300034: '#0413'
+    3300036: '#0418'
+    3300038: '#0423'
+    3300040: '#0428'
+    3300042: '#0433'
+    3300044: '#0438'
+    3300046: '#0443'
+    3300048: '#0448'
+    3300050: '#0468'
+    3300052: '#0473'
+    4300000: '#0093'
+    4300002: '#0098'
+    4300004: '#0103'
+    4300006: '#0108'
+    4300008: '#0113'
+    4300010: '#0127'
+    4300012: '#0139'
+    4300014: '#0144'
+    4300016: '#0152'
+    4300018: '#0190'
+    4300020: '#0195'
+    4300022: '#0219'
+    4300024: '#0227'
+    4300026: '#0397'
+    4300028: '#0400'
+    4300030: '#0405'
+    4300032: '#0408'
+    4300034: '#0413'
+    4300036: '#0418'
+    4300038: '#0423'
+    4300040: '#0428'
+    4300042: '#0433'
+    4300044: '#0438'
+    4300046: '#0443'
+    4300048: '#0448'
+    4300050: '#0468'
+    4300052: '#0473'
+    6400000: '#0093'
+    6400002: '#0098'
+    6400004: '#0103'
+    6400006: '#0108'
+    6400008: '#0113'
+    6400010: '#0127'
+    6400012: '#0139'
+    6400014: '#0144'
+    6400016: '#0152'
+    6400018: '#0190'
+    6400020: '#0195'
+    6400022: '#0219'
+    6400024: '#0227'
+    6400026: '#0397'
+    6400028: '#0400'
+    6400030: '#0405'
+    6400032: '#0408'
+    6400034: '#0413'
+    6400036: '#0418'
+    6400038: '#0423'
+    6400040: '#0428'
+    6400042: '#0433'
+    6400044: '#0438'
+    6400046: '#0443'
+    6400048: '#0448'
+    6400050: '#0468'
+    6400052: '#0473'
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 0c25eadb36c913e429d8eb0b3d564820, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 0
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 1
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

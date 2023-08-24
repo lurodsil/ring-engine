@@ -81,7 +81,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1
+    path: chr_Sonic 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -151,7 +151,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/eyeL
+    path: chr_Sonic 1/eyeL
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -221,7 +221,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/eyeR
+    path: chr_Sonic 1/eyeR
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -291,7 +291,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference
+    path: chr_Sonic 1/Reference
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -361,7 +361,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips
+    path: chr_Sonic 1/Reference/Hips
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -431,7 +431,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine
+    path: chr_Sonic 1/Reference/Hips/Spine
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -501,7 +501,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -571,7 +571,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -641,7 +641,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -711,7 +711,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -781,7 +781,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -851,7 +851,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -921,7 +921,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -991,7 +991,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1061,7 +1061,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1131,7 +1131,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1201,7 +1201,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1271,7 +1271,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1341,7 +1341,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1411,7 +1411,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1481,7 +1481,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1551,7 +1551,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1621,7 +1621,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1691,7 +1691,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/Sonic_Eyelid
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/Sonic_Eyelid
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1761,7 +1761,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1831,7 +1831,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1901,7 +1901,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -1971,7 +1971,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw/Teeth_Low
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw/Teeth_Low
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2041,7 +2041,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2111,7 +2111,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C/Teeth_Up
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C/Teeth_Up
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2181,7 +2181,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2251,7 +2251,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2321,7 +2321,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/Sonic_Mouth
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/Sonic_Mouth
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2391,7 +2391,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2461,7 +2461,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2531,7 +2531,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2601,7 +2601,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L/Teeth_Low_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L/Teeth_Low_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2671,7 +2671,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2741,7 +2741,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L/Teeth_Up_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L/Teeth_Up_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2811,7 +2811,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_L_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_L_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2881,7 +2881,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_R_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_R_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -2951,7 +2951,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/Sonic_Mouth_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/Sonic_Mouth_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3021,7 +3021,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3091,7 +3091,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C/Needle1_B_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C/Needle1_B_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3161,7 +3161,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3231,7 +3231,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L/Needle1_B_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L/Needle1_B_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3301,7 +3301,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3371,7 +3371,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R/Needle1_B_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R/Needle1_B_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3441,7 +3441,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3511,7 +3511,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C/Needle1_U_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C/Needle1_U_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3581,7 +3581,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3651,7 +3651,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L/Needle1_U_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L/Needle1_U_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3721,7 +3721,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3791,7 +3791,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R/Needle1_U_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R/Needle1_U_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3861,7 +3861,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Nose
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Nose
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -3934,7 +3934,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4004,7 +4004,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4074,7 +4074,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4144,7 +4144,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Elbow_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Elbow_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4214,7 +4214,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4288,7 +4288,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4358,7 +4358,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4428,7 +4428,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L/Index3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L/Index3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4502,7 +4502,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4572,7 +4572,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4643,7 +4643,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4717,7 +4717,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4787,7 +4787,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4857,7 +4857,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4929,7 +4929,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -4999,7 +4999,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5069,7 +5069,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5139,7 +5139,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5209,7 +5209,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5279,7 +5279,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5349,7 +5349,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Wrist_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Wrist_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5423,7 +5423,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5493,7 +5493,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5563,7 +5563,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5633,7 +5633,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Elbow_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Elbow_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5703,7 +5703,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5777,7 +5777,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5847,7 +5847,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5917,7 +5917,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R/Index3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R/Index3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -5991,7 +5991,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6061,7 +6061,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6131,7 +6131,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6205,7 +6205,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6275,7 +6275,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6345,7 +6345,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6419,7 +6419,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6489,7 +6489,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6559,7 +6559,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6633,7 +6633,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6703,7 +6703,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6775,7 +6775,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6845,7 +6845,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Wrist_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Wrist_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6917,7 +6917,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Wing_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Wing_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -6987,7 +6987,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Wing_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Wing_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7057,7 +7057,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Tail
+    path: chr_Sonic 1/Reference/Hips/Tail
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7127,7 +7127,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7197,7 +7197,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7267,7 +7267,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7337,7 +7337,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Socks_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Socks_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7407,7 +7407,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Toe_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Toe_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7477,7 +7477,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Knee_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Knee_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7547,7 +7547,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7617,7 +7617,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7687,7 +7687,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7757,7 +7757,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Socks_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Socks_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7827,7 +7827,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Toe_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Toe_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7897,7 +7897,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Knee_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Knee_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -7967,7 +7967,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Sonic_Body
+    path: chr_Sonic 1/Sonic_Body
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8037,7 +8037,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Sonic_HandFoot
+    path: chr_Sonic 1/Sonic_HandFoot
   m_CompressedRotationCurves: []
   m_EulerCurves: []
   m_PositionCurves:
@@ -8110,7 +8110,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1
+    path: chr_Sonic 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8180,7 +8180,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/eyeL
+    path: chr_Sonic 1/eyeL
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8250,7 +8250,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/eyeR
+    path: chr_Sonic 1/eyeR
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8320,7 +8320,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference
+    path: chr_Sonic 1/Reference
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8390,7 +8390,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips
+    path: chr_Sonic 1/Reference/Hips
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8460,7 +8460,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine
+    path: chr_Sonic 1/Reference/Hips/Spine
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8530,7 +8530,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8600,7 +8600,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8670,7 +8670,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8740,7 +8740,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8810,7 +8810,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8880,7 +8880,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -8950,7 +8950,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9020,7 +9020,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9090,7 +9090,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9160,7 +9160,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9230,7 +9230,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9300,7 +9300,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9370,7 +9370,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9440,7 +9440,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9510,7 +9510,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9580,7 +9580,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9650,7 +9650,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9720,7 +9720,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/Sonic_Eyelid
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/Sonic_Eyelid
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9790,7 +9790,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9860,7 +9860,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -9930,7 +9930,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10000,7 +10000,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw/Teeth_Low
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw/Teeth_Low
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10070,7 +10070,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10140,7 +10140,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C/Teeth_Up
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C/Teeth_Up
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10210,7 +10210,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10280,7 +10280,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10350,7 +10350,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/Sonic_Mouth
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/Sonic_Mouth
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10420,7 +10420,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10490,7 +10490,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10560,7 +10560,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10630,7 +10630,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L/Teeth_Low_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L/Teeth_Low_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10700,7 +10700,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10770,7 +10770,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L/Teeth_Up_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L/Teeth_Up_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10840,7 +10840,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_L_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_L_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10910,7 +10910,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_R_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_R_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -10980,7 +10980,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/Sonic_Mouth_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/Sonic_Mouth_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11050,7 +11050,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11120,7 +11120,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C/Needle1_B_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C/Needle1_B_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11190,7 +11190,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11260,7 +11260,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L/Needle1_B_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L/Needle1_B_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11330,7 +11330,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11400,7 +11400,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R/Needle1_B_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R/Needle1_B_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11470,7 +11470,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11540,7 +11540,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C/Needle1_U_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C/Needle1_U_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11610,7 +11610,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11680,7 +11680,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L/Needle1_U_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L/Needle1_U_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11750,7 +11750,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11820,7 +11820,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R/Needle1_U_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R/Needle1_U_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11890,7 +11890,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Nose
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Nose
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -11960,7 +11960,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12030,7 +12030,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12100,7 +12100,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12170,7 +12170,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Elbow_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Elbow_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12240,7 +12240,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12310,7 +12310,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12380,7 +12380,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12450,7 +12450,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L/Index3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L/Index3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12520,7 +12520,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12590,7 +12590,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12660,7 +12660,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12730,7 +12730,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12800,7 +12800,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12870,7 +12870,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -12940,7 +12940,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13010,7 +13010,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13080,7 +13080,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13150,7 +13150,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13220,7 +13220,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13290,7 +13290,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13360,7 +13360,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Wrist_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Wrist_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13430,7 +13430,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13500,7 +13500,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13570,7 +13570,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13640,7 +13640,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Elbow_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Elbow_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13710,7 +13710,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13780,7 +13780,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13850,7 +13850,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13920,7 +13920,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R/Index3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R/Index3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -13990,7 +13990,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14060,7 +14060,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14130,7 +14130,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14200,7 +14200,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14270,7 +14270,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14340,7 +14340,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14410,7 +14410,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14480,7 +14480,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14550,7 +14550,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14620,7 +14620,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14690,7 +14690,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14760,7 +14760,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14830,7 +14830,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Wrist_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Wrist_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14900,7 +14900,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Wing_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Wing_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -14970,7 +14970,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Wing_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Wing_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15040,7 +15040,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Tail
+    path: chr_Sonic 1/Reference/Hips/Tail
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15110,7 +15110,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15180,7 +15180,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15250,7 +15250,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15320,7 +15320,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Socks_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Socks_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15390,7 +15390,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Toe_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Toe_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15460,7 +15460,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Knee_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Knee_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15530,7 +15530,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15600,7 +15600,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15670,7 +15670,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15740,7 +15740,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Socks_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Socks_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15810,7 +15810,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Toe_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Toe_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15880,7 +15880,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Knee_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Knee_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -15950,7 +15950,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Sonic_Body
+    path: chr_Sonic 1/Sonic_Body
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16020,7 +16020,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Sonic_HandFoot
+    path: chr_Sonic 1/Sonic_HandFoot
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -16091,7 +16091,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1
+    path: chr_Sonic 1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16161,7 +16161,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/eyeL
+    path: chr_Sonic 1/eyeL
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16231,7 +16231,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/eyeR
+    path: chr_Sonic 1/eyeR
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16301,7 +16301,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference
+    path: chr_Sonic 1/Reference
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16371,7 +16371,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips
+    path: chr_Sonic 1/Reference/Hips
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16441,7 +16441,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine
+    path: chr_Sonic 1/Reference/Hips/Spine
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16511,7 +16511,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16581,7 +16581,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16651,7 +16651,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16721,7 +16721,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16791,7 +16791,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16861,7 +16861,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/BrowA_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -16931,7 +16931,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17001,7 +17001,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Ear_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17071,7 +17071,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17141,7 +17141,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17211,7 +17211,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17281,7 +17281,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidLow_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17351,7 +17351,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17421,7 +17421,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17491,7 +17491,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17561,7 +17561,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17631,7 +17631,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/EyeLidUp_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17701,7 +17701,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/Sonic_Eyelid
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Eyelid_bones/Sonic_Eyelid
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17771,7 +17771,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -17841,147 +17841,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.033333335
-        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.06666667
-        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.10000001
-        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.13333334
-        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.16666667
-        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.20000002
-        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.033333335
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.06666667
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.10000001
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.13333334
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.16666667
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      - serializedVersion: 3
-        time: 0.20000002
-        value: {x: 1, y: 1, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw/Teeth_Low
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18051,7 +17911,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18121,7 +17981,147 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C/Teeth_Up
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Jaw/Teeth_Low
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.033333335
+        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.06666667
+        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.10000001
+        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.13333334
+        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.16666667
+        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.20000002
+        value: {x: 0.009999998, y: 0.009999998, z: 0.009999998}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.033333335
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.06666667
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.10000001
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.13333334
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.16666667
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.20000002
+        value: {x: 1, y: 1, z: 1}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_C/Teeth_Up
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18191,7 +18191,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18261,7 +18261,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/MouthPosition/Lip_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18331,7 +18331,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/Sonic_Mouth
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference/Sonic_Mouth
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18401,7 +18401,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18471,7 +18471,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18541,7 +18541,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18611,7 +18611,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L/Teeth_Low_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Jaw_L/Teeth_Low_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18681,7 +18681,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18751,7 +18751,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L/Teeth_Up_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_C_L/Teeth_Up_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18821,7 +18821,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_L_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_L_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18891,7 +18891,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_R_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/MouthPosition_L/Lip_R_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -18961,7 +18961,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/Sonic_Mouth_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/MouthReference_L/Sonic_Mouth_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19031,7 +19031,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19101,7 +19101,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C/Needle1_B_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_C/Needle1_B_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19171,7 +19171,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19241,7 +19241,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L/Needle1_B_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_L/Needle1_B_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19311,7 +19311,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19381,7 +19381,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R/Needle1_B_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_B_R/Needle1_B_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19451,7 +19451,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19521,7 +19521,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C/Needle1_U_C
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_C/Needle1_U_C
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19591,7 +19591,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19661,7 +19661,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L/Needle1_U_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_L/Needle1_U_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19731,7 +19731,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19801,7 +19801,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R/Needle1_U_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Needle_U_R/Needle1_U_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19871,7 +19871,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Neck/Head/Nose
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Neck/Head/Nose
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -19941,7 +19941,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20011,7 +20011,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20081,7 +20081,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20151,7 +20151,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Elbow_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Elbow_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20221,7 +20221,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20291,7 +20291,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20361,7 +20361,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20431,7 +20431,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L/Index3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Index1_L/Index2_L/Index3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20501,7 +20501,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20571,7 +20571,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20641,7 +20641,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Middle1_L/Middle2_L/Middle3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20711,7 +20711,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20781,7 +20781,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20851,7 +20851,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Pinky1_L/Pinky2_L/Pinky3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20921,7 +20921,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -20991,7 +20991,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21061,7 +21061,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Ring1_L/Ring2_L/Ring3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21131,7 +21131,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21201,7 +21201,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21271,7 +21271,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb3_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Thumb1_L/Thumb2_L/Thumb3_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21341,7 +21341,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Wrist_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_L/UpperArm_L/ForeArm_L/Hand_L/Wrist_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21411,7 +21411,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21481,7 +21481,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21551,7 +21551,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21621,7 +21621,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Elbow_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Elbow_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21691,7 +21691,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21761,7 +21761,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21831,7 +21831,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21901,7 +21901,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R/Index3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Index1_R/Index2_R/Index3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -21971,7 +21971,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22041,7 +22041,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22111,7 +22111,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Middle1_R/Middle2_R/Middle3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22181,7 +22181,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22251,7 +22251,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22321,7 +22321,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Pinky1_R/Pinky2_R/Pinky3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22391,7 +22391,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22461,7 +22461,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22531,7 +22531,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Ring1_R/Ring2_R/Ring3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22601,7 +22601,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22671,7 +22671,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22741,7 +22741,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb3_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Thumb1_R/Thumb2_R/Thumb3_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22811,7 +22811,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Wrist_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Shoulder_R/UpperArm_R/ForeArm_R/Hand_R/Wrist_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22881,7 +22881,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Wing_L
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Wing_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -22951,7 +22951,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Spine/Spine1/Wing_R
+    path: chr_Sonic 1/Reference/Hips/Spine/Spine1/Wing_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23021,7 +23021,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Tail
+    path: chr_Sonic 1/Reference/Hips/Tail
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23091,7 +23091,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23161,7 +23161,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23231,7 +23231,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23301,7 +23301,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Socks_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Socks_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23371,7 +23371,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Toe_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Foot_L/Toe_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23441,7 +23441,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_L/Calf_L/Knee_L
+    path: chr_Sonic 1/Reference/Hips/Thigh_L/Calf_L/Knee_L
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23511,7 +23511,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23581,7 +23581,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23651,7 +23651,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23721,7 +23721,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Socks_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Socks_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23791,7 +23791,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Toe_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Foot_R/Toe_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23861,7 +23861,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Reference/Hips/Thigh_R/Calf_R/Knee_R
+    path: chr_Sonic 1/Reference/Hips/Thigh_R/Calf_R/Knee_R
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -23931,7 +23931,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Sonic_Body
+    path: chr_Sonic 1/Sonic_Body
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -24001,7 +24001,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: chr_SuperSonic_HD 1/Sonic_HandFoot
+    path: chr_Sonic 1/Sonic_HandFoot
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 30
