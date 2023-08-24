@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WaterSurface : MonoBehaviour
+public class WaterSurfaces : MonoBehaviour
 {
     public BoxCollider surface;
     BoxCollider boxCollider;
@@ -22,10 +22,11 @@ public class WaterSurface : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameTags.playerTag))
+        if (other.CompareTag("Player"))
         {
-            Instantiate(waterSplash, new Vector3(other.transform.position.x, transform.position.y + 0.1f, other.transform.position.z), Quaternion.identity);
+            Instantiate(waterSplash, new Vector3(other.transform.position.x, other.bounds.max.y + 0.1f, other.transform.position.z), Quaternion.identity);
         }
+       
     }
 
     private void OnTriggerStay(Collider other)
@@ -57,11 +58,7 @@ public class WaterSurface : MonoBehaviour
 
             surface.isTrigger = true;
 
-
-
             Instantiate(waterSplash, other.transform.position, Quaternion.identity);
         }
-
-
     }
 }
