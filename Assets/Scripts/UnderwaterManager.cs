@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.SceneManagement;
 
 public class UnderwaterManager : MonoBehaviour
 {
@@ -7,35 +9,50 @@ public class UnderwaterManager : MonoBehaviour
     public AudioClip underwaterAlert1;
     public AudioClip underwaterAlert2;
     public AudioClip underwaterCountdown;
+    public AudioClip drown;
     public int underwaterAlertState { get; set; }
     private float underwaterTimer;
 
     public AudioSource audioSource;
     public AudioMixer mixer;
 
-    void Start()
-    {
+    public CustomPassVolume underwaterPassVolume;
 
+
+    private void OnLevelWasLoaded(int level)
+    {
+        UnderwaterReset();
+        UnderwaterEnd();
     }
 
-    void UnderwaterStart()
+    
+
+    public void UnderwaterStart()
     {
-        mixer.SetFloat("Lowpass", 800);
+        
+        mixer.SetFloat("Lowpass", 600);
         underwater = true;
+        //Here we change the injection point to render the underwater distortion properly
+        underwaterPassVolume.injectionPoint = CustomPassInjectionPoint.BeforePostProcess;
     }
 
-    void UnderwaterEnd()
+    public void UnderwaterEnd()
     {
         mixer.SetFloat("Lowpass", 22000);
         underwater = false;
+        //Here we change the injection point to render the boost wave propperly
+        underwaterPassVolume.injectionPoint = CustomPassInjectionPoint.BeforeTransparent;
     }
 
     void UnderwaterReset()
     {
+        
         underwaterAlertState = 0;
         underwaterTimer = Time.time;
         audioSource.Stop();
     }
+
+    
 
     void Update()
     {
@@ -77,6 +94,17 @@ public class UnderwaterManager : MonoBehaviour
                             underwaterTimer = Time.time;
                         }
                         break;
+                        case 4:
+                        if (Time.time > underwaterTimer + 11)
+                        {
+                            Player.instance.drown = true;
+                            Player.instance.stateMachine.ChangeState(Player.instance.StateDie);
+                            audioSource.PlayOneShot(drown);
+                            underwaterAlertState++;
+                        }
+                        
+                        break;
+
                 }
             }
             else
