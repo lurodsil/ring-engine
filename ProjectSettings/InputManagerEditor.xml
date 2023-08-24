@@ -9,7 +9,7 @@
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
     <Gravity>0</Gravity>
-    <Dead>19</Dead>
+    <Dead>0</Dead>
     <Sensitivity>1</Sensitivity>
     <Snap>True</Snap>
     <Invert>False</Invert>
@@ -47,7 +47,7 @@
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
     <Gravity>0</Gravity>
-    <Dead>19</Dead>
+    <Dead>0</Dead>
     <Sensitivity>1</Sensitivity>
     <Snap>True</Snap>
     <Invert>False</Invert>
@@ -66,7 +66,7 @@
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
     <Gravity>0</Gravity>
-    <Dead>19</Dead>
+    <Dead>0</Dead>
     <Sensitivity>1</Sensitivity>
     <Snap>True</Snap>
     <Invert>False</Invert>
@@ -178,7 +178,7 @@
     <NegativeButton></NegativeButton>
     <PositiveButton>joystick button 1</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
-    <AltPositiveButton>left control</AltPositiveButton>
+    <AltPositiveButton>mouse 1</AltPositiveButton>
     <Gravity>1000</Gravity>
     <Dead>1</Dead>
     <Sensitivity>1000</Sensitivity>
@@ -197,7 +197,7 @@
     <NegativeButton></NegativeButton>
     <PositiveButton>joystick button 2</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
-    <AltPositiveButton>left shift</AltPositiveButton>
+    <AltPositiveButton>mouse 0</AltPositiveButton>
     <Gravity>1000</Gravity>
     <Dead>1</Dead>
     <Sensitivity>1000</Sensitivity>
@@ -480,37 +480,37 @@
     <DescriptiveName></DescriptiveName>
     <DescriptiveNegativeName></DescriptiveNegativeName>
     <NegativeButton></NegativeButton>
-    <PositiveButton>left shift</PositiveButton>
+    <PositiveButton>z</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
-    <Gravity>3</Gravity>
+    <Gravity>1000</Gravity>
     <Dead>1</Dead>
-    <Sensitivity>3</Sensitivity>
+    <Sensitivity>1000</Sensitivity>
     <Snap>False</Snap>
     <Invert>False</Invert>
     <Type>KeyOrMouseButton</Type>
     <XboxAxis>_XAxis</XboxAxis>
     <JoyNum>GetMotionFromAllJoysticks</JoyNum>
     <XBoxAxis>None</XBoxAxis>
-    <XBoxButton>None</XBoxButton>
+    <XBoxButton>LeftTrigger</XBoxButton>
   </LeftTrigger>
   <RightTrigger>
     <Name>Right Trigger</Name>
     <DescriptiveName></DescriptiveName>
     <DescriptiveNegativeName></DescriptiveNegativeName>
     <NegativeButton></NegativeButton>
-    <PositiveButton>right shift</PositiveButton>
+    <PositiveButton>left shift</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
-    <Gravity>3</Gravity>
+    <Gravity>1000</Gravity>
     <Dead>1</Dead>
-    <Sensitivity>3</Sensitivity>
+    <Sensitivity>1000</Sensitivity>
     <Snap>False</Snap>
     <Invert>False</Invert>
     <Type>KeyOrMouseButton</Type>
     <XboxAxis>_XAxis</XboxAxis>
     <JoyNum>GetMotionFromAllJoysticks</JoyNum>
     <XBoxAxis>None</XBoxAxis>
-    <XBoxButton>None</XBoxButton>
+    <XBoxButton>RightTrigger</XBoxButton>
   </RightTrigger>
 </Axes>

@@ -26,5 +26,7 @@
     <Start>Start</Start>
     <X>X</X>
     <Y>Y</Y>
+    <LeftTrigger>Left Trigger</LeftTrigger>
+    <RightTrigger>Right Trigger</RightTrigger>
   </XboxButton>
 </InputManager>
