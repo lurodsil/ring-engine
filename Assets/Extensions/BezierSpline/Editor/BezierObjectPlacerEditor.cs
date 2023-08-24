@@ -14,7 +14,7 @@ public class BezierObjectPlacerEditor : Editor
 
         if (GUILayout.Button("Create Object"))
         {
-            BezierKnot bezierKnot = bezierObjectPlacer.bezierSpline.GetKnot(bezierObjectPlacer.time);
+            BezierKnot bezierKnot = bezierObjectPlacer.dualBezierSpline.GetKnot(bezierObjectPlacer.time, 0.5f);
 
             Instantiate(bezierObjectPlacer.prefab, bezierKnot.point + 
                 (bezierKnot.binormal * bezierObjectPlacer.offset.x) +

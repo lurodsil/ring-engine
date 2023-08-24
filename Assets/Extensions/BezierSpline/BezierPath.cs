@@ -92,4 +92,22 @@ public class BezierPath : MonoBehaviour
             target.position -= pathPosition * (atractForce * Time.deltaTime);
         }
     }
+
+    public void GetClosestKnot(Vector3 position, out BezierKnot bezierKnot, float binormalOffset = 0.5f)
+    {
+        if (bezierSpline)
+        {
+            float closestTimeOnSpline = fastMode == true ? bezierSpline.ClosestPointFast(position) : bezierSpline.ClosestPoint(position, pathFindPrecision);
+            bezierKnot = bezierSpline.GetKnot(closestTimeOnSpline);
+        }
+        else if (dualBezierSpline)
+        {
+            float closestTimeOnSpline = fastMode == true ? dualBezierSpline.ClosestPointFast(position) : dualBezierSpline.ClosestPoint(position, pathFindPrecision);
+            bezierKnot =  dualBezierSpline.GetKnot(closestTimeOnSpline, binormalOffset);
+        }
+        else
+        {
+            bezierKnot = null;
+        }
+    }
 }
