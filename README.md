@@ -15,4 +15,44 @@ It's a big project, there a lot of know bugs that I didn't have time to fix yet.
 # Finally
 I hope everyone who reached to this repository like the content and have fun using Ring Engine.
 
+# Tutorial Scene
+
+Side View
+- [x] Running, loop
+- [x] Boost
+- [x] Double Jump
+- [x] Airboost
+- [x] Sliding
+- [x] Lightspeed Dash
+- [x] Homing Attack
+- [x] Homing Attack target
+- [x] Chain destroy
+- [x] Push Box
+- [x] Wall jump
+- [x] Dash pads
+- [x] Springs
+- [x] Select cannon
+- [x] Trick Jump
+- [x] Pulley | Up Reel
+- [x] Dash Ring | Moving Platform
+- [x] Pole Spin
+- [x] Underwater
+- [x] Ceil Hanging
+- [ ] Grinding
+- [ ] Balloon
+- [ ] Fan
+- [ ] Jump Board
+- [ ] Jump Pole
+- [ ] Point Marker
+- [ ] Spring Fake
+- [ ] Damage
+- [ ] Switch
+- [ ] Cannon
+- [ ] Autorun
+- [ ] Jump Collision
+
+3D view
+- [ ] Grinding | Grind Switch
+- [ ] Snowboarding
+
 Youtube - https://youtube.com/lurodsil
