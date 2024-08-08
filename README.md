@@ -39,15 +39,15 @@ Side View
 - [x] Underwater
 - [x] Ceil Hanging
 - [ ] Grinding
-- [ ] Balloon
-- [ ] Fan
-- [ ] Jump Board
-- [ ] Jump Pole
+- [x] Balloon
+- [x] Fan
+- [x] Jump Board
+- [x] Jump Pole
 - [ ] Point Marker
 - [ ] Spring Fake
 - [ ] Damage
-- [ ] Switch
-- [ ] Cannon
+- [x] Switch
+- [x] Cannon
 - [ ] Autorun
 - [ ] Jump Collision
 
