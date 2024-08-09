@@ -8,6 +8,11 @@ public class SnowBoardStart : GenerationsObject
     public AudioClip boardGet;
     private AudioSource audioSource;
 
+    private void Awake()
+    {
+        OnPlayerTriggerEnter!.AddListener(SnowboardStart);
+    }
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -21,19 +26,14 @@ public class SnowBoardStart : GenerationsObject
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void SnowboardStart()
     {
-        if (other.CompareTag(GameTags.playerTag))
+        if (!player.isSnowboarding)
         {
-            player = other.GetComponent<Player>();
-
-            if (!player.isSnowboarding)
-            {
-                audioSource.PlayOneShot(boardGet);
-                snowboard.SetActive(false);
-                player.canCancelState = canCancelState;
-                player.stateMachine.ChangeState(player.StateSnowBoard);
-            }
-        }
+            audioSource.PlayOneShot(boardGet);
+            snowboard.SetActive(false);
+            player.canCancelState = canCancelState;
+            player.stateMachine.ChangeState(player.StateSnowBoard);
+        }        
     }
 }
