@@ -3,17 +3,9 @@
 [ExecuteInEditMode]
 public class Wire : MonoBehaviour
 {
-
     public BezierSpline spline;
     public Transform pulleyStart, pulleyEnd;
     private Vector3 offset = new Vector3(0, -2.5f, 0);
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
 
     void Update()
     {
@@ -31,11 +23,4 @@ public class Wire : MonoBehaviour
             transform.GetChild(i).forward = spline.GetTangent(step * i);
         }
     }
-
-    private void Reset()
-    {
-
-
-    }
-
 }

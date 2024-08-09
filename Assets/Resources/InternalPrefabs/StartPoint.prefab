@@ -9980,6 +9980,7 @@ MonoBehaviour:
   wallSearchLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  isStruggling: 0
   tangentCopy: {x: 0, y: 0, z: 0}
   autorunVelocity: 0
   stickToGround: 1
@@ -10036,6 +10037,7 @@ MonoBehaviour:
   ringEnergy: 4.2981806
   isBraking: 0
   isBoosting: 0
+  isPhysicEnabled: 0
   cameraTarget: {fileID: 224514499248895389}
   ignoreDamage: 0
   ignoreDamageTime: 5
@@ -95552,7 +95554,7 @@ MonoBehaviour:
   distance: 5
   distanceWhenBoosting: 3
   fieldOfView: 45
-  fieldOfWhenBoosting: 75
+  fieldOfViewWhenBoosting: 90
   easeIn: 0.5
   targetOffset: {x: 0, y: 0, z: 0}
   cameraEnabledTime: 0
