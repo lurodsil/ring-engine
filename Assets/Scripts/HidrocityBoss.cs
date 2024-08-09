@@ -233,7 +233,7 @@ public class HidrocityBoss : GenerationsObject
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private new void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
@@ -264,7 +264,7 @@ public class HidrocityBoss : GenerationsObject
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private new void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag) && working)
         {
