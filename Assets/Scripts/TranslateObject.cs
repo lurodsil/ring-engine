@@ -13,22 +13,22 @@ public class TranslateObject : MonoBehaviour
 
     private void OnEnable()
     {
-        MainCamera.instance.enabled = false;
+        MainCamera.SetActive(false);
         Player.instance.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        MainCamera.instance.transform.position = Vector3.Lerp(MainCamera.instance.transform.position, cameraPosition.position, 10 * Time.deltaTime);
-        MainCamera.instance.transform.rotation = Quaternion.Lerp(MainCamera.instance.transform.rotation, cameraPosition.rotation, 10 * Time.deltaTime);
+        MainCamera.Position = Vector3.Lerp(MainCamera.Position, cameraPosition.position, 10 * Time.deltaTime);
+        MainCamera.Rotation = Quaternion.Lerp(MainCamera.Rotation, cameraPosition.rotation, 10 * Time.deltaTime);
 
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, velocity * Time.deltaTime);
 
         if (transform.position == targetPosition)
         {
             this.enabled = false;
-            MainCamera.instance.enabled = true;
+            MainCamera.SetActive(true);
             Player.instance.enabled = true;
         }
     }
