@@ -5,7 +5,7 @@ public class GameplayUI : MonoBehaviour
 {
 
     public static GameplayUI instance;
-
+    public Image cameraBlock;
     public Image buttonA, buttonB, buttonX, buttonY;
     public GameObject buttonLBRB;
     public GameObject leftStick;
@@ -13,6 +13,7 @@ public class GameplayUI : MonoBehaviour
     private AudioSource audioSource;
     private Vector3 worldPosition;
     private Image activeButton;
+    public GameObject aPlusX;
 
     // Use this for initialization
     void Start()
@@ -22,16 +23,16 @@ public class GameplayUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        //if (worldPosition != Vector3.zero)
-        //{
-        //    if (Vector3.Dot(Camera.main.transform.forward, VectorExtension.Direction(Camera.main.transform.position, Camera.main.transform.forward)) < 0)
-        //    {
-        //        activeButton.rectTransform.position = Camera.main.WorldToScreenPoint(worldPosition);
-        //    }
+        cameraBlock.enabled = CameraManager.GetCameraCount() > 0;
 
-        //}
+        if (worldPosition != Vector3.zero)
+        {
+
+            activeButton.rectTransform.position = Camera.main.WorldToScreenPoint(worldPosition);
+
+        }
     }
 
     public void ShowButton(XboxButton button)
@@ -41,6 +42,7 @@ public class GameplayUI : MonoBehaviour
         {
             case XboxButton.A:
                 buttonA.enabled = true;
+                activeButton = buttonA;
                 break;
             case XboxButton.B:
                 buttonB.enabled = true;
@@ -48,9 +50,11 @@ public class GameplayUI : MonoBehaviour
                 break;
             case XboxButton.X:
                 buttonX.enabled = true;
+                activeButton = buttonX;
                 break;
             case XboxButton.Y:
                 buttonY.enabled = true;
+                activeButton = buttonY;
                 break;
             case XboxButton.LeftStick:
                 leftStick.SetActive(true);
@@ -76,5 +80,15 @@ public class GameplayUI : MonoBehaviour
         buttonLBRB.SetActive(false);
         leftStick.SetActive(false);
         worldPosition = Vector3.zero;
+    }
+
+    public void ShowAplusX()
+    {
+        audioSource.PlayOneShot(buttonShow);
+        aPlusX.gameObject.SetActive(true);
+    }
+    public void HideAplusX()
+    {
+        aPlusX.gameObject.SetActive(false);
     }
 }
