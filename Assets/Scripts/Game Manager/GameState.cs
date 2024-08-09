@@ -3,5 +3,7 @@
     MainMenu,
     Loading,
     Playing,
-    Paused
+    Paused,
+    GameOver,
+    Cutscene
 }
