@@ -14,7 +14,7 @@ public class BezierSplineColliderEditor : Editor
 
         if (GUILayout.Button("Create Collider"))
         {
-            bezierSplineCollider.CreateMesh(bezierSplineCollider.iterations);
+            bezierSplineCollider.CreateMesh();
         }
 
         if (GUILayout.Button("Erase Collider"))
