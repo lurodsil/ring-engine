@@ -6,18 +6,9 @@ public class WaterSurfaces : MonoBehaviour
     BoxCollider boxCollider;
     public GameObject waterSplash;
 
-    float centerY;
-
-    // Use this for initialization
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +17,7 @@ public class WaterSurfaces : MonoBehaviour
         {
             Instantiate(waterSplash, new Vector3(other.transform.position.x, other.bounds.max.y + 0.1f, other.transform.position.z), Quaternion.identity);
         }
-       
+
     }
 
     private void OnTriggerStay(Collider other)
