@@ -8,7 +8,7 @@ public class MovingPlatform : MonoBehaviour
     public float angularVelocity = 0;
     public AnimationCurve movementCurve;
 
-    void Update()
+    void FixedUpdate()
     {
         platform.localPosition = Vector3.Lerp(pointA.localPosition, pointB.localPosition, movementCurve.Evaluate(Mathf.PingPong(Time.time * velocity, 1)));
         platform.Rotate(0, angularVelocity * Time.deltaTime, 0);
