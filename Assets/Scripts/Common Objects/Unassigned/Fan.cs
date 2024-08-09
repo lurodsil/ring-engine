@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class Fan : GenerationsObject
+public class Fan :  CommonActivableStatefulObject
 {
+
+
 
     public float Base = 0f;
 
@@ -32,66 +34,60 @@ public class Fan : GenerationsObject
     private BoxCollider boxCollider;
     float lastStateTime;
 
-    public override void OnValidate()
+    public void Start()
     {
-        boxCollider = GetComponent<BoxCollider>();
 
-        boxCollider.size = new Vector3(2, KeepHeight, 2);
-
-        boxCollider.center = new Vector3(0, KeepHeight / 2, 0);
-
-
-    }
-
-    private void Start()
-    {
         animator = GetComponent<Animator>();
+        animator.SetTrigger("Fan On");
+        animator.speed = 0;
+
 
         audioSource = GetComponent<AudioSource>();
 
         audioSource.clip = sound;
 
+        if (active)
+        {
+            TurnOn();
+        }
+        
+
         objectState = StateFloat;
+
+        OnPlayerTriggerExit.AddListener(ExitFan);
+        OnBecomeActive.AddListener(TurnOn);
+        OnBecomeInactive.AddListener(TurnOff);
     }
 
-    private void Update()
-    {
-
-    }
-
-    private void OnTriggerExit(Collider other)
+    private void ExitFan()
     {
         if (active)
         {
-            if (other.CompareTag(GameTags.playerTag))
-            {
-                player.stateMachine.ChangeState(player.StateFall, gameObject);
-            }
+            player.stateMachine.ChangeState(player.StateFall, gameObject);            
         }
     }
 
-    private void LateUpdate()
+    public void TurnOn()
     {
-        if (!audioSource.isPlaying && active)
-        {
-            audioSource.Play();
-            animator.SetTrigger("Fan On");
-        }
-        else if (audioSource.isPlaying && !active)
-        {
-            audioSource.Stop();
-            animator.SetTrigger("Fan Off");
-        }
+        audioSource.Play();
+        animator.speed = 1;
+        
+    }
+
+    public void TurnOff()
+    {
+        audioSource.Stop();
+        animator.speed = 0;
     }
 
     #region State
     void StateFloatStart()
     {
-
+        
     }
     void StateFloat()
     {
-        Vector3 vel = MainCamera.instance.transform.TransformDirection(new Vector3(Input.GetAxis(XboxAxis.LeftStickX) * 2, 0, Input.GetAxis(XboxAxis.LeftStickY) * 2));
+        Vector3 vel = MainCamera.Transform.TransformDirection(new Vector3(Input.GetAxis(XboxAxis.LeftStickX) * 2, 0, Input.GetAxis(XboxAxis.LeftStickY) * 2));
 
         velocity.x = vel.x;
         velocity.z = vel.z;
@@ -110,6 +106,8 @@ public class Fan : GenerationsObject
         velocity.y = Mathf.Lerp(velocity.y, targetVel, 2 * Time.deltaTime);
 
         player.rigidbody.velocity = velocity;
+
+        player.transform.up = Vector3.up;
     }
     void StateFloatEnd()
     {

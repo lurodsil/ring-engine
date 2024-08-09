@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChangeMode_3Dto2D : GenerationsObject
+public class ChangeMode_3Dto2D : CommonObject
 {
     public float Collision_Height = 40f;
     public float Collision_Width = 25f;
@@ -13,18 +13,16 @@ public class ChangeMode_3Dto2D : GenerationsObject
     public float m_PathEaseTime = 0.5f;
     public BezierPath bezierPath;
 
-    public override void OnValidate()
+
+
+    private void Start()
     {
-        transform.localScale = new Vector3(Collision_Width, Collision_Height, 0.5f);
+        OnPlayerTriggerEnter.AddListener(ChangeMode);
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public void ChangeMode()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            player.sideViewPath = bezierPath;
-        }
+        player.sideViewPath = bezierPath;
     }
 
     public void OnDrawGizmos()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DashPanel : RingEngineObject
+public class DashPanel : CommonStatefulObject
 {
     public bool IsChangeCameraWhenChangePath = false;
     public bool IsChangePath = false;
@@ -23,11 +23,6 @@ public class DashPanel : RingEngineObject
 
     public Transform startPoint;
 
-    public override void OnValidate()
-    {
-
-    }
-
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -40,6 +35,8 @@ public class DashPanel : RingEngineObject
         player.transform.forward = transform.forward;
         player.transform.position = transform.position;
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
+        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.AddForce(transform.forward * Speed, ForceMode.Impulse);
     }
     void StateDashPanel()
     {
@@ -47,14 +44,13 @@ public class DashPanel : RingEngineObject
 
         if (player.IsGrounded())
         {
-            player.rigidbody.velocity = player.transform.forward * Speed;
-            player.transform.StickToGround(raycastHit);
+            player.transform.StickToGround(raycastHit,10);
         }
         else
         {
             player.stateMachine.ChangeState(player.StateFall, gameObject);
             return;
-        }
+        }        
 
         if (Time.time > outOfControl)
         {
@@ -63,7 +59,7 @@ public class DashPanel : RingEngineObject
     }
     void StateDashPanelEnd()
     {
-
+        player.tangentMultiplier = Vector3.Dot(player.sideViewKnot.tangent, transform.forward);
     }
     #endregion
 }

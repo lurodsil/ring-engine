@@ -9,7 +9,7 @@ public enum CannonState
     Shot
 }
 
-public class Cannon : GenerationsObject
+public class Cannon : CommonActivableStatefulObject
 {
     public bool AutoShot = false;
     public float BaseVel = 20.4f;
@@ -48,9 +48,7 @@ public class Cannon : GenerationsObject
 
     private bool aimCannon;
 
-    public override void OnValidate()
-    {
-    }
+    public bool isTo3D;
 
     private void Start()
     {
@@ -89,11 +87,15 @@ public class Cannon : GenerationsObject
 
     private void StateCanonStart()
     {
-        player.rigidbody.isKinematic = true;
         player.rigidbody.useGravity = false;
         player.rigidbody.velocity = Vector3.zero;
         cannonState = CannonState.EnteringUp;
-        player.bezierPath = null;
+        if (isTo3D)
+        {
+            player.bezierPath = null;
+            player.sideViewPath = null;
+        }
+        
     }
 
     private void StateCanon()
@@ -137,7 +139,7 @@ public class Cannon : GenerationsObject
             case CannonState.Wait:
                 if (AutoShot || Input.GetButtonDown(XboxButton.A))
                 {
-                    player.rigidbody.isKinematic = false;
+                    
                     player.rigidbody.useGravity = true;
                     player.transform.parent = null;
                     cannonState = CannonState.Shot;
@@ -152,7 +154,7 @@ public class Cannon : GenerationsObject
                 {
                     player.rigidbody.velocity = shotPosition.forward * BaseVel;
                 }
-                
+
                 if (player.IsGrounded())
                 {
                     player.stateMachine.ChangeState(player.StateMove3D, gameObject);
@@ -167,7 +169,7 @@ public class Cannon : GenerationsObject
     private void StateCanonEnd()
     {
         aimCannon = false;
-        cannonState = CannonState.Wait;
+        cannonState = CannonState.Wait;        
     }
 
     #endregion State

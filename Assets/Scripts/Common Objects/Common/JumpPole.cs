@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JumpPole : RingEngineObject
+public class JumpPole : CommonStatefulObject
 {
     public float addMinVelocity = 10f;
     public float addMaxVelocity = 30f;

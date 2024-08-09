@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.Video;
 
-public class UpReel : RingEngineObject
+public class UpReel : CommonActivableStatefulObject
 {
     public float impulseVelocity = 18f;
     public float length = 8f;
@@ -30,9 +31,10 @@ public class UpReel : RingEngineObject
         endPosition = transform.position;
 
         objectState = StateUpReel;
+        OnPlayerTriggerEnter.AddListener(PullUp);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (active)
         {
@@ -73,14 +75,6 @@ public class UpReel : RingEngineObject
     }
 
 
-    public override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-
-        pullUp = true;
-    }
-
-
     #region State Up Reel
     void StateUpReelStart()
     {
@@ -115,5 +109,10 @@ public class UpReel : RingEngineObject
         Gizmos.color = Color.red;
         Gizmos.DrawLine(handle.position, handleOffset);
         Gizmos.DrawSphere(handleOffset, 0.2f);
+    }
+
+    public void PullUp()
+    {
+        pullUp = true;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NavigationCollision : GenerationsObject
+public class NavigationCollision : CommonObject
 {
 
     public float CancelAngle = 90f;
@@ -25,28 +25,49 @@ public class NavigationCollision : GenerationsObject
     public int TargetObject_RelationSetObject;
     public XboxButton button;
 
-    public override void OnValidate()
+    public Transform worldPosition;
+
+    public void OnValidate()
     {
         transform.localScale = new Vector3(Collision_Width, Collision_Height, Collision_Length);
 
         gameObject.GetComponent<BoxCollider>().isTrigger = true;
+
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (SlidingPosition == Vector3.zero)
+        base.OnPlayerTriggerEnter.AddListener(OnPlayerTriggerEnter);
+        base.OnPlayerTriggerExit.AddListener(OnPlayerTriggerExit);
+    }
+
+    private new void OnPlayerTriggerEnter()
+    {
+        //GameplayUI.instance.ShowAplusX();
+
+        if (!worldPosition)
         {
-            GameplayUI.instance.ShowButton(button);
+            if (button == XboxButton.None)
+            {
+                GameplayUI.instance.ShowAplusX();
+            }
+            else
+            {
+                GameplayUI.instance.ShowButton(button);
+            }
         }
         else
         {
-            GameplayUI.instance.ShowButton(button, SlidingPosition);
+            GameplayUI.instance.ShowButton(button, worldPosition.position);
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private new void OnPlayerTriggerExit()
     {
         GameplayUI.instance.HideButton();
+
+        GameplayUI.instance.HideAplusX();
     }
 
     private void OnDrawGizmosSelected()

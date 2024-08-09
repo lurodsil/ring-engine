@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class GenerationsObject : RingEngineObject
+public class GenerationsObject : CommonObject
 {
     public int SetObjectID;
 
     public GenerationsObject FindObjectByID(int id)
     {
-        GenerationsObject[] gos = FindObjectsOfType<GenerationsObject>();
+        GenerationsObject[] gos = FindObjectsByType<GenerationsObject>(FindObjectsSortMode.InstanceID);
 
         foreach (GenerationsObject go in gos)
         {

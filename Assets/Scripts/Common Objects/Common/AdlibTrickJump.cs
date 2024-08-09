@@ -1,11 +1,13 @@
 using UnityEngine;
 
-public class AdlibTrickJump : RingEngineObject
+public class AdlibTrickJump : CommonObject
 {
     public float ImpulseSpeedOnBoost = 41f;
     public float ImpulseSpeedOnNormal = 41f;
     public bool IsTo3D = true;
     public float OutOfControl = 3.5f;
+
+    public float outOfControlSuccess = 0.6f;
     private AudioSource audioSource;
     public Transform startPoint;
     public AudioClip sound;
@@ -22,6 +24,7 @@ public class AdlibTrickJump : RingEngineObject
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        OnPlayerTriggerEnter.AddListener(AdlibTrick);
     }
 
     #region State Jump Board
@@ -41,6 +44,7 @@ public class AdlibTrickJump : RingEngineObject
         index = -1;
 
         Time.timeScale = 0.2f;
+        Time.fixedDeltaTime = 0.02f * 0.02f;
 
         player.transform.position = startPoint.position;
 
@@ -109,7 +113,7 @@ public class AdlibTrickJump : RingEngineObject
 
         
 
-        if (Time.time > player.stateMachine.lastStateTime  + 0.6f)
+        if (Time.time > player.stateMachine.lastStateTime  + OutOfControl)
         {
             player.stateMachine.ChangeState(player.StateTransition, gameObject);
         }
@@ -117,8 +121,11 @@ public class AdlibTrickJump : RingEngineObject
     void StateAdlibTrickJumpEnd()
     {
         Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
 
         EventManager.TrickPanelRainbowEnd();
+
+        player.outOfControl = outOfControlSuccess;
     }
     #endregion
 
@@ -134,15 +141,10 @@ public class AdlibTrickJump : RingEngineObject
         GizmosExtension.DrawTrajectory(startPoint.position, startPoint.forward, ImpulseSpeedOnBoost, OutOfControl);
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public void AdlibTrick()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            audioSource.PlayOneShot(sound);
-
-            player = other.GetComponent<Player>();
-
-            player.stateMachine.ChangeState(StateAdlibTrickJump, gameObject);
-        }
+        audioSource.PlayOneShot(sound);
+        player.stateMachine.ChangeState(StateAdlibTrickJump, gameObject);
+        
     }
 }

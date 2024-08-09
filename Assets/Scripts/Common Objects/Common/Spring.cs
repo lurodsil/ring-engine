@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Spring : RingEngineObject
+public class Spring : CommonStatefulObject
 {
     public bool IsHomingAttackEnable = false;
     public bool isStartPositionConstant = true;
@@ -14,15 +14,12 @@ public class Spring : RingEngineObject
     private float duration;
     private float outOfControl;
     private float dotTransformUpVector3Up;
-
-
-    private void Awake()
-    {
-        objectState = StateSpring;
-    }
+    private float groundIgnoreTime = 0.5f;
 
     public void Start()
     {
+        objectState = StateSpring;
+        canTransitionToSameState = true;
         dotTransformUpVector3Up = Vector3.Dot(transform.up, Vector3.up);
     }
 
@@ -50,8 +47,7 @@ public class Spring : RingEngineObject
         player.afectMeshRotation = true;
     }
     private void StateSpring()
-    {     
-
+    {
         if (Time.time < duration)
         {
             player.rigidbody.velocity = transform.up * firstSpeed;
@@ -84,11 +80,13 @@ public class Spring : RingEngineObject
             player.stateMachine.ChangeState(player.StateFall, gameObject);
         }
 
-        if (player.IsGrounded())
+        if (Time.time > player.stateMachine.lastStateTime + groundIgnoreTime)
         {
-            player.stateMachine.ChangeState(player.StateMove3D, gameObject);
+            if (player.IsGrounded())
+            {
+                player.stateMachine.ChangeState(player.StateMove3D, gameObject);
+            }
         }
-
     }
     private void StateSpringEnd()
     {

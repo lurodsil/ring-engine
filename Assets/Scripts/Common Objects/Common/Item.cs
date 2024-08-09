@@ -1,9 +1,5 @@
-public class Item : GenerationsObject
+public class Item : CommonObject
 {
     public float ItemType = 0f;
 
-    public override void OnValidate()
-    {
-
-    }
 }

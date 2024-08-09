@@ -13,9 +13,10 @@ public class GoalRing : GenerationsObject
     public AudioClip sound;
     public bool get;
     private AudioSource audioSource;
-    public override void OnValidate()
-    {
 
+    private void Awake()
+    {
+        OnPlayerTriggerEnter!.AddListener(GoalRingStart);
     }
 
     private void Start()
@@ -34,7 +35,7 @@ public class GoalRing : GenerationsObject
             {
                 if (GameManager.instance.ScreenFadeOut())
                 {
-                    GameManager.instance.LoadSceneWithLoading("MainMenu");
+                    GameManager.instance.LoadSceneWithLoading("Test Stage");
                 }
             }
         }
@@ -42,20 +43,15 @@ public class GoalRing : GenerationsObject
         goalRingMesh.Rotate(0, -90 * Time.deltaTime, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void GoalRingStart()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            audioSource.Stop();
-            audioSource.PlayOneShot(sound);
-            get = true;
-            player.stateMachine.ChangeState(State, gameObject);
-            player.rigidbody.velocity = Vector3.zero;
-            GameManager.instance.firstTimeLoad = true;
-            GameManager.instance.lastCheckpoint = -1;
-
-        }
+        audioSource.Stop();
+        audioSource.PlayOneShot(sound);
+        get = true;
+        player.stateMachine.ChangeState(State, gameObject);
+        player.rigidbody.velocity = Vector3.zero;
+        GameManager.instance.firstTimeLoad = true;
+        GameManager.instance.lastCheckpoint = -1;        
     }
 
     #region State

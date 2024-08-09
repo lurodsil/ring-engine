@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GrindDashPanel : RingEngineObject
+public class GrindDashPanel : CommonObject
 {
     public bool IsFront = true;
     public bool IsStartVelocityConstant = true;
@@ -14,19 +14,13 @@ public class GrindDashPanel : RingEngineObject
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+        OnPlayerTriggerEnter.AddListener(GrindDash);
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public void GrindDash()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-
-            audio.PlayOneShot(dash);
-
-            player.transform.forward = transform.forward;
-
-            player.velocity = Speed;
-        }
+        audio.PlayOneShot(dash);
+        player.transform.forward = transform.forward;
+        player.rigidbody.AddForce(player.rigidbody.velocity.normalized * Speed, ForceMode.Impulse);
     }
 }

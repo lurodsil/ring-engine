@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JumpBoard3D : GenerationsObject
+public class JumpBoard3D : CommonStatefulObject
 {
     public float ImpulseSpeedOnBoost = 50f;
     public float ImpulseSpeedOnNormal = 60f;
@@ -21,6 +21,10 @@ public class JumpBoard3D : GenerationsObject
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        objectState = StateJumpBoard;
+
+        OnPlayerTriggerEnter.AddListener(PlaySound);
     }
 
     #region State Jump Board
@@ -64,13 +68,8 @@ public class JumpBoard3D : GenerationsObject
         GizmosExtension.DrawTrajectory(startPoint.position, startPoint.forward, ImpulseSpeedOnBoost, OutOfControl, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void PlaySound()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            audioSource.PlayOneShot(sound);
-            player = other.GetComponent<Player>();
-            player.stateMachine.ChangeState(StateJumpBoard, gameObject);
-        }
+        audioSource.PlayOneShot(sound);        
     }
 }

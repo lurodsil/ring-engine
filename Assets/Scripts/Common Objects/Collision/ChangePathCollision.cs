@@ -1,15 +1,26 @@
 using UnityEngine;
 
-public class ChangePathCollision : RingEngineObject
+public class ChangePathCollision : CommonObject
 {
     public BezierPath path;
 
+    private void Start()
+    {
+        OnPlayerTriggerEnter!.AddListener(ChangePath);
+    }
+
+    public void ChangePath()
+    {
+        player.sideViewPath = path;        
+    }
+
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(GameTags.playerTag))
+        base.OnTriggerEnter(other);
+
+        if (other.CompareTag("Tornado"))
         {
-            player = other.GetComponent<Player>();
-            player.sideViewPath = path;
+            other.GetComponent<Tornado>().path = path;
         }
     }
 }

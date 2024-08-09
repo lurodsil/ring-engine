@@ -15,26 +15,26 @@ public class ChangeMode_3DtoDash : GenerationsObject
     public float m_PathCorrectionForce = 0.5f;
     public BezierPath bezierPath;
 
+    private void Awake()
+    {
+        OnPlayerTriggerEnter!.AddListener(ChangeMode3DtoDash);
+    }
     public override void OnValidate()
     {
         transform.localScale = new Vector3(Collision_Width, Collision_Height, 0.5f);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
+    private void ChangeMode3DtoDash()
+    {            
+        if (player.pathType != BezierPathType.Dash)
         {
-            player = other.GetComponent<Player>();
-            if (player.pathType != BezierPathType.Dash)
-            {
-                player.bezierPath = bezierPath;
-                player.pathType = BezierPathType.Dash;
-            }
-            else
-            {
-                player.bezierPath = null;
-                player.pathType = BezierPathType.None;
-            }
+            player.bezierPath = bezierPath;
+            player.pathType = BezierPathType.Dash;
         }
+        else
+        {
+            player.bezierPath = null;
+            player.pathType = BezierPathType.None;
+        }        
     }
 }

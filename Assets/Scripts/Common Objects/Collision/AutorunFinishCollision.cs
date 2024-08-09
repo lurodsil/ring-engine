@@ -1,39 +1,28 @@
 using UnityEngine;
 
-public class AutorunFinishCollision : GenerationsObject
+public class AutorunFinishCollision : CommonObject
 {
-    public float Collision_Height = 30f;
-    public float Collision_Width = 10f;
-
-    void Start()
+    public bool removePlayerPath = false;
+    private void Start()
     {
+        OnPlayerTriggerEnter.AddListener(AutorunFinish);
         gameObject.SetActive(false);
     }
 
-    public override void OnValidate()
+    private void AutorunFinish()
     {
-        if (!gameObject.GetComponent<BoxCollider>())
+        player.autorunVelocity = 0;
+        gameObject.SetActive(false);
+
+        if (removePlayerPath)
         {
-            BoxCollider collider = gameObject.AddComponent<BoxCollider>();
-
-            collider.isTrigger = true;
+            player.sideViewPath = null;
         }
-        else
-        {
-            BoxCollider collider = gameObject.GetComponent<BoxCollider>();
-
-            collider.isTrigger = true;
-        }
-
-        transform.localScale = new Vector3(Collision_Width, Collision_Height, 1);
     }
 
-    private void OnPlayerTriggerEnter()
+    private void OnDrawGizmos()
     {
-        if (player.stateMachine.currentStateName == "StateAutorun")
-        {
-            player.velocity = 44;
-            gameObject.SetActive(false);
-        }
+        Gizmos.color = new Color(.5f, 0, .5f, 0.5f);
+        GizmosExtension.DrawBoxBoundaries(GetComponent<BoxCollider>());
     }
 }

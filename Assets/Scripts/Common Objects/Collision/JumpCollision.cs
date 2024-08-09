@@ -18,6 +18,11 @@ public class JumpCollision : GenerationsObject
     private float duration;
     private float outOfControl;
 
+    private void Awake()
+    {
+        OnPlayerTriggerEnter!.AddListener(JumpCollisionStart);
+    }
+
     public override void OnValidate()
     {
         if (!gameObject.GetComponent<BoxCollider>())
@@ -84,13 +89,9 @@ public class JumpCollision : GenerationsObject
 
     #endregion State Jump Collision
 
-    private void OnTriggerEnter(Collider other)
+    private void JumpCollisionStart()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            player.stateMachine.ChangeState(StateJumpCollision, gameObject);
-        }
+        player.stateMachine.ChangeState(StateJumpCollision, gameObject);        
     }
 
     private void OnDrawGizmosSelected()

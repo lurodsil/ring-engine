@@ -1,51 +1,44 @@
 using UnityEngine;
 
-public class Switch : RingEngineObject
+public class Switch : CommonActivableStatelessObject
 {
     public bool keepOn;
 
     public AudioClip switchOn;
-    public AudioClip switchOff;    
+    public AudioClip switchOff;
 
     private Animator animator;
     private AudioSource audioSource;
     private SkinnedMeshRenderer meshRenderer;
+
+    GameObject activator;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         animator = GetComponentInChildren<Animator>();
+
+        //OnPlayerTriggerEnter.AddListener(PowerOn);
+        //OnPlayerTriggerExit.AddListener(PowerOff);
     }
 
-    public override void OnTriggerEnter(Collider other)
+    public void PowerOn()
     {
         if (!active)
         {
+            TriggerSwitch(switchOn, Color.cyan, "Switch On");
             Activate();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void PowerOff()
     {
         if (!keepOn && active)
         {
+            TriggerSwitch(switchOff, Color.yellow, "Switch Off");
             Deactivate();
         }
-    }    
-
-    public override void Activate()
-    {
-        base.Activate();
-
-        TriggerSwitch(switchOn, Color.cyan, "Switch On");
-    }
-
-    public override void Deactivate()
-    {
-        base.Deactivate();
-
-        TriggerSwitch(switchOff, Color.yellow, "Switch Off");
     }
 
     private void TriggerSwitch(AudioClip sound, Color color, string animatorTrigger)
@@ -59,5 +52,34 @@ public class Switch : RingEngineObject
     {
         DrawEventLines(OnBecomeActive, Color.green);
         DrawEventLines(OnBecomeInactive, Color.red);
+    }
+
+    public new void OnTriggerEnter(Collider other)
+    {
+        if (!active)
+        {
+            if (other.CompareTag("MovingPlatform") || other.CompareTag("Player"))
+            {
+                activator = other.gameObject;
+
+                TriggerSwitch(switchOn, Color.cyan, "Switch On");
+                Activate();
+            }
+            
+        }
+    }
+
+    public new void OnTriggerExit(Collider other)
+    {
+
+        if (!keepOn && active)
+        {
+            if (other.gameObject == activator)
+            {
+                TriggerSwitch(switchOff, Color.yellow, "Switch Off");
+                Deactivate();
+            }
+        }
+
     }
 }

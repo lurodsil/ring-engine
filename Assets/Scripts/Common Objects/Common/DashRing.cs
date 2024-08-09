@@ -19,8 +19,9 @@ public class DashRing : GenerationsObject
     private float duration;
     private float outOfControl;
 
-    public override void OnValidate()
+    private void Awake()
     {
+        OnPlayerTriggerEnter!.AddListener(DashRingStart);
     }
 
     public void Start()
@@ -44,14 +45,9 @@ public class DashRing : GenerationsObject
             player.rigidbody.velocity = -transform.forward * FirstSpeed;
         }
 
-        if (Mathf.Abs(player.rigidbody.velocity.y) > 0)
-        {
-            startPoint.forward = player.rigidbody.velocity.normalized;
-        }
-
         if (Time.time < outOfControl)
         {
-            player.transform.rotation = Quaternion.LookRotation(-startPoint.up, startPoint.forward);
+            player.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized);
         }
         else
         {
@@ -64,15 +60,11 @@ public class DashRing : GenerationsObject
     }
     #endregion State Dash Ring
 
-    private void OnTriggerEnter(Collider other)
+    private void DashRingStart()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            audioSource.PlayOneShot(dashRingSound);
-            particle.Play();
-            player = other.GetComponent<Player>();
-            player.stateMachine.ChangeState(StateDashRing, gameObject);
-        }
+        audioSource.PlayOneShot(dashRingSound);
+        particle.Play();
+        player.stateMachine.ChangeState(StateDashRing, gameObject, true);        
     }
 
     private void OnDrawGizmos()

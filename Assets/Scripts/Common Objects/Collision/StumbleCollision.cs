@@ -1,10 +1,15 @@
 using UnityEngine;
 
-public class StumbleCollision : RingEngineObject
+public class StumbleCollision : CommonStatefulObject
 {
     public float outOfControl = 0.45f;
     public float stumbleUpVelocity = 13f;
     public float keepVelocityRate = 0.3f;
+
+    private void Start()
+    {
+        OnPlayerTriggerEnter.AddListener(Stumble);
+    }
 
     #region State Stumble
     private void StateStumbleStart()
@@ -27,16 +32,11 @@ public class StumbleCollision : RingEngineObject
     }
     #endregion State
 
-    public override void OnTriggerEnter(Collider other)
-    {
-        if (active && other.CompareTag(GameTags.playerTag))
+    public void Stumble()
+    {       
+        if (player.stateMachine.currentStateName == "StateMove3D" || player.stateMachine.currentStateName == "StateMove2D")
         {
-            player = other.GetComponent<Player>();
-
-            if (player.stateMachine.currentStateName == "StateMove3D")
-            {
-                player.stateMachine.ChangeState(StateStumble, gameObject);
-            }
-        }
+            player.stateMachine.ChangeState(StateStumble, gameObject);
+        }      
     }
 }

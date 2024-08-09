@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Flame : RingEngineObject
+public class Flame : CommonActivableStatefulObject
 {
     public float offTime = 2;
     public float onTime = 5;
@@ -17,14 +17,12 @@ public class Flame : RingEngineObject
     public override void Activate()
     {
         base.Activate();
-
         StartCoroutine(OnOff(onTime, offTime));
     }
 
     public override void Deactivate()
     {
         base.Deactivate();
-
         StopAllCoroutines();
     }
 

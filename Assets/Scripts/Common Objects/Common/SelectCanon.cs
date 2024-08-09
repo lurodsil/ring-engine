@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
-public class SelectCanon : RingEngineObject
+public class SelectCanon : CommonStatefulObject
 {
     public float InputTmie = 2.5f;
     public float OutOfControl = 0.13f;
@@ -22,19 +23,18 @@ public class SelectCanon : RingEngineObject
     private float waitShotTarget;
     private bool audioPlayed;
     private int selectCanonID;
+    [SerializeField] private SkinnedMeshRenderer scannon;
+    private Vector2 offset;
 
-    public override void OnValidate()
-    {
-
-    }
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = loop;
 
         objectState = StateSelectCanon;
+        offset.x = 0.6f;
     }
 
     private void Update()
@@ -42,21 +42,29 @@ public class SelectCanon : RingEngineObject
         waitShot = Mathf.Lerp(waitShot, waitShotTarget, 10 * Time.deltaTime);
 
         animator.SetFloat("WaitShot", waitShot);
+
+        scannon.materials[0].SetTextureOffset("_EmissiveColorMap", offset);
     }
 
     #region State Select Canon
     void StateSelectCanonStart()
     {
-        player.rigidbody.isKinematic = true;
+        player.rigidbody.useGravity = false;
         player.rigidbody.velocity = Vector3.zero;
         player.transform.rotation = transform.rotation;
-
+        animator.SetTrigger("Select Canon Start");
         audioSource.PlayOneShot(start);
         audioSource.Play();
+        offset.x = 0.6f;
+        OnStateStart!.Invoke();
     }
     void StateSelectCanon()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw(XboxAxis.LeftStickX), Input.GetAxisRaw(XboxAxis.LeftStickY));
+        Vector2 input = new Vector2(Input.GetAxisRaw(XboxAxis.LeftStickX) * -Mathf.Sign(Vector3.Dot(transform.right, Camera.main.transform.forward)), Input.GetAxisRaw(XboxAxis.LeftStickY)) ;
+
+        float step = 0.3f / InputTmie;
+
+        offset.x += step * Time.deltaTime;
 
         if (input.x == -1)
         {
@@ -129,14 +137,19 @@ public class SelectCanon : RingEngineObject
             return;
         }
 
-        player.stateMachine.ChangeState(StateSelectCanonFail, gameObject, InputTmie);
-
+        if (Time.time > player.stateMachine.lastStateTime + InputTmie)
+        {
+            selectCanonID = 0;
+            player.stateMachine.ChangeState(StateSelectCanonFail, gameObject);
+        }      
     }
     void StateSelectCanonEnd()
     {
-        player.rigidbody.isKinematic = false;
+        player.rigidbody.useGravity = true;
         player.SendMessage("StateSelectCanonEndID", selectCanonID);
         animator.SetTrigger("Select Canon End");
+
+
     }
     #endregion
 
@@ -181,13 +194,13 @@ public class SelectCanon : RingEngineObject
 
         audioSource.PlayOneShot(fail);
 
-        player.rigidbody.velocity = -animator.transform.up * ShotForce_Fail;
+        player.rigidbody.velocity = Vector3.down * ShotForce_Fail;
     }
     void StateSelectCanonFail()
     {
         if (player.IsGrounded())
         {
-            player.stateMachine.ChangeState(player.StateIdle, gameObject, 2.8f);
+            player.stateMachine.ChangeState(player.StateIdle, gameObject, 2.5f);
         }
     }
     void StateSelectCanonFailEnd()
@@ -195,4 +208,18 @@ public class SelectCanon : RingEngineObject
 
     }
     #endregion
+
+    public float EaseIn()
+    {
+        float ease = (Time.time - player.stateMachine.lastStateTime) * (1 / (InputTmie * 10));
+
+        if (ease > 0.99f)
+        {
+            return 1;
+        }
+        else
+        {
+            return ease;
+        }
+    }
 }

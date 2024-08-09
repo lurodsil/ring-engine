@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class Pulley : RingEngineObject
+public class Pulley : CommonActivableStatefulObject
 {
     public bool isJumpCancel = true;
     public bool isHommingAttackEnable = true;
     public float speed = 30;
 
     public Transform pulleyHandle;
-    public Rigidbody rigidbody;
+    public Rigidbody _rigidbody;
     public BezierPath bezierPath;
+
+    public GameObject target;
 
     private SphereCollider sphereCollider;
 
@@ -19,16 +21,12 @@ public class Pulley : RingEngineObject
     private BezierKnot knot = new BezierKnot();
     private FixedJoint fixedJoint;
 
-    private void Start()
+    public void Start()
     {
-
         sphereCollider = GetComponent<SphereCollider>();
-
         objectState = StatePulley;
-
-        rigidbody = pulleyHandle.GetComponent<Rigidbody>();
-        rigidbody.useGravity = false;
-        
+        _rigidbody = pulleyHandle.GetComponent<Rigidbody>();
+        _rigidbody.useGravity = false;        
     }
 
     private void FixedUpdate()
@@ -57,7 +55,7 @@ public class Pulley : RingEngineObject
             }
         }
 
-        rigidbody.velocity = knot.tangent * appliedSpeed;
+        _rigidbody.velocity = knot.tangent * appliedSpeed;
 
         bezierPath.PutOnPath(pulleyHandle, PutOnPathMode.BinormalAndNormal, out knot, out _, 10);
         pulleyHandle.rotation = Quaternion.LookRotation(knot.tangent, knot.normal);
@@ -69,15 +67,22 @@ public class Pulley : RingEngineObject
     {
         OnStateStart?.Invoke();
 
+        Activate();
+
+        player.UpdateTargets();
+
         player.DisablePhysics();
 
+        player.GetComponent<Sonic>().EnableDoubleJump();
+
         player.transform.parent = pulleyHandle.transform;
-        player.transform.forward = pulleyHandle.forward;
-        player.transform.localPosition = playerOffset;        
+        player.transform.forward = pulleyHandle.forward;  
         sphereCollider.enabled = false;
     }
     public void StatePulley()
     {
+        player.transform.localPosition = playerOffset;
+
         if (!active)
         {
             player.stateMachine.ChangeState(player.StateTransition, gameObject);
@@ -92,6 +97,7 @@ public class Pulley : RingEngineObject
     void StatePulleyEnd()
     {
         OnStateEnd?.Invoke();
+        target.SetActive(false);
         player.EnablePhysics();
         player.canHomming = isHommingAttackEnable;
         player.transform.parent = null;

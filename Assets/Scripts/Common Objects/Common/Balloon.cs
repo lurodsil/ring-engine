@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class Balloon : RingEngineObject
+public class Balloon : CommonActivableStatefulObject
 {
     public float ReviveTime = 3;
     public float speedMax = 20;
@@ -10,7 +10,7 @@ public class Balloon : RingEngineObject
     public float keepVelocityRate = 0.8f;
     public GameObject ballonHolder;
 
-    private void Start()
+    public void Start()
     {
         objectState = StateBalloon;
     }

@@ -23,21 +23,22 @@ public class ChangeMode_3DtoForward : GenerationsObject
         transform.localScale = new Vector3(Collision_Width, Collision_Height, 0.5f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void Awake()
     {
-        if (other.CompareTag(GameTags.playerTag))
+        OnPlayerTriggerEnter!.AddListener(ChangeMode3DtoForward);
+    }
+
+    private void ChangeMode3DtoForward()
+    {            
+        if (player.pathType != BezierPathType.QuickStep)
         {
-            player = other.GetComponent<Player>();
-            if (player.pathType != BezierPathType.QuickStep)
-            {
-                player.bezierPath = bezierPath;
-                player.pathType = BezierPathType.QuickStep;
-            }
-            else
-            {
-                player.bezierPath = null;
-                player.pathType = BezierPathType.None;
-            }
+            player.bezierPath = bezierPath;
+            player.pathType = BezierPathType.QuickStep;
         }
+        else
+        {
+            player.bezierPath = null;
+            player.pathType = BezierPathType.None;
+        }        
     }
 }

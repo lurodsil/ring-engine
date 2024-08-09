@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JumpBoard : GenerationsObject
+public class JumpBoard : CommonStatefulObject
 {
     public float AngleType = 0f;
     public float ImpulseSpeedOnBoost = 50f;
@@ -19,14 +19,12 @@ public class JumpBoard : GenerationsObject
 
     public Transform startPoint;
 
-    public override void OnValidate()
-    {
-
-    }
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        objectState = StateJumpBoard;
     }
 
     #region State Jump Board
@@ -41,18 +39,12 @@ public class JumpBoard : GenerationsObject
             player.rigidbody.velocity = startPoint.forward * ImpulseSpeedOnNormal;
         }
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
+        audioSource.PlayOneShot(sound);
     }
 
     void StateJumpBoard()
     {
-        //player.groundInfo.SearchGroundHighSpeed();
-
         player.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized, Vector3.up);
-
-        //if (player.IsGrounded())
-        //{
-        //     player.stateMachine.ChangeState(interactingGameObjects, player.);
-        //}
 
         if (Time.time > outOfControl)
         {
@@ -75,17 +67,5 @@ public class JumpBoard : GenerationsObject
         Gizmos.color = Color.red;
         GizmosExtension.DrawTrajectory(startPoint.position, startPoint.forward, ImpulseSpeedOnNormal, OutOfControl);
         GizmosExtension.DrawTrajectory(startPoint.position, startPoint.forward, ImpulseSpeedOnBoost, OutOfControl);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            audioSource.PlayOneShot(sound);
-
-            player = other.GetComponent<Player>();
-
-            player.stateMachine.ChangeState(StateJumpBoard, gameObject);
-        }
     }
 }
