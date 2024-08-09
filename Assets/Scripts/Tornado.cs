@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public enum TornadoStates
 {
@@ -55,6 +56,9 @@ public class Tornado : GenerationsObject
     public float obstacleForce = 10;
     private float obstacleFactor;
 
+    public BezierPath path;
+    BezierKnot knot;
+
     // Use this for initialization
     private void Start()
     {
@@ -67,7 +71,6 @@ public class Tornado : GenerationsObject
 
     private void Update()
     {
-
         audioSource.pitch = minAudioPitch + speed * (0.5f / maxSpeed);
         minAudioPitch = Mathf.MoveTowards(minAudioPitch, 1, Time.deltaTime * 0.5f);
         propelerBlur.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, 0.5f * minAudioPitch));
@@ -100,6 +103,10 @@ public class Tornado : GenerationsObject
             case TornadoStates.Flying:
                 break;
             case TornadoStates.AutoPilot:
+                path.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out knot);
+                rigidbody.velocity = knot.tangent * 40;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, knot.normal), 5 *Time.deltaTime);
+                audioSource.pitch = 1;
                 break;
         }
 
@@ -110,22 +117,23 @@ public class Tornado : GenerationsObject
     private void StateTornadoStart()
     {
         player.rigidbody.velocity = Vector3.zero;
-        player.rigidbody.isKinematic = true;
-        player.rigidbody.useGravity = false;
+
 
         player.transform.parent = sonicPosition;
         player.transform.localPosition = Vector3.zero;
         player.transform.rotation = Quaternion.identity;
-
+        player.playerMesh.enabled = false;
+        player.DisablePhysics();
         sonicAnimator.gameObject.SetActive(true);
 
         tornadoStates = TornadoStates.Flying;
 
-        MainCamera.instance.distance = 10;
-        MainCamera.instance.easeIn = 5;
+        MainCamera.SetCameraDistance(5, 5);
+        MainCamera.SetEaseIn(5);
     }
     public void StateTornado()
     {
+       
         UpdateAnimators();
 
         //yaw movement
@@ -204,7 +212,8 @@ public class Tornado : GenerationsObject
     }
     private void StateTornadoEnd()
     {
-
+        player.playerMesh.enabled = true;
+        player.EnablePhysics();
         sonicAnimator.gameObject.SetActive(false);
     }
     #endregion
@@ -219,5 +228,20 @@ public class Tornado : GenerationsObject
 
         animator.SetFloat("X", Input.GetAxis(XboxAxis.LeftStickX));
         animator.SetFloat("Y", Input.GetAxis(XboxAxis.LeftStickY));
+    }
+
+    public void SetPath(BezierPath path)
+    {
+        this.path = path;
+    }
+
+    public void SetPosition(Transform targetPosition)
+    {
+        if (!gameObject.activeSelf)
+        {
+            transform.position = targetPosition.position;
+            transform.rotation = targetPosition.rotation;
+        }
+        
     }
 }
