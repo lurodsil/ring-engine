@@ -8,8 +8,10 @@ public class PlayerSound : MonoBehaviour
 
     //Components
     public AudioSource audioSource;
+    public AudioSource footstepAaudioSource;
     public AudioSource boardAudioSource;
     public AudioSource boostAudioSource;
+    public AudioSource skydiveAudioSource;
     public AudioMixerGroup audioMixerGroup;
     private Player player;
 
@@ -33,6 +35,10 @@ public class PlayerSound : MonoBehaviour
     public AudioClip boostStart2;
     public AudioClip boostStart3;
     public AudioClip boostLoop;
+    public AudioClip boostStartSuper1;
+    public AudioClip boostStartSuper2;
+    public AudioClip boostStartSuper3;
+    public AudioClip boostLoopSuper;
     public AudioClip die;
     public AudioClip bubbleBreath;
     public AudioClip drift;
@@ -53,6 +59,8 @@ public class PlayerSound : MonoBehaviour
     public AudioClip boardTrick;
     public AudioClip boardJump;
     public AudioClip boardLand;
+
+    float lastTimePlayed;
 
     //GroundInfo groundInfo;
     new string tag;
@@ -104,6 +112,18 @@ public class PlayerSound : MonoBehaviour
         StateGrindStart();
     }
 
+    
+    private void StateSkydiveStart()
+    {
+        skydiveAudioSource.Play();
+    }
+ 
+    private void StateSkydiveEnd()
+    {
+        skydiveAudioSource.Stop();
+
+    }
+
     void StateSnowBoardGrindEnd()
     {
         StateGrindEnd();
@@ -135,15 +155,14 @@ public class PlayerSound : MonoBehaviour
     }
     void Awake()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.loop = false;
-        audioSource.outputAudioMixerGroup = audioMixerGroup;
-        audioSource.dopplerLevel = 0;
-        audioSource.maxDistance = 100;
-        audioSource.minDistance = 2;
-        audioSource.spatialBlend = 1;
-        audioSource.volume = 0.8f;
-        audioSource.priority = 128;
+        //audioSource = gameObject.GetComponent<AudioSource>();
+        //audioSource.loop = false;
+        //audioSource.outputAudioMixerGroup = audioMixerGroup;
+        //audioSource.dopplerLevel = 0;
+        //audioSource.maxDistance = 100;
+        //audioSource.minDistance = 2;
+        //audioSource.spatialBlend = 1;
+        //audioSource.priority = 128;
 
         //groundInfo = GetComponent<GroundInfo>();
         player = GetComponent<Player>();
@@ -156,13 +175,23 @@ public class PlayerSound : MonoBehaviour
 
     public void StateBoostStart()
     {
-        boostAudioSource.volume = 1;
+        boostAudioSource.volume = 0.6f;
         boostAudioSource.Stop();
-        boostAudioSource.PlayOneShot(boostStart1);
-        boostAudioSource.PlayOneShot(boostStart2);
-        boostAudioSource.PlayOneShot(boostStart3);
-        boostAudioSource.loop = true;
-        boostAudioSource.clip = boostLoop;
+        if (!player.isSuper)
+        {
+            boostAudioSource.PlayOneShot(boostStart1);
+            boostAudioSource.PlayOneShot(boostStart2);
+            boostAudioSource.PlayOneShot(boostStart3);
+            boostAudioSource.clip = boostLoop;
+        }
+        else
+        {
+            boostAudioSource.PlayOneShot(boostStartSuper1);
+            boostAudioSource.PlayOneShot(boostStartSuper2);
+            boostAudioSource.PlayOneShot(boostStartSuper3);
+            boostAudioSource.clip = boostLoopSuper;
+        }        
+        boostAudioSource.loop = true;        
         boostAudioSource.Play();
     }
 
@@ -273,7 +302,7 @@ public class PlayerSound : MonoBehaviour
     {
         audioSource.clip = null;
         audioSource.loop = false;
-        audioSource.Stop();
+        
     }
 
     void StateWallJumpEnd()
@@ -284,6 +313,11 @@ public class PlayerSound : MonoBehaviour
         }
 
 
+    }
+
+    void StateDoubleJumpEnd()
+    {
+        audioSource.PlayOneShot(jumpSound);
     }
 
     void StateWallJumpStart()
@@ -322,48 +356,44 @@ public class PlayerSound : MonoBehaviour
         {
             foreach (GroundMaterial gm in groundMaterials)
             {
-                if (player.GetGroundInformation().collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
+                if (!footstepAaudioSource.isPlaying && player.GetGroundInformation().collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
                 {
-                    audioSource.PlayOneShot(gm.land);
+                    footstepAaudioSource.PlayOneShot(gm.land);
                 }
             }
         }
         else
         {
-            audioSource.PlayOneShot(defaultMaterial.land);
+            footstepAaudioSource.PlayOneShot(defaultMaterial.land);
         }
     }
 
     void Footstep()
     {
-        if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
+        if(Time.time > lastTimePlayed + 0.008f)
         {
-            foreach (GroundMaterial gm in groundMaterials)
+            if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
             {
-                if (player.GetGroundInformation().collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
+                foreach (GroundMaterial gm in groundMaterials)
                 {
-                    audioSource.PlayOneShot(gm.footstep[Random.Range(0, gm.footstep.Length - 1)]);
+                    if (player.GetGroundInformation().collider.sharedMaterial.name.Contains(gm.physicMaterial.name))
+                    {
+                        lastTimePlayed = Time.time;
+                        footstepAaudioSource.PlayOneShot(gm.footstep[Random.Range(0, gm.footstep.Length - 1)]);
+                    }
                 }
             }
+            else
+            {
+                lastTimePlayed = Time.time;
+                footstepAaudioSource.PlayOneShot(defaultMaterial.footstep[Random.Range(0, defaultMaterial.footstep.Length - 1)]);
+            }
         }
-        else
-        {
-            audioSource.PlayOneShot(defaultMaterial.footstep[Random.Range(0, defaultMaterial.footstep.Length - 1)]);
-        }
+
+        
     }
 
-    void StateSkydiveStart()
-    {
-        //audioSource.clip = diveWind;
-        //audioSource.Play();
-        //audioSource.volume = 0.2f;
-    }
-
-    void StateSkydiveEnd()
-    {
-        //audioSource.Stop();
-        //audioSource.volume = 1f;
-    }
+   
 
     void StateGrindJumpStart()
     {
@@ -439,7 +469,7 @@ public class PlayerSound : MonoBehaviour
 
     void StatePulleyStart()
     {
-        audioSource.PlayOneShot(allRight);
+        //audioSource.PlayOneShot(allRight);
     }
 
     void StateHurdleStart()
