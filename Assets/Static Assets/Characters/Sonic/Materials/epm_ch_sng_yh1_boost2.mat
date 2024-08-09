@@ -21,7 +21,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2750
+  m_CustomRenderQueue: 3001
   stringTagMap:
     MotionVector: User
     RenderType: Transparent
@@ -103,7 +103,7 @@ Material:
     - _Mode: 4
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
-    - _RenderQueueType: 3
+    - _RenderQueueType: 4
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
@@ -121,7 +121,7 @@ Material:
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
     - _TransparentDepthPrepassEnable: 0
-    - _TransparentSortPriority: 0
+    - _TransparentSortPriority: 1
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
     - _UseShadowThreshold: 0

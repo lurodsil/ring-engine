@@ -19,7 +19,7 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 3400
+  m_CustomRenderQueue: 3401
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -272,7 +272,7 @@ Material:
     - _StencilWriteMaskMV: 43
     - _SurfaceType: 1
     - _TransparentCullMode: 2
-    - _TransparentSortPriority: 0
+    - _TransparentSortPriority: 1
     - _TransparentZWrite: 0
     - _Unity_Identify_HDRP_Decal: 1
     - _UseEmissiveIntensity: 0

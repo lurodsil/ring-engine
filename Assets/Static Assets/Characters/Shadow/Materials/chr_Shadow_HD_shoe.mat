@@ -24,7 +24,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: chr_Shadow_HD_shoe
-  m_Shader: {fileID: -6465566751694194690, guid: 5f0326d7303f1444fb47c1123867bbf7,
+  m_Shader: {fileID: -6465566751694194690, guid: 7a9b6a0321dddd84bb113c83ba09d2e3,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
