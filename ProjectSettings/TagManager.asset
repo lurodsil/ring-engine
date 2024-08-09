@@ -26,6 +26,7 @@ TagManager:
   - SkydiveEnd
   - LightSpeedDashRing
   - ItemTrigger
+  - StompTarget
   layers:
   - Default
   - TransparentFX

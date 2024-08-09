@@ -1,7 +1,7 @@
 trackSelection = true
 refreshSearchWindowsInPlayMode = false
 fetchPreview = true
-defaultFlags = 0
+defaultFlags = 8
 keepOpen = false
 queryFolder = "Assets"
 onBoardingDoNotAskAgain = true
@@ -13,6 +13,12 @@ scopes = {
 	"last_search.0B486DF2" = ""
 	"OpenInspectorPreview.0B486DF2" = "0"
 	"currentGroup.0B486DF2" = null
+	"last_search.6DF93126" = "name=\"ring\""
+	"OpenInspectorPreview.6DF93126" = "0"
+	"currentGroup.6DF93126" = "asset"
+	"last_search.45C55C1A" = ""
+	"OpenInspectorPreview.45C55C1A" = "0"
+	"currentGroup.45C55C1A" = "asset"
 }
 providers = {
 	find = {
@@ -65,10 +71,41 @@ providers = {
 		priority = -10
 		defaultAction = null
 	}
+	menu = {
+		active = true
+		priority = 80
+		defaultAction = null
+	}
+	settings = {
+		active = true
+		priority = 100
+		defaultAction = null
+	}
+	calculator = {
+		active = true
+		priority = 10
+		defaultAction = null
+	}
+	static_methods = {
+		active = true
+		priority = 85
+		defaultAction = null
+	}
 }
 objectSelectors = {
 }
 recentSearches = [
+	""
+	"name=\"\""
+	"ref"
+	"missing:Script"
+	"missing:Any"
+	"tag=<$list:Player, [Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Target, Damage, SideView, Metal, Tornado, Enemy, Pushable, Camera Target, Ring, MovingPlatform, GoalRing, Missile, SplineCollision, Underwater, Shot, Eggman, Boss, Ceiling, SkydiveStart, SkydiveEnd, LightSpeedDashRing, ItemTrigger], AssetLabelIcon, #EBD05FFF$>"
+	"tag=<$list:EditorOnly, [Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Target, Damage, SideView, Metal, Tornado, Enemy, Pushable, Camera Target, Ring, MovingPlatform, GoalRing, Missile, SplineCollision, Underwater, Shot, Eggman, Boss, Ceiling, SkydiveStart, SkydiveEnd, LightSpeedDashRing, ItemTrigger], AssetLabelIcon, #EBD05FFF$>"
+	"tag=<$list:Finish, [Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Target, Damage, SideView, Metal, Tornado, Enemy, Pushable, Camera Target, Ring, MovingPlatform, GoalRing, Missile, SplineCollision, Underwater, Shot, Eggman, Boss, Ceiling, SkydiveStart, SkydiveEnd, LightSpeedDashRing, ItemTrigger], AssetLabelIcon, #EBD05FFF$>"
+	"tag=<$list:Respawn, [Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Target, Damage, SideView, Metal, Tornado, Enemy, Pushable, Camera Target, Ring, MovingPlatform, GoalRing, Missile, SplineCollision, Underwater, Shot, Eggman, Boss, Ceiling, SkydiveStart, SkydiveEnd, LightSpeedDashRing, ItemTrigger], AssetLabelIcon, #EBD05FFF$>"
+	"tag=<$list:Boss, [Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Target, Damage, SideView, Metal, Tornado, Enemy, Pushable, Camera Target, Ring, MovingPlatform, GoalRing, Missile, SplineCollision, Underwater, Shot, Eggman, Boss, Ceiling, SkydiveStart, SkydiveEnd, LightSpeedDashRing, ItemTrigger], AssetLabelIcon, #EBD05FFF$>"
+	"p: dir=\"Textures\" "
 ]
 searchItemFavorites = [
 ]
@@ -79,7 +116,7 @@ expandedQueries = [
 ]
 queryBuilder = false
 ignoredProperties = "id;name;classname;imagecontentshash"
-helperWidgetCurrentArea = "all"
+helperWidgetCurrentArea = "p:"
 disabledIndexers = ""
 minIndexVariations = 2
 findProviderIndexHelper = true
