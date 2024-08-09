@@ -26,6 +26,7 @@ public class Enemy : GenerationsObject, IDamageable
     public bool isInstantDestroy;
     public bool isPlayerChase;
     public bool isTargetLook;
+    public float destroyDelay = 1;
 
     [Header("Movement")]
     public EnemyMovementType movementType;
@@ -138,7 +139,7 @@ public class Enemy : GenerationsObject, IDamageable
 
             stateMachine.Pause();
 
-            Explode(1);
+            Explode(destroyDelay);
         }
         else
         {
@@ -148,6 +149,8 @@ public class Enemy : GenerationsObject, IDamageable
 
     public void Explode()
     {
+        MainCamera.Shake(0.2f, 0.5f);
+
         Destroy(gameObject);
 
         if (breakParts.Length > 0)
