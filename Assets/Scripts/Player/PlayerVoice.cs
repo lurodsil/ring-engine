@@ -12,25 +12,22 @@ public class PlayerVoice : MonoBehaviour
     public AudioClip[] generationsBoost;
     public AudioClip[] unleashedBoost;
 
-    private AudioSource audioSource;
+    public AudioClip[] generationsStumble;
+    public AudioClip[] unleashedStumble;
 
-    public AudioClip trick;
+    public AudioClip[] generationsTrick;
+    public AudioClip[] unleashedTrick;
+
+    [SerializeField] private AudioSource audioSource;
 
     void Awake()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.loop = false;
-        audioSource.outputAudioMixerGroup = audioMixerGroup;
-        audioSource.dopplerLevel = 0;
-        audioSource.maxDistance = 100;
-        audioSource.minDistance = 2;
-        audioSource.volume = 0.5f;
-        audioSource.priority = 256;
+       
     }
 
     private void PlayRandomSound(AudioClip[] audioClips)
     {
-        audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length - 1)]);
+        audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
     }
 
     private void StateBoostStart()
@@ -50,7 +47,6 @@ public class PlayerVoice : MonoBehaviour
     {
         if (Player.instance.isSnowboarding)
         {
-            //audioSource.PlayOneShot(trick);
             PlayRandomSound(generationsJump);
         }
     }
@@ -81,5 +77,18 @@ public class PlayerVoice : MonoBehaviour
     private void StateGrindSwitchRightStart()
     {
         StateJumpStart();
+    }
+
+    private void StateStumbleStart()
+    {
+        switch (voiceType)
+        {
+            case VoiceType.Generations:
+                PlayRandomSound(generationsStumble);
+                break;
+            case VoiceType.Unleashed:
+                PlayRandomSound(unleashedStumble);
+                break;
+        }
     }
 }
