@@ -841,13 +841,11 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateStruggleStart()
     {
-        print("Start");
         animator.SetTrigger("StruggleStart");
     }
 
     void StateStruggleEnd()
     {
-        print("End");
         animator.SetTrigger("StruggleEnd");
     }
 

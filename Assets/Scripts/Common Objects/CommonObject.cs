@@ -31,7 +31,7 @@ public abstract class CommonObject : MonoBehaviour
         if (other.CompareTag(GameTags.playerTag))
         {
             player = other.GetComponent<Player>();
-            OnPlayerTriggerEnter?.Invoke();
+            OnPlayerTriggerEnter!.Invoke();
         }
     }
 
@@ -39,7 +39,7 @@ public abstract class CommonObject : MonoBehaviour
     {
         if (other.CompareTag(GameTags.playerTag))
         {
-            OnPlayerTriggerExit?.Invoke();
+            OnPlayerTriggerExit!.Invoke();
         }
     }
 

@@ -17,7 +17,7 @@ public class RingLost : MonoBehaviour
     {
         if (canBeCollectible)
         {
-            if (other.CompareTag("Item Collision"))
+            if (other.CompareTag("ItemTrigger"))
             {
                 Instantiate(getRing, transform.position, Quaternion.identity);
                 Destroy(gameObject);
