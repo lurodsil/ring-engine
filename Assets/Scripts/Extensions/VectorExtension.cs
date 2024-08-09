@@ -40,7 +40,7 @@ public class VectorExtension
     {
         Vector3 input = new Vector3(inputX, 0, inputY);
         Vector3 direction = camera.TransformDirection(input);
-        direction.y = target.TransformDirection(input).y;
+        direction.y =  target.TransformDirection(input).y;
         return Vector3.ProjectOnPlane(direction, target.up).normalized;
     }
 
