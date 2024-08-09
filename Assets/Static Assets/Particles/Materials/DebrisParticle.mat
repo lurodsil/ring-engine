@@ -118,7 +118,7 @@ Material:
     - _DoubleSidedGIMode: 0
     - _DstBlend: 10
     - _EmissionEnabled: 1
-    - _EmissiveExposureWeight: 0
+    - _EmissiveExposureWeight: 0.8
     - _EmissiveIntensity: 1
     - _EmissiveIntensityUnit: 0
     - _EnableFogOnTransparent: 0
@@ -162,7 +162,7 @@ Material:
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
     - _Color: {r: 1, g: 0.5019608, b: 0, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissiveColor: {r: 2, g: 1.0039216, b: 0, a: 1}
+    - _EmissiveColor: {r: 1.4980392, g: 0.72156864, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
