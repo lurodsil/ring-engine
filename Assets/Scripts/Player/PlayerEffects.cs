@@ -6,12 +6,16 @@ public class PlayerEffects : MonoBehaviour
 
     public GameObject grindSparks;
     public GameObject spinBall;
+    public GameObject spinBallSuper;
     public GameObject boost;
+    public GameObject boostSuper;
     public TubeTrailRenderer tubeTrail;
+    public TubeTrailRenderer tubeTrailSuper;
     public GameObject stompDown;
     public GameObject stompUpPrefab;
     public GameObject stompLand;
     public Transform dashBall;
+    public Transform dashBallSuper;
     public GameObject playerMesh;
     public ParticleSystem smoke;
     public ParticleSystem waterEnter;
@@ -19,15 +23,17 @@ public class PlayerEffects : MonoBehaviour
     public ParticleSystem landing;
     public ParticleSystem boostWave;
     public ParticleSystem waterRun;
+    public ParticleSystem superAura;
+    public GameObject footprint;
+
+    public Material[] playerMaterials;
 
     private Player player;
     public Texture2D stone, dirt, grass, metal, water, snow;
 
     public Material smokeMaterial;
 
-    Vector3 dashBallSizeNormal = new Vector3(0.9f, 0.9f, 0.9f);
     Vector3 dashBallSizeFast = new Vector3(0.9f, 0.7f, 0.7f);
-    float dashBallScaleRate;
 
     public ParticleSystem s1, s2;
 
@@ -48,6 +54,10 @@ public class PlayerEffects : MonoBehaviour
     public SkinnedMeshRenderer playerMeshRenderer;
     public float damageTakeBlinkInterval = 0.1f;
 
+    public Transform boostDummySuper;
+
+    
+
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -61,6 +71,8 @@ public class PlayerEffects : MonoBehaviour
         grindSparks.SetActive(false);
         lastStateTime = Time.time;
         player = GetComponent<Player>();
+
+        playerMaterials = playerMesh.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials;
     }
 
     void StateChangeToSuperSonicStart()
@@ -83,66 +95,43 @@ public class PlayerEffects : MonoBehaviour
     }
     private void Update()
     {
-        underwaterBubble.SetActive(player.underwater);
-
-        if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
+        if (player.isSuper)
         {
-            PhysicMaterial physicMaterial = player.GetGroundInformation().collider.sharedMaterial;
-
-            if (physicMaterial == null)
-                return;
-
-            string materialName = physicMaterial.name;
-
-            if (materialName.Contains("Stone"))
+            if (!superAura.isEmitting)
             {
-                smokeMaterial.SetTexture("_MainTex", stone);
-            }
-            else if (materialName.Contains("Grass"))
-            {
-                smokeMaterial.SetTexture("_MainTex", grass);
-            }
-            else if (materialName.Contains("Dirt"))
-            {
-                smokeMaterial.SetTexture("_MainTex", dirt);
-            }
-            else if (materialName.Contains("Metal"))
-            {
-                smokeMaterial.SetTexture("_MainTex", metal);
-            }
-            else if (materialName.Contains("Snow"))
-            {
-                smokeMaterial.SetTexture("_MainTex", snow);
+                superAura.Play();
             }
         }
         else
         {
-            smokeMaterial.SetTexture("_MainTex", stone);
-        }
-
-        if (player.IsGrounded() && !player.underwater)
-        {
-            if (player.GetGroundInformation().collider.sharedMaterial && player.GetGroundInformation().collider.sharedMaterial.name != "Water")
+            if (superAura.isEmitting)
             {
-                if (smoke.isStopped)
-                {
-                    smoke.Play();
-                }
+                superAura.Stop();
             }
+            
         }
-        else
+
+        foreach (Material m in playerMaterials)
         {
-            smoke.Stop();
+            m.SetFloat("_Super_Blend", player.normalSuperBlend);
         }
 
-        dashBall.localScale = dashBallSizeFast;// Vector3.Lerp(dashBallSizeNormal, dashBallSizeFast, player.velocity * 3 * Time.deltaTime);
 
-        //if (Player.boost)
-        //{
-        //    Instantiate(wave, transform.position, transform.rotation);
-        //}
+        if (player.isBoosting && player.isSuper && player.rigidbody.velocity.magnitude > 0.1f)
+        {            
+            boostSuper.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized);
+        }
+       
 
-        boost.SetActive(player.isBoosting);
+
+        underwaterBubble.SetActive(player.isUnderwater);
+
+        dashBall.localScale = dashBallSizeFast;
+        dashBallSuper.localScale = dashBallSizeFast;
+
+        boost.SetActive(player.isBoosting && !player.isSuper);
+        boostSuper.SetActive(player.isBoosting && player.isSuper);
+
         if (player.rigidbody.velocity.magnitude > 1)
         {
             tubeTrail.transform.forward = player.rigidbody.velocity.normalized;
@@ -160,7 +149,88 @@ public class PlayerEffects : MonoBehaviour
             s2.Stop();
         }
 
+        try
+        {
+            if (player.IsGrounded())
+            {
+                PhysicMaterial physicMaterial = player.GetGroundInformation().collider.sharedMaterial;
+
+                if (physicMaterial == null)
+                    return;
+
+                string materialName = physicMaterial.name;
+
+                if (materialName.Contains("Stone"))
+                {
+                    smokeMaterial.SetTexture("Texture2D_8FEEBB68", stone);
+                }
+                else if (materialName.Contains("Grass"))
+                {
+                    smokeMaterial.SetTexture("Texture2D_8FEEBB68", grass);
+                }
+                else if (materialName.Contains("Dirt"))
+                {
+                    smokeMaterial.SetTexture("Texture2D_8FEEBB68", dirt);
+                }
+                else if (materialName.Contains("Metal"))
+                {
+                    smokeMaterial.SetTexture("Texture2D_8FEEBB68", metal);
+                }
+                else if (materialName.Contains("Snow"))
+                {
+                    smokeMaterial.SetTexture("Texture2D_8FEEBB68", snow);
+                }
+            }
+            else
+            {
+                smokeMaterial.SetTexture("Texture2D_8FEEBB68", stone);
+            }
+        }
+        catch
+        {
+            smokeMaterial.SetTexture("Texture2D_8FEEBB68", stone);
+        }
+
+        try
+        {
+            if (player.IsGrounded() && !player.isUnderwater)
+            {
+                if (player.GetGroundInformation().collider.sharedMaterial && player.GetGroundInformation().collider.sharedMaterial.name != "Water")
+                {
+                    if (smoke.isStopped)
+                    {
+                        smoke.Play();
+                    }
+                }
+            }
+            else
+            {
+                smoke.Stop();
+            }
+        }
+        catch
+        {
+
+        }
+        
+
+ 
+
     }
+
+
+
+    public void FootprintL()
+    {
+        Instantiate(footprint, transform.TransformPoint(-0.12f, 0.02f, 0.2f), transform.rotation);
+    }
+
+    public void FootprintR()
+    {
+        Instantiate(footprint, transform.TransformPoint(0.12f, 0.02f, 0.2f), transform.rotation);
+    }
+
+
 
     void StateBoostStart()
     {
@@ -179,14 +249,26 @@ public class PlayerEffects : MonoBehaviour
 
     private void StateSpindashStart()
     {
-        //player.mesh.gameObject.SetActive(false);
-        dashBall.gameObject.SetActive(true);
+        if (player.isSuper)
+        {
+            dashBallSuper.gameObject.SetActive(true);
+        }
+        else
+        {
+            dashBall.gameObject.SetActive(true);
+        }
     }
 
     private void StateSpindashEnd()
     {
-        //player.mesh.gameObject.SetActive(true);
-        dashBall.gameObject.SetActive(false);
+        if (player.isSuper)
+        {
+            dashBallSuper.gameObject.SetActive(false);
+        }
+        else
+        {
+            dashBall.gameObject.SetActive(false);
+        }
     }
 
     void StateGrindStart()
@@ -211,72 +293,130 @@ public class PlayerEffects : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Water"))
-        {
-            waterRun.Play();
-        }
+        //if (collision.gameObject.CompareTag("Water"))
+        //{
+        //    waterRun.Play();
+        //}
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Water"))
-        {
-            waterRun.Stop();
-        }
+        //if (collision.gameObject.CompareTag("Water"))
+        //{
+        //    waterRun.Stop();
+        //}
     }
     void Land()
     {
-        if (!player.underwater)
+        if (!player.isUnderwater)
         {
-            landing.Play();
+            Instantiate(landing, player.GetGroundInformation().point, new Quaternion());
         }
 
     }
 
     void StateBallStart()
     {
-        spinBall.SetActive(true);
+        if (player.isSuper)
+        {
+            spinBallSuper.SetActive(true);
+        }
+        else
+        {
+            spinBall.SetActive(true);
+        }
+
     }
 
     void StateBallEnd()
     {
-        spinBall.SetActive(false);
+        if (player.isSuper)
+        {
+            spinBallSuper.SetActive(false);
+        }
+        else
+        {
+            spinBall.SetActive(false);
+        }
     }
 
     void StateHomingStart()
     {
-        tubeTrail.emit = true;
+        if (player.isSuper)
+        {
+            tubeTrailSuper.emit = true;
+        }
+        else
+        {
+            tubeTrail.emit = true;
+        }
     }
 
     void StateHomingEnd()
     {
-        tubeTrail.emit = false;
+        if (player.isSuper)
+        {
+            tubeTrailSuper.emit = false;
+        }
+        else
+        {
+            tubeTrail.emit = false;
+        }
     }
 
     void StateStompStart()
     {
-        tubeTrail.emit = true;
+        if (player.isSuper)
+        {
+            tubeTrailSuper.emit = true;
+        }
+        else
+        {
+            tubeTrail.emit = true;
+        }
 
         stomp = true;
     }
 
     void StateStompEnd()
     {
+        if (player.isSuper)
+        {
+            tubeTrailSuper.emit = false;
+        }
+        else
+        {
+            tubeTrail.emit = false;
+        }
+
         lastStateTime = Time.time;
-        tubeTrail.emit = false;
         stomp = false;
-        stompLand.GetComponent<ParticleSystem>().Play();
+
     }
 
     void StateDashPanelStart()
     {
-        dashBall.gameObject.SetActive(true);
+        if (player.isSuper)
+        {
+            dashBallSuper.gameObject.SetActive(true);
+        }
+        else
+        {
+            dashBall.gameObject.SetActive(true);
+        }
         playerMesh.gameObject.SetActive(false);
     }
 
     void StateDashPanelEnd()
     {
-        dashBall.gameObject.SetActive(false);
+        if (player.isSuper)
+        {
+            dashBallSuper.gameObject.SetActive(false);
+        }
+        else
+        {
+            dashBall.gameObject.SetActive(false);
+        }
         playerMesh.gameObject.SetActive(true);
     }
 
