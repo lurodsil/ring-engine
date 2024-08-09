@@ -148,7 +148,7 @@ public static class ExtensionMethods
     public static GroundState GetGroundState(this Transform transform)
     {
         int angleMin = 10;
-        int angleMid = 45;
+        int angleMid = 80;
         int angleMax = 135;
 
         float angle = Vector3.Angle(transform.up, Vector3.up);
@@ -180,6 +180,13 @@ public static class ExtensionMethods
     public static Vector3 VerticalVelocity(this Rigidbody rigidbody)
     {
         return new Vector3(0, rigidbody.velocity.y, 0);
+    }
+
+    public static float ConformVelocity(this Rigidbody rigidbody, float maxVelocity)
+    {
+        float step = 1 / maxVelocity;
+
+        return Mathf.Clamp01(rigidbody.HorizontalVelocity().magnitude * step);
     }
     public static void Accelerate(this Rigidbody rigidbody, float acceleration, float maxVelocity)
     {
