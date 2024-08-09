@@ -31,8 +31,8 @@ public class PanelLights : MonoBehaviour
 
             foreach (Material material in lightMaterials)
             {
-                material.SetTexture("_MainTex", lightTextures[textureIndex]);
-                material.SetTexture("_EmissionMap", lightTextures[textureIndex]);
+                material.SetTexture("_BaseColorMap", lightTextures[textureIndex]);
+                material.SetTexture("_EmissiveColorMap", lightTextures[textureIndex]);
             }
 
             ResetTimer();
