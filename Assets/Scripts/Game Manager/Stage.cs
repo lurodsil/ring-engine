@@ -6,14 +6,16 @@ public class Stage : MonoBehaviour
     public string stageName = "test stage";
     public string act = "act 1";
 
-
     public PointMarker[] checkpoints;
     public Transform spawnPoint;
 
     public MusicVelocityModes musicVelocityModes;
 
     public bool playMusicOnStart;
+    [SerializeField] float musicVolume = 0.8f;
+    [SerializeField] float musicVolumeUnderwater = 0.2f;
 
+    public float loopDelayCorrection = 0;
     public AudioClip
         start,
         loop,
@@ -53,6 +55,7 @@ public class Stage : MonoBehaviour
         {
             Load();
             GameManager.instance.firstTimeLoad = false;
+
         }
         else
         {
@@ -74,13 +77,6 @@ public class Stage : MonoBehaviour
         GameManager.OnResume -= audioSource.UnPause;
         GameManager.OnResume -= audioSourceFast.UnPause;
         GameManager.OnResume -= audioSourceBoost.UnPause;
-
-        GameManager.instance.activeCheckpoints = new bool[checkpoints.Length];
-
-        for (int i = 0; i < checkpoints.Length; i++)
-        {
-            GameManager.instance.activeCheckpoints[i] = checkpoints[i].active;
-        }
     }
 
     public void BossDied()
@@ -106,19 +102,11 @@ public class Stage : MonoBehaviour
         audioSourceFast = gameObject.AddComponent<AudioSource>();
         audioSourceBoost = gameObject.AddComponent<AudioSource>();
 
-        if (playMusicOnStart)
-        {
-            SetupAudioSource(audioSource, start, loop);
-            SetupAudioSource(audioSourceFast, startFast, loopFast);
-            SetupAudioSource(audioSourceBoost, startBoost, loopBoost);
-        }
+        GameManager.instance.OnLoadingEnd();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
         if (GameManager.instance.underwaterManager.underwaterAlertState == 4)
         {
             audioSource.Stop();
@@ -148,7 +136,15 @@ public class Stage : MonoBehaviour
         switch (musicVelocityModes)
         {
             case MusicVelocityModes.Normal:
-                audioSource.volume = 1;
+                if (GameManager.instance.underwaterManager.underwater)
+                {
+                    audioSource.volume = musicVolumeUnderwater;
+                }
+                else
+                {
+                    audioSource.volume = musicVolume;
+
+                }
                 audioSourceFast.volume = 0;
                 audioSourceBoost.volume = 0;
                 break;
@@ -156,7 +152,7 @@ public class Stage : MonoBehaviour
                 if (loopFast)
                 {
                     audioSource.volume = 0;
-                    audioSourceFast.volume = 1;
+                    audioSourceFast.volume = musicVolume;
                     audioSourceBoost.volume = 0;
                 }
                 break;
@@ -165,7 +161,7 @@ public class Stage : MonoBehaviour
                 {
                     audioSource.volume = 0;
                     audioSourceFast.volume = 0;
-                    audioSourceBoost.volume = 1;
+                    audioSourceBoost.volume = musicVolume;
                 }
                 break;
         }
@@ -182,7 +178,7 @@ public class Stage : MonoBehaviour
         if (start)
         {
             audioSource.PlayOneShot(start);
-            audioSource.PlayDelayed(start.length);
+            audioSource.PlayDelayed(start.length + loopDelayCorrection);
         }
         else
         {
@@ -192,26 +188,25 @@ public class Stage : MonoBehaviour
 
     private void Load()
     {
-        //player = Instantiate(GameManager.instance.player, spawnPoint).GetComponentInChildren<Player>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        
+        
+        player = Instantiate(GameManager.instance.player, spawnPoint.transform.position, spawnPoint.transform.rotation).GetComponentInChildren<Player>();
     }
 
     private void Reload()
     {
         for (int i = 0; i < checkpoints.Length; i++)
         {
-            if (GameManager.instance.activeCheckpoints[i])
+            if (GameManager.instance.activeCheckpoints.Contains(checkpoints[i].PointMarkerID))
             {
-                checkpoints[i].Activate();
+                checkpoints[i].active = false;
             }
 
             if (checkpoints[i].PointMarkerID == GameManager.instance.lastCheckpoint)
             {
                 spawnPoint = checkpoints[i].transform;
             }
-
         }
-
-        player = Instantiate(GameManager.instance.player, spawnPoint).GetComponentInChildren<Player>();
+        player = Instantiate(GameManager.instance.player, spawnPoint.transform.position, spawnPoint.transform.rotation).GetComponentInChildren<Player>();
     }
 }

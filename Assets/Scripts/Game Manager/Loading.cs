@@ -6,27 +6,23 @@ public class Loading : MonoBehaviour
 {
     [HideInInspector] public string sceneName;
 
-    private void OnEnable()
-    {
-        GameManager.instance.OnLoadingStart();
-    }
-
-    private void OnDisable()
-    {
-        GameManager.instance.OnLoadingEnd();
-    }
 
     private void Start()
     {
-        sceneName = GameManager.instance.sceneLoading;
+        GameManager.instance.OnLoadingStart();
 
-        Destroy(GameManager.instance.gameObject);
+        sceneName = GameManager.instance.sceneLoading;
 
         StartCoroutine(LoadNewScene());
     }
+    private void Update()
+    {
+        GameManager.instance.ScreenFadeIn();
+        GameManager.instance.AudioFadeIn();
+    }
 
     IEnumerator LoadNewScene()
-    {
+    {      
         yield return new WaitForSeconds(3);
 
         AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);

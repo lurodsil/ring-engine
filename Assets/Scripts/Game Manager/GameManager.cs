@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.ProBuilder;
 //using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +12,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
+    public TriggerRendererSettings triggerRendererSettings;
+
+    public Material speedLines;
+
     public delegate void PauseAction();
     public static event PauseAction OnPause;
     public static event PauseAction OnResume;
@@ -17,8 +24,9 @@ public class GameManager : MonoBehaviour
     public PauseMenu pauseMenu;
 
     public bool firstTimeLoad = true;
+    public bool juliana = true;
 
-    public bool[] activeCheckpoints;
+    public List<int> activeCheckpoints;
     public int lastCheckpoint = -1;
 
     public string sceneLoading;
@@ -64,7 +72,7 @@ public class GameManager : MonoBehaviour
     //Audio
     public AudioSource audioSource;
     public AudioMixer mixer;
-    private float masterVolume = -10;
+    private float masterVolume = 0;
 
     public GameState gameState;
 
@@ -102,15 +110,23 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = 60;
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
 
-        instance = GetComponent<GameManager>();
+        DontDestroyOnLoad(gameObject);
+
+        Application.targetFrameRate = 60;
 
         audioSource = GetComponent<AudioSource>();
 
         ringEngineDebug = GetComponent<RingEngineDebug>();
 
-        DontDestroyOnLoad(gameObject);
 
         //Load Settings
         if (File.Exists(settingsPath))
@@ -137,11 +153,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        Shader.SetGlobalFloat("_GlobalFade", 1);
     }
 
     private void LateUpdate()
     {
+        
         //if(player.GetComponentInChildren<Player>().stateMachine.currentStateName != "StateFallDead")
         //{
         //    try
@@ -197,13 +216,13 @@ public class GameManager : MonoBehaviour
 
 
 
-
+        speedLines.SetFloat("_Center_Void_Size", Mathf.Clamp01( 1 - Player.instance.rigidbody.velocity.magnitude / 80));
 
         switch (gameState)
         {
             case GameState.Loading:
                 blackscreen.color = Color.clear;
-                mixer.SetFloat("MasterVolume", -10);
+                mixer.SetFloat("MasterVolume", 5);
                 break;
             case GameState.MainMenu:
 
@@ -217,6 +236,7 @@ public class GameManager : MonoBehaviour
                 //postProcessingProfile.colorGrading.enabled = settings.colorGrading;
                 break;
             case GameState.Playing:
+                mixer.SetFloat("MasterVolume", 0);
                 if (Input.GetButtonDown(XboxButton.Start))
                 {
                     OnPause();
@@ -315,7 +335,7 @@ public class GameManager : MonoBehaviour
 
     public void AudioFadeOut()
     {
-        masterVolume = Mathf.Lerp(masterVolume, -80, audioFadeSpeed * Time.deltaTime);
+        masterVolume = Mathf.Lerp(masterVolume, -100, audioFadeSpeed * Time.deltaTime);
         mixer.SetFloat("MasterVolume", masterVolume);
     }
 
@@ -343,6 +363,24 @@ public class GameManager : MonoBehaviour
         sceneLoading = sceneName;
         gameState = GameState.Loading;
         SceneManager.LoadScene("Loading");
+        Timer.reset = true;
+        rings = 0;
+    }
+
+    public void ReloadSceneWithLoading()
+    {
+        if(lives < 1)
+        {
+            gameState = GameState.GameOver;
+            SceneManager.LoadScene("GameOver");
+        }
+        else
+        {
+            gameState = GameState.Loading;
+            SceneManager.LoadScene("Loading");
+            rings = 0;
+        }
+        
     }
 
     public void OnLoadingStart()
@@ -353,4 +391,6 @@ public class GameManager : MonoBehaviour
     {
         audioSource.PlayOneShot(loadingEnd);
     }
+
+    
 }

@@ -16,24 +16,23 @@ public class UnderwaterManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioMixer mixer;
 
-    public CustomPassVolume underwaterPassVolume;
-
-
-    private void OnLevelWasLoaded(int level)
-    {
-        UnderwaterReset();
-        UnderwaterEnd();
-    }
-
-    
+    public CustomPassVolume underwaterPassVolume;    
 
     public void UnderwaterStart()
     {
-        
+
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+
         mixer.SetFloat("Lowpass", 600);
         underwater = true;
         //Here we change the injection point to render the underwater distortion properly
         underwaterPassVolume.injectionPoint = CustomPassInjectionPoint.BeforePostProcess;
+    }
+
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        UnderwaterReset();
+        UnderwaterEnd();
     }
 
     public void UnderwaterEnd()
@@ -58,7 +57,7 @@ public class UnderwaterManager : MonoBehaviour
     {
         if (GameManager.instance.gameState == GameState.Playing && Player.instance)
         {
-            if (Player.instance.underwater)
+            if (Player.instance.isUnderwater)
             {
                 switch (underwaterAlertState)
                 {
