@@ -41,7 +41,7 @@ public class Hud : HudCommon
         RedStars(GameManager.instance.redStars, redStars, grayStar, redStar);
     }
 
-    void GetLife()
+    public void GetLife()
     {
         Vector3 getLifeTargetPos = new Vector3(Screen.width / 2 - 34, Screen.height / 2 + 100, 0);
         getLifeTargetPos.y = getLifeTargetPos.y + getLifeOffset;
