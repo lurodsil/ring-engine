@@ -11,7 +11,6 @@ public class SimpleEnemy : Enemy
         base.Start();
         animator = GetComponent<Animator>();
         stateMachine.Initialize(this, StateIdle);
-
     }
 
     public override void Update()
@@ -83,7 +82,15 @@ public class SimpleEnemy : Enemy
         }
         else
         {
-            transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
+            if (isTargetLook)
+            {
+                transform.LookAt(target.transform);
+            }
+            else
+            {
+                transform.LookAt(new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z));
+            }
+            
             rigidbody.velocity = transform.forward * attackMovementVelocity;
         }
     }
