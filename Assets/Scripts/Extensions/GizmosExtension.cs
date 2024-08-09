@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 
 public static class GizmosExtension
@@ -35,5 +36,18 @@ public static class GizmosExtension
 
         Gizmos.DrawRay(origin, leftDirection * range);
         Gizmos.DrawRay(origin, rightDirection * range);
+    }
+    public static void DrawBoxBoundaries(BoxCollider boxCollider)
+    {
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(boxCollider.transform.position, boxCollider.transform.rotation, boxCollider.transform.lossyScale);
+        Gizmos.matrix = rotationMatrix;
+        Gizmos.DrawCube(boxCollider.center, boxCollider.size);
+    }
+
+    public static void DrawCamera(Transform target, Vector3 scale)
+    {
+        Matrix4x4 rotationMatrix = Matrix4x4.TRS(target.position, target.rotation, scale);
+        Gizmos.matrix = rotationMatrix;
+        Gizmos.DrawCube(target.position, scale);
     }
 }
