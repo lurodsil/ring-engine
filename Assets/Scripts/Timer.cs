@@ -66,5 +66,6 @@ public class Timer : MonoBehaviour
         startTime = Time.time;
         resetOnStart = false;
         resetTimer = false;
+        reset = false;
     }
 }
