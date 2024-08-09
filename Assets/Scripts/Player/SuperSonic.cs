@@ -165,7 +165,7 @@ public class SuperSonic : Player
     }
     void StateStompEnd()
     {
-        //cameraTarget.Shake(0.2f);
+        //MainCamera.Shake(0.2f);
 
     }
     #endregion
