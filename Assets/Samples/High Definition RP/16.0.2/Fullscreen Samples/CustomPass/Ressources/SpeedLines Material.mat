@@ -39,18 +39,18 @@ Material:
     m_Ints: []
     m_Floats:
     - _Center_Size: 0.5
-    - _Center_Void_Falloff: 0.5
-    - _Center_Void_Size: 0.125
+    - _Center_Void_Falloff: 0.4
+    - _Center_Void_Size: 1
     - _Lines_Count_Scaling: 28.43
-    - _Lines_Density: 0.5
-    - _Lines_Falloff: 0.25
+    - _Lines_Density: 0.455
+    - _Lines_Falloff: 0.82
     - _Lines_Number: 1
     - _Lines_Scale: 10
     - _Lines_Tiling: 20
     - _Noise_Radial_Scale: 0.1
     - _Number_of_Frames: 100
     - _Radial_Noise_Scale: 0.07
-    - _Speed: 1
+    - _Speed: 0.5
     m_Colors:
     - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Center_Void_Size: {r: 0.5, g: 0.5, b: 0, a: 0}

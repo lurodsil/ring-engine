@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Rain_ToCustomPassMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: d446683f861eb30478cc3a8dca534525, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d446683f861eb30478cc3a8dca534525,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -32,6 +33,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_e6375cfbe65347bd82b80efe7aa55420_Texture_1:
+        m_Texture: {fileID: 8600000, guid: 02c1eb9b1ea4e8847a46ac799aafee34, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_e6375cfbe65347bd82b80efe7aa55420_Texture_1_Texture2D:
         m_Texture: {fileID: 8600000, guid: 02c1eb9b1ea4e8847a46ac799aafee34, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -74,3 +79,4 @@ Material:
     - _Clearing_Position: {r: 0.5, g: 0.36, b: 0, a: 0}
     - _Color: {r: 0.2289664, g: 0.28737712, b: 0.3207547, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
