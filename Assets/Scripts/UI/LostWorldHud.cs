@@ -25,7 +25,7 @@ public class LostWorldHud : HudCommon
     void Update()
     {
         Counter(GameManager.instance.rings.ToString("d3"), numbers, ringCounterHud);
-        Counter(GameManager.instance.saveData.lives.ToString("d2"), numbers, livesCounterHud);
+        Counter(GameManager.instance.lives.ToString("d2"), numbers, livesCounterHud);
         Counter(Timer.secondsRound3Digits.ToString("d3"), numbers, secondsHud);
         Counter(GameManager.instance.saveData.animalsFree.ToString("d4"), numbers, animalsHud);
         RedStars(GameManager.instance.redStars, redStars, grayStar, redStar);
