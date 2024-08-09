@@ -16,6 +16,7 @@ public class MakeParent : MonoBehaviour
         if (collision.collider.CompareTag(GameTags.playerTag))
         {
             collision.collider.transform.parent = null;
+            collision.collider.transform.localScale = Vector3.one;
         }
     }
 }
