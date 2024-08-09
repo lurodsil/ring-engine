@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class DamageObject: RingEngineObject
+public abstract class DamageObject: CommonActivableStatelessObject
 {
     public override void OnTriggerEnter(Collider other)
     {
@@ -8,7 +8,6 @@ public abstract class DamageObject: RingEngineObject
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             damageable.TakeDamage(gameObject);
-            OnStateStart?.Invoke();
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -17,7 +16,6 @@ public abstract class DamageObject: RingEngineObject
         {
             IDamageable damageable = collision.collider.GetComponent<IDamageable>();
             damageable.TakeDamage(gameObject);
-            OnStateStart?.Invoke();
         }
     }
     private void OnParticleCollision(GameObject other)
@@ -26,7 +24,6 @@ public abstract class DamageObject: RingEngineObject
         {
             IDamageable damageable = other.GetComponent<IDamageable>();
             damageable.TakeDamage(gameObject);
-            OnStateStart?.Invoke();
         }
     }
 }
