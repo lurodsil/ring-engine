@@ -1,28 +1,72 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public static GameObject activeCamera;
-
-    public static GameObject[] cameras;
+    private static CameraManager instance;
+    public List<CameraCommon> cameras = new List<CameraCommon>();
+    private CameraCommon[] camerasSorted = new CameraCommon[0];
 
     private void Start()
     {
-        cameras = new GameObject[10];
+        if (instance == null) 
+        { 
+            instance = this; 
+        }
     }
 
     private void Update()
     {
-        for(int i = 0; i < cameras.Length; i++)
+        if(camerasSorted.Length != cameras.Count)
         {
-            if(cameras[i] != null)
-            {
-                activeCamera = cameras[i];
-                break;
-            }
+            camerasSorted = cameras.OrderBy(i => i.priority).ToArray();
 
-            activeCamera = Camera.main.gameObject;
+            for (int i = 0; i < camerasSorted.Length; i++)
+            {
+                if (i == 0)
+                {
+                    camerasSorted[i].enabled = true;
+                }
+                else
+                {
+                    camerasSorted[i].enabled = false;
+                }
+            }
         }
+    }
+
+    public static void ActivateCamera(CameraCommon camera)
+    {
+        instance.cameras.Add(camera);
+        MainCamera.SetActive(false);
+    }
+
+    public static void DeactivateCamera(CameraCommon camera)
+    {   
+        camera.enabled = false;
+        instance.cameras.Remove(camera);
+        MainCamera.SetEaseIn(camera.easeOut);        
+        if (instance.cameras.Count == 0)
+        {
+            MainCamera.SetActive(true);
+        }
+    }
+
+    public static int GetCameraCount()
+    {
+        return instance.cameras.Count;
+    }
+
+    public static void DeactivateAllCameras()
+    {
+        instance.cameras.Clear();
+
+        for (int i = 0; i < instance.camerasSorted.Length; i++)
+        {
+            instance.camerasSorted[i].enabled = false;
+        }
+
     }
 }
