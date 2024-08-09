@@ -13,11 +13,11 @@ public class RingLost : MonoBehaviour
         StartCoroutine(WaitToBeBollectible(timeToBeCollectible));
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (canBeCollectible)
         {
-            if (collision.collider.CompareTag(GameTags.playerTag))
+            if (other.CompareTag("Item Collision"))
             {
                 Instantiate(getRing, transform.position, Quaternion.identity);
                 Destroy(gameObject);
