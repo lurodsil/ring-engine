@@ -63,12 +63,12 @@ public class StateMachine
         paused = true;
     }
 
-    public void ChangeState(State nextState, State physicsState, GameObject[] listeners, float delay)
+    public void ChangeState(State nextState, State physicsState, GameObject[] listeners, float delay, bool canTransitionToSameState = false)
     {
         if (Time.time < lastStateTime + delay)
             return;
 
-        if (updateState.Method.Name == nextState.Method.Name)
+        if (!canTransitionToSameState && updateState.Method.Name == nextState.Method.Name)
             return;
 
         lastStateName = updateState.Method.Name;
@@ -113,6 +113,10 @@ public class StateMachine
     public void ChangeState(State nextState, GameObject listener)
     {
         ChangeState(nextState, GetPhysicsState(owner, nextState.Method.Name), new GameObject[2] { owner.gameObject, listener }, 0);
+    }
+    public void ChangeState(State nextState, GameObject listener, bool canTransitionToSameState)
+    {
+        ChangeState(nextState, GetPhysicsState(owner, nextState.Method.Name), new GameObject[2] { owner.gameObject, listener }, 0, canTransitionToSameState);
     }
     public void ChangeState(State nextState, State physicsState, float delay)
     {
