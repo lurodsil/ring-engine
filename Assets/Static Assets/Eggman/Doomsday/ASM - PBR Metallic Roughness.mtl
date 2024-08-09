@@ -1,0 +1,21 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.6393133)
+
+newmtl Material _87
+illum 1
+
+newmtl red
+illum 1
+
+newmtl yellow
+illum 1
+
+newmtl Material _123
+illum 1
+
+newmtl eye
+illum 1
+
+newmtl eggman_red
+illum 1
+
