@@ -17,7 +17,7 @@ public class LockOn : MonoBehaviour
     private GameObject currentTarget;
     private bool enableLockOn;
 
-    private void Awake()
+    private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -25,7 +25,7 @@ public class LockOn : MonoBehaviour
 
     void LateUpdate()
     {
-        if (player.closestTarget && !player.isGrounded && !player.isGrindGrounded && player.stateMachine.currentStateName == "StateBall")
+        if (player.closestTarget && !player.IsGrounded() && !player.isGrindGrounded)
         {
             if (player.canHomming)
             {
@@ -58,7 +58,6 @@ public class LockOn : MonoBehaviour
                 circle.transform.localScale = Vector3.Lerp(circle.transform.localScale, lockedOffset, lockVelocity * Time.deltaTime);
                 arrow.transform.localScale = circle.transform.localScale;
             }
-
 
             lockon.transform.position = Camera.main.WorldToScreenPoint(player.closestTarget.transform.position);
 
