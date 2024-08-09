@@ -28,7 +28,7 @@ public class AnimExtract : EditorWindow
 
         if (GUILayout.Button("Browse"))
         {
-            sourcePath = "Assets" + EditorUtility.OpenFolderPanel(title, "/Assets", "").Replace(Application.dataPath, "");
+            sourcePath = "Assets" + EditorUtility.OpenFolderPanel(titleContent.text, "/Assets", "").Replace(Application.dataPath, "");
             destinationPath = sourcePath + "/Output/";
         }
 
@@ -39,7 +39,7 @@ public class AnimExtract : EditorWindow
 
         if (GUILayout.Button("Browse"))
         {
-            destinationPath = "Assets" + EditorUtility.OpenFolderPanel(title, "/Assets", "").Replace(Application.dataPath, "");
+            destinationPath = "Assets" + EditorUtility.OpenFolderPanel(titleContent.text, "/Assets", "").Replace(Application.dataPath, "");
         }
         EditorGUILayout.EndHorizontal();
 
