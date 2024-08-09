@@ -6,6 +6,8 @@ public class PlayerAnimation : MonoBehaviour
 {
     public Transform meshHolder, mesh;
     public float meshDamping = 12;
+    public string currentAnimationName { get; private set; }
+
 
     [HideInInspector]
     public int idleActionIDNameHash,
@@ -68,7 +70,7 @@ public class PlayerAnimation : MonoBehaviour
     int idleActionID = 0;
     Vector3 leftStickDirection;
     float direction;
-    bool spring;
+
     bool lightSpeedDash;
     bool homming;
     public bool underwater;
@@ -87,6 +89,12 @@ public class PlayerAnimation : MonoBehaviour
     {
         mesh.gameObject.SetActive(false);
     }
+
+    private void StateSpindashEnd()
+    {
+        mesh.gameObject.SetActive(true);
+    }
+
 
     void StateWaterSwirlGetPlayerStart()
     {
@@ -108,6 +116,11 @@ public class PlayerAnimation : MonoBehaviour
     private void StateRocketEnd()
     {
         animator.SetTrigger("StateRocketEnd");
+    }
+
+    private void StateSkydiveEnd()
+    {
+        animator.SetTrigger("SkyDiveEnd");
     }
 
     void StateSnowBoardStart()
@@ -165,6 +178,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Awake()
     {
+     
         rigidbody = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         //animator = GetComponent<Animator>();
@@ -203,8 +217,12 @@ public class PlayerAnimation : MonoBehaviour
         wallJumpStartNameHash = Animator.StringToHash("WallJumpStart");
         underwaterNameHash = Animator.StringToHash("Underwater");
         squatNameHash = Animator.StringToHash("Squat");
+
+        animator.SetBool("SkipIntroAnimation", !GameManager.instance.firstTimeLoad);
     }
     Vector3 cameraRelative;
+    public float grindTangent;
+    public float grindSmoothTangent;
     public float tangent;
     Transform cameraMain;
 
@@ -224,6 +242,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         cameraMain = Camera.main.transform;
         //animator = GetComponent<Animator>();
+        
     }
 
     private void StateBalloonStart()
@@ -271,9 +290,24 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger("Fly");
     }
 
+    void StateFallStart()
+    {
+        animator.SetTrigger("FallStart");
+    }
+
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("IsSuper", player.isSuper);
+
+        animator.SetLayerWeight(1, player.normalSuperBlend);
+
+        AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+        if (clipInfo.Length > 0)
+        {
+            currentAnimationName = clipInfo[0].clip.name;
+        }       
+
         animator.SetBool("IsBoosting", player.isBoosting);
 
         animator.SetFloat("Abs Left Stick", player.absoluteLeftStick);
@@ -290,10 +324,7 @@ public class PlayerAnimation : MonoBehaviour
                 squat = false;
             }
         }
-        else
-        {
-            squat = false;
-        }
+        
 
         Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.velocity).normalized;
 
@@ -308,23 +339,35 @@ public class PlayerAnimation : MonoBehaviour
 
         leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), transform.up);
 
-        if (player.speedMode == SpeedMode.High)
+        if (player.pathHelper || player.sideViewPath)
         {
-            tangent = Vector3.Dot(lastTangent, -transform.right) * 10;
-        }
-        else
-        {
-            tangent = Vector3.Dot(leftStickDirection, transform.right);
+            if (player.pathHelperKnot != null)
+            {
+                leftStickDirection = player.pathHelperKnot.tangent;
+            }
+            else if(player.sideViewPath)
+            {
+                leftStickDirection = player.tangent * player.tangentMultiplier;
+            }
+
+            
         }
 
-        smoothTangent = Mathf.Lerp(smoothTangent, tangent, 30 * Time.deltaTime);
+        grindTangent = Vector3.Dot(lastTangent, -transform.right) * 10;      
+
+        tangent = Vector3.Dot(leftStickDirection, transform.right);
+
+        smoothTangent = Mathf.Lerp(smoothTangent, tangent, 10 * Time.deltaTime);
+
+        grindSmoothTangent = Mathf.Lerp(grindSmoothTangent, grindTangent, 10 * Time.deltaTime);
 
         animator.SetFloat("Tangent", tangent);
         animator.SetFloat("SmoothTangent", smoothTangent);
+        animator.SetFloat("GrindTangent", grindSmoothTangent);
 
         lastTangent = Vector3.Lerp(lastTangent, transform.forward, 10 * Time.deltaTime);
 
-        animator.SetBool("Underwater", player.underwater);
+        animator.SetBool("Underwater", player.isUnderwater);
 
         //if(player.aligninput)
         animator.SetFloat(directionNameHash, direction);
@@ -363,12 +406,15 @@ public class PlayerAnimation : MonoBehaviour
     {
         animator.SetFloat("Abs Speed", absSpeed);
         animator.SetFloat(dotVUpTForwardNameHash, Vector3.Dot(Vector3.up, transform.forward));
+        animator.SetFloat("Dot VUp TRight", Vector3.Dot(Vector3.up, transform.right));
         animator.SetFloat(groundDistanceNameHash, player.GetGroundInformation().distance);
         animator.SetBool(lightSpeedDashNameHash, lightSpeedDash);
         animator.SetBool(hommingNameHash, homming);
         //animator.SetBool(underwaterNameHash, underwater);
 
     }
+
+
 
     void StateAdlibTrickJumpStart()
     {
@@ -381,11 +427,16 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
+    void StateFlyEnd()
+    {
+        animator.SetTrigger("FlyEnd");
+
+    }
     void Reset()
     {
         //animator = GetComponent<Animator>();
         animator.applyRootMotion = false;
-        animator.updateMode = AnimatorUpdateMode.AnimatePhysics;
+        animator.updateMode = AnimatorUpdateMode.Fixed;
         animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
     }
 
@@ -475,10 +526,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("AGUA"))
-        {
-            animator.speed = 0.7f;
-        }
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -504,7 +552,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateFallDeadStart()
     {
-        if (Player.instance.drown)
+        if (player.drown)
         {
             animator.SetTrigger("Drown");
         }
@@ -601,27 +649,34 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateSpringStart()
     {
+        animator.ResetTrigger("SpringEnd");
+        animator.ResetTrigger("SpringStart");
         animator.SetTrigger("SpringStart");
     }
 
     void StateSpringEnd()
     {
+        animator.ResetTrigger("SpringEnd");
         animator.SetTrigger("SpringEnd");
     }
 
     void StateWideSpringStart()
     {
-        spring = true;
+        
     }
 
     void StateWideSpringEnd()
     {
-        spring = false;
+        
     }
 
     void StatePushingStart()
     {
-        animator.SetTrigger("Pushing");
+        animator.SetTrigger("Pushing Start");
+    }
+    void StatePushingEnd()
+    {
+        animator.SetTrigger("PushingEnd");
     }
 
     void StateSelectCanonStart()
@@ -657,13 +712,7 @@ public class PlayerAnimation : MonoBehaviour
         homming = false;
     }
 
-    void StateFallStart()
-    {
-        if (player.stateMachine.currentStateName == "StateGrindSingle")
-        {
-            animator.SetTrigger("Grind End");
-        }
-    }
+    
 
     void StateHomingTrickStart()
     {
@@ -678,7 +727,15 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateDieStart()
     {
-        animator.SetTrigger(deadNameHash);
+        if (player.drown)
+        {
+            animator.SetTrigger("Drown");
+        }
+        else
+        {
+            animator.SetTrigger(deadNameHash);
+        }
+        
     }
 
     void StateStompStart()
@@ -686,12 +743,12 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger(stompNameHash);
     }
 
-    void StateIronPole2DStart()
+    void StateIronPoleStart()
     {
         animator.SetTrigger(ironPole2DStartNameHash);
     }
 
-    void StateIronPole2DEnd()
+    void StateIronPoleEnd()
     {
         animator.SetTrigger(ironPole2DEndNameHash);
     }
@@ -719,11 +776,13 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateDashRingStart()
     {
+        animator.ResetTrigger(dashRingEndNameHash);
         animator.SetTrigger(dashRingStartNameHash);
     }
 
     void StateDashRingEnd()
     {
+        animator.ResetTrigger(dashRingEndNameHash);
         animator.SetTrigger(dashRingEndNameHash);
     }
 
@@ -764,19 +823,10 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateWallJumpEnd()
     {
-        if (!player.IsGrounded())
-        {
-            if (player.contactPoint.point == Vector3.zero)
-            {
-                animator.SetTrigger("WallLose");
-            }
-            else
-            {
-                animator.SetTrigger("WallJumpEnd");
-            }
 
-        }
+        animator.SetTrigger("WallJumpEnd");
 
+        
     }
 
     void StateRopeStart()
@@ -829,6 +879,17 @@ public class PlayerAnimation : MonoBehaviour
     private void StateJumpPoleEnd()
     {
         StateSpringEnd();
+    }
+
+    private void StateCeilingHangStart()
+    {
+        animator.SetTrigger("StateCeilingHangStart");
+    }
+
+
+    private void StateCeilingHangEnd()
+    {
+        animator.SetTrigger("StateCeilingHangEnd");
     }
 
     private void OnCollisionEnter(Collision collision)
