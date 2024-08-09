@@ -8,6 +8,8 @@ public class BezierObjectPlacer : MonoBehaviour
     [Range(0,1)]
     public float time;
 
+    public int objectsAlongSpline = 4;
+
     public Vector3 offset;
 
     public BezierSpline bezierSpline;
