@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 
-public class StruggleEndCollision : GenerationsObject
+public class StruggleEndCollision : CommonObject
 {
-    private void OnTriggerEnter(Collider other)
+    public bool active;
+
+    private void Awake()
     {
-        if (active && other.CompareTag(GameTags.playerTag))
+        OnPlayerTriggerEnter!.AddListener(StruggleEnd);
+    }
+
+    private void StruggleEnd()
+    {
+        if (active)
         {
-            player = other.GetComponent<Player>();
+            player.isStruggling = false;
 
-            player.stateMachine.ChangeState(player.StateFall, gameObject);
-
-            Deactivate();
+            player.stateMachine.ChangeState(player.StateFall, gameObject);            
         }
     }
 }
