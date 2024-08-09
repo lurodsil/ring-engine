@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket : RingEngineObject
+public class Rocket : CommonStatefulObject
 {
     public BezierPath bezierPath;
 
@@ -10,6 +10,7 @@ public class Rocket : RingEngineObject
     private void Start()
     {
         objectState = StateRocket;
+        OnPlayerTriggerEnter.AddListener(RocketState);
     }
 
     #region State Rocket
@@ -32,7 +33,7 @@ public class Rocket : RingEngineObject
 
         bezierPath.PutOnPath(player.transform, PutOnPathMode.BinormalAndNormal, out bezierKnot, out closest, 15);
 
-        if(player.rigidbody.velocity.magnitude < 40)
+        if (player.rigidbody.velocity.magnitude < 40)
         {
             player.rigidbody.AddForce(bezierKnot.tangent * 40, ForceMode.Acceleration);
         }
@@ -42,7 +43,7 @@ public class Rocket : RingEngineObject
 
         transform.rotation = Quaternion.LookRotation(bezierKnot.tangent, bezierKnot.normal);
 
-        if(closest > 0.99f)
+        if (closest > 0.99f)
         {
             player.stateMachine.ChangeState(player.StateFall, gameObject);
         }
@@ -55,12 +56,8 @@ public class Rocket : RingEngineObject
     }
     #endregion
 
-    public override void OnTriggerEnter(Collider other)
+    public void RocketState()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-            player.stateMachine.ChangeState(objectState, StateRocketPhysics, gameObject);
-        }
+        player.stateMachine.ChangeState(objectState, StateRocketPhysics, gameObject);
     }
 }
