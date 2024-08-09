@@ -22,9 +22,6 @@ public class ObjCameraObjectLook : GenerationsObject
     public float Target_Type = 0f;
     public float VelOffsetXYZ = 0f;
     public float ZRot = 0f;
+    public Transform target;
 
-    public override void OnValidate()
-    {
-
-    }
 }

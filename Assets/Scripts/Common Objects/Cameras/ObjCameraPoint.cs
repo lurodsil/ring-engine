@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjCameraPoint : GenerationsObject
+public class ObjCameraPoint : CameraCommon
 {
     public float Distance = 5f;
     public float Ease_Time_Enter = 0f;
@@ -24,18 +24,18 @@ public class ObjCameraPoint : GenerationsObject
     public float delay = 3;
     float sensitivity;
 
-    public override void OnValidate()
+    public void OnValidate()
     {
-
+        enabled = false;
     }
 
     Vector3 targetFinalPosition;
     private float adaptationSpeed;
-    Vector3 offset;
-    public Transform cameraTarget;
+
+
     new Camera camera;
     float lastStateTime;
-    Quaternion rotation;
+
 
     void Start()
     {
@@ -45,55 +45,12 @@ public class ObjCameraPoint : GenerationsObject
 
     void LateUpdate()
     {
-        try
-        {
-            if (!target)
-                target = MainCamera.instance.target;
-
-            try
-            {
-                if (CameraManager.activeCamera == gameObject)
-                {
-                    camera.transform.LookAt(transform);
-
-                    offset.z = Mathf.Lerp(offset.z, Distance, (Time.time - lastStateTime) / Ease_Time_Enter);
-
-                    rotation = Quaternion.Lerp(rotation, camera.transform.rotation, (Time.time - lastStateTime) / Ease_Time_Enter);
-
-                    camera.transform.position = (target.transform.position + new Vector3(0,TargetOffset_Up, 0)) - (rotation * offset);
-
-                    camera.transform.LookAt(transform);
-
-                    Camera.main.fieldOfView = Fovy;
-                }
-                else
-                {
-                    lastStateTime = Time.time;
-                    offset.z = Vector3.Distance(camera.transform.position, target.position);
-                    rotation = camera.transform.rotation;
-                }
-            }
-            catch
-            {
-                lastStateTime = Time.time;
-                offset.z = Vector3.Distance(camera.transform.position, target.position);
-                rotation = camera.transform.rotation;
-            }
-        }
-        catch
-        {
-
-        }
-
-    }
-
-    void EaseTimeEnter(float ease)
-    {
-        Ease_Time_Enter = ease;
-    }
-
-    void EaseTimeLeave(float ease)
-    {
-        Ease_Time_Leave = ease;
+        camera.transform.LookAt(transform);
+        offset.z = Mathf.Lerp(offset.z, Distance, (Time.time - lastStateTime) / Ease_Time_Enter);
+        rotation = Quaternion.Lerp(rotation, camera.transform.rotation, (Time.time - lastStateTime) / Ease_Time_Enter);
+        camera.transform.position = (target.transform.position + new Vector3(0,TargetOffset_Up, 0)) - (rotation * offset);
+        camera.transform.LookAt(transform);
+        Camera.main.fieldOfView = Fovy;
+        MainCamera.lastRotation = rotation;
     }
 }

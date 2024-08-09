@@ -1,79 +1,48 @@
 using UnityEngine;
 
-public class ChangeVolumeCamera : GenerationsObject
+[RequireComponent (typeof(BoxCollider))]
+public class ChangeVolumeCamera : MonoBehaviour
 {
-    public float Collision_Height = 10f;
-    public float Collision_Length = 10f;
-    public float Collision_Width = 10f;
-    public float Ease_Time_Enter = 0.5f;
-    public float Ease_Time_Leave = 1f;
-    public int Target;
-    public float Priority = 0f;
-    public float DefaultStatus = 0f;
-    public bool IsCameraView = false;
-    public bool IsEnableCollision = false;
-    public float LineType = 0f;
-    public float Shape_Type = 0f;
+    public CameraCommon target;
 
-    public GameObject target;
+    [Range(-10, 10)]
+    public int priority = 0;
 
-
-    private void Start()
+    private void OnValidate()
     {
-        if (!target)
+        if (target != null)
         {
-            try
-            {
-                target = FindObjectByID(Target).gameObject;
-            }
-            catch
-            {
-
-            }
-        }      
-
+            target.priority = priority;
+        }
     }
-
-    public override void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
-            target.SendMessage("EaseTimeEnter", Ease_Time_Enter, SendMessageOptions.DontRequireReceiver);
-            target.SendMessage("EaseTimeLeave", Ease_Time_Leave, SendMessageOptions.DontRequireReceiver);
+            CameraManager.ActivateCamera(target);
         }
     }
-
-    public void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
-            CameraManager.cameras[(int)Priority] = target;
+            CameraManager.DeactivateCamera(target);
         }
     }
-
-    void OnTriggerExit(Collider other)
+    private void OnDrawGizmos()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            CameraManager.cameras[(int)Priority] = null;
-        }
+        Gizmos.color = new Color(0, 0.5f, 0, 0.5f);
+        GizmosExtension.DrawBoxBoundaries(GetComponent<BoxCollider>());
+        Gizmos.color = new Color(0, 0, 0.5f, 0.5f);
+        //if (target != null)
+        //{
+        //    Gizmos.DrawSphere(target.transform.position, 0.05f);
+        //}        
     }
-
-    private void OnDestroy()
+    private void OnDisable()
     {
-        CameraManager.cameras[(int)Priority] = null;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        try
-        {
-            Gizmos.DrawLine(transform.position, FindObjectByID(Target).transform.position);
-        }
-        catch
-        {
-
-        }
+        
+            CameraManager.DeactivateCamera(target);
+        
     }
 }

@@ -47,7 +47,7 @@ public class CameraCollisionBoard : GenerationsObject
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private new void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
         {
