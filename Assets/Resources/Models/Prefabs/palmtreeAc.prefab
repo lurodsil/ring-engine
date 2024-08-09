@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4901370236915952}
   - component: {fileID: 33954264763090412}
   - component: {fileID: 23567341821868116}
-  - component: {fileID: 64196014429735226}
+  - component: {fileID: 740302514131231885}
   m_Layer: 0
   m_Name: palmtreeAc
   m_TagString: Untagged
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64196014429735226
-MeshCollider:
+--- !u!136 &740302514131231885
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,7 +105,8 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 75b8137d7f236b34bad74e5bb2245e56, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 10.59
+  m_Direction: 1
+  m_Center: {x: 0, y: 5, z: 0}

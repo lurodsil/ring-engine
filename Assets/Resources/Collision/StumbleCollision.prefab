@@ -67,26 +67,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51cc92f3117e444449e53fe5dcf78054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeTriggered: 0
-  onlyPlayerTrigger: 0
-  OnObjectTriggerEnter:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerStay:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  canBeActivated: 0
-  active: 1
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  haveStates: 0
   OnStateStart:
     m_PersistentCalls:
       m_Calls: []
@@ -114,15 +100,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 497f8e03c3cd2f84d8ad97130dec159a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 497f8e03c3cd2f84d8ad97130dec159a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 497f8e03c3cd2f84d8ad97130dec159a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 497f8e03c3cd2f84d8ad97130dec159a, type: 3}
       propertyPath: m_LocalPosition.x

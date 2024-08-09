@@ -771,11 +771,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4b87e8890e0a943ad328c706dce755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  OnBecomeActive:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnBecomeInactive:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   OnStateStart:
@@ -796,9 +795,6 @@ MonoBehaviour:
   OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
-  OnPlayerTriggerEnter:
-    m_PersistentCalls:
-      m_Calls: []
   InputTmie: 2.5
   OutOfControl: 0.15
   OutOfControl_Fail: 0.15
@@ -810,6 +806,7 @@ MonoBehaviour:
   loop: {fileID: 8300000, guid: 6013be66883688240b786d3fa6f4b395, type: 3}
   end: {fileID: 8300000, guid: 77b3dc27be563a04bbd2904f3f9ef0d7, type: 3}
   fail: {fileID: 8300000, guid: bcc7e47f17d7c5a4aaff00de7ed8768f, type: 3}
+  scannon: {fileID: 137000013162951084}
 --- !u!1 &1000012960693996
 GameObject:
   m_ObjectHideFlags: 0

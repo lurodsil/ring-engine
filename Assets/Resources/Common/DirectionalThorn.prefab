@@ -238,31 +238,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb3166577216c34cb23a7c22c3b7da1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeTriggered: 1
-  color: {r: 1, g: 0, b: 0, a: 0.5}
-  onlyPlayerTrigger: 1
-  OnObjectTriggerEnter:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerStay:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  canBeActivated: 0
-  active: 0
+  active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []
   OnBecomeInactive:
     m_PersistentCalls:
       m_Calls: []
-  haveStates: 0
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  drawExtents: 1

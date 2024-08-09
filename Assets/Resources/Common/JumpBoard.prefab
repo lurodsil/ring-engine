@@ -81,26 +81,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f885000d48846634391039a4866ed4e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeTriggered: 0
-  onlyPlayerTrigger: 0
-  OnObjectTriggerEnter:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerStay:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  canBeActivated: 0
-  active: 1
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  haveStates: 0
   OnStateStart:
     m_PersistentCalls:
       m_Calls: []
@@ -135,7 +121,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2, y: 1, z: 1.6}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!82 &82000011559433676
 AudioSource:
@@ -392,7 +378,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1, z: 1.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4000010915105826}
