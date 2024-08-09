@@ -12,7 +12,7 @@ public class LostRing : MonoBehaviour
 
     public float radius;
 
-    public float ringSpreadForce = 1000;
+    public float ringSpreadForce = 500;
 
     // Use this for initialization
     void Start()
@@ -20,7 +20,7 @@ public class LostRing : MonoBehaviour
         lastStateTime = Time.time;
     }
 
-    void StateHurtStart()
+    private void StateHurtStart()
     {
         LostRings();
     }
@@ -45,8 +45,6 @@ public class LostRing : MonoBehaviour
             Vector3 spreadDirection = Quaternion.Euler(0, i * ringsToAngle, 0) * Vector3.forward;
             newRing.GetComponent<Rigidbody>().AddForce(spreadDirection * (ringSpreadForce * Random.Range(1, 2)), ForceMode.Impulse);
             Destroy(newRing, 10);
-        }
-
-        GameManager.instance.rings = 0;
+        }        
     }
 }
