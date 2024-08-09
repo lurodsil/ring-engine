@@ -6,10 +6,15 @@ public class StruggleStartCollision : GenerationsObject
     public BezierPath bezierPath;
     public float velocity = 10;
 
+    private void Awake()
+    {
+        OnPlayerTriggerEnter!.AddListener(StruggleStart);
+    }
+
     #region State Struggle
     private void StateStruggleStart()
     {
-
+        player.isStruggling = true;
     }
 
     private void StateStruggle()
@@ -25,18 +30,12 @@ public class StruggleStartCollision : GenerationsObject
 
     private void StateStruggleEnd()
     {
+        player.isStruggling = false;
     }
     #endregion
 
-    private void OnTriggerEnter(Collider other)
+    private void StruggleStart()
     {
-        if (other.CompareTag(GameTags.playerTag))
-        {
-            player = other.GetComponent<Player>();
-
-            player.stateMachine.ChangeState(StateStruggle, gameObject);
-
-            struggleEndCollision.Deactivate();
-        }
+        player.stateMachine.ChangeState(StateStruggle, gameObject);
     }
 }
