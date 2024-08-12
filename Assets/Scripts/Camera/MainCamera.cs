@@ -184,7 +184,18 @@ public class MainCamera : MonoBehaviour
     public void OnCameraAnimationEnd()
     {
         GetComponent<Animator>().enabled = false;
-        enabled = true;
+        if (CameraManager.GetCameraCount() == 0)
+        {
+            
+            enabled = true;
+        }
+
+        ResetTime();
+    }
+
+    public static bool IsCameraPlayingAnimation()
+    {
+        return instance.GetComponent<Animator>().enabled;
     }
 
     public static void SetFollowRate(float follow)
@@ -235,6 +246,7 @@ public class MainCamera : MonoBehaviour
         instance.cameraEnabledTime = Time.time;
         instance.offset.z = Vector3.Distance(instance.transform.position, instance.target.lookAt.position);
         instance.target.offset = instance.target.lookAt.position - instance.target.position;
+        lastRotation = instance.transform.rotation;
     }
 
     public static void ReturnFromCutscene(bool cut = false)

@@ -175,7 +175,7 @@ public class PlayerSound : MonoBehaviour
 
     public void StateBoostStart()
     {
-        boostAudioSource.volume = 0.6f;
+        boostAudioSource.volume = 0.3f;
         boostAudioSource.Stop();
         if (!player.isSuper)
         {

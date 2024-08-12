@@ -36,6 +36,8 @@ public class JumpCollision : GenerationsObject
     #region State Jump Collision
     private void StateJumpCollisionStart()
     {
+        player.rigidbody.velocity = Vector3.zero;
+
         if (player.isBoosting)
         {
             player.rigidbody.velocity = transform.forward * ImpulseSpeedOnBoost;
@@ -75,7 +77,7 @@ public class JumpCollision : GenerationsObject
         //    }
         //}
 
-        if (Time.time > player.stateMachine.lastStateTime + OutOfControl)
+        if (Time.time > outOfControl)
         {
             player.stateMachine.ChangeState(player.StateTransition, gameObject);
             return;
@@ -91,7 +93,10 @@ public class JumpCollision : GenerationsObject
 
     private void JumpCollisionStart()
     {
-        player.stateMachine.ChangeState(StateJumpCollision, gameObject);        
+        if (player.IsGrounded() && Vector3.Dot(player.rigidbody.velocity.normalized, player.transform.forward) > 0)
+        {
+            player.stateMachine.ChangeState(StateJumpCollision, gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()

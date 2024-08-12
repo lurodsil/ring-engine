@@ -178,7 +178,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Awake()
     {
-     
+
         rigidbody = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         //animator = GetComponent<Animator>();
@@ -242,7 +242,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         cameraMain = Camera.main.transform;
         //animator = GetComponent<Animator>();
-        
+
     }
 
     private void StateBalloonStart()
@@ -306,7 +306,7 @@ public class PlayerAnimation : MonoBehaviour
         if (clipInfo.Length > 0)
         {
             currentAnimationName = clipInfo[0].clip.name;
-        }       
+        }
 
         animator.SetBool("IsBoosting", player.isBoosting);
 
@@ -324,7 +324,7 @@ public class PlayerAnimation : MonoBehaviour
                 squat = false;
             }
         }
-        
+
 
         Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.velocity).normalized;
 
@@ -345,15 +345,15 @@ public class PlayerAnimation : MonoBehaviour
             {
                 leftStickDirection = player.pathHelperKnot.tangent;
             }
-            else if(player.sideViewPath)
+            else if (player.sideViewPath)
             {
                 leftStickDirection = player.tangent * player.tangentMultiplier;
             }
 
-            
+
         }
 
-        grindTangent = Vector3.Dot(lastTangent, -transform.right) * 10;      
+        grindTangent = Vector3.Dot(lastTangent, -transform.right) * 10;
 
         tangent = Vector3.Dot(leftStickDirection, transform.right);
 
@@ -526,7 +526,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -662,12 +662,12 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateWideSpringStart()
     {
-        
+
     }
 
     void StateWideSpringEnd()
     {
-        
+
     }
 
     void StatePushingStart()
@@ -712,7 +712,7 @@ public class PlayerAnimation : MonoBehaviour
         homming = false;
     }
 
-    
+
 
     void StateHomingTrickStart()
     {
@@ -735,7 +735,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             animator.SetTrigger(deadNameHash);
         }
-        
+
     }
 
     void StateStompStart()
@@ -826,7 +826,7 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetTrigger("WallJumpEnd");
 
-        
+
     }
 
     void StateRopeStart()
@@ -849,6 +849,10 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetTrigger("StruggleEnd");
     }
 
+    void StateCloudJumpStart()
+    {
+        animator.SetTrigger("CloudJumpStart");
+    }
     void StateCarryStart()
     {
         animator.SetTrigger("CarryStart");

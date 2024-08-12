@@ -19,22 +19,26 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if(camerasSorted.Length != cameras.Count)
+        if(!MainCamera.IsCameraPlayingAnimation())
         {
-            camerasSorted = cameras.OrderBy(i => i.priority).ToArray();
-
-            for (int i = 0; i < camerasSorted.Length; i++)
+            if (camerasSorted.Length != cameras.Count)
             {
-                if (i == 0)
+                camerasSorted = cameras.OrderBy(i => i.priority).ToArray();
+
+                for (int i = 0; i < camerasSorted.Length; i++)
                 {
-                    camerasSorted[i].enabled = true;
-                }
-                else
-                {
-                    camerasSorted[i].enabled = false;
+                    if (i == 0)
+                    {
+                        camerasSorted[i].enabled = true;
+                    }
+                    else
+                    {
+                        camerasSorted[i].enabled = false;
+                    }
                 }
             }
         }
+        
     }
 
     public static void ActivateCamera(CameraCommon camera)
@@ -67,6 +71,5 @@ public class CameraManager : MonoBehaviour
         {
             instance.camerasSorted[i].enabled = false;
         }
-
     }
 }

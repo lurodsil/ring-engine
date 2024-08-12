@@ -157,11 +157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0a08814186b02478176b2f2cc125ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  OnBecomeActive:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnBecomeInactive:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   OnStateStart:
@@ -220,10 +219,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPlayerTriggerEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  SetObjectID: 0
   CameraEaseTimeEnter: 0.6
   CameraEaseTimeKeep: 0
   CameraEaseTimeLeave: 1.2
@@ -246,7 +241,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 2f4bdafbe43209d458822410115ee4d0, type: 3}
   m_Resource: {fileID: 8300000, guid: 2f4bdafbe43209d458822410115ee4d0, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0

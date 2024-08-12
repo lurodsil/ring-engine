@@ -6,18 +6,6 @@ public class BossTrigger : MonoBehaviour
 
     public EggmanMobile eggmanMobile;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(GameTags.playerTag))
@@ -26,6 +14,5 @@ public class BossTrigger : MonoBehaviour
             stage.StartBossBattle();
             gameObject.SetActive(false);
         }
-
     }
 }

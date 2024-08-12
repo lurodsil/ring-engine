@@ -933,8 +933,6 @@ public abstract class Player : PlayerCore, IDamageable
             isBraking = true;
         }
 
-        
-
         if (leftStickDirection.magnitude > deadZone && !isBraking && !isBoosting)
         {
             if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeed * absoluteLeftStick * SuperRate)
@@ -954,14 +952,10 @@ public abstract class Player : PlayerCore, IDamageable
         }
         else if (isBoosting)
         {
-            
-
             if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
             {
                 rigidbody.AddForce(boostMovementDirection * currentPhysicsMotion.accelerationForceInBoost * SuperRate, ForceMode.Acceleration);
-            }
-
-           
+            }           
         }
         else
         {

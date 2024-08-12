@@ -105,7 +105,13 @@ public class Enemy : GenerationsObject, IDamageable
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movementDirection), 10 * Time.deltaTime);
 
-        rigidbody.velocity = movementVelocity * movementDirection;
+        Vector3 desiredVelocity = movementVelocity * movementDirection;
+
+        if (!isFlyMovement)
+        {
+            desiredVelocity.y = rigidbody.velocity.y;
+        }        
+        rigidbody.velocity = desiredVelocity;
     }
 
     public void TakeDamage(GameObject sender)

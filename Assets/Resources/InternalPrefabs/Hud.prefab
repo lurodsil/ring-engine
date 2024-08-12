@@ -206,7 +206,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 10, y: 15}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 35, y: 48}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &283572508
 CanvasRenderer:
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7918314874589184366, guid: 11b56ed9eab34294692d16260efa03e7,
+  m_Sprite: {fileID: -3634508389602149817, guid: 11b56ed9eab34294692d16260efa03e7,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -845,9 +845,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rings: {fileID: 1911876205}
   timer: {fileID: 94482134}
+  lives: {fileID: 1394192145}
   ringsBackground: {fileID: 1406111463}
   boostDepletion: {fileID: 8801549222105967209}
   boostGaugeBarFront: {fileID: 1461529555}
+  redStars:
+  - {fileID: 759931821}
+  - {fileID: 1117854659}
+  - {fileID: 1288359069}
+  - {fileID: 1756032390}
+  - {fileID: 1579718039}
+  grayStar: {fileID: 21300152, guid: 187f6d6d804050b42b1002cb38ad2d0d, type: 3}
+  redStar: {fileID: 21300150, guid: 187f6d6d804050b42b1002cb38ad2d0d, type: 3}
 --- !u!82 &894931730
 AudioSource:
   m_ObjectHideFlags: 0
@@ -861,7 +870,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1946,7 +1955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 35, y: -2}
+  m_AnchoredPosition: {x: 42, y: -2}
   m_SizeDelta: {x: 150, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1752642869
@@ -3941,9 +3950,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rings: {fileID: 4323304866062656119}
   timer: {fileID: 4323427588932430627}
+  lives: {fileID: 0}
   ringsBackground: {fileID: 4323017238836932201}
   boostDepletion: {fileID: 0}
   boostGaugeBarFront: {fileID: 0}
+  redStars: []
+  grayStar: {fileID: 0}
+  redStar: {fileID: 0}
 --- !u!1 &4209748577652440787
 GameObject:
   m_ObjectHideFlags: 0

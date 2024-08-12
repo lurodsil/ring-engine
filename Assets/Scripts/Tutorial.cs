@@ -78,6 +78,7 @@ public class Tutorial : MonoBehaviour
             sonicMesh.shadowCastingMode = ShadowCastingMode.On;
             fadeTarget = 1;
             player.isUnderwater = false;
+            player.transform.parent = null;
             Time.timeScale = 1;
             player.stateMachine.ChangeState(player.StateIdle);
 
@@ -142,6 +143,6 @@ public class Tutorial : MonoBehaviour
         sonicMesh.shadowCastingMode = ShadowCastingMode.Off;
         fadeTarget = 0;
         GameplayUI.instance.HideButton();
-       
+        
     }
 }

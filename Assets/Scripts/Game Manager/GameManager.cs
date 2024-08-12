@@ -158,50 +158,6 @@ public class GameManager : MonoBehaviour
         Shader.SetGlobalFloat("_GlobalFade", 1);
     }
 
-    private void LateUpdate()
-    {
-        
-        //if(player.GetComponentInChildren<Player>().stateMachine.currentStateName != "StateFallDead")
-        //{
-        //    try
-        //    {
-        //        if (cameras.Count == 0)
-        //        {
-        //            MainCamera.instance.enabled = true;
-        //        }
-        //        else
-        //        {
-        //            MainCamera.instance.enabled = false;
-        //        }
-        //    }
-        //    catch
-        //    {
-
-        //    }
-        //}
-        //else
-        //{
-        //    MainCamera.instance.enabled = false;
-        //}
-
-
-
-        //if(Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftAlt) && Input.GetKeyDown(KeyCode.D))
-        //{
-        //    if (ringEngineDebug.enabled)
-        //    {
-        //        ringEngineDebug.enabled = false;
-        //    }
-        //    else
-        //    {
-        //        ringEngineDebug.enabled = true;
-        //    }
-        //}
-    }
-
-
-
-
     void Update()
     {
 
