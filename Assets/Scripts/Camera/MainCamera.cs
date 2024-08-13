@@ -185,8 +185,7 @@ public class MainCamera : MonoBehaviour
     {
         GetComponent<Animator>().enabled = false;
         if (CameraManager.GetCameraCount() == 0)
-        {
-            
+        {            
             enabled = true;
         }
 

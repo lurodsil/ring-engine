@@ -291,7 +291,7 @@ public abstract class Player : PlayerCore, IDamageable
         UpdateTargets();
         currentPhysicsMotion = groundMotion;
         targetMeshRotation = Quaternion.identity;
-        ringEnergy = 100;
+        //ringEnergy = 100;
         canStand = true;
     }
     public override void Update()
@@ -479,6 +479,7 @@ public abstract class Player : PlayerCore, IDamageable
         absoluteLeftStick = Mathf.Clamp01(Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX)) + Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickY)));
         //Convert the X and Y of left stick to the stick pointing direction relative to the camera
         leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), Camera.main.transform, transform);
+        leftStickDirection.Normalize();
         Debug.DrawRay(collider.bounds.center, leftStickDirection, Color.magenta);
     }
 
@@ -847,8 +848,6 @@ public abstract class Player : PlayerCore, IDamageable
     private void StateMove3DStart() { }
     public void StateMove3D()
     {
-       
-
         CheckBoost();
 
         if (sideViewPath)
@@ -896,8 +895,6 @@ public abstract class Player : PlayerCore, IDamageable
             stateMachine.ChangeState(StateQuickstepRight);
             return;
         }
-
-
     }
     public void StateMove3DPhysics()
     {
@@ -959,11 +956,13 @@ public abstract class Player : PlayerCore, IDamageable
         }
         else
         {
-            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.decelerationForce * SuperRate, ForceMode.Acceleration);
-
             if (rigidbody.velocity.magnitude < 0.1f)
             {
-                rigidbody.Sleep();
+                rigidbody.Sleep();                
+            }
+            else
+            {
+                rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.decelerationForce * SuperRate, ForceMode.Acceleration);
             }
         }
 
@@ -1789,7 +1788,7 @@ public abstract class Player : PlayerCore, IDamageable
 
     private void StateDieStart()
     {
-
+        Timer.PauseTimer();
     }
 
     public void StateDie()

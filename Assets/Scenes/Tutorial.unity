@@ -64776,6 +64776,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 61392837}
     m_Modifications:
+    - target: {fileID: 1220214838, guid: 8586148e0c3e6304aa34efaaf2236a67, type: 3}
+      propertyPath: active
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000012780758326, guid: 8586148e0c3e6304aa34efaaf2236a67, type: 3}
       propertyPath: m_Name
       value: Flame

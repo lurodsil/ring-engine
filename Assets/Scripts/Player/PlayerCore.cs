@@ -5,7 +5,7 @@ public abstract class PlayerCore : MonoBehaviour
 {
     //Player global constants
     public const float minimunMovementVelocity = 0.1f;
-    public const float deadZone = 0.2f;
+    public const float deadZone = 0.3f;
     public const float halfOfOne = 0.5f;
 
     //Components

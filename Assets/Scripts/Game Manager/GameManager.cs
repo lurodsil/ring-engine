@@ -171,8 +171,11 @@ public class GameManager : MonoBehaviour
         //}
 
 
-
-        speedLines.SetFloat("_Center_Void_Size", Mathf.Clamp01( 1 - Player.instance.rigidbody.velocity.magnitude / 80));
+        if(Player.instance != null)
+        {
+            speedLines.SetFloat("_Center_Void_Size", Mathf.Clamp01(1 - Player.instance.rigidbody.velocity.magnitude / 80));
+        }
+        
 
         switch (gameState)
         {
@@ -319,7 +322,6 @@ public class GameManager : MonoBehaviour
         sceneLoading = sceneName;
         gameState = GameState.Loading;
         SceneManager.LoadScene("Loading");
-        Timer.reset = true;
         rings = 0;
     }
 
@@ -334,6 +336,7 @@ public class GameManager : MonoBehaviour
         {
             gameState = GameState.Loading;
             SceneManager.LoadScene("Loading");
+            
             rings = 0;
         }
         

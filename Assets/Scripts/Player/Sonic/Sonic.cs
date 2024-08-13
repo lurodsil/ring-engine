@@ -34,7 +34,10 @@ public class Sonic : Player
         {
             stateMachine.Pause();
             paused = true;
+            
         }
+
+        
     }
 
     public override void Update()
@@ -62,6 +65,16 @@ public class Sonic : Player
             {
                 stateMachine.Play();
                 paused = false;
+
+                
+
+                if (GameManager.instance.firstTimeLoad || GameManager.instance.activeCheckpoints.Count == 0)
+                {
+                    GameManager.instance.firstTimeLoad = false;
+                    Timer.ResetTimer();
+
+                }
+                Timer.StartTimer();
             }
         }
 

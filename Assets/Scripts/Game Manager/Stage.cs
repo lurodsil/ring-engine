@@ -54,7 +54,7 @@ public class Stage : MonoBehaviour
         if (GameManager.instance.firstTimeLoad)
         {
             Load();
-            GameManager.instance.firstTimeLoad = false;
+            
 
         }
         else

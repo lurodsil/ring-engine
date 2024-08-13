@@ -129,13 +129,12 @@ public class PlayerSound : MonoBehaviour
         StateGrindEnd();
     }
 
-    void StateJumpCollisionStart()
+    void StateJumpTriggerStart()
     {
         if (player.isSnowboarding)
         {
             boardAudioSource.PlayOneShot(boardTrick);
-        }
-
+        }         
     }
 
     private void OnEnable()

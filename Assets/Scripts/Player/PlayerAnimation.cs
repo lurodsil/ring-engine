@@ -670,6 +670,11 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
+    void StateJumpTriggerStart()
+    {
+        animator.SetTrigger("JumpTrigger");
+    }
+
     void StatePushingStart()
     {
         animator.SetTrigger("Pushing Start");

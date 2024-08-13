@@ -159,21 +159,28 @@ MonoBehaviour:
     m_ObsoleteSerializedBakingSets: []
     sceneToBakingSet:
       m_Keys:
+      - 8d2c2b2241d15b044b4d2df37de3a806
       - c77a544b7630bbf429b0a13639edb841
       m_Values:
+      - {fileID: 11400000, guid: 5cf8446264a094d41a3286a763521e53, type: 2}
       - {fileID: 11400000, guid: 757b5f438c8daea4ca0d1599eef3e521, type: 2}
     bakingSets:
+    - {fileID: 11400000, guid: 5cf8446264a094d41a3286a763521e53, type: 2}
     - {fileID: 11400000, guid: 757b5f438c8daea4ca0d1599eef3e521, type: 2}
     sceneBounds:
       m_Keys:
       - c77a544b7630bbf429b0a13639edb841
+      - 8d2c2b2241d15b044b4d2df37de3a806
       m_Values:
       - m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 81, y: 81, z: 81}
+      - m_Center: {x: 0, y: 81, z: 0}
+        m_Extent: {x: 4617, y: 324, z: 4617}
     hasProbeVolumes:
       m_Keys:
       - c77a544b7630bbf429b0a13639edb841
-      m_Values: 00
+      - 8d2c2b2241d15b044b4d2df37de3a806
+      m_Values: 0001
   m_Version: 10
   m_ShaderStrippingSetting:
     m_Version: 0

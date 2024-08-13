@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-
-    bool resetOnStart;
     public bool startTimer;
     public bool pauseGame;
     public bool resetTimer;
@@ -21,28 +19,12 @@ public class Timer : MonoBehaviour
     public static int fractionRound;
     public static int secondsRound3Digits;
 
+    public static bool isTimerPaused = true;
+
     private void Update()
     {
-
-        if (Main.canControl)
+        if (!isTimerPaused)
         {
-            startTimer = true;
-        }
-
-
-        //if (pauseGame)
-        //    Time.timeScale = 0;
-        //if (!pauseGame)
-        //    Time.timeScale = 1;
-
-        if (reset || resetTimer)
-            StartCoroutine(ResetTimer());
-
-        if (start || startTimer)
-        {
-            if (resetOnStart)
-                StartCoroutine(ResetTimer());
-
             displayTimer = Time.time - startTime;
 
             minutes = displayTimer / 60;
@@ -54,18 +36,21 @@ public class Timer : MonoBehaviour
             secondsRound = Mathf.FloorToInt(seconds);
             fractionRound = Mathf.FloorToInt(fraction);
             secondsRound3Digits = Mathf.FloorToInt(seconds3Digits);
-
-
-        }
-        else resetOnStart = true;
+        }       
     }
 
-    private IEnumerator ResetTimer()
+    public static void StartTimer()
     {
-        yield return new WaitForSeconds(0.01f);
+        isTimerPaused = false;
+    }
+
+    public static void PauseTimer()
+    {
+        isTimerPaused = true;
+    }
+
+    public static void ResetTimer()
+    {
         startTime = Time.time;
-        resetOnStart = false;
-        resetTimer = false;
-        reset = false;
     }
 }

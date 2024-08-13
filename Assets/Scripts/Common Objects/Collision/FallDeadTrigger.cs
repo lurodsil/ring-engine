@@ -25,6 +25,8 @@ public class FallDeadTrigger : CommonStatefulObject
         CameraManager.DeactivateAllCameras();
 
         MainCamera.SetActive(false);
+
+        Timer.PauseTimer();
     }
     void StateFallDead()
     {

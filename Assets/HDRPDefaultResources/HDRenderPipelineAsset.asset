@@ -166,7 +166,7 @@ MonoBehaviour:
     dynamicResolutionSettings:
       enabled: 0
       useMipBias: 0
-      enableDLSS: 0
+      enableDLSS: 1
       DLSSPerfQualitySetting: 0
       DLSSInjectionPoint: 0
       DLSSUseOptimalSettings: 1

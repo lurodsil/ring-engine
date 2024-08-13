@@ -92,7 +92,11 @@ public class SimpleEnemy : Enemy
             }
 
             Vector3 desiredVelocity = transform.forward * attackMovementVelocity;
-            desiredVelocity.y = rigidbody.velocity.y;
+            if (!isFlyMovement)
+            {
+                desiredVelocity.y = rigidbody.velocity.y;
+            }
+            
             rigidbody.velocity = desiredVelocity;
         }
     }

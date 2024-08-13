@@ -25562,7 +25562,6 @@ GameObject:
   - component: {fileID: 5335643053779862981}
   - component: {fileID: 4577590936479188263}
   - component: {fileID: 4887218652806800233}
-  - component: {fileID: 187848369555522517}
   m_Layer: 10
   m_Name: Spinball2
   m_TagString: Untagged
@@ -25637,20 +25636,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &187848369555522517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449214636386552954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 2000, y: 0, z: 0}
-  target: {fileID: 1449214636386552954}
 --- !u!1 &1611100422365458845
 GameObject:
   m_ObjectHideFlags: 0
@@ -60364,10 +60349,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3548007118537187462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
+  m_Script: {fileID: 11500000, guid: 12ba83d1ad05c61498deb1b4862497a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: {x: 1100, y: 0, z: 0}
+  rotationSpeed: {x: 1000, y: 0, z: 0}
   target: {fileID: 0}
 --- !u!1 &3665229907062802517
 GameObject:
@@ -70352,7 +70337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6136948970679905507
 Transform:
   m_ObjectHideFlags: 0
@@ -80792,7 +80777,6 @@ GameObject:
   - component: {fileID: 2035561893604493803}
   - component: {fileID: 6216677877319509886}
   - component: {fileID: 8238034136213810838}
-  - component: {fileID: 480921680112928580}
   m_Layer: 10
   m_Name: Spinball2
   m_TagString: Untagged
@@ -80867,20 +80851,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &480921680112928580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7132227113663938087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 2000, y: 0, z: 0}
-  target: {fileID: 7132227113663938087}
 --- !u!1 &7203115649106751178
 GameObject:
   m_ObjectHideFlags: 0
@@ -96054,10 +96024,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7979584272578421225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
+  m_Script: {fileID: 11500000, guid: 12ba83d1ad05c61498deb1b4862497a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: {x: 1100, y: 0, z: 0}
+  rotationSpeed: {x: 1000, y: 0, z: 0}
   target: {fileID: 0}
 --- !u!1 &7987224307275183908
 GameObject:
