@@ -7,6 +7,7 @@ public class Stage : MonoBehaviour
     public string act = "act 1";
 
     public PointMarker[] checkpoints;
+    public RedMedal[] redMedals;
     public Transform spawnPoint;
 
     public MusicVelocityModes musicVelocityModes;
@@ -54,7 +55,7 @@ public class Stage : MonoBehaviour
         if (GameManager.instance.firstTimeLoad)
         {
             Load();
-            
+
 
         }
         else
@@ -188,13 +189,18 @@ public class Stage : MonoBehaviour
 
     private void Load()
     {
-        
-        
         player = Instantiate(GameManager.instance.player, spawnPoint.transform.position, spawnPoint.transform.rotation).GetComponentInChildren<Player>();
+        GameManager.instance.foundRedMedals.Clear();
+        GameManager.instance.redStars = 0;
+        GameManager.instance.rings = 0;
+        Timer.ResetTimer();
+        Timer.PauseTimer();
     }
 
     private void Reload()
     {
+        GameManager.instance.rings = 0;
+
         for (int i = 0; i < checkpoints.Length; i++)
         {
             if (GameManager.instance.activeCheckpoints.Contains(checkpoints[i].PointMarkerID))
@@ -207,6 +213,16 @@ public class Stage : MonoBehaviour
                 spawnPoint = checkpoints[i].transform;
             }
         }
+
         player = Instantiate(GameManager.instance.player, spawnPoint.transform.position, spawnPoint.transform.rotation).GetComponentInChildren<Player>();
+
+        for (int i = 0; i < redMedals.Length; i++)
+        {
+            if (GameManager.instance.foundRedMedals.Contains(redMedals[i].MedalID))
+            {
+                redMedals[i].gameObject.SetActive(false);
+            }
+
+        }
     }
 }

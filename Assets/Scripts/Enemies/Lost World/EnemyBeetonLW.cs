@@ -87,7 +87,7 @@ public class EnemyBeetonLW : Enemy
             return;
         }
 
-        if (Time.time > stateMachine.lastStateTime + 2)
+        if (Time.time > stateMachine.lastStateTime + 1.5f)
         {
             stateMachine.ChangeState(StateIdle);
         }

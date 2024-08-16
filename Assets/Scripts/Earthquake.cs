@@ -11,7 +11,7 @@ public class Earthquake : CommonActivableStatelessObject
 
     public void StartEarthquake()
     {        
-        MainCamera.Shake(18, 1, 20);
+        MainCamera.Shake(18, 0.6f, 20);
         Input.SetVibration(1, 1, 15);
     }
 }

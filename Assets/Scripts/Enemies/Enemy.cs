@@ -26,6 +26,8 @@ public class Enemy : GenerationsObject, IDamageable
     public bool isInstantDestroy;
     public bool isPlayerChase;
     public bool isTargetLook;
+    public bool lookToMovingDirection = true;
+    public float waypointDelay = 0;
     public float destroyDelay = 1;
 
     [Header("Movement")]
@@ -51,6 +53,7 @@ public class Enemy : GenerationsObject, IDamageable
     public UnityEvent onTakeDamage;
 
     private float groundSearchDistance;
+    private bool waiting;
 
     public virtual void Start()
     {
@@ -99,19 +102,28 @@ public class Enemy : GenerationsObject, IDamageable
             {
                 waypointIndex = 0;
             }
+
+            StartCoroutine(WaypointDelayed(waypointDelay));
         }
 
-        Vector3 movementDirection = (waypoints[waypointIndex] - transform.position).normalized;
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movementDirection), 10 * Time.deltaTime);
-
-        Vector3 desiredVelocity = movementVelocity * movementDirection;
-
-        if (!isFlyMovement)
+        if (!waiting)
         {
-            desiredVelocity.y = rigidbody.velocity.y;
-        }        
-        rigidbody.velocity = desiredVelocity;
+            Vector3 movementDirection = (waypoints[waypointIndex] - transform.position).normalized;
+
+            if (lookToMovingDirection)
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(movementDirection), 10 * Time.deltaTime);
+            }
+
+            Vector3 desiredVelocity = movementVelocity * movementDirection;
+
+            if (!isFlyMovement)
+            {
+                desiredVelocity.y = rigidbody.velocity.y;
+            }
+            rigidbody.velocity = desiredVelocity;
+        }
+
     }
 
     public void TakeDamage(GameObject sender)
@@ -141,7 +153,7 @@ public class Enemy : GenerationsObject, IDamageable
             else
             {
                 rigidbody.velocity = (-receiverToSenderDirection + Vector3.up).normalized * 20;
-            }                    
+            }
 
             stateMachine.Pause();
 
@@ -193,5 +205,31 @@ public class Enemy : GenerationsObject, IDamageable
     {
         yield return new WaitForSeconds(delay);
         Explode();
+    }
+
+    private IEnumerator WaypointDelayed(float delay)
+    {
+        waiting = true;
+        yield return new WaitForSeconds(delay);
+        waiting = false;
+    }
+
+    public void OnDrawGizmos()
+    {
+        DrawWaypoints();
+    }
+
+    public void DrawWaypoints()
+    {
+        if (movementType == EnemyMovementType.Waypoint)
+        {
+            Transform waypointParent = transform.Find("Waypoint");
+
+            for (int i = 1; i < waypointParent.childCount; i++)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(waypointParent.GetChild(i - 1).position, waypointParent.GetChild(i).position);
+            }
+        }
     }
 }

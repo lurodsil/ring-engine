@@ -98,6 +98,8 @@ public class Sonic : Player
     {
         canStomp = false;
         stompVelocity = 30;
+        isAttacking = true;
+        transform.rotation = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
     }
     void StateStomp()
     {
@@ -107,6 +109,10 @@ public class Sonic : Player
         }
 
         stompVelocity += 50 * Time.deltaTime;
+
+
+
+
     }
     public void StateStompPhysics()
     {
@@ -117,6 +123,7 @@ public class Sonic : Player
     }
     void StateStompEnd()
     {
+        isAttacking = false;
         MainCamera.Shake(0.2f);
 
         Collider stompTarget = GetGroundInformation().collider;
@@ -212,11 +219,11 @@ public class Sonic : Player
         CheckAndAirboost();
         CheckAndDoubleJump();
 
-        if (Input.GetButtonDown(XboxButton.DPadUp))
-        {
-            isSuper = true;
-            stateMachine.ChangeState(StateFly);
-        }
+        //if (Input.GetButtonDown(XboxButton.DPadUp))
+        //{
+        //    isSuper = true;
+        //    stateMachine.ChangeState(StateFly);
+        //}
     }
 
     public override void StateJump()

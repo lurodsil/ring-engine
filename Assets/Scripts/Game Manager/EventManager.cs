@@ -37,6 +37,7 @@ public class EventManager : MonoBehaviour
     public static void UpdateRedStars(int id)
     {
         GameManager.instance.redStars++;
+        GameManager.instance.foundRedMedals.Add(id);
         OnRedStarsChanged?.Invoke();
     }
 

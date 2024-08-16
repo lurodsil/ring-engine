@@ -194,7 +194,15 @@ public class MainCamera : MonoBehaviour
 
     public static bool IsCameraPlayingAnimation()
     {
-        return instance.GetComponent<Animator>().enabled;
+        if (instance != null)
+        {
+            return instance.GetComponent<Animator>().enabled;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     public static void SetFollowRate(float follow)
@@ -214,7 +222,14 @@ public class MainCamera : MonoBehaviour
 
     public static void SetActive(bool active)
     {
-        if (instance != null) { instance.enabled = active; }
+        if (instance == null) 
+        {
+            return;
+        }
+        else
+        {
+            instance.enabled = active;
+        }
 
     }
 

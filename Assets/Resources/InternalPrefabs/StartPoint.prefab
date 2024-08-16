@@ -190,7 +190,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 0.12
       minScalar: 0.0001
       maxCurve:
         serializedVersion: 2
@@ -361,7 +361,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 1.6
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -944,7 +944,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 8
+      scalar: 12
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9842,7 +9842,7 @@ CapsuleCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
@@ -9989,8 +9989,8 @@ MonoBehaviour:
   meshRotation: {x: 2.32829e-10, y: 1, z: -0, w: 0}
   targetMeshRotation: {x: 0, y: 0, z: 0, w: 1}
   isSnowboarding: 0
-  targetFindRange: 15
-  targetFindAngle: 160
+  targetFindRange: 18
+  targetFindAngle: 180
   enableHommingAfterTrick: 0
   accelerationForceLowSpeed: 50
   accelerationForceHighSpeed: 50
@@ -10034,7 +10034,7 @@ MonoBehaviour:
   hommingAttackHitUpVelocity: 18
   velocity: 38.393013
   hitPoint: {x: 0, y: 0, z: 0}
-  ringEnergy: 4.2981806
+  ringEnergy: 0
   isBraking: 0
   isBoosting: 0
   isPhysicEnabled: 0
@@ -110959,6 +110959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: chr_Sonic 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461438166351189455, guid: 205b742f21b7377469cbe424d2aa73d0,
+        type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5866666021909216657, guid: 205b742f21b7377469cbe424d2aa73d0, type: 3}

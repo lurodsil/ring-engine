@@ -369,7 +369,7 @@ public class PlayerSound : MonoBehaviour
 
     void Footstep()
     {
-        if(Time.time > lastTimePlayed + 0.008f)
+        if(Time.time > lastTimePlayed + 0.01f)
         {
             if (player.IsGrounded() && player.GetGroundInformation().collider.sharedMaterial)
             {

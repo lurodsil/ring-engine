@@ -51,7 +51,8 @@ public class GoalRing : GenerationsObject
         player.stateMachine.ChangeState(State, gameObject);
         player.rigidbody.velocity = Vector3.zero;
         GameManager.instance.firstTimeLoad = true;
-        GameManager.instance.lastCheckpoint = -1;        
+        GameManager.instance.lastCheckpoint = -1;
+        Timer.PauseTimer();
     }
 
     #region State

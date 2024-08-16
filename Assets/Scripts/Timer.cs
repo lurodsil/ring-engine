@@ -25,17 +25,7 @@ public class Timer : MonoBehaviour
     {
         if (!isTimerPaused)
         {
-            displayTimer = Time.time - startTime;
-
-            minutes = displayTimer / 60;
-            seconds = displayTimer % 60;
-            fraction = (displayTimer * 100) % 100;
-            seconds3Digits = displayTimer % 999;
-
-            minutesRound = Mathf.FloorToInt(minutes);
-            secondsRound = Mathf.FloorToInt(seconds);
-            fractionRound = Mathf.FloorToInt(fraction);
-            secondsRound3Digits = Mathf.FloorToInt(seconds3Digits);
+            UpdateTimer();
         }       
     }
 
@@ -52,5 +42,21 @@ public class Timer : MonoBehaviour
     public static void ResetTimer()
     {
         startTime = Time.time;
+        UpdateTimer();
+    }
+
+    public static void UpdateTimer()
+    {
+        displayTimer = Time.time - startTime;
+
+        minutes = displayTimer / 60;
+        seconds = displayTimer % 60;
+        fraction = (displayTimer * 100) % 100;
+        seconds3Digits = displayTimer % 999;
+
+        minutesRound = Mathf.FloorToInt(minutes);
+        secondsRound = Mathf.FloorToInt(seconds);
+        fractionRound = Mathf.FloorToInt(fraction);
+        secondsRound3Digits = Mathf.FloorToInt(seconds3Digits);
     }
 }

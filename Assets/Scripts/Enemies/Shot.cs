@@ -5,6 +5,8 @@ public class Shot : MonoBehaviour
 {
     public float velocity = 10;
     public float maxDuration = 10;
+    public bool useGravity = false;
+    public float initialForce = 0;
     public GameObject shotExplosion;
     private new Rigidbody rigidbody;
 
@@ -12,11 +14,17 @@ public class Shot : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         Destroy(gameObject, maxDuration);
+
+        rigidbody.AddForce(transform.forward * initialForce, ForceMode.Impulse);
+
     }
 
     void Update()
     {
-        rigidbody.velocity = transform.forward * velocity;
+        if (!useGravity)
+        {
+            rigidbody.velocity = transform.forward * velocity;
+        }       
     }
 
     private void OnCollisionEnter(Collision collision)

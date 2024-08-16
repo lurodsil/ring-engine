@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     public List<int> activeCheckpoints;
     public int lastCheckpoint = -1;
 
+    public List<int> foundRedMedals;
+
     public string sceneLoading;
     public AudioClip loadingStart;
     public AudioClip loadingEnd;

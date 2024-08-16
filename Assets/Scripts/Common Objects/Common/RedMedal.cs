@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RedMedal : MonoBehaviour
 {
-    public float MedalID = 1;
+    public int MedalID = 1;
     public ParticleSystem getSpecialRing;
 
     private void OnTriggerEnter(Collider other)

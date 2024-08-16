@@ -92,6 +92,7 @@ public abstract class Player : PlayerCore, IDamageable
     public float targetFindRange = 10;
     public GameObject closestTarget { get; set; }
     public GameObject hommingAttackTarget { get; set; }
+    private Vector3 lastHommingDirection;
 
     [Range(0, 360)]
     public float targetFindAngle = 180;
@@ -902,7 +903,7 @@ public abstract class Player : PlayerCore, IDamageable
         RaycastHit groundInfo = GetGroundInformation();
 
         movingDirection = leftStickDirection;
-        Vector3 boostMovementDirection = leftStickDirection == Vector3.zero ? transform.forward : leftStickDirection;
+        Vector3 boostMovementDirection = leftStickDirection.magnitude < deadZone ? transform.forward : leftStickDirection;
 
         if (pathHelper)
         {
@@ -949,16 +950,19 @@ public abstract class Player : PlayerCore, IDamageable
         }
         else if (isBoosting)
         {
+            movingDirection = leftStickDirection.magnitude < deadZone ? transform.forward : leftStickDirection;
+
             if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
             {
-                rigidbody.AddForce(boostMovementDirection * currentPhysicsMotion.accelerationForceInBoost * SuperRate, ForceMode.Acceleration);
+                rigidbody.AddForce(boostMovementDirection.normalized * currentPhysicsMotion.accelerationForceInBoost * SuperRate, ForceMode.Acceleration);
             }           
         }
         else
         {
             if (rigidbody.velocity.magnitude < 0.1f)
             {
-                rigidbody.Sleep();                
+                rigidbody.Sleep();
+                stateMachine.ChangeState(StateIdle);
             }
             else
             {
@@ -1151,6 +1155,7 @@ public abstract class Player : PlayerCore, IDamageable
                 if (rigidbody.velocity.magnitude < 0.1f)
                 {
                     rigidbody.Sleep();
+                    stateMachine.ChangeState(StateIdle);
                 }
             }
         }
@@ -1480,8 +1485,6 @@ public abstract class Player : PlayerCore, IDamageable
     }
 
     #endregion
-
-
 
     #region State Light Speed Dash
 
@@ -1837,6 +1840,8 @@ public abstract class Player : PlayerCore, IDamageable
         canHomming = false;
         hommingAttackTarget = closestTarget;
 
+        lastHommingDirection = transform.DirectionTo(closestTarget.transform.position).normalized;
+
         MainCamera.SetFollowRate(1);
     }
     public virtual void StateHoming()
@@ -1844,6 +1849,7 @@ public abstract class Player : PlayerCore, IDamageable
         if (hommingAttackTarget)
         {
             transform.LookAt(hommingAttackTarget.transform);
+
             rigidbody.velocity = transform.forward * hommingAttackVelocity * SuperRate;
         }
         //If no targets and the time on the state is greater than 0.2 seconds.
@@ -1878,7 +1884,19 @@ public abstract class Player : PlayerCore, IDamageable
     }
     private void StateHomingTrick()
     {
+        if (sideViewPath)
+        {
+            SetRotation2D(Vector3.up);
+        }
+        else
+        {
+            transform.rotation = Quaternion.LookRotation(lastHommingDirection);
+        }
+        
+
         stateMachine.ChangeState(StateFall, 0.25f);
+
+
     }
     private void StateHomingTrickEnd()
     {
@@ -1969,6 +1987,8 @@ public abstract class Player : PlayerCore, IDamageable
     }
     public void StateSkydive()
     {
+        
+
         if(Input.GetAxis(XboxAxis.RightTrigger) > deadZone)
         {
             rigidbody.drag = 0;
@@ -1976,6 +1996,14 @@ public abstract class Player : PlayerCore, IDamageable
         else
         {
             rigidbody.drag = 2;
+        }
+
+        transform.rotation = Quaternion.LookRotation(new Vector3( rigidbody.velocity.x, 0, rigidbody.velocity.z).normalized);
+
+        if (IsGrounded())
+        {
+            rigidbody.drag = 0;
+            stateMachine.ChangeState(StateIdle);
         }
     }
     public void StateSkydivePhysics()
@@ -2232,6 +2260,7 @@ public abstract class Player : PlayerCore, IDamageable
         rigidbody.useGravity = false;
         GrindSensorSetActive(true);
         currentPhysicsMotion = grindMotion;
+        canHomming = true;
 
     }
     public void StateGrind()
@@ -2585,8 +2614,11 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (other.CompareTag("SkydiveEnd"))
         {
-
-            stateMachine.ChangeState(StateFall);
+            if(stateMachine.currentStateName == "StateSkyDive")
+            {
+                stateMachine.ChangeState(StateFall);
+            }
+            
         }
     }
 

@@ -20,7 +20,7 @@ Material:
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2750
+  m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
     RenderType: Transparent
@@ -74,7 +74,7 @@ Material:
     - _InvFade: 3
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
-    - _RenderQueueType: 3
+    - _RenderQueueType: 4
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 1

@@ -19,7 +19,7 @@ scopes = {
 	"last_search.45C55C1A" = ""
 	"OpenInspectorPreview.45C55C1A" = "0"
 	"currentGroup.45C55C1A" = "asset"
-	"last_search.98CF4AA6" = ""
+	"last_search.98CF4AA6" = "t:BoxCollider WoodFence"
 	"OpenInspectorPreview.98CF4AA6" = "0"
 	"currentGroup.98CF4AA6" = "scene"
 }
@@ -98,6 +98,7 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"t:BoxCollider WoodFence"
 	""
 	"name=\"\""
 	"ref"
@@ -117,7 +118,7 @@ showSavedSearchPanel = false
 hideTabs = false
 expandedQueries = [
 ]
-queryBuilder = false
+queryBuilder = true
 ignoredProperties = "id;name;classname;imagecontentshash"
 helperWidgetCurrentArea = "p:"
 disabledIndexers = ""
