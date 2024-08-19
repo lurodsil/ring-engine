@@ -95526,8 +95526,6 @@ MonoBehaviour:
   fieldOfView: 45
   fieldOfViewWhenBoosting: 90
   easeIn: 0.5
-  targetOffset: {x: 0, y: 0, z: 0}
-  cameraEnabledTime: 0
   minAngleX: -60
   maxAngleX: 80
   sensitivity: {x: 4, y: 2}

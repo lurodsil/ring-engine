@@ -37,9 +37,9 @@ public class MainCamera : MonoBehaviour
     [Range(20, 90)] public float fieldOfViewWhenBoosting = 90;
     [Range(0.01f, 10)] public float easeIn = 0.5f;
 
-    public Vector3 targetOffset = Vector3.zero;
+    private Vector3 targetOffset = Vector3.zero;
 
-    public float cameraEnabledTime;
+    private float cameraEnabledTime;
     public float minAngleX = -10;
     public float maxAngleX = 45;
 
