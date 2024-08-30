@@ -85,6 +85,11 @@ public class PlayerAnimation : MonoBehaviour
     GameObject closestEnemy;
     new Rigidbody rigidbody;
 
+    public Quaternion meshRotation { get; set; }
+    public Quaternion targetMeshRotation { get; set; }
+
+    public bool afectMeshRotation { get; set; }
+
     private void StateSpindashStart()
     {
         mesh.gameObject.SetActive(false);
@@ -120,6 +125,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void StateSkydiveEnd()
     {
+        
         animator.SetTrigger("SkyDiveEnd");
     }
 
@@ -134,11 +140,23 @@ public class PlayerAnimation : MonoBehaviour
 
     private void StateJumpCollisionStart()
     {
+
+    }
+
+    void StateJumpTriggerStart()
+    {
+
         if (player.isSnowboarding)
         {
             animator.SetInteger("TrickID", Random.Range(0, 8));
             animator.SetTrigger("DoJumpBoardTrick");
         }
+        else
+        {
+            animator.SetTrigger("JumpTrigger");
+        }
+
+
     }
 
     void StateSnowBoardEnd()
@@ -242,6 +260,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         cameraMain = Camera.main.transform;
         //animator = GetComponent<Animator>();
+        targetMeshRotation = Quaternion.identity;
 
     }
 
@@ -302,6 +321,8 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetLayerWeight(1, player.normalSuperBlend);
 
+
+
         AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
         if (clipInfo.Length > 0)
         {
@@ -355,9 +376,9 @@ public class PlayerAnimation : MonoBehaviour
 
         grindTangent = Vector3.Dot(lastTangent, -transform.right) * 10;
 
-        tangent = Vector3.Dot(leftStickDirection, transform.right);
+        tangent = Vector3.Dot(leftStickDirection, transform.right) * 1.5f;
 
-        smoothTangent = Mathf.Lerp(smoothTangent, tangent, 10 * Time.deltaTime);
+        smoothTangent = Mathf.Lerp(smoothTangent, tangent, 20 * Time.deltaTime);
 
         grindSmoothTangent = Mathf.Lerp(grindSmoothTangent, grindTangent, 10 * Time.deltaTime);
 
@@ -368,6 +389,8 @@ public class PlayerAnimation : MonoBehaviour
         lastTangent = Vector3.Lerp(lastTangent, transform.forward, 10 * Time.deltaTime);
 
         animator.SetBool("Underwater", player.isUnderwater);
+
+        animator.SetBool("isQuicksteping", player.stateMachine.currentStateName.Contains("Quickstep"));
 
         //if(player.aligninput)
         animator.SetFloat(directionNameHash, direction);
@@ -387,7 +410,7 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetFloat("RawDirection", player.driftStartDirection);
 
-        closestEnemy = gameObject.Closest(GameObject.FindGameObjectsWithTag("Enemy"), 0.1f, 10, true);
+        closestEnemy = player.collider.Closest(GameObject.FindGameObjectsWithTag("Enemy"), 0.1f, 10, true);
 
         if (closestEnemy)
         {
@@ -398,6 +421,15 @@ public class PlayerAnimation : MonoBehaviour
 
         animator.SetInteger("DamageDirection", (int)dir);
         animator.SetFloat("LeftStickX", Input.GetAxis(XboxAxis.LeftStickX));
+
+        if (afectMeshRotation)
+        {
+            meshRotation = targetMeshRotation;
+        }
+        else
+        {
+            meshRotation = transform.rotation;
+        }
 
     }
 
@@ -445,7 +477,7 @@ public class PlayerAnimation : MonoBehaviour
         ChangeMouthSide(transform, leftMouth, rightMouth);
 
         meshHolder.rotation = Quaternion.identity;
-        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, player.meshRotation, meshDamping * Time.deltaTime);
+        mesh.transform.rotation = Quaternion.Lerp(mesh.transform.rotation, meshRotation, meshDamping * Time.deltaTime);
 
 
 
@@ -565,6 +597,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void StateSkydiveStart()
     {
+        animator.ResetTrigger("SkyDiveEnd");
         animator.SetTrigger("SkyDiveStart");
     }
 
@@ -652,12 +685,17 @@ public class PlayerAnimation : MonoBehaviour
         animator.ResetTrigger("SpringEnd");
         animator.ResetTrigger("SpringStart");
         animator.SetTrigger("SpringStart");
+
+        afectMeshRotation = true;
+
     }
 
     void StateSpringEnd()
     {
         animator.ResetTrigger("SpringEnd");
         animator.SetTrigger("SpringEnd");
+
+        afectMeshRotation = false;
     }
 
     void StateWideSpringStart()
@@ -670,10 +708,7 @@ public class PlayerAnimation : MonoBehaviour
 
     }
 
-    void StateJumpTriggerStart()
-    {
-        animator.SetTrigger("JumpTrigger");
-    }
+
 
     void StatePushingStart()
     {

@@ -40,7 +40,7 @@ Material:
     m_Floats:
     - _Center_Size: 0.5
     - _Center_Void_Falloff: 0.4
-    - _Center_Void_Size: 0.9999997
+    - _Center_Void_Size: 1
     - _Lines_Count_Scaling: 28.43
     - _Lines_Density: 0.455
     - _Lines_Falloff: 0.82

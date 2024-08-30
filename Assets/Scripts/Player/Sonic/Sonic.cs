@@ -1,28 +1,27 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Sonic : Player
-{
-    public float cameraTargetUpOffset = 1.7f;
-    public float cameraTargetUpOffsetInAir = 1.0f;
-
-    private bool canStomp;
-    private bool canAirboost;
-    private bool canDoubleJump;
+{    private bool canStomp { get; set; }
+    private bool canAirboost { get; set; }
+    private bool canDoubleJump { get; set; }
     [Header("Airboost")]
     public float airboostVelocity = 70;
     public float airboostTime = 0.25f;
     public float airboostKeepVelocity = 0.8f;
 
+    [Header("Stomp")]
+    public float stompAcceleration = 50;
+    public float stompMaxDownVelocity = 60;
     float stompVelocity;
 
-    public float startTime;
+
     bool paused;
+    [Header("Double Jump")]
     public float doubleJumpForce;
     public float doubleJumpTime;
 
 
-    public bool isSuperSonic;
+    public bool isSuperSonic { get; set; }
 
     public override void Start()
     {
@@ -47,7 +46,9 @@ public class Sonic : Player
             if (Input.GetButtonDown(XboxButton.DPadDown))
             {
                 isSuper = false;
+
             }
+
         }
 
         base.Update();
@@ -108,15 +109,11 @@ public class Sonic : Player
             stateMachine.ChangeState(StateTransition);
         }
 
-        stompVelocity += 50 * Time.deltaTime;
-
-
-
-
+        stompVelocity += stompAcceleration * Time.deltaTime;
     }
     public void StateStompPhysics()
     {
-        if (rigidbody.velocity.y > -60)
+        if (rigidbody.velocity.y > -stompMaxDownVelocity)
         {
             rigidbody.velocity = Vector3.down * stompVelocity * SuperRate;
         }
@@ -200,9 +197,11 @@ public class Sonic : Player
     }
     void StateChangeToSuperSonic()
     {
+        rigidbody.velocity = Vector3.zero;
+
         if (Time.time > stateMachine.lastStateTime + 1.8f)
         {
-
+            stateMachine.ChangeState(StateFall);
         }
     }
     void StateChangeToSuperSonicEnd()
@@ -219,11 +218,11 @@ public class Sonic : Player
         CheckAndAirboost();
         CheckAndDoubleJump();
 
-        //if (Input.GetButtonDown(XboxButton.DPadUp))
-        //{
-        //    isSuper = true;
-        //    stateMachine.ChangeState(StateFly);
-        //}
+        if (Input.GetButtonDown(XboxButton.DPadUp) && !isSuper)
+        {
+            isSuper = true;
+            stateMachine.ChangeState(StateChangeToSuperSonic);
+        }
     }
 
     public override void StateJump()
@@ -342,6 +341,4 @@ public class Sonic : Player
 
     }
     #endregion
-
 }
-

@@ -2,7 +2,6 @@
 
 public class LostRing : MonoBehaviour
 {
-
     public GameObject ringLost;
     public float lastStateTime;
 

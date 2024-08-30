@@ -119,7 +119,7 @@
     <DescriptiveName></DescriptiveName>
     <DescriptiveNegativeName></DescriptiveNegativeName>
     <NegativeButton></NegativeButton>
-    <PositiveButton></PositiveButton>
+    <PositiveButton>right shift</PositiveButton>
     <AltNegativeButton></AltNegativeButton>
     <AltPositiveButton></AltPositiveButton>
     <Gravity>0</Gravity>

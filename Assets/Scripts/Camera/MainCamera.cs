@@ -72,7 +72,7 @@ public class MainCamera : MonoBehaviour
 
     private void Start()
     {
-        offset = new Vector3(0, 0, distance);
+        //offset = new Vector3(0, 0, distance);
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
@@ -172,7 +172,7 @@ public class MainCamera : MonoBehaviour
 
     private float EaseIn()
     {
-        float ease = (Time.time - cameraEnabledTime) * (1 / (easeIn * 10));
+        float ease = (Time.time - instance.cameraEnabledTime) * (1 / (easeIn * 10));
         return ease > 0.99f ? 1 : ease;
     }
 
@@ -258,6 +258,7 @@ public class MainCamera : MonoBehaviour
         }
 
         instance.cameraEnabledTime = Time.time;
+        
         instance.offset.z = Vector3.Distance(instance.transform.position, instance.target.lookAt.position);
         instance.target.offset = instance.target.lookAt.position - instance.target.position;
         lastRotation = instance.transform.rotation;

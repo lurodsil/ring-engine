@@ -23,7 +23,8 @@ public class Stage : MonoBehaviour
         startFast,
         loopFast,
         startBoost,
-        loopBoost;
+        loopBoost,
+        tornadoTheme;
 
     private AudioSource
         audioSource,
@@ -31,7 +32,6 @@ public class Stage : MonoBehaviour
         audioSourceBoost;
 
     public AudioClip bossBattle;
-
 
     public GameObject goalring;
 
@@ -52,6 +52,8 @@ public class Stage : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.instance.currentStage = this;
+
         if (GameManager.instance.firstTimeLoad)
         {
             Load();
@@ -116,9 +118,17 @@ public class Stage : MonoBehaviour
         }
         else if (playMusicOnStart && !audioSource.isPlaying)
         {
-            SetupAudioSource(audioSource, start, loop);
-            SetupAudioSource(audioSourceFast, startFast, loopFast);
-            SetupAudioSource(audioSourceBoost, startBoost, loopBoost);
+            if (GameManager.instance.tornadoGameplay)
+            {
+                SetupAudioSource(audioSource, start, tornadoTheme);
+            }
+            else
+            {
+                SetupAudioSource(audioSource, start, loop);
+                SetupAudioSource(audioSourceFast, startFast, loopFast);
+                SetupAudioSource(audioSourceBoost, startBoost, loopBoost);
+            }
+            
         }
 
         if (player.isBoosting == true)
@@ -134,38 +144,41 @@ public class Stage : MonoBehaviour
             musicVelocityModes = MusicVelocityModes.Normal;
         }
 
-        switch (musicVelocityModes)
-        {
-            case MusicVelocityModes.Normal:
-                if (GameManager.instance.underwaterManager.underwater)
-                {
-                    audioSource.volume = musicVolumeUnderwater;
-                }
-                else
-                {
-                    audioSource.volume = musicVolume;
 
-                }
-                audioSourceFast.volume = 0;
-                audioSourceBoost.volume = 0;
-                break;
-            case MusicVelocityModes.Fast:
-                if (loopFast)
-                {
-                    audioSource.volume = 0;
-                    audioSourceFast.volume = musicVolume;
-                    audioSourceBoost.volume = 0;
-                }
-                break;
-            case MusicVelocityModes.Boost:
-                if (loopBoost)
-                {
-                    audioSource.volume = 0;
+            switch (musicVelocityModes)
+            {
+                case MusicVelocityModes.Normal:
+                    if (GameManager.instance.underwaterManager.underwater)
+                    {
+                        audioSource.volume = musicVolumeUnderwater;
+                    }
+                    else
+                    {
+                        audioSource.volume = musicVolume;
+
+                    }
                     audioSourceFast.volume = 0;
-                    audioSourceBoost.volume = musicVolume;
-                }
-                break;
-        }
+                    audioSourceBoost.volume = 0;
+                    break;
+                case MusicVelocityModes.Fast:
+                    if (loopFast)
+                    {
+                        audioSource.volume = 0;
+                        audioSourceFast.volume = musicVolume;
+                        audioSourceBoost.volume = 0;
+                    }
+                    break;
+                case MusicVelocityModes.Boost:
+                    if (loopBoost)
+                    {
+                        audioSource.volume = 0;
+                        audioSourceFast.volume = 0;
+                        audioSourceBoost.volume = musicVolume;
+                    }
+                    break;
+            }
+        
+        
     }
 
     private void SetupAudioSource(AudioSource audioSource, AudioClip start, AudioClip loop)
@@ -224,5 +237,10 @@ public class Stage : MonoBehaviour
             }
 
         }
+    }
+
+    public void StartTornado()
+    {
+        audioSource.Stop();
     }
 }

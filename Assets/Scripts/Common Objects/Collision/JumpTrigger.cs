@@ -42,7 +42,15 @@ public class JumpTrigger : CommonObject
 
         if (Time.time > outOfControl)
         {
-            player.stateMachine.ChangeState(player.StateFall, gameObject);
+            if (player.isSnowboarding)
+            {
+                player.stateMachine.ChangeState(player.StateSnowBoardFall, gameObject);
+            }
+            else
+            {
+                player.stateMachine.ChangeState(player.StateFall, gameObject);
+            }
+            
             return;
         }  
     }

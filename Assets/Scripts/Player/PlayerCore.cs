@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Rigidbody))]
 public abstract class PlayerCore : MonoBehaviour
 {
     //Player global constants

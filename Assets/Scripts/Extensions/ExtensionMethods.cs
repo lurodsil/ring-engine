@@ -3,7 +3,7 @@ using UnityEngine;
 public static class ExtensionMethods
 {
     #region GameObject Extensions
-    public static GameObject Closest(this GameObject gameObject, GameObject[] GameObjects, float minDistance, float maxDistance, bool ignoreCollisions)
+    public static GameObject Closest(this Collider collider, GameObject[] GameObjects, float minDistance, float maxDistance, bool ignoreCollisions)
     {
         GameObject closest = null;
 
@@ -11,18 +11,18 @@ public static class ExtensionMethods
 
         foreach (GameObject target in GameObjects)
         {
-            Vector3 diff = target.transform.position - gameObject.transform.position;
+            Vector3 diff = target.transform.position - collider.bounds.center;
 
             float curDistance = diff.magnitude;
 
             if (TestDistance(curDistance, distance, minDistance, maxDistance))
             {
-                TestCollision(gameObject, ignoreCollisions, target, curDistance, ref closest, ref distance);
+                TestCollision(collider, ignoreCollisions, target, curDistance, ref closest, ref distance);
             }
         }
         return closest;
     }
-    public static GameObject Closest(this GameObject gameObject, GameObject[] GameObjects, float minDistance, float maxDistance, bool ignoreCollisions, Vector3 forward, float angle)
+    public static GameObject Closest(this Collider collider, GameObject[] GameObjects, float minDistance, float maxDistance, bool ignoreCollisions, Vector3 forward, float angle)
     {
         GameObject closest = null;
 
@@ -30,7 +30,7 @@ public static class ExtensionMethods
 
         foreach (GameObject target in GameObjects)
         {
-            Vector3 diff = target.transform.position - gameObject.transform.position;
+            Vector3 diff = target.transform.position - collider.bounds.center;
 
             float curDistance = diff.magnitude;
 
@@ -38,13 +38,13 @@ public static class ExtensionMethods
             {
                 if (TestAngle(forward, diff, angle))
                 {
-                    TestCollision(gameObject, ignoreCollisions, target, curDistance, ref closest, ref distance);
+                    TestCollision(collider, ignoreCollisions, target, curDistance, ref closest, ref distance);
                 }
             }
         }
         return closest;
     }
-    public static GameObject Closest(this GameObject gameObject, GameObject[] GameObjects, float minDistance, float maxDistance, bool ignoreCollisions, Vector3 forward, float angle, Vector3 cameraForward, float cameraAngle, LayerMask layerMask)
+    public static GameObject Closest(this Collider collider, GameObject[] GameObjects, float minDistance, float maxDistance, bool ignoreCollisions, Vector3 forward, float angle, Vector3 cameraForward, float cameraAngle, LayerMask layerMask)
     {
         GameObject closest = null;
 
@@ -52,7 +52,7 @@ public static class ExtensionMethods
 
         foreach (GameObject target in GameObjects)
         {
-            Vector3 diff = target.transform.position - gameObject.transform.position;
+            Vector3 diff = target.transform.position - collider.bounds.center;
 
             float curDistance = diff.magnitude;
 
@@ -60,13 +60,13 @@ public static class ExtensionMethods
             {
                 if (TestAngle(forward, diff, angle) && TestAngle(cameraForward, diff, cameraAngle))
                 {
-                    TestCollision(gameObject, ignoreCollisions, target, curDistance, ref closest, ref distance, layerMask);
+                    TestCollision(collider, ignoreCollisions, target, curDistance, ref closest, ref distance, layerMask);
                 }
             }
         }
         return closest;
     }
-    private static void TestCollision(GameObject gameObject, bool ignoreCollisions, GameObject target, float curDistance, ref GameObject closest, ref float distance)
+    private static void TestCollision(Collider collider, bool ignoreCollisions, GameObject target, float curDistance, ref GameObject closest, ref float distance)
     {
         if (ignoreCollisions)
         {
@@ -76,7 +76,7 @@ public static class ExtensionMethods
         }
         else
         {
-            if (!Physics.Linecast(gameObject.transform.position, target.transform.position))
+            if (!Physics.Linecast(collider.bounds.center, target.transform.position))
             {
                 closest = target;
 
@@ -84,7 +84,7 @@ public static class ExtensionMethods
             }
         }
     }
-    private static void TestCollision(GameObject gameObject, bool ignoreCollisions, GameObject target, float curDistance, ref GameObject closest, ref float distance, LayerMask layerMask)
+    private static void TestCollision(Collider collider, bool ignoreCollisions, GameObject target, float curDistance, ref GameObject closest, ref float distance, LayerMask layerMask)
     {
         if (ignoreCollisions)
         {
@@ -94,7 +94,7 @@ public static class ExtensionMethods
         }
         else
         {
-            if (!Physics.Linecast(gameObject.transform.position, target.transform.position, layerMask))
+            if (!Physics.Linecast(collider.bounds.center, target.transform.position, layerMask))
             {
                 closest = target;
 

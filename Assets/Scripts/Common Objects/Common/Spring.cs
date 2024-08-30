@@ -44,7 +44,7 @@ public class Spring : CommonStatefulObject
             player.isBoosting = false;
         }
 
-        player.afectMeshRotation = true;
+       
     }
     private void StateSpring()
     {
@@ -68,11 +68,11 @@ public class Spring : CommonStatefulObject
 
             if (dotTransformUpVector3Up > 0.99f)
             {
-                player.targetMeshRotation = Quaternion.FromToRotation(player.transform.up, Vector3.up) * player.transform.rotation;
+                player.playerAnimation.targetMeshRotation = Quaternion.FromToRotation(player.transform.up, Vector3.up) * player.transform.rotation;
             }
             else
             {
-                player.targetMeshRotation = Quaternion.LookRotation(-startPoint.up, startPoint.forward);
+                player.playerAnimation.targetMeshRotation = Quaternion.LookRotation(-startPoint.up, startPoint.forward);
             }
         }
         else
@@ -92,7 +92,7 @@ public class Spring : CommonStatefulObject
     {
         OnStateEnd?.Invoke();
         player.canHomming = IsHomingAttackEnable;
-        player.targetMeshRotation = Quaternion.Euler(Vector3.zero);
+        player.playerAnimation.targetMeshRotation = Quaternion.Euler(Vector3.zero);
     }
     #endregion
 

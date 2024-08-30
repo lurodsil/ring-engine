@@ -42,4 +42,13 @@ public class Bomb : DamageObject
         yield return new WaitForSeconds(delay);
         Explode();        
     }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            collision.collider.GetComponent<IDamageable>().TakeDamage(gameObject);
+            Explode();
+        }
+    }
 }

@@ -163,7 +163,14 @@ public class BezierMeshCreator : MonoBehaviour
                 lastPosition = knot.point;
             }
         }
-        knot = bezierSpline.GetKnot(1);
+        if (bezierSpline)
+        {
+            knot = bezierSpline.GetKnot(1);
+        }
+        else
+        {
+            knot = dualBezierSpline.GetKnot(1, 0.5f);
+        }
         rotation = Quaternion.LookRotation(knot.tangent, knot.normal);
         end.position = knot.point;
         end.rotation = rotation;

@@ -81,7 +81,7 @@ public class Enemy : GenerationsObject, IDamageable
 
         if (enemyType == EnemyType.Active)
         {
-            target = gameObject.Closest(GameObject.FindGameObjectsWithTag(GameTags.playerTag), 0, viewRange, true, transform.forward, viewAngle);
+            target = collider.Closest(GameObject.FindGameObjectsWithTag(GameTags.playerTag), 0, viewRange, true, transform.forward, viewAngle);
 
             if (target)
             {
@@ -142,7 +142,7 @@ public class Enemy : GenerationsObject, IDamageable
 
             transform.forward = receiverToSenderDirection;
 
-            GameObject closestEnemy = gameObject.Closest(GameObject.FindGameObjectsWithTag(GameTags.enemyTag), 0, viewRange, true, -receiverToSenderDirection, viewAngle);
+            GameObject closestEnemy = collider.Closest(GameObject.FindGameObjectsWithTag(GameTags.enemyTag), 0, viewRange, true, -receiverToSenderDirection, viewAngle);
 
             if (isChainDestroy && closestEnemy)
             {

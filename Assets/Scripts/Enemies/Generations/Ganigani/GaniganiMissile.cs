@@ -25,7 +25,7 @@ public class GaniganiMissile : MonoBehaviour
     {
         if (shot)
         {
-            target = gameObject.Closest(GameObject.FindGameObjectsWithTag(GameTags.playerTag), 0, 20, true);
+            target = GetComponent<Collider>().Closest(GameObject.FindGameObjectsWithTag(GameTags.playerTag), 0, 20, true);
 
             if (isHoming)
             {

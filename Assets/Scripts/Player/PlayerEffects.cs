@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerEffects : MonoBehaviour
 {
-
     public GameObject grindSparks;
     public GameObject spinBall;
     public GameObject spinBallSuper;
@@ -12,14 +11,11 @@ public class PlayerEffects : MonoBehaviour
     public TubeTrailRenderer tubeTrail;
     public TubeTrailRenderer tubeTrailSuper;
     public GameObject stompDown;
-    public GameObject stompUpPrefab;
-    public GameObject stompLand;
+    public GameObject stompDownSuper;
     public Transform dashBall;
     public Transform dashBallSuper;
     public GameObject playerMesh;
     public ParticleSystem smoke;
-    public ParticleSystem waterEnter;
-    public ParticleSystem waterExit;
     public ParticleSystem landing;
     public ParticleSystem boostWave;
     public ParticleSystem waterRun;
@@ -35,28 +31,13 @@ public class PlayerEffects : MonoBehaviour
 
     Vector3 dashBallSizeFast = new Vector3(0.9f, 0.7f, 0.7f);
 
-    public ParticleSystem s1, s2;
-
-    public ParticleSystem wave;
-
     public Animator emeraldAnimator;
-
-    bool waved;
-
-    bool stomp;
-
-    public float lastStateTime;
 
     public GameObject underwaterBubble;
 
     public GameObject snowBoard;
 
-    public SkinnedMeshRenderer playerMeshRenderer;
     public float damageTakeBlinkInterval = 0.1f;
-
-    public Transform boostDummySuper;
-
-    
 
     private void Awake()
     {
@@ -66,10 +47,7 @@ public class PlayerEffects : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        s1.Stop();
-        s2.Stop();
         grindSparks.SetActive(false);
-        lastStateTime = Time.time;
         player = GetComponent<Player>();
 
         playerMaterials = playerMesh.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterials;
@@ -79,6 +57,11 @@ public class PlayerEffects : MonoBehaviour
     {
         emeraldAnimator.gameObject.SetActive(true);
         emeraldAnimator.SetTrigger("Start");
+    }
+
+    void StateChangeToSuperSonicEnd()
+    {
+        emeraldAnimator.gameObject.SetActive(false);
     }
 
     void StateSnowBoardStart()
@@ -93,6 +76,7 @@ public class PlayerEffects : MonoBehaviour
             snowBoard.SetActive(false);
         }
     }
+
     private void Update()
     {
         if (player.isSuper)
@@ -108,7 +92,7 @@ public class PlayerEffects : MonoBehaviour
             {
                 superAura.Stop();
             }
-            
+
         }
 
         foreach (Material m in playerMaterials)
@@ -118,11 +102,9 @@ public class PlayerEffects : MonoBehaviour
 
 
         if (player.isBoosting && player.isSuper && player.rigidbody.velocity.magnitude > 0.1f)
-        {            
+        {
             boostSuper.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized);
         }
-       
-
 
         underwaterBubble.SetActive(player.isUnderwater);
 
@@ -135,18 +117,6 @@ public class PlayerEffects : MonoBehaviour
         if (player.rigidbody.velocity.magnitude > 1)
         {
             tubeTrail.transform.forward = player.rigidbody.velocity.normalized;
-        }
-
-        if (stomp)
-        {
-            s1.Play();
-            s2.Play();
-        }
-        else
-        {
-            s1.Stop();
-            s1.Clear();
-            s2.Stop();
         }
 
         try
@@ -212,13 +182,7 @@ public class PlayerEffects : MonoBehaviour
         {
 
         }
-        
-
- 
-
     }
-
-
 
     public void FootprintL()
     {
@@ -229,8 +193,6 @@ public class PlayerEffects : MonoBehaviour
     {
         Instantiate(footprint, transform.TransformPoint(0.12f, 0.02f, 0.2f), transform.rotation);
     }
-
-
 
     void StateBoostStart()
     {
@@ -306,13 +268,14 @@ public class PlayerEffects : MonoBehaviour
         //    waterRun.Stop();
         //}
     }
+
+    //Animation Event
     void Land()
     {
         if (!player.isUnderwater)
         {
             Instantiate(landing, player.GetGroundInformation().point, new Quaternion());
         }
-
     }
 
     void StateBallStart()
@@ -325,7 +288,6 @@ public class PlayerEffects : MonoBehaviour
         {
             spinBall.SetActive(true);
         }
-
     }
 
     void StateBallEnd()
@@ -369,13 +331,13 @@ public class PlayerEffects : MonoBehaviour
         if (player.isSuper)
         {
             tubeTrailSuper.emit = true;
+            stompDownSuper.SetActive(true);
         }
         else
         {
             tubeTrail.emit = true;
+            stompDown.SetActive(true);
         }
-
-        stomp = true;
     }
 
     void StateStompEnd()
@@ -383,15 +345,13 @@ public class PlayerEffects : MonoBehaviour
         if (player.isSuper)
         {
             tubeTrailSuper.emit = false;
+            stompDownSuper.SetActive(false);
         }
         else
         {
             tubeTrail.emit = false;
+            stompDown.SetActive(false);
         }
-
-        lastStateTime = Time.time;
-        stomp = false;
-
     }
 
     void StateDashPanelStart()

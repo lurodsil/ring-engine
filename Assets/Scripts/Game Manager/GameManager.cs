@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 {
     public TriggerRendererSettings triggerRendererSettings;
 
+    public Stage currentStage;
+
     public Material speedLines;
 
     public delegate void PauseAction();
@@ -23,8 +25,9 @@ public class GameManager : MonoBehaviour
     public UnderwaterManager underwaterManager;
     public PauseMenu pauseMenu;
 
+    public bool tornadoGameplay;
+
     public bool firstTimeLoad = true;
-    public bool juliana = true;
 
     public List<int> activeCheckpoints;
     public int lastCheckpoint = -1;
@@ -353,5 +356,16 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(loadingEnd);
     }
 
-    
+    public void StartTornado()
+    {
+        tornadoGameplay = true;
+        currentStage.StartTornado();
+
+    }
+
+    public void StopTornado()
+    {
+        tornadoGameplay = false;
+        currentStage.StartTornado();
+    }
 }

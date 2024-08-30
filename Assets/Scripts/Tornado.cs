@@ -59,6 +59,9 @@ public class Tornado : GenerationsObject
     public BezierPath path;
     BezierKnot knot;
 
+    private Vector3 tornadoStartPosition;
+    private Quaternion tornadoStartRotation;
+
     // Use this for initialization
     private void Start()
     {
@@ -66,10 +69,13 @@ public class Tornado : GenerationsObject
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         speed = 0;
+
+        tornadoStartPosition = transform.position; 
+        tornadoStartRotation = transform.rotation;
     }
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         audioSource.pitch = minAudioPitch + speed * (0.5f / maxSpeed);
         minAudioPitch = Mathf.MoveTowards(minAudioPitch, 1, Time.deltaTime * 0.5f);
@@ -101,39 +107,65 @@ public class Tornado : GenerationsObject
                 }
                 break;
             case TornadoStates.Flying:
+
+
                 break;
             case TornadoStates.AutoPilot:
-                path.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out knot);
-                rigidbody.velocity = knot.tangent * 40;
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, knot.normal), 5 *Time.deltaTime);
-                audioSource.pitch = 1;
+                if (path)
+                {
+                    path.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out knot);
+                    rigidbody.velocity = knot.tangent * 40;
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, knot.normal), 5 * Time.deltaTime);
+                    audioSource.pitch = 1;
+                }
+                else
+                {
+                    rigidbody.velocity = transform.forward * 40;
+                    Quaternion targetRotation = Quaternion.FromToRotation(transform.forward, Vector3.up);
+                    transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * Time.deltaTime);
+
+                    if(transform.position.y > 1000)
+                    {
+                        if(Vector3.Dot(Camera.main.transform.forward, Camera.main.transform.DirectionTo(tornadoStartPosition)) < -0.5f && Vector3.Distance(Camera.main.transform.position, tornadoStartPosition) > 100)
+                        {
+                            tornadoStates = TornadoStates.Idle;
+
+                            speed = 0;
+
+                            transform.position = tornadoStartPosition;
+
+                            transform.rotation = tornadoStartRotation;
+
+                            rigidbody.velocity = Vector3.zero;
+                        }                  
+                    }
+                }
                 break;
         }
-
-
     }
 
     #region State Tornado
     private void StateTornadoStart()
     {
         player.rigidbody.velocity = Vector3.zero;
-
-
         player.transform.parent = sonicPosition;
         player.transform.localPosition = Vector3.zero;
         player.transform.rotation = Quaternion.identity;
-        player.playerMesh.enabled = false;
+        player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         player.DisablePhysics();
         sonicAnimator.gameObject.SetActive(true);
+        player.rigidbody.isKinematic = true;
 
         tornadoStates = TornadoStates.Flying;
 
-        MainCamera.SetCameraDistance(5, 5);
-        MainCamera.SetEaseIn(5);
+        MainCamera.ResetTime();
+        MainCamera.SetCameraDistance(10,10);
+
+        GameManager.instance.StartTornado();
+        
     }
     public void StateTornado()
-    {
-       
+    {       
         UpdateAnimators();
 
         //yaw movement
@@ -175,6 +207,18 @@ public class Tornado : GenerationsObject
         absX = Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickX));
         absY = Mathf.Abs(Input.GetAxis(XboxAxis.LeftStickY));
 
+        
+        if(Input.GetButtonDown(XboxButton.A))
+        {
+            player.stateMachine.ChangeState(player.StateSkydive, gameObject);
+
+            tornadoStates = TornadoStates.AutoPilot;
+        }
+
+    }
+
+    public void StateTornadoPhysics()
+    {
         if (absX < 0.1f)
         {
             rollSpeed = Mathf.Lerp(rollSpeed, 0, 5 * Time.deltaTime);
@@ -208,13 +252,19 @@ public class Tornado : GenerationsObject
         }
 
         rigidbody.velocity = transform.forward * speed;
-
     }
     private void StateTornadoEnd()
     {
-        player.playerMesh.enabled = true;
+        player.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         player.EnablePhysics();
         sonicAnimator.gameObject.SetActive(false);
+        player.rigidbody.isKinematic = false;
+        player.transform.parent = null;
+
+        MainCamera.ResetTime();
+        MainCamera.SetCameraDistance(5, 5);
+
+        GameManager.instance.StopTornado();
     }
     #endregion
 
@@ -241,7 +291,6 @@ public class Tornado : GenerationsObject
         {
             transform.position = targetPosition.position;
             transform.rotation = targetPosition.rotation;
-        }
-        
-    }
+        }        
+    }    
 }
