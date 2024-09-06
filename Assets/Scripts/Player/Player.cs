@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(PlayerAnimation))]
 public abstract class Player : PlayerCore, IDamageable
@@ -61,6 +62,8 @@ public abstract class Player : PlayerCore, IDamageable
     public bool canCancelState { get; set; }
     public bool drown { get; set; }
     public bool ignoreDamage { get; set; }
+
+    public bool isPlayerFacingCamera { get; set; }
 
     // Targeting
     [Header("Find Closest Target Settings")]
@@ -238,6 +241,8 @@ public abstract class Player : PlayerCore, IDamageable
 
         absoluteVelocity = rigidbody.velocity.magnitude;
 
+        isPlayerFacingCamera = Vector3.Dot(transform.forward, Camera.main.transform.forward) < 0;
+
         UpdateInputAxis();
 
         closestLightSpeedDashRing = collider.Closest(GameObject.FindGameObjectsWithTag("LightSpeedDashRing"), 1, 5, true, transform.forward, 180);
@@ -324,24 +329,24 @@ public abstract class Player : PlayerCore, IDamageable
     {
         if (Input.GetButtonDown(XboxButton.LeftShoulder))
         {
-            if (Vector3.Dot(transform.forward, Camera.main.transform.forward) > 0)
+            if (isPlayerFacingCamera)
             {
-                stateMachine.ChangeState(StateQuickstepLeft);
+                stateMachine.ChangeState(StateQuickstepRight);                
             }
             else
             {
-                stateMachine.ChangeState(StateQuickstepRight);
+                stateMachine.ChangeState(StateQuickstepLeft);
             }
         }
         else if (Input.GetButtonDown(XboxButton.RightShoulder))
         {
-            if (Vector3.Dot(transform.forward, Camera.main.transform.forward) > 0)
+            if (isPlayerFacingCamera)
             {
-                stateMachine.ChangeState(StateQuickstepRight);
+                stateMachine.ChangeState(StateQuickstepLeft);
             }
             else
             {
-                stateMachine.ChangeState(StateQuickstepLeft);
+                stateMachine.ChangeState(StateQuickstepRight);
             }
         }
     }
@@ -1571,6 +1576,7 @@ public abstract class Player : PlayerCore, IDamageable
     {
         isAttacking = true;
         isBoosting = false;
+        rigidbody.useGravity = true;
         UpdateTargets();
     }
     public virtual void StateBall()
@@ -2151,52 +2157,50 @@ public abstract class Player : PlayerCore, IDamageable
         GrindSensorSetActive(true);
         currentPhysicsMotion = grindMotion;
         canHomming = true;
-
     }
     public void StateGrind()
     {
         if (!playerAnimation.currentAnimationName.Contains("jump") && !playerAnimation.currentAnimationName.Contains("move") && !playerAnimation.currentAnimationName.Contains("switch") && !playerAnimation.currentAnimationName.Contains("landing"))
         {
-            if (grindSplineSensorL.bezierPath && Input.GetButtonDown(XboxButton.LeftShoulder) && !Input.GetButton(XboxButton.B))
-            {
-                if(Vector3.Dot(transform.forward, Camera.main.transform.forward) > 0)
-                {
-                    grindSwitchPath = grindSplineSensorL.bezierPath;
-
-                    stateMachine.ChangeState(StateGrindSwitchLeft);
-                }
-                else
-                {
-                    grindSwitchPath = grindSplineSensorR.bezierPath;
-
-                    stateMachine.ChangeState(StateGrindSwitchRight);
-                }
-
-                return;
-            }
-            else if (grindSplineSensorR.bezierPath && Input.GetButtonDown(XboxButton.RightShoulder) && !Input.GetButton(XboxButton.B))
-            {
-                if (Vector3.Dot(transform.forward, Camera.main.transform.forward) > 0)
-                {
-                    grindSwitchPath = grindSplineSensorR.bezierPath;
-
-                    stateMachine.ChangeState(StateGrindSwitchRight);                    
-                }
-                else
-                {
-                    grindSwitchPath = grindSplineSensorL.bezierPath;
-
-                    stateMachine.ChangeState(StateGrindSwitchLeft);
-                }
-
-                return;
-            }
-            else if (Input.GetButtonDown(XboxButton.A))
+            if (Input.GetButtonDown(XboxButton.A))
             {
                 stateMachine.ChangeState(StateGrindJump);
 
                 return;
             }
+
+            if (!Input.GetButton(XboxButton.B))
+            {
+                bool isLeftShoulderPressed = Input.GetButtonDown(XboxButton.LeftShoulder);
+                bool isRightShoulderPressed = Input.GetButtonDown(XboxButton.RightShoulder);
+
+                if (isPlayerFacingCamera)
+                {
+                    if (isLeftShoulderPressed && grindSplineSensorR.bezierPath)
+                    {
+                        grindSwitchPath = grindSplineSensorR.bezierPath;
+                        stateMachine.ChangeState(StateGrindSwitchLeft);
+                    }
+                    else if (isRightShoulderPressed && grindSplineSensorL.bezierPath)
+                    {
+                        grindSwitchPath = grindSplineSensorL.bezierPath;
+                        stateMachine.ChangeState(StateGrindSwitchRight);
+                    }
+                }
+                else
+                {
+                    if (isLeftShoulderPressed && grindSplineSensorL.bezierPath)
+                    {
+                        grindSwitchPath = grindSplineSensorL.bezierPath;
+                        stateMachine.ChangeState(StateGrindSwitchLeft);
+                    }
+                    else if (isRightShoulderPressed && grindSplineSensorR.bezierPath)
+                    {
+                        grindSwitchPath = grindSplineSensorR.bezierPath;
+                        stateMachine.ChangeState(StateGrindSwitchRight);
+                    }
+                }
+            }             
         }
 
         CheckBoost();
@@ -2219,8 +2223,6 @@ public abstract class Player : PlayerCore, IDamageable
     }
     private void StateGrindEnd()
     {
-
-
         rigidbody.useGravity = true;
         isGrindGrounded = false;
     }
@@ -2260,6 +2262,7 @@ public abstract class Player : PlayerCore, IDamageable
     #region State Grind Jump
     private void StateGrindJumpStart()
     {
+        rigidbody.useGravity = true;
         rigidbody.AddForce(transform.up * (grindJumpForce - rigidbody.velocity.y), ForceMode.Impulse);
         isGrindGrounded = true;
     }
@@ -2288,20 +2291,20 @@ public abstract class Player : PlayerCore, IDamageable
             return;
         }
 
-        grindSensor.bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out sideViewKnot);
+        grindSensor.bezierPath.PutOnPath(transform, PutOnPathMode.BinormalOnly, out grindKnot);
 
-        grindSensor.transform.localPosition = transform.InverseTransformPoint(sideViewKnot.point);
+        grindSensor.transform.localPosition = transform.InverseTransformPoint(grindKnot.point);
 
         CheckBoost();
 
         //Sign to get if player is moving forward on grind direction
-        float sign = Mathf.Sign(Vector3.Dot(transform.forward, sideViewKnot.tangent));
+        float sign = Mathf.Sign(Vector3.Dot(transform.forward, grindKnot.tangent));
         //Multiply by grind direction, if sign is negative player will move in oposite direction
-        Vector3 tangent = sideViewKnot.tangent * sign;
+        Vector3 tangent = grindKnot.tangent * sign;
 
-        transform.rotation = Quaternion.LookRotation(tangent, sideViewKnot.normal);
+        transform.rotation = Quaternion.LookRotation(tangent, grindKnot.normal);
 
-        if (transform.position.y < sideViewKnot.point.y)
+        if (transform.position.y < grindKnot.point.y)
         {
             stateMachine.ChangeState(StateGrind);
         }

@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[AddComponentMenu("Ring Engine/Player/Player Animation")]
 [RequireComponent(typeof(Player))]
 public class PlayerAnimation : MonoBehaviour
 {
@@ -637,11 +636,25 @@ public class PlayerAnimation : MonoBehaviour
     }
     private void StateGrindSwitchLeftStart()
     {
-        animator.SetTrigger("Grind Switch Left");
+        if(player.isPlayerFacingCamera)
+        {
+            animator.SetTrigger("Grind Switch Right");
+        }
+        else
+        {
+            animator.SetTrigger("Grind Switch Left");
+        }     
     }
     private void StateGrindSwitchRightStart()
     {
-        animator.SetTrigger("Grind Switch Right");
+        if (player.isPlayerFacingCamera)
+        {
+            animator.SetTrigger("Grind Switch Left");
+        }
+        else
+        {
+            animator.SetTrigger("Grind Switch Right");
+        }        
     }
     private void StateGrindJumpStart()
     {

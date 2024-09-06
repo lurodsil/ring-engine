@@ -8,6 +8,7 @@ public class AdlibTrickJump : CommonObject
     public float OutOfControl = 3.5f;
 
     public float outOfControlSuccess = 0.6f;
+    public float successImpulseForce = 40f;
     private AudioSource audioSource;
     public Transform startPoint;
     public AudioClip sound;
@@ -104,7 +105,7 @@ public class AdlibTrickJump : CommonObject
 
                     player.SendMessage("TrickJumpSuccess");
                     player.ringEnergy += 10;
-                    player.rigidbody.AddForce(transform.up * 20, ForceMode.Impulse);
+                    player.rigidbody.AddForce(transform.up * successImpulseForce, ForceMode.Impulse);
                     player.stateMachine.ChangeState(player.StateTransition, gameObject);
                 }
             }

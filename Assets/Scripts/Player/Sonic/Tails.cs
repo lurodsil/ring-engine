@@ -65,7 +65,7 @@ public class Tails : Player
     {
         rigidbody.AddForce(transform.up * (15 - rigidbody.velocity.y), ForceMode.Impulse);
         UpdateTargets();
-
+        rigidbody.drag = 2;
     }
     void StateFly()
     {
@@ -74,23 +74,14 @@ public class Tails : Player
     }
     public void StateFlyPhysics()
     {
-
-        rigidbody.AddForce(movingDirection * airMotion.accelerationForce, ForceMode.Acceleration);
+        rigidbody.AddForce(leftStickDirection * airMotion.accelerationForce, ForceMode.Acceleration);
 
         if (rigidbody.HorizontalVelocity().magnitude > 0.1f && !isBraking)
         {
-            if (rigidbody.HorizontalVelocity().magnitude > 40)
-            {
-                transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, Vector3.up);
-            }
-            else
-            {
-                transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity().normalized, Vector3.up);
-            }
-
+            transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity().normalized, Vector3.up);
         }
 
-        if (Time.time > stateMachine.lastStateTime + 10)
+        if (Time.time > stateMachine.lastStateTime + 5)
         {
             stateMachine.ChangeState(StateFall);
         }
@@ -102,13 +93,16 @@ public class Tails : Player
             rigidbody.AddForce(Vector3.up * 12, ForceMode.Impulse);
         }
 
-
+        if (Physics.Raycast(transform.position, Vector3.down, 2))
+        {
+            stateMachine.ChangeState(StateFall);
+        }
     }
 
     void StateFlyEnd()
     {
-
         canFly = false;
+        rigidbody.drag = 0;
     }
     #endregion
 

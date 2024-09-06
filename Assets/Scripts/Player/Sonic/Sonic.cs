@@ -218,7 +218,7 @@ public class Sonic : Player
         CheckAndAirboost();
         CheckAndDoubleJump();
 
-        if (Input.GetButtonDown(XboxButton.DPadUp) && !isSuper)
+        if (Input.GetButtonDown(XboxButton.DPadUp) && !isSuper && GameManager.instance.canChangeToSuper)
         {
             isSuper = true;
             stateMachine.ChangeState(StateChangeToSuperSonic);

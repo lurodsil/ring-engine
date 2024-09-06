@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Permissions;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.ProBuilder;
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
     public AudioClip loadingEnd;
 
     public GameObject player;
+
+    public bool canChangeToSuper;
 
     //public PostProcessingProfile postProcessingProfile;
 

@@ -44539,10 +44539,8 @@ MonoBehaviour:
   distance: 5
   distanceWhenBoosting: 3
   fieldOfView: 45
-  fieldOfWhenBoosting: 75
+  fieldOfViewWhenBoosting: 90
   easeIn: 0.5
-  targetOffset: {x: 0, y: 0, z: 0}
-  cameraEnabledTime: 0
   minAngleX: -60
   maxAngleX: 80
   sensitivity: {x: 4, y: 2}
@@ -49896,31 +49894,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e0380c99de4b0499e2e1336aab5076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGroundedMaxDistance: 0.05
+  isGroundedMaxDistance: 0.35
   isGroundedRadius: 0.2
   groundInformationMaxDistance: 1
   groundInformationRadius: 0.3
   groundSearchLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  hips: {fileID: 6802004710623605294}
   playerMaterial: {fileID: 13400000, guid: b5dd4b3abc3c59845a4c2c8749da9f0c, type: 2}
   noFriction: {fileID: 13400000, guid: 10c38e1b429612546b662a26c7cbc828, type: 2}
-  lostGroundDelay: 0.2
-  canStand: 1
-  grindMotion:
-    accelerationForce: 38
-    accelerationForceInBoost: 100
-    decelerationForce: 20
-    brakeMinSpeed: 1
-    brakeForce: 50
-    maxSpeed: 25
-    maxSpeedInBoost: 35
-  grindingMinimumVelocity: 20
-  grindJumpForce: 11
-  grindSensor: {fileID: 7942590115777634961}
-  grindSplineSensorL: {fileID: 951583028672365326}
-  grindSplineSensorR: {fileID: 252835407063401978}
   groundMotion:
     accelerationForce: 35
     accelerationForceInBoost: 50
@@ -49929,7 +49911,7 @@ MonoBehaviour:
     brakeForce: 50
     maxSpeed: 25
     maxSpeedInBoost: 35
-  iceMotion:
+  airMotion:
     accelerationForce: 38
     accelerationForceInBoost: 100
     decelerationForce: 20
@@ -49937,7 +49919,7 @@ MonoBehaviour:
     brakeForce: 50
     maxSpeed: 25
     maxSpeedInBoost: 35
-  airMotion:
+  iceMotion:
     accelerationForce: 38
     accelerationForceInBoost: 100
     decelerationForce: 20
@@ -49964,74 +49946,44 @@ MonoBehaviour:
   targetFindLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  binormalTargetOffset: 0
   wallSearchLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  tangentCopy: {x: 0, y: 0, z: 0}
-  autorunVelocity: 0
-  stickToGround: 0
-  playerCenter: {fileID: 6905736191523742140}
-  playerMesh: {fileID: 1005944278654234297}
-  meshRotation: {x: 0, y: 0, z: 0, w: 0}
-  targetMeshRotation: {x: 0, y: 0, z: 0, w: 0}
-  isSnowboarding: 0
+  grindMotion:
+    accelerationForce: 38
+    accelerationForceInBoost: 100
+    decelerationForce: 20
+    brakeMinSpeed: 1
+    brakeForce: 50
+    maxSpeed: 25
+    maxSpeedInBoost: 35
+  grindingMinimumVelocity: 20
+  grindJumpForce: 11
+  grindSensor: {fileID: 7942590115777634961}
+  grindSplineSensorL: {fileID: 951583028672365326}
+  grindSplineSensorR: {fileID: 252835407063401978}
   targetFindRange: 10
   targetFindAngle: 180
-  enableHommingAfterTrick: 0
-  accelerationForceLowSpeed: 12.1
-  accelerationForceHighSpeed: 25
-  decelerationForceLowSpeed: 50.1
-  decelerationForceHighSpeed: 25
-  isBrakingForceLowSpeed: 150
-  isBrakingForceHighSpeed: 100
   lowToHighVelocity: 15
-  maxVelocity: 44
-  maxBoostVelocity: 60
-  maxDownVelocity: 60
-  maxUpVelocity: 70
-  sonicToSpinVelocity: 85
-  spinToSonicVelocity: 75
-  lightSpeedDashVelocity: 50
-  JumpGroundVelocityXZRate: 1
-  JumpGroundVelocityYRate: 1
-  JumpPower: 60
-  JumpPowerAllRounder: 4.5
-  JumpPowerBySkill: 2
-  JumpPowerDamageAir: 20
+  superMultiplier: 1.5
   JumpPowerMin: 11
-  JumpPowerMinOnBoard: 6
-  JumpPowerOnBoard: 15
-  KickbackPower: 10
-  MaxUpSpeedWhenJump: 18
-  BallJumpAirDragRateScale: 5.9
-  JumpShortGroundResetDistance: 5
+  JumpPower: 60
   JumpShortReleaseTime: 0.14
-  PrecedeJumpEnableTime: 0.15
-  VertVelocityBallToFall: -10
   quickstepVelocity: 10
   quickstepTime: 0.2
-  forwardRight: 0.5
   hommingAttackVelocityNoTarget: 40
   hommingAttackKeepVelocity: 0.2
   hommingAttackVelocity: 70
   hommingAttackHitKeepVelocity: 0.05
   hommingAttackHitUpVelocity: 18
-  velocity: 0
-  hitPoint: {x: 0, y: 0, z: 0}
-  ringEnergy: 0
-  isBraking: 0
-  isBoosting: 0
-  cameraTarget: {fileID: 3585835092162280443}
-  ignoreDamage: 0
+  enableHommingAfterTrick: 1
+  underwaterGravityScale: 0.27
+  underwaterRigidbodyDrag: 2
+  lightSpeedDashVelocity: 50
   ignoreDamageTime: 5
-  boostGauge: {fileID: 0}
+  lostGroundDelay: 0.2
   sideViewPath: {fileID: 0}
   pathHelper: {fileID: 0}
-  isSuper: 0
-  superMultiplier: 1.5
-  normalSuperBlend: 0
-  afectMeshRotation: 0
   cameraTargetUpOffset: 1.7
   cameraTargetUpOffsetInAir: 1
   startTime: 0
@@ -50118,15 +50070,11 @@ MonoBehaviour:
   tubeTrail: {fileID: 170679918874298154}
   tubeTrailSuper: {fileID: 8060833344781116189}
   stompDown: {fileID: 7804721093465602077}
-  stompUpPrefab: {fileID: 0}
-  stompLand: {fileID: 5776604599217002378, guid: 3cfc25b7096d29842ac7795cae5d541a,
-    type: 3}
+  stompDownSuper: {fileID: 0}
   dashBall: {fileID: 4025468279146445356}
   dashBallSuper: {fileID: 1641091644947133788}
   playerMesh: {fileID: 8437270640627799015}
   smoke: {fileID: 7393733142124355815}
-  waterEnter: {fileID: 0}
-  waterExit: {fileID: 0}
   landing: {fileID: 8181784116596847521, guid: 58777561336510c459b059a52c5114bb, type: 3}
   boostWave: {fileID: 832541782559987441}
   waterRun: {fileID: 3635926788828477369}
@@ -50150,16 +50098,10 @@ MonoBehaviour:
   water: {fileID: 2800000, guid: f71565be0f205bd48bc9c6455804ba0f, type: 3}
   snow: {fileID: 2800000, guid: dea41e2e69f440a4a92a60fd46380674, type: 3}
   smokeMaterial: {fileID: 2100000, guid: 0131236ea402b58458dd3c0b386c65df, type: 2}
-  s1: {fileID: 4689988989552428908}
-  s2: {fileID: 346333792515467229}
-  wave: {fileID: 0}
   emeraldAnimator: {fileID: 0}
-  lastStateTime: 0
   underwaterBubble: {fileID: 3291158420628399780}
   snowBoard: {fileID: 0}
-  playerMeshRenderer: {fileID: 1005944278654234297}
   damageTakeBlinkInterval: 0.1
-  boostDummySuper: {fileID: 0}
 --- !u!114 &1598121658098058420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50689,7 +50631,6 @@ GameObject:
   - component: {fileID: 2870647012694987995}
   - component: {fileID: 7601019851937549766}
   - component: {fileID: 6058472895139316243}
-  - component: {fileID: 7655006025975558188}
   m_Layer: 10
   m_Name: Spinball2
   m_TagString: Untagged
@@ -50764,20 +50705,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7655006025975558188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3143748554967366607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 2000, y: 0, z: 0}
-  target: {fileID: 3143748554967366607}
 --- !u!1 &3291158420628399780
 GameObject:
   m_ObjectHideFlags: 0
@@ -84642,7 +84569,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9180357933216662708}
-  - component: {fileID: 5573073401934601347}
   m_Layer: 10
   m_Name: SpinballSuper
   m_TagString: Untagged
@@ -84668,20 +84594,6 @@ Transform:
   - {fileID: 3867249130173377093}
   m_Father: {fileID: 3498618788254519862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5573073401934601347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4917690294544316275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 1100, y: 0, z: 0}
-  target: {fileID: 0}
 --- !u!1 &5114076068898304803
 GameObject:
   m_ObjectHideFlags: 0
@@ -132904,7 +132816,6 @@ GameObject:
   - component: {fileID: 6054100526259556731}
   - component: {fileID: 2003327206311947506}
   - component: {fileID: 2126971730952395675}
-  - component: {fileID: 8396959154359816439}
   m_Layer: 10
   m_Name: Spinball2
   m_TagString: Untagged
@@ -132979,20 +132890,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8396959154359816439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8502579124677318532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 2000, y: 0, z: 0}
-  target: {fileID: 8502579124677318532}
 --- !u!1 &8518770619751425082
 GameObject:
   m_ObjectHideFlags: 0
@@ -142505,7 +142402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8725864224005000248}
-  - component: {fileID: 8779811305945857364}
   m_Layer: 10
   m_Name: Spinball
   m_TagString: Untagged
@@ -142531,20 +142427,6 @@ Transform:
   - {fileID: 2761825943451447354}
   m_Father: {fileID: 3498618788254519862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8779811305945857364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8880675124909802684}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d2f1cf75110b624f8ae5bd0cae0bc09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: {x: 1100, y: 0, z: 0}
-  target: {fileID: 0}
 --- !u!1 &8883892365913272900
 GameObject:
   m_ObjectHideFlags: 0
@@ -147606,18 +147488,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb2d8954e22514646a8c2756e38f29a8, type: 3}
---- !u!137 &1005944278654234297 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -3201980432077601203, guid: fb2d8954e22514646a8c2756e38f29a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6802004710623996148}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6802004710623605294 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400090, guid: fb2d8954e22514646a8c2756e38f29a8,
-    type: 3}
-  m_PrefabInstance: {fileID: 6802004710623996148}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6802004710623605344 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400020, guid: fb2d8954e22514646a8c2756e38f29a8,
