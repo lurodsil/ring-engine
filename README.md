@@ -5,8 +5,6 @@ After all these years of work I've decided to create a repository showing all of
 
 # Source Code
 Here we have a lots of types of source code, begginer codes, intermediate codes and advanced codes. Remember, this project teach me how to program in C#. Code will be optimized with time for better reading and performance. The source code in here is fully open source, there some third part codes too, but remember I've spend many years on this! When you share, remember to credit me or the respective owner.
-# Finally
-I hope everyone who reached to this repository like the content and have fun using Ring Engine.
 
 # Current Features
 - [x] Running, loop
@@ -51,4 +49,5 @@ Readme under development
 ## Please check the how to videos on youtube!
 ## Please check the wiki!
 
-
+# Finally
+I hope everyone who reached to this repository like the content and have fun using Ring Engine.
