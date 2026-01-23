@@ -175,11 +175,11 @@ public static class ExtensionMethods
     #region Rigidbody Extensions
     public static Vector3 HorizontalVelocity(this Rigidbody rigidbody)
     {
-        return new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
+        return new Vector3(rigidbody.linearVelocity.x, 0, rigidbody.linearVelocity.z);
     }
     public static Vector3 VerticalVelocity(this Rigidbody rigidbody)
     {
-        return new Vector3(0, rigidbody.velocity.y, 0);
+        return new Vector3(0, rigidbody.linearVelocity.y, 0);
     }
 
     public static float ConformVelocity(this Rigidbody rigidbody, float maxVelocity)
@@ -200,17 +200,17 @@ public static class ExtensionMethods
     {
         if (useGravity)
         {
-            Vector3 currentVelocity = rigidbody.velocity;
+            Vector3 currentVelocity = rigidbody.linearVelocity;
 
             currentVelocity = direction * Mathf.MoveTowards(HorizontalVelocity(rigidbody).magnitude, maxVelocity, acceleration * Time.deltaTime);
 
-            currentVelocity.y = rigidbody.velocity.y;
+            currentVelocity.y = rigidbody.linearVelocity.y;
 
-            rigidbody.velocity = currentVelocity;
+            rigidbody.linearVelocity = currentVelocity;
         }
         else
         {
-            rigidbody.velocity = direction * Mathf.MoveTowards(rigidbody.velocity.magnitude, maxVelocity, acceleration * Time.deltaTime);
+            rigidbody.linearVelocity = direction * Mathf.MoveTowards(rigidbody.linearVelocity.magnitude, maxVelocity, acceleration * Time.deltaTime);
         }
     }
     public static void Decelerate(this Rigidbody rigidbody, float deceleration)

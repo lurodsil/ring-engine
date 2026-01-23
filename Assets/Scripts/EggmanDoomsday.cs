@@ -33,7 +33,7 @@ public class EggmanDoomsday : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation(knot.tangent, knot.normal);
 
-        rigidbody.velocity = transform.forward * 55;
+        rigidbody.linearVelocity = transform.forward * 55;
 
         if (Vector3.Distance(transform.position, player.transform.position) < 300)
         {

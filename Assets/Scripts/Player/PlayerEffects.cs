@@ -101,9 +101,9 @@ public class PlayerEffects : MonoBehaviour
         }
 
 
-        if (player.isBoosting && player.isSuper && player.rigidbody.velocity.magnitude > 0.1f)
+        if (player.isBoosting && player.isSuper && player.rigidbody.linearVelocity.magnitude > 0.1f)
         {
-            boostSuper.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized);
+            boostSuper.transform.rotation = Quaternion.LookRotation(player.rigidbody.linearVelocity.normalized);
         }
 
         underwaterBubble.SetActive(player.isUnderwater);
@@ -114,16 +114,16 @@ public class PlayerEffects : MonoBehaviour
         boost.SetActive(player.isBoosting && !player.isSuper);
         boostSuper.SetActive(player.isBoosting && player.isSuper);
 
-        if (player.rigidbody.velocity.magnitude > 1)
+        if (player.rigidbody.linearVelocity.magnitude > 1)
         {
-            tubeTrail.transform.forward = player.rigidbody.velocity.normalized;
+            tubeTrail.transform.forward = player.rigidbody.linearVelocity.normalized;
         }
 
         try
         {
             if (player.IsGrounded())
             {
-                PhysicMaterial physicMaterial = player.GetGroundInformation().collider.sharedMaterial;
+                PhysicsMaterial physicMaterial = player.GetGroundInformation().collider.sharedMaterial;
 
                 if (physicMaterial == null)
                     return;

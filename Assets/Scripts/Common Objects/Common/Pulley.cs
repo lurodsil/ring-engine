@@ -55,7 +55,7 @@ public class Pulley : CommonActivableStatefulObject
             }
         }
 
-        _rigidbody.velocity = knot.tangent * appliedSpeed;
+        _rigidbody.linearVelocity = knot.tangent * appliedSpeed;
 
         bezierPath.PutOnPath(pulleyHandle, PutOnPathMode.BinormalAndNormal, out knot, out _, 10);
         pulleyHandle.rotation = Quaternion.LookRotation(knot.tangent, knot.normal);
@@ -101,7 +101,7 @@ public class Pulley : CommonActivableStatefulObject
         player.EnablePhysics();
         player.canHomming = isHommingAttackEnable;
         player.transform.parent = null;
-        player.rigidbody.velocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.2f) * speed;
+        player.rigidbody.linearVelocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.2f) * speed;
     }
     #endregion
 }

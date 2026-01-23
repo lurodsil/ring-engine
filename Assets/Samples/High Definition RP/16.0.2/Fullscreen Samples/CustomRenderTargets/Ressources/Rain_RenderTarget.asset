@@ -22,6 +22,7 @@ CustomRenderTexture:
   m_GenerateMips: 0
   m_SRGB: 0
   m_UseDynamicScale: 0
+  m_UseDynamicScaleExplicit: 0
   m_BindMS: 0
   m_EnableCompatibleFormat: 1
   m_EnableRandomWrite: 0

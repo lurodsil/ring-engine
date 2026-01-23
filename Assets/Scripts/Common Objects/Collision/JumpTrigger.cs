@@ -20,21 +20,21 @@ public class JumpTrigger : CommonObject
     {
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
 
-        if (player.rigidbody.velocity.magnitude > player.currentPhysicsMotion.maxSpeed)
+        if (player.rigidbody.linearVelocity.magnitude > player.currentPhysicsMotion.maxSpeed)
         {
-            player.rigidbody.velocity = transform.forward * ImpulseSpeedOnBoost;
+            player.rigidbody.linearVelocity = transform.forward * ImpulseSpeedOnBoost;
 
             player.SendMessage("StateBoostEnd");
         }
         else
         {
-            player.rigidbody.velocity = transform.forward * ImpulseSpeedOnNormal;
+            player.rigidbody.linearVelocity = transform.forward * ImpulseSpeedOnNormal;
         }
     }
 
     private void StateJumpTrigger()
     {
-        Vector3 horizontalVelocity = player.rigidbody.velocity.normalized;
+        Vector3 horizontalVelocity = player.rigidbody.linearVelocity.normalized;
         horizontalVelocity.y = 0;
         if (horizontalVelocity.magnitude > 0.1)
             player.transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);
@@ -64,7 +64,7 @@ public class JumpTrigger : CommonObject
 
     private void JumpTriggerStart()
     {
-        if (player.rigidbody.velocity.magnitude > SpeedMin)
+        if (player.rigidbody.linearVelocity.magnitude > SpeedMin)
         {
             if (Vector3.Dot(player.transform.forward, transform.forward) > 0.2f)
             {

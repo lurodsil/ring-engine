@@ -119,9 +119,9 @@ public class Enemy : GenerationsObject, IDamageable
 
             if (!isFlyMovement)
             {
-                desiredVelocity.y = rigidbody.velocity.y;
+                desiredVelocity.y = rigidbody.linearVelocity.y;
             }
-            rigidbody.velocity = desiredVelocity;
+            rigidbody.linearVelocity = desiredVelocity;
         }
 
     }
@@ -148,11 +148,11 @@ public class Enemy : GenerationsObject, IDamageable
             {
                 Vector3 enemyToClosestEnemyDirection = (closestEnemy.transform.position - gameObject.transform.position).normalized;
 
-                rigidbody.velocity = (enemyToClosestEnemyDirection + Vector3.up).normalized * 20;
+                rigidbody.linearVelocity = (enemyToClosestEnemyDirection + Vector3.up).normalized * 20;
             }
             else
             {
-                rigidbody.velocity = (-receiverToSenderDirection + Vector3.up).normalized * 20;
+                rigidbody.linearVelocity = (-receiverToSenderDirection + Vector3.up).normalized * 20;
             }
 
             stateMachine.Pause();

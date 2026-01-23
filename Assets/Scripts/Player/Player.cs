@@ -10,8 +10,8 @@ public abstract class Player : PlayerCore, IDamageable
 
     //Maybe it's a good idea to move to player collision
     [Header("Physics Materials")]
-    public PhysicMaterial playerMaterial;
-    public PhysicMaterial noFriction;
+    public PhysicsMaterial playerMaterial;
+    public PhysicsMaterial noFriction;
 
     // Animation
     public PlayerAnimation playerAnimation { get; set; }
@@ -216,7 +216,7 @@ public abstract class Player : PlayerCore, IDamageable
 
         
 
-        speedMode = rigidbody.velocity.magnitude <= 15f ? SpeedMode.Low : SpeedMode.High;
+        speedMode = rigidbody.linearVelocity.magnitude <= 15f ? SpeedMode.Low : SpeedMode.High;
 
         if (grindSensor.bezierPath)
         {
@@ -224,7 +224,7 @@ public abstract class Player : PlayerCore, IDamageable
             {
                 if (grindSensor.bezierPath.name.Contains("@GR"))
                 {
-                    if (rigidbody.velocity.y < 0)
+                    if (rigidbody.linearVelocity.y < 0)
                     {
                         if (isSnowboarding)
                         {
@@ -239,7 +239,7 @@ public abstract class Player : PlayerCore, IDamageable
             }
         }
 
-        absoluteVelocity = rigidbody.velocity.magnitude;
+        absoluteVelocity = rigidbody.linearVelocity.magnitude;
 
         isPlayerFacingCamera = Vector3.Dot(transform.forward, Camera.main.transform.forward) < 0;
 
@@ -482,11 +482,11 @@ public abstract class Player : PlayerCore, IDamageable
             {
                 rigidbody.AddForce(tangentCopy * airMotion.accelerationForce * SuperRate, ForceMode.Acceleration);
 
-                Vector3 currentVelocity = Vector3.Lerp(rigidbody.velocity.normalized, tangentCopy, Time.deltaTime) * rigidbody.velocity.magnitude;
+                Vector3 currentVelocity = Vector3.Lerp(rigidbody.linearVelocity.normalized, tangentCopy, Time.deltaTime) * rigidbody.linearVelocity.magnitude;
 
-                currentVelocity.y = rigidbody.velocity.y;
+                currentVelocity.y = rigidbody.linearVelocity.y;
 
-                rigidbody.velocity = Vector3.ClampMagnitude(currentVelocity, currentPhysicsMotion.maxSpeed * SuperRate);
+                rigidbody.linearVelocity = Vector3.ClampMagnitude(currentVelocity, currentPhysicsMotion.maxSpeed * SuperRate);
 
                 transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity(), Vector3.up);
             }
@@ -494,11 +494,11 @@ public abstract class Player : PlayerCore, IDamageable
             {
                 rigidbody.AddForce(leftStickDirection * airMotion.accelerationForce * SuperRate, ForceMode.Acceleration);
 
-                Vector3 currentVelocity = Vector3.Lerp(rigidbody.velocity.normalized, leftStickDirection, Time.deltaTime) * rigidbody.velocity.magnitude;
+                Vector3 currentVelocity = Vector3.Lerp(rigidbody.linearVelocity.normalized, leftStickDirection, Time.deltaTime) * rigidbody.linearVelocity.magnitude;
 
-                currentVelocity.y = rigidbody.velocity.y;
+                currentVelocity.y = rigidbody.linearVelocity.y;
 
-                rigidbody.velocity = Vector3.ClampMagnitude(currentVelocity, currentPhysicsMotion.maxSpeed * SuperRate);
+                rigidbody.linearVelocity = Vector3.ClampMagnitude(currentVelocity, currentPhysicsMotion.maxSpeed * SuperRate);
 
                 transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity(), Vector3.up);
             }
@@ -535,9 +535,9 @@ public abstract class Player : PlayerCore, IDamageable
 
     public void SetRotation3D(Vector3 groundNormal)
     {
-        if (rigidbody.velocity.magnitude > 0.1f && !isBraking && Time.time > stateMachine.lastStateTime + 0.1f)
+        if (rigidbody.linearVelocity.magnitude > 0.1f && !isBraking && Time.time > stateMachine.lastStateTime + 0.1f)
         {
-            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+            transform.rotation = Quaternion.LookRotation(rigidbody.linearVelocity.normalized, transform.up);
         }
 
         if (Vector3.Angle(transform.up, groundNormal) < 80)
@@ -551,7 +551,7 @@ public abstract class Player : PlayerCore, IDamageable
     {
         if (IsGrounded())
         {
-            if (rigidbody.velocity.magnitude > minimunMovementVelocity)
+            if (rigidbody.linearVelocity.magnitude > minimunMovementVelocity)
             {
                 if (Input.GetButton(XboxButton.B))
                 {
@@ -611,7 +611,7 @@ public abstract class Player : PlayerCore, IDamageable
             stateMachine.ChangeState(StateMove);
         }
 
-        if (rigidbody.velocity.magnitude > minimunMovementVelocity || leftStickDirection.magnitude > deadZone)
+        if (rigidbody.linearVelocity.magnitude > minimunMovementVelocity || leftStickDirection.magnitude > deadZone)
         {
             stateMachine.ChangeState(StateMove);
         }
@@ -642,19 +642,19 @@ public abstract class Player : PlayerCore, IDamageable
 
                     //float dot = Vector3.Dot(transform.forward, Vector3.up);
 
-                    if (rigidbody.velocity.magnitude < 15)
+                    if (rigidbody.linearVelocity.magnitude < 15)
                     {
                         stateMachine.ChangeState(StateFall);
                     }
 
-                    if (rigidbody.velocity.magnitude < 15)
+                    if (rigidbody.linearVelocity.magnitude < 15)
                     {
                         stateMachine.ChangeState(StateFall);
                     }
                     break;
                 case GroundState.onCeiling:
 
-                    if (rigidbody.velocity.magnitude < 15)
+                    if (rigidbody.linearVelocity.magnitude < 15)
                     {
                         stateMachine.ChangeState(StateFall);
                     }
@@ -682,7 +682,7 @@ public abstract class Player : PlayerCore, IDamageable
     {
         Vector3 jumpDirection = Vector3.Lerp(transform.up, Vector3.up, 0.5f);
 
-        rigidbody.AddForce(jumpDirection * (8 - rigidbody.velocity.y), ForceMode.Impulse);
+        rigidbody.AddForce(jumpDirection * (8 - rigidbody.linearVelocity.y), ForceMode.Impulse);
     }
 
     public void StateHurdle()
@@ -699,7 +699,7 @@ public abstract class Player : PlayerCore, IDamageable
         if (Time.time > stateMachine.lastStateTime + 0.14f)
         {
             stateMachine.ChangeState(StateBall);
-            rigidbody.AddForce(Vector3.up * (3 - rigidbody.velocity.y), ForceMode.Impulse);
+            rigidbody.AddForce(Vector3.up * (3 - rigidbody.linearVelocity.y), ForceMode.Impulse);
             return;
         }
 
@@ -803,7 +803,7 @@ public abstract class Player : PlayerCore, IDamageable
         {
             try
             {
-                if (rigidbody.velocity.magnitude > currentPhysicsMotion.maxSpeed * 0.6f)
+                if (rigidbody.linearVelocity.magnitude > currentPhysicsMotion.maxSpeed * 0.6f)
                 {
                     pathHelper.GetClosestKnot(transform.position, out pathHelperKnot);
 
@@ -818,7 +818,7 @@ public abstract class Player : PlayerCore, IDamageable
             }
         }
 
-        if (!isBraking && rigidbody.velocity.magnitude > currentPhysicsMotion.brakeMinSpeed && leftStickDirection.magnitude > deadZone && Vector3.Angle(-rigidbody.velocity.normalized, movingDirection) < 45 && Vector3.Dot(transform.up, Vector3.up) > 0)
+        if (!isBraking && rigidbody.linearVelocity.magnitude > currentPhysicsMotion.brakeMinSpeed && leftStickDirection.magnitude > deadZone && Vector3.Angle(-rigidbody.linearVelocity.normalized, movingDirection) < 45 && Vector3.Dot(transform.up, Vector3.up) > 0)
         {
             SendMessage("StateBrakeStart");
             SendMessage("StateBoostEnd");
@@ -827,16 +827,16 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (leftStickDirection.magnitude > deadZone && !isBraking && !isBoosting)
         {
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeed * absoluteLeftStick * SuperRate)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.maxSpeed * absoluteLeftStick * SuperRate)
             {
                 rigidbody.AddForce(movingDirection.normalized * currentPhysicsMotion.accelerationForce * SuperRate, ForceMode.Acceleration);
             }
         }
         else if (isBraking)
         {
-            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.brakeForce * SuperRate, ForceMode.Acceleration);
+            rigidbody.AddForce(-rigidbody.linearVelocity.normalized * currentPhysicsMotion.brakeForce * SuperRate, ForceMode.Acceleration);
 
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.brakeMinSpeed)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.brakeMinSpeed)
             {
                 isBraking = false;
                 rigidbody.Sleep();
@@ -846,21 +846,21 @@ public abstract class Player : PlayerCore, IDamageable
         {
             movingDirection = leftStickDirection.magnitude < deadZone ? transform.forward : leftStickDirection;
 
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
             {
                 rigidbody.AddForce(boostMovementDirection.normalized * currentPhysicsMotion.accelerationForceInBoost * SuperRate, ForceMode.Acceleration);
             }
         }
         else
         {
-            if (rigidbody.velocity.magnitude < 0.1f)
+            if (rigidbody.linearVelocity.magnitude < 0.1f)
             {
                 rigidbody.Sleep();
                 stateMachine.ChangeState(StateIdle);
             }
             else
             {
-                rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.decelerationForce * SuperRate, ForceMode.Acceleration);
+                rigidbody.AddForce(-rigidbody.linearVelocity.normalized * currentPhysicsMotion.decelerationForce * SuperRate, ForceMode.Acceleration);
             }
         }
 
@@ -883,19 +883,19 @@ public abstract class Player : PlayerCore, IDamageable
 
                     //float dot = Vector3.Dot(transform.forward, Vector3.up);
 
-                    if (rigidbody.velocity.magnitude < 15)
+                    if (rigidbody.linearVelocity.magnitude < 15)
                     {
                         stateMachine.ChangeState(StateFall);
                     }
 
-                    if (rigidbody.velocity.magnitude < 15)
+                    if (rigidbody.linearVelocity.magnitude < 15)
                     {
                         stateMachine.ChangeState(StateFall);
                     }
                     break;
                 case GroundState.onCeiling:
 
-                    if (rigidbody.velocity.magnitude < 15)
+                    if (rigidbody.linearVelocity.magnitude < 15)
                     {
                         stateMachine.ChangeState(StateFall);
                     }
@@ -912,7 +912,7 @@ public abstract class Player : PlayerCore, IDamageable
 
         if ((leftStickDirection.magnitude > deadZone || isBoosting) && !isBraking && Vector3.Angle(lastMovingDir, transform.forward) < 30 && Time.time > stateMachine.lastStateTime + 0.2f)
         {
-            rigidbody.velocity = Vector3.Lerp(transform.forward, movingDirection, 6 * Time.fixedDeltaTime) * rigidbody.velocity.magnitude;
+            rigidbody.linearVelocity = Vector3.Lerp(transform.forward, movingDirection, 6 * Time.fixedDeltaTime) * rigidbody.linearVelocity.magnitude;
         }
 
         lastMovingDir = transform.forward;
@@ -986,7 +986,7 @@ public abstract class Player : PlayerCore, IDamageable
             float xy = Mathf.Clamp(x + y, -1, 1);
 
             //Brake
-            if (rigidbody.velocity.magnitude > 1f)
+            if (rigidbody.linearVelocity.magnitude > 1f)
             {
                 if (tangentMultiplier == 1 && xy < 0)
                 {
@@ -1018,16 +1018,16 @@ public abstract class Player : PlayerCore, IDamageable
 
             if (leftStickDirection.normalized.magnitude > deadZone && !isBraking && !isBoosting)
             {
-                if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeed * SuperRate)
+                if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.maxSpeed * SuperRate)
                 {
                     rigidbody.AddForce(movingDirection * currentPhysicsMotion.accelerationForce * SuperRate, ForceMode.Acceleration);
                 }
             }
             else if (isBraking)
             {
-                rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.brakeForce * SuperRate, ForceMode.Acceleration);
+                rigidbody.AddForce(-rigidbody.linearVelocity.normalized * currentPhysicsMotion.brakeForce * SuperRate, ForceMode.Acceleration);
 
-                if (rigidbody.velocity.sqrMagnitude < 0.1f)
+                if (rigidbody.linearVelocity.sqrMagnitude < 0.1f)
                 {
                     isBraking = false;
                     rigidbody.Sleep();
@@ -1037,16 +1037,16 @@ public abstract class Player : PlayerCore, IDamageable
             {
                 Vector3 boostMovementDirection = movingDirection == Vector3.zero ? transform.forward : movingDirection;
 
-                if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
+                if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
                 {
                     rigidbody.AddForce(boostMovementDirection * currentPhysicsMotion.accelerationForceInBoost * SuperRate, ForceMode.Acceleration);
                 }
             }
             else
             {
-                rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.decelerationForce * SuperRate, ForceMode.Acceleration);
+                rigidbody.AddForce(-rigidbody.linearVelocity.normalized * currentPhysicsMotion.decelerationForce * SuperRate, ForceMode.Acceleration);
 
-                if (rigidbody.velocity.magnitude < 0.1f)
+                if (rigidbody.linearVelocity.magnitude < 0.1f)
                 {
                     rigidbody.Sleep();
                     stateMachine.ChangeState(StateIdle);
@@ -1069,7 +1069,7 @@ public abstract class Player : PlayerCore, IDamageable
                 case GroundState.onSlope:
                     break;
                 case GroundState.onWall:
-                    if (rigidbody.velocity.magnitude < 10)
+                    if (rigidbody.linearVelocity.magnitude < 10)
                     {
                         rigidbody.AddForce(transform.up, ForceMode.Impulse);
                         tangentMultiplier *= -1;
@@ -1077,7 +1077,7 @@ public abstract class Player : PlayerCore, IDamageable
                     }
                     break;
                 case GroundState.onCeiling:
-                    if (rigidbody.velocity.magnitude < 15)
+                    if (rigidbody.linearVelocity.magnitude < 15)
                     {
                         rigidbody.AddForce(transform.up, ForceMode.Impulse);
                         stateMachine.ChangeState(StateFall);
@@ -1095,11 +1095,11 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (autorunVelocity > 0)
         {
-            rigidbody.velocity = transform.forward * autorunVelocity;
+            rigidbody.linearVelocity = transform.forward * autorunVelocity;
         }
         else if ((leftStickDirection.magnitude > deadZone || isBoosting) && !isBraking && Vector3.Angle(lastMovingDir, transform.forward) < 30 && Time.time > stateMachine.lastStateTime + 0.2f)
         {
-            rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
+            rigidbody.linearVelocity = transform.forward * rigidbody.linearVelocity.magnitude;
         }
 
         lastMovingDir = transform.forward;
@@ -1110,9 +1110,9 @@ public abstract class Player : PlayerCore, IDamageable
     #region State Quickstep Left
     private void StateQuickstepLeftStart()
     {
-        quickStepStartVelocity = rigidbody.velocity;
+        quickStepStartVelocity = rigidbody.linearVelocity;
         quickStepStartDirection = transform.forward;
-        rigidbody.velocity -= transform.right * quickstepVelocity;
+        rigidbody.linearVelocity -= transform.right * quickstepVelocity;
     }
     private void StateQuickstepLeft()
     {
@@ -1120,7 +1120,7 @@ public abstract class Player : PlayerCore, IDamageable
     }
     private void StateQuickstepLeftEnd()
     {
-        rigidbody.velocity = quickStepStartVelocity;
+        rigidbody.linearVelocity = quickStepStartVelocity;
         transform.forward = quickStepStartDirection;
     }
     #endregion
@@ -1128,9 +1128,9 @@ public abstract class Player : PlayerCore, IDamageable
     #region State Quickstep Right
     private void StateQuickstepRightStart()
     {
-        quickStepStartVelocity = rigidbody.velocity;
+        quickStepStartVelocity = rigidbody.linearVelocity;
         quickStepStartDirection = transform.forward;
-        rigidbody.velocity += transform.right * quickstepVelocity;
+        rigidbody.linearVelocity += transform.right * quickstepVelocity;
     }
     private void StateQuickstepRight()
     {
@@ -1138,7 +1138,7 @@ public abstract class Player : PlayerCore, IDamageable
     }
     private void StateQuickstepRightEnd()
     {
-        rigidbody.velocity = quickStepStartVelocity;
+        rigidbody.linearVelocity = quickStepStartVelocity;
         transform.forward = quickStepStartDirection;
     }
     #endregion State
@@ -1155,7 +1155,7 @@ public abstract class Player : PlayerCore, IDamageable
         AlignPlayerUpToDirection(GetGroundInformation().normal);
         transform.StickToGround(GetGroundInformation());
 
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
 
         if (Input.GetButtonUp(XboxButton.B))
         {
@@ -1193,7 +1193,7 @@ public abstract class Player : PlayerCore, IDamageable
         {
             try
             {
-                if (rigidbody.velocity.magnitude > currentPhysicsMotion.maxSpeed * 0.6f)
+                if (rigidbody.linearVelocity.magnitude > currentPhysicsMotion.maxSpeed * 0.6f)
                 {
                     pathHelper.GetClosestKnot(transform.position, out pathHelperKnot);
 
@@ -1220,12 +1220,12 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (rigidbody.HorizontalVelocity().magnitude > 0.1f)
         {
-            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+            transform.rotation = Quaternion.LookRotation(rigidbody.linearVelocity.normalized, transform.up);
         }
 
         transform.rotation = Quaternion.FromToRotation(transform.up, GetGroundInformation().normal) * transform.rotation;
 
-        if (rigidbody.velocity.magnitude < 3 && IsGrounded())
+        if (rigidbody.linearVelocity.magnitude < 3 && IsGrounded())
         {
             stateMachine.ChangeState(StateIdle);
         }
@@ -1237,7 +1237,7 @@ public abstract class Player : PlayerCore, IDamageable
         {
             if (leftStickDirection.magnitude > deadZone && Vector3.Dot(lastMovingDir, transform.forward) > 0.95f && Time.time > stateMachine.lastStateTime + 0.2f)
             {
-                rigidbody.velocity = Vector3.Lerp(transform.forward, movingDirection, 3 * Time.fixedDeltaTime) * rigidbody.velocity.magnitude;
+                rigidbody.linearVelocity = Vector3.Lerp(transform.forward, movingDirection, 3 * Time.fixedDeltaTime) * rigidbody.linearVelocity.magnitude;
             }
 
             lastMovingDir = transform.forward;
@@ -1276,7 +1276,7 @@ public abstract class Player : PlayerCore, IDamageable
             return;
         }
 
-        if (rigidbody.velocity.magnitude > 5)
+        if (rigidbody.linearVelocity.magnitude > 5)
         {
             stateMachine.ChangeState(StateSliding);
         }
@@ -1303,7 +1303,7 @@ public abstract class Player : PlayerCore, IDamageable
             stateMachine.ChangeState(StateJump);
         }
 
-        if (leftStickDirection.magnitude < 0.1f && rigidbody.velocity.magnitude < 0.1f || !Input.GetButton(XboxButton.B) && canStand)
+        if (leftStickDirection.magnitude < 0.1f && rigidbody.linearVelocity.magnitude < 0.1f || !Input.GetButton(XboxButton.B) && canStand)
         {
             stateMachine.ChangeState(StateSquat);
         }
@@ -1311,12 +1311,12 @@ public abstract class Player : PlayerCore, IDamageable
 
     public void StateCrawlingPhysics()
     {
-        if (rigidbody.velocity.magnitude < 1)
+        if (rigidbody.linearVelocity.magnitude < 1)
         {
             rigidbody.AddForce(leftStickDirection * currentPhysicsMotion.accelerationForce, ForceMode.Acceleration);
         }
 
-        if (rigidbody.velocity.magnitude > minimunMovementVelocity)
+        if (rigidbody.linearVelocity.magnitude > minimunMovementVelocity)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.HorizontalVelocity().normalized);
         }
@@ -1347,9 +1347,9 @@ public abstract class Player : PlayerCore, IDamageable
 
         RaycastHit groundInfo = GetGroundInformation();
 
-        if (rigidbody.velocity.magnitude > minimunMovementVelocity)
+        if (rigidbody.linearVelocity.magnitude > minimunMovementVelocity)
         {
-            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+            transform.rotation = Quaternion.LookRotation(rigidbody.linearVelocity.normalized, transform.up);
         }
 
         transform.rotation = Quaternion.FromToRotation(transform.up, groundInfo.normal) * transform.rotation;
@@ -1399,8 +1399,8 @@ public abstract class Player : PlayerCore, IDamageable
         }
         else
         {
-            rigidbody.velocity = transform.DirectionTo(closestLightSpeedDashRing.transform.position + Vector3.down * 0.5f) * lightSpeedDashVelocity;
-            transform.forward = rigidbody.velocity.normalized;
+            rigidbody.linearVelocity = transform.DirectionTo(closestLightSpeedDashRing.transform.position + Vector3.down * 0.5f) * lightSpeedDashVelocity;
+            transform.forward = rigidbody.linearVelocity.normalized;
         }
     }
 
@@ -1437,7 +1437,7 @@ public abstract class Player : PlayerCore, IDamageable
         AlignPlayerUpToDirection(GetGroundInformation().normal);
 
         Vector3 direction = Vector3.Cross(transform.right, GetGroundInformation().normal);
-        rigidbody.velocity = direction * rigidbody.velocity.magnitude;
+        rigidbody.linearVelocity = direction * rigidbody.linearVelocity.magnitude;
 
         if (speedMode == SpeedMode.High)
         {
@@ -1474,9 +1474,9 @@ public abstract class Player : PlayerCore, IDamageable
         pushable.transform.position = new Vector3(offset.x, pushable.transform.position.y, offset.z);
         Quaternion pushableTargetRotation = Quaternion.FromToRotation(hit.normal, -transform.forward) * pushable.transform.rotation;
 
-        pushable.transform.rotation = Quaternion.Lerp(pushable.transform.rotation, pushableTargetRotation, rigidbody.velocity.magnitude * Time.deltaTime);
+        pushable.transform.rotation = Quaternion.Lerp(pushable.transform.rotation, pushableTargetRotation, rigidbody.linearVelocity.magnitude * Time.deltaTime);
         transform.RotateAround(pushable.transform.position, Vector3.up, 45 * Vector3.Dot(transform.right, leftStickDirection) * Time.deltaTime);
-        rigidbody.velocity = transform.forward * absoluteLeftStick * 3;
+        rigidbody.linearVelocity = transform.forward * absoluteLeftStick * 3;
 
 
 
@@ -1534,7 +1534,7 @@ public abstract class Player : PlayerCore, IDamageable
     {
         Vector3 jumpDirection = Vector3.Lerp(transform.up, Vector3.up, 0.5f).normalized;
 
-        rigidbody.AddForce(transform.up * (JumpPowerMin * SuperRate - rigidbody.velocity.y), ForceMode.Impulse);
+        rigidbody.AddForce(transform.up * (JumpPowerMin * SuperRate - rigidbody.linearVelocity.y), ForceMode.Impulse);
         UpdateTargets();
     }
     public virtual void StateJump()
@@ -1598,14 +1598,14 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (isUnderwater)
         {
-            if (rigidbody.velocity.y < 0)
+            if (rigidbody.linearVelocity.y < 0)
             {
                 stateMachine.ChangeState(StateFall);
             }
         }
         else
         {
-            if (rigidbody.velocity.y < -10)
+            if (rigidbody.linearVelocity.y < -10)
             {
                 stateMachine.ChangeState(StateFall);
             }
@@ -1634,7 +1634,7 @@ public abstract class Player : PlayerCore, IDamageable
 
     private void StateCarryStart()
     {
-        rigidbody.velocity += transform.up * 10;
+        rigidbody.linearVelocity += transform.up * 10;
 
         //MainCamera.cameraMode = CameraMode.ChangeSensitivity(50);
     }
@@ -1643,7 +1643,7 @@ public abstract class Player : PlayerCore, IDamageable
     {
 
 
-        float currentVerticalSpeed = rigidbody.velocity.y;
+        float currentVerticalSpeed = rigidbody.linearVelocity.y;
 
         if (absoluteLeftStick > 0.1f)
         {
@@ -1657,7 +1657,7 @@ public abstract class Player : PlayerCore, IDamageable
 
         forwardVelocity = Mathf.Clamp(forwardVelocity, 0, 20);
 
-        rigidbody.velocity = transform.forward * forwardVelocity;
+        rigidbody.linearVelocity = transform.forward * forwardVelocity;
 
         if (Input.GetButton(XboxButton.A))
         {
@@ -1668,7 +1668,7 @@ public abstract class Player : PlayerCore, IDamageable
             currentVerticalSpeed += 25 * Time.deltaTime;
         }
 
-        rigidbody.velocity = new Vector3(rigidbody.velocity.x, currentVerticalSpeed, rigidbody.velocity.z);
+        rigidbody.linearVelocity = new Vector3(rigidbody.linearVelocity.x, currentVerticalSpeed, rigidbody.linearVelocity.z);
 
         if (GetGroundInformation().distance < 1)
         {
@@ -1757,12 +1757,12 @@ public abstract class Player : PlayerCore, IDamageable
         {
             transform.LookAt(hommingAttackTarget.transform);
 
-            rigidbody.velocity = transform.forward * hommingAttackVelocity * SuperRate;
+            rigidbody.linearVelocity = transform.forward * hommingAttackVelocity * SuperRate;
         }
         //If no targets and the time on the state is greater than 0.2 seconds.
         else
         {
-            rigidbody.velocity = transform.forward * hommingAttackVelocityNoTarget;
+            rigidbody.linearVelocity = transform.forward * hommingAttackVelocityNoTarget;
             stateMachine.ChangeState(StateFall, 0.2f);
         }
     }
@@ -1770,7 +1770,7 @@ public abstract class Player : PlayerCore, IDamageable
     {
         if (stateMachine.nextStateName == "StateFall")
         {
-            rigidbody.velocity *= hommingAttackKeepVelocity;
+            rigidbody.linearVelocity *= hommingAttackKeepVelocity;
         }
 
         FindClosestTarget();
@@ -1785,9 +1785,9 @@ public abstract class Player : PlayerCore, IDamageable
     {
         isAttacking = true;
 
-        Vector3 rigidbodyKeepVelocity = rigidbody.velocity * hommingAttackHitKeepVelocity;
+        Vector3 rigidbodyKeepVelocity = rigidbody.linearVelocity * hommingAttackHitKeepVelocity;
         rigidbodyKeepVelocity.y = hommingAttackHitUpVelocity;
-        rigidbody.velocity = rigidbodyKeepVelocity;
+        rigidbody.linearVelocity = rigidbodyKeepVelocity;
     }
     private void StateHomingTrick()
     {
@@ -1829,7 +1829,7 @@ public abstract class Player : PlayerCore, IDamageable
     {
         rigidbody.MovePosition(new Vector3(transform.position.x, ceilingPoint.y - 1, transform.position.z));
 
-        if (leftStickDirection.magnitude > deadZone && rigidbody.velocity.magnitude < 4)
+        if (leftStickDirection.magnitude > deadZone && rigidbody.linearVelocity.magnitude < 4)
         {
             if (sideViewPath)
             {
@@ -1843,9 +1843,9 @@ public abstract class Player : PlayerCore, IDamageable
         }
         else
         {
-            rigidbody.AddForce(-rigidbody.velocity.normalized * 5, ForceMode.Acceleration);
+            rigidbody.AddForce(-rigidbody.linearVelocity.normalized * 5, ForceMode.Acceleration);
 
-            if (rigidbody.velocity.sqrMagnitude < 0.01f)
+            if (rigidbody.linearVelocity.sqrMagnitude < 0.01f)
             {
                 rigidbody.Sleep();
             }
@@ -1871,7 +1871,7 @@ public abstract class Player : PlayerCore, IDamageable
     private void StateBubbleBreath()
     {
         stateMachine.ChangeState(StateFall, 1);
-        rigidbody.velocity = Vector3.up * 2;
+        rigidbody.linearVelocity = Vector3.up * 2;
     }
     private void StateBubbleBreathEnd()
     {
@@ -1881,7 +1881,7 @@ public abstract class Player : PlayerCore, IDamageable
     #region State Skydive
     private void StateSkydiveStart()
     {
-        rigidbody.drag = 2;
+        rigidbody.linearDamping = 2;
 
         if (rigidbody.HorizontalVelocity().magnitude > 0.1f)
         {
@@ -1894,18 +1894,18 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (Input.GetAxis(XboxAxis.RightTrigger) > deadZone)
         {
-            rigidbody.drag = 0;
+            rigidbody.linearDamping = 0;
         }
         else
         {
-            rigidbody.drag = 2;
+            rigidbody.linearDamping = 2;
         }
 
-        transform.rotation = Quaternion.LookRotation(new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z).normalized);
+        transform.rotation = Quaternion.LookRotation(new Vector3(rigidbody.linearVelocity.x, 0, rigidbody.linearVelocity.z).normalized);
 
         if (IsGrounded())
         {
-            rigidbody.drag = 0;
+            rigidbody.linearDamping = 0;
             stateMachine.ChangeState(StateIdle);
         }
     }
@@ -1915,7 +1915,7 @@ public abstract class Player : PlayerCore, IDamageable
     }
     private void StateSkydiveEnd()
     {
-        rigidbody.drag = 0;
+        rigidbody.linearDamping = 0;
     }
 
     #endregion State Skydive
@@ -1973,16 +1973,16 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (Input.GetAxis(XboxAxis.LeftStickY) > deadZone)
         {
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeed * absoluteLeftStick)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.maxSpeed * absoluteLeftStick)
             {
                 rigidbody.AddForce(transform.forward * currentPhysicsMotion.accelerationForce, ForceMode.Acceleration);
             }
         }
         else if (Input.GetAxis(XboxAxis.LeftStickY) < -deadZone)
         {
-            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.brakeForce, ForceMode.Acceleration);
+            rigidbody.AddForce(-rigidbody.linearVelocity.normalized * currentPhysicsMotion.brakeForce, ForceMode.Acceleration);
 
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.brakeMinSpeed)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.brakeMinSpeed)
             {
                 isBraking = false;
                 rigidbody.Sleep();
@@ -1991,14 +1991,14 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (rigidbody.HorizontalVelocity().magnitude > 0.1f && !isBraking)
         {
-            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+            transform.rotation = Quaternion.LookRotation(rigidbody.linearVelocity.normalized, transform.up);
         }
 
         transform.rotation = Quaternion.FromToRotation(transform.up, GetGroundInformation().normal) * transform.rotation;
 
         if (leftStickDirection.magnitude > deadZone && Vector3.Dot(lastMovingDir, transform.forward) > 0.95f && Time.time > stateMachine.lastStateTime + 0.2f)
         {
-            rigidbody.velocity = Vector3.Lerp(transform.forward, movingDirection, 1 * Time.fixedDeltaTime) * rigidbody.velocity.magnitude;
+            rigidbody.linearVelocity = Vector3.Lerp(transform.forward, movingDirection, 1 * Time.fixedDeltaTime) * rigidbody.linearVelocity.magnitude;
         }
 
         lastMovingDir = transform.forward;
@@ -2019,7 +2019,7 @@ public abstract class Player : PlayerCore, IDamageable
     }
     public void StateSnowBoardFall()
     {
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rigidbody.velocity.normalized, Vector3.up), 10 * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(rigidbody.linearVelocity.normalized, Vector3.up), 10 * Time.deltaTime);
 
         if (IsGrounded())
         {
@@ -2054,16 +2054,16 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (Input.GetAxis(XboxAxis.LeftStickY) > deadZone)
         {
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeed * absoluteLeftStick)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.maxSpeed * absoluteLeftStick)
             {
                 rigidbody.AddForce(transform.forward * currentPhysicsMotion.accelerationForce, ForceMode.Acceleration);
             }
         }
         else if (Input.GetAxis(XboxAxis.LeftStickY) < -deadZone)
         {
-            rigidbody.AddForce(-rigidbody.velocity.normalized * currentPhysicsMotion.brakeForce, ForceMode.Acceleration);
+            rigidbody.AddForce(-rigidbody.linearVelocity.normalized * currentPhysicsMotion.brakeForce, ForceMode.Acceleration);
 
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.brakeMinSpeed)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.brakeMinSpeed)
             {
                 isBraking = false;
                 rigidbody.Sleep();
@@ -2072,14 +2072,14 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (rigidbody.HorizontalVelocity().magnitude > 0.1f && !isBraking)
         {
-            transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, transform.up);
+            transform.rotation = Quaternion.LookRotation(rigidbody.linearVelocity.normalized, transform.up);
         }
 
         transform.rotation = Quaternion.FromToRotation(transform.up, GetGroundInformation().normal) * transform.rotation;
 
         Drift();
 
-        rigidbody.velocity = transform.forward * rigidbody.velocity.magnitude;
+        rigidbody.linearVelocity = transform.forward * rigidbody.linearVelocity.magnitude;
 
 
 
@@ -2243,27 +2243,27 @@ public abstract class Player : PlayerCore, IDamageable
 
         if (isBoosting)
         {
-            if (rigidbody.velocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
+            if (rigidbody.linearVelocity.magnitude < currentPhysicsMotion.maxSpeedInBoost * SuperRate)
             {
                 rigidbody.AddForce(tangent * currentPhysicsMotion.accelerationForceInBoost * SuperRate, ForceMode.Acceleration);
             }
         }
         else
         {
-            if (rigidbody.velocity.magnitude > grindingMinimumVelocity)
+            if (rigidbody.linearVelocity.magnitude > grindingMinimumVelocity)
             {
-                rigidbody.AddForce(-tangent * grindVertivalVelocityRate * Mathf.Sign(rigidbody.velocity.normalized.y), ForceMode.Acceleration);
+                rigidbody.AddForce(-tangent * grindVertivalVelocityRate * Mathf.Sign(rigidbody.linearVelocity.normalized.y), ForceMode.Acceleration);
             }
         }
 
-        rigidbody.velocity = tangent * Mathf.Clamp(rigidbody.velocity.magnitude, grindingMinimumVelocity, currentPhysicsMotion.maxSpeedInBoost * SuperRate);
+        rigidbody.linearVelocity = tangent * Mathf.Clamp(rigidbody.linearVelocity.magnitude, grindingMinimumVelocity, currentPhysicsMotion.maxSpeedInBoost * SuperRate);
     }
     #endregion State Grind
     #region State Grind Jump
     private void StateGrindJumpStart()
     {
         rigidbody.useGravity = true;
-        rigidbody.AddForce(transform.up * (grindJumpForce - rigidbody.velocity.y), ForceMode.Impulse);
+        rigidbody.AddForce(transform.up * (grindJumpForce - rigidbody.linearVelocity.y), ForceMode.Impulse);
         isGrindGrounded = true;
     }
     private void StateGrindJump()
@@ -2275,7 +2275,7 @@ public abstract class Player : PlayerCore, IDamageable
                 isGrinding = false;
                 grindSensor.bezierPath = null;
                 rigidbody.useGravity = true;
-                rigidbody.AddForce(transform.up * (grindJumpForce - rigidbody.velocity.y), ForceMode.Impulse);
+                rigidbody.AddForce(transform.up * (grindJumpForce - rigidbody.linearVelocity.y), ForceMode.Impulse);
                 stateMachine.ChangeState(StateBall);
                 return;
             }
@@ -2386,7 +2386,7 @@ public abstract class Player : PlayerCore, IDamageable
     void AirAlign()
     {
 
-        Vector3 hVelocity = rigidbody.velocity;
+        Vector3 hVelocity = rigidbody.linearVelocity;
         hVelocity.y = 0;
         transform.rotation = Quaternion.LookRotation(hVelocity);
     }
@@ -2484,7 +2484,7 @@ public abstract class Player : PlayerCore, IDamageable
         {
             isUnderwater = true;
             StoreRigidbodyState();
-            rigidbody.drag = underwaterRigidbodyDrag;
+            rigidbody.linearDamping = underwaterRigidbodyDrag;
             Physics.gravity = new Vector3(0, -35 - 0) * underwaterGravityScale;
         }
     }
@@ -2558,7 +2558,7 @@ public abstract class Player : PlayerCore, IDamageable
         Vector3 playerToSenderDirection = transform.DirectionTo(senderPosition);
 
         transform.forward = playerToSenderDirection;
-        rigidbody.velocity = -playerToSenderDirection * 15;
+        rigidbody.linearVelocity = -playerToSenderDirection * 15;
     }
 
     private void IgnoreDamage()
@@ -2588,7 +2588,7 @@ public abstract class Player : PlayerCore, IDamageable
 
     public void DisablePhysics()
     {
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
         rigidbody.interpolation = RigidbodyInterpolation.None;
         rigidbody.useGravity = false;

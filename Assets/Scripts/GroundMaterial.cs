@@ -4,7 +4,7 @@
 public class GroundMaterial
 {
     public string Name;
-    public PhysicMaterial physicMaterial;
+    public PhysicsMaterial physicMaterial;
     public AudioClip[] footstep;
     public AudioClip land;
     public AudioClip brake;

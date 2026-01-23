@@ -67,11 +67,11 @@ public class EnemyGanigani : Enemy
 
         if (dotRight > 0)
         {
-            rigidbody.velocity = transform.right * velocity;
+            rigidbody.linearVelocity = transform.right * velocity;
         }
         else
         {
-            rigidbody.velocity = -transform.right * velocity;
+            rigidbody.linearVelocity = -transform.right * velocity;
         }
 
         if (Vector3.Distance(transform.position, waypoints[waypointIndex]) < 0.1f)

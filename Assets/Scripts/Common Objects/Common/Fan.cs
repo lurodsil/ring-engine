@@ -105,7 +105,7 @@ public class Fan :  CommonActivableStatefulObject
 
         velocity.y = Mathf.Lerp(velocity.y, targetVel, 2 * Time.deltaTime);
 
-        player.rigidbody.velocity = velocity;
+        player.rigidbody.linearVelocity = velocity;
 
         player.transform.up = Vector3.up;
     }

@@ -77,7 +77,7 @@ public class EnemyBeetonLW : Enemy
     #region State Attack
     private void StateAttackStart()
     {
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
     }
     private void StateAttack()
     {

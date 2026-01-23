@@ -26,10 +26,10 @@ public class RingEngineDebug : MonoBehaviour
         if (player != null)
         {
             physicsContent.text =
-           "Rigidbody velocity: " + player.rigidbody.velocity.ToString("f2") + "\r\n" +
-           "Absolute velocity: " + player.rigidbody.velocity.magnitude.ToString("f2") + "\r\n" +
-           "Horizontal velocity: " + new Vector3(player.rigidbody.velocity.x, 0, player.rigidbody.velocity.z).magnitude.ToString("f2") + "\r\n" +
-           "Vertical velocity: " + player.rigidbody.velocity.y.ToString("f2") + "\r\n" +
+           "Rigidbody velocity: " + player.rigidbody.linearVelocity.ToString("f2") + "\r\n" +
+           "Absolute velocity: " + player.rigidbody.linearVelocity.magnitude.ToString("f2") + "\r\n" +
+           "Horizontal velocity: " + new Vector3(player.rigidbody.linearVelocity.x, 0, player.rigidbody.linearVelocity.z).magnitude.ToString("f2") + "\r\n" +
+           "Vertical velocity: " + player.rigidbody.linearVelocity.y.ToString("f2") + "\r\n" +
            "Is Kinematic: " + player.rigidbody.isKinematic + "\r\n" +
            "Use gravity: " + player.rigidbody.useGravity + "\r\n" +
            "Is sleeping: " + player.rigidbody.IsSleeping() + "\r\n" +

@@ -35,19 +35,19 @@ public class DashRing : GenerationsObject
         player.transform.position = startPoint.position;
         duration = player.stateMachine.lastStateTime + PhysicsExtension.Time(KeepVelocityDistance, FirstSpeed);
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         player.isBoosting = false;
     }
     private void StateDashRing()
     {
         if (Time.time < duration)
         {
-            player.rigidbody.velocity = -transform.forward * FirstSpeed;
+            player.rigidbody.linearVelocity = -transform.forward * FirstSpeed;
         }
 
         if (Time.time < outOfControl)
         {
-            player.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized);
+            player.transform.rotation = Quaternion.LookRotation(player.rigidbody.linearVelocity.normalized);
         }
         else
         {

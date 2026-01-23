@@ -38,7 +38,7 @@ public class Spring : CommonStatefulObject
         }
         duration = player.stateMachine.lastStateTime + PhysicsExtension.Time(keepVelocityDistance, firstSpeed);
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         if (isBoostCancel)
         {
             player.isBoosting = false;
@@ -50,18 +50,18 @@ public class Spring : CommonStatefulObject
     {
         if (Time.time < duration)
         {
-            player.rigidbody.velocity = transform.up * firstSpeed;
+            player.rigidbody.linearVelocity = transform.up * firstSpeed;
         }
 
-        if (Mathf.Abs(player.rigidbody.velocity.y) > 0)
+        if (Mathf.Abs(player.rigidbody.linearVelocity.y) > 0)
         {
-            startPoint.forward = player.rigidbody.velocity.normalized;
+            startPoint.forward = player.rigidbody.linearVelocity.normalized;
         }
 
         if (Time.time < outOfControl)
         {
 
-            Vector3 horizontalVelocity = player.rigidbody.velocity.normalized;
+            Vector3 horizontalVelocity = player.rigidbody.linearVelocity.normalized;
             horizontalVelocity.y = 0;
             if (horizontalVelocity.magnitude > 0.1)
                 player.transform.rotation = Quaternion.LookRotation(horizontalVelocity, Vector3.up);

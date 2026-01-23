@@ -20,7 +20,7 @@ public class SimplePathFollow : MonoBehaviour
     {
         path.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out bezierKnot, out _, 10);
 
-        _rigidbody.velocity = bezierKnot.tangent * velocity;
+        _rigidbody.linearVelocity = bezierKnot.tangent * velocity;
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(bezierKnot.tangent, bezierKnot.normal), rotationDamping * Time.deltaTime);
     }

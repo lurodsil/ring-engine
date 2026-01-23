@@ -35,7 +35,7 @@ public class DashPanel : CommonStatefulObject
         player.transform.forward = transform.forward;
         player.transform.position = transform.position;
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         player.rigidbody.AddForce(transform.forward * Speed, ForceMode.Impulse);
     }
     void StateDashPanel()

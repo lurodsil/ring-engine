@@ -17,7 +17,7 @@ public class IronPole2D : CommonStatefulObject
     {
         OnStateStart!.Invoke();
         player.rigidbody.useGravity = false;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         player.transform.parent = targetPosition;
         player.transform.forward = Vector3.Dot(targetPosition.forward, player.transform.forward) > 0 ? targetPosition.forward : -targetPosition.forward;
         player.transform.localPosition = playerOffset;

@@ -25,7 +25,7 @@ public class EnemyGaniganiLW : Enemy
     {
         base.Update();
 
-        dotRightVelocity = Vector3.Dot(transform.right, rigidbody.velocity);
+        dotRightVelocity = Vector3.Dot(transform.right, rigidbody.linearVelocity);
 
         animator.SetFloat("DotRightVelocity", dotRightVelocity);
 
@@ -84,7 +84,7 @@ public class EnemyGaniganiLW : Enemy
     #region State Attack
     private void StateAttackStart()
     {
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
         animator.SetTrigger("Attack");
     }
     private void StateAttack()

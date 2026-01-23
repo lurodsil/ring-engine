@@ -34,18 +34,18 @@ public class GaniganiMissile : MonoBehaviour
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((target.GetComponent<Collider>().bounds.center - transform.position).normalized), 3 * Time.deltaTime);
                 }
 
-                rigidbody.velocity = transform.forward * velocity;
+                rigidbody.linearVelocity = transform.forward * velocity;
             }
             else
             {
                 if (Time.time < lastStateTime + PhysicsExtension.Time(keepVelocityDistance, velocity))
                 {
 
-                    rigidbody.velocity = transform.forward * velocity;
+                    rigidbody.linearVelocity = transform.forward * velocity;
                 }
                 else
                 {
-                    transform.forward = rigidbody.velocity.normalized;
+                    transform.forward = rigidbody.linearVelocity.normalized;
                 }
             }
 

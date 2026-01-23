@@ -18,7 +18,7 @@ public class WallJumpBlock : CommonStatefulObject
     private void StateWallJumpStart()
     {
         player.StoreRigidbodyState();
-        player.rigidbody.drag = 20;
+        player.rigidbody.linearDamping = 20;
         player.transform.rotation = Quaternion.LookRotation(-transform.forward + transform.right * 0.1f);
     }
     private void StateWallJump()
@@ -34,9 +34,9 @@ public class WallJumpBlock : CommonStatefulObject
 
         if (Input.GetButtonDown(XboxButton.A))
         {
-            player.rigidbody.velocity = Vector3.zero;
+            player.rigidbody.linearVelocity = Vector3.zero;
 
-            player.rigidbody.drag = 0;
+            player.rigidbody.linearDamping = 0;
 
             player.rigidbody.AddForce(jumpDirection.normalized * jumpForce, ForceMode.Impulse);
 

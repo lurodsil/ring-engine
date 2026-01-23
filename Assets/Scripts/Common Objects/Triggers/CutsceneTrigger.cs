@@ -65,7 +65,7 @@ public class CutsceneTrigger : CommonActivableStatelessObject
 
         MainCamera.SetActive(false);
 
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         if (lockPlayerControls)
         {
             player.stateMachine.Pause();

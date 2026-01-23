@@ -114,13 +114,13 @@ public class Tornado : GenerationsObject
                 if (path)
                 {
                     path.PutOnPath(transform, PutOnPathMode.BinormalAndNormal, out knot);
-                    rigidbody.velocity = knot.tangent * 40;
+                    rigidbody.linearVelocity = knot.tangent * 40;
                     transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(knot.tangent, knot.normal), 5 * Time.deltaTime);
                     audioSource.pitch = 1;
                 }
                 else
                 {
-                    rigidbody.velocity = transform.forward * 40;
+                    rigidbody.linearVelocity = transform.forward * 40;
                     Quaternion targetRotation = Quaternion.FromToRotation(transform.forward, Vector3.up);
                     transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10 * Time.deltaTime);
 
@@ -136,7 +136,7 @@ public class Tornado : GenerationsObject
 
                             transform.rotation = tornadoStartRotation;
 
-                            rigidbody.velocity = Vector3.zero;
+                            rigidbody.linearVelocity = Vector3.zero;
                         }                  
                     }
                 }
@@ -147,7 +147,7 @@ public class Tornado : GenerationsObject
     #region State Tornado
     private void StateTornadoStart()
     {
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         player.transform.parent = sonicPosition;
         player.transform.localPosition = Vector3.zero;
         player.transform.rotation = Quaternion.identity;
@@ -251,7 +251,7 @@ public class Tornado : GenerationsObject
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation, Time.deltaTime);
         }
 
-        rigidbody.velocity = transform.forward * speed;
+        rigidbody.linearVelocity = transform.forward * speed;
     }
     private void StateTornadoEnd()
     {

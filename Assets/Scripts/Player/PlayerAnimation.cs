@@ -346,16 +346,16 @@ public class PlayerAnimation : MonoBehaviour
         }
 
 
-        Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.velocity).normalized;
+        Vector3 localVelocity = transform.InverseTransformDirection(rigidbody.linearVelocity).normalized;
 
         //animator.SetFloat("xSpeed", localVelocity.x);
         //animator.SetFloat("zSpeed", localVelocity.z);
         //animator.SetFloat("ySpeed", localVelocity.y);
 
         //Get absolute Rigidbody velocity
-        absSpeed = rigidbody.velocity.magnitude;
-        horizontalSpeed = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z).magnitude;
-        verticalSpeed = rigidbody.velocity.y;
+        absSpeed = rigidbody.linearVelocity.magnitude;
+        horizontalSpeed = new Vector3(rigidbody.linearVelocity.x, 0, rigidbody.linearVelocity.z).magnitude;
+        verticalSpeed = rigidbody.linearVelocity.y;
 
         leftStickDirection = VectorExtension.InputDirection(Input.GetAxis(XboxAxis.LeftStickX), Input.GetAxis(XboxAxis.LeftStickY), transform.up);
 

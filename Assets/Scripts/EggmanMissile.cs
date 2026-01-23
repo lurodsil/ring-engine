@@ -20,7 +20,7 @@ public class EggmanMissile : MonoBehaviour
 
     void Update()
     {
-        rigidbody.velocity = transform.forward * speed;
+        rigidbody.linearVelocity = transform.forward * speed;
 
         if (Time.time > startTime + 3)
         {

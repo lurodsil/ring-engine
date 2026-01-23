@@ -23,7 +23,7 @@ public class Shot : MonoBehaviour
     {
         if (!useGravity)
         {
-            rigidbody.velocity = transform.forward * velocity;
+            rigidbody.linearVelocity = transform.forward * velocity;
         }       
     }
 

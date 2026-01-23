@@ -49,7 +49,7 @@ public class GoalRing : GenerationsObject
         audioSource.PlayOneShot(sound);
         get = true;
         player.stateMachine.ChangeState(State, gameObject);
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         GameManager.instance.firstTimeLoad = true;
         GameManager.instance.lastCheckpoint = -1;
         Timer.PauseTimer();

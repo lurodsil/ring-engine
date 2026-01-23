@@ -79,7 +79,7 @@ public class UpReel : CommonActivableStatefulObject
     void StateUpReelStart()
     {
         player.rigidbody.useGravity = false;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         player.transform.parent = handle;
         player.transform.forward = -handle.forward;
         player.transform.localPosition = playerOffset;
@@ -99,7 +99,7 @@ public class UpReel : CommonActivableStatefulObject
         player.canHomming = true;
         player.transform.parent = null;
         player.rigidbody.useGravity = true;
-        player.rigidbody.velocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.9f) * impulseVelocity;
+        player.rigidbody.linearVelocity = Vector3.Lerp(player.transform.forward, player.transform.up, 0.9f) * impulseVelocity;
     }
     #endregion
 

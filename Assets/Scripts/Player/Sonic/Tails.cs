@@ -63,9 +63,9 @@ public class Tails : Player
     #region State Fly
     void StateFlyStart()
     {
-        rigidbody.AddForce(transform.up * (15 - rigidbody.velocity.y), ForceMode.Impulse);
+        rigidbody.AddForce(transform.up * (15 - rigidbody.linearVelocity.y), ForceMode.Impulse);
         UpdateTargets();
-        rigidbody.drag = 2;
+        rigidbody.linearDamping = 2;
     }
     void StateFly()
     {
@@ -102,7 +102,7 @@ public class Tails : Player
     void StateFlyEnd()
     {
         canFly = false;
-        rigidbody.drag = 0;
+        rigidbody.linearDamping = 0;
     }
     #endregion
 

@@ -279,6 +279,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
+    - _ExcludeFromTUAndAA: 0
     - _Fade: 0.149
     - _FalloffThereshold: 0.3
     - _GlossMapScale: 1

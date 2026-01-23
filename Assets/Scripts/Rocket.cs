@@ -33,7 +33,7 @@ public class Rocket : CommonStatefulObject
 
         bezierPath.PutOnPath(player.transform, PutOnPathMode.BinormalAndNormal, out bezierKnot, out closest, 15);
 
-        if (player.rigidbody.velocity.magnitude < 40)
+        if (player.rigidbody.linearVelocity.magnitude < 40)
         {
             player.rigidbody.AddForce(bezierKnot.tangent * 40, ForceMode.Acceleration);
         }

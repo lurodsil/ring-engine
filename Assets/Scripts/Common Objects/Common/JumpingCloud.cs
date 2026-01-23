@@ -17,11 +17,11 @@ public class JumpingCloud : CommonObject
     {
         if (Input.GetButton(XboxButton.A))
         {
-            player.rigidbody.velocity = transform.up * jumpForceHigh;
+            player.rigidbody.linearVelocity = transform.up * jumpForceHigh;
         }
         else
         {
-            player.rigidbody.velocity = transform.up * jumpForceLow;
+            player.rigidbody.linearVelocity = transform.up * jumpForceLow;
         }       
     }
 
@@ -39,7 +39,7 @@ public class JumpingCloud : CommonObject
 
     private void CloudJumpStart()
     {
-        if (!player.IsGrounded() && player.rigidbody.velocity.y < 0)
+        if (!player.IsGrounded() && player.rigidbody.linearVelocity.y < 0)
         {
             player.stateMachine.ChangeState(StateCloudJump, gameObject);
         }

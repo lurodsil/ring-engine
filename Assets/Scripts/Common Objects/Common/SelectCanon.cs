@@ -50,7 +50,7 @@ public class SelectCanon : CommonStatefulObject
     void StateSelectCanonStart()
     {
         player.rigidbody.useGravity = false;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         player.transform.rotation = transform.rotation;
         animator.SetTrigger("Select Canon Start");
         audioSource.PlayOneShot(start);
@@ -162,14 +162,14 @@ public class SelectCanon : CommonStatefulObject
 
         if (selectCanonID == 5)
         {
-            player.rigidbody.velocity = -animator.transform.up * ShotForce;
+            player.rigidbody.linearVelocity = -animator.transform.up * ShotForce;
         }
     }
     void StateSelectCanonSuccess()
     {
         if (selectCanonID != 5)
         {
-            player.rigidbody.velocity = -animator.transform.up * ShotForce;
+            player.rigidbody.linearVelocity = -animator.transform.up * ShotForce;
 
             player.stateMachine.ChangeState(player.StateTransition, gameObject, OutOfControl);
         }
@@ -194,7 +194,7 @@ public class SelectCanon : CommonStatefulObject
 
         audioSource.PlayOneShot(fail);
 
-        player.rigidbody.velocity = Vector3.down * ShotForce_Fail;
+        player.rigidbody.linearVelocity = Vector3.down * ShotForce_Fail;
     }
     void StateSelectCanonFail()
     {

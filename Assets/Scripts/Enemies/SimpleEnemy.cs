@@ -23,7 +23,7 @@ public class SimpleEnemy : Enemy
     #region State Idle
     private void StateIdleStart()
     {
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
     }
     private void StateIdle()
     {
@@ -94,10 +94,10 @@ public class SimpleEnemy : Enemy
             Vector3 desiredVelocity = transform.forward * attackMovementVelocity;
             if (!isFlyMovement)
             {
-                desiredVelocity.y = rigidbody.velocity.y;
+                desiredVelocity.y = rigidbody.linearVelocity.y;
             }
             
-            rigidbody.velocity = desiredVelocity;
+            rigidbody.linearVelocity = desiredVelocity;
         }
     }
     private void StateAttackEnd()
@@ -109,7 +109,7 @@ public class SimpleEnemy : Enemy
     #region State Success
     private void StateAttackSuccessStart()
     {
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
     }
     private void StateAttackSuccess()
     {

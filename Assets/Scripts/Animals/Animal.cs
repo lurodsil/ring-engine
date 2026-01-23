@@ -69,7 +69,7 @@ public class Animal : MonoBehaviour
 
     void FixedUpdate()
     {
-        animalState = rigidbody.velocity.magnitude > 0.1f ? AnimalState.Moving : AnimalState.Idle;
+        animalState = rigidbody.linearVelocity.magnitude > 0.1f ? AnimalState.Moving : AnimalState.Idle;
 
         if(animalState == AnimalState.Moving)
         {
@@ -94,7 +94,7 @@ public class Animal : MonoBehaviour
 
             if (distanceToTarget > targetMinDistance && distanceToTarget < targetMaxDistance)
             {
-                if (rigidbody.velocity.magnitude < maxVelocity)
+                if (rigidbody.linearVelocity.magnitude < maxVelocity)
                 {
                     rigidbody.AddForce(targetDirection * acceleration);
                 }

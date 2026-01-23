@@ -34,7 +34,7 @@ public class Needlenose : MonoBehaviour {
         else if (grounded)
         {
 
-            rigidbody.velocity = Vector3.zero;
+            rigidbody.linearVelocity = Vector3.zero;
         }
         else
         {
@@ -42,9 +42,9 @@ public class Needlenose : MonoBehaviour {
             pos.y += 3;
         }
 
-        if (rigidbody.velocity.magnitude > 5)
+        if (rigidbody.linearVelocity.magnitude > 5)
         {
-            transform.forward = rigidbody.velocity.normalized;
+            transform.forward = rigidbody.linearVelocity.normalized;
         }
 
         transform.position = pos;

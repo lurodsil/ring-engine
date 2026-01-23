@@ -89,7 +89,7 @@ public class EnemyEFighter : Enemy
 
         if (isGrounded)
         {
-            rigidbody.velocity = transform.forward * velocity;
+            rigidbody.linearVelocity = transform.forward * velocity;
         }
 
         if (Vector3.Distance(transform.position, waypoints[waypointIndex]) < 1)
@@ -223,7 +223,7 @@ public class EnemyEFighter : Enemy
 
         if (isGrounded)
         {
-            rigidbody.velocity = transform.forward * velocity;
+            rigidbody.linearVelocity = transform.forward * velocity;
         }
 
     }
@@ -273,7 +273,7 @@ public class EnemyEFighter : Enemy
     //Animation event
     void WalkTurn()
     {
-        rigidbody.velocity = transform.up * 10;
+        rigidbody.linearVelocity = transform.up * 10;
         startRotation = true;
     }
 

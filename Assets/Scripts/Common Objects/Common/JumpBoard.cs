@@ -32,11 +32,11 @@ public class JumpBoard : CommonStatefulObject
     {
         if (player.isBoosting)
         {
-            player.rigidbody.velocity = startPoint.forward * ImpulseSpeedOnBoost;
+            player.rigidbody.linearVelocity = startPoint.forward * ImpulseSpeedOnBoost;
         }
         else
         {
-            player.rigidbody.velocity = startPoint.forward * ImpulseSpeedOnNormal;
+            player.rigidbody.linearVelocity = startPoint.forward * ImpulseSpeedOnNormal;
         }
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;
         audioSource.PlayOneShot(sound);
@@ -44,7 +44,7 @@ public class JumpBoard : CommonStatefulObject
 
     void StateJumpBoard()
     {
-        player.transform.rotation = Quaternion.LookRotation(player.rigidbody.velocity.normalized, Vector3.up);
+        player.transform.rotation = Quaternion.LookRotation(player.rigidbody.linearVelocity.normalized, Vector3.up);
 
         if (Time.time > outOfControl)
         {

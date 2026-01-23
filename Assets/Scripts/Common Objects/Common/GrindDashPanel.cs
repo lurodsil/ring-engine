@@ -21,6 +21,6 @@ public class GrindDashPanel : CommonObject
     {
         audio.PlayOneShot(dash);
         player.transform.forward = transform.forward;
-        player.rigidbody.AddForce(player.rigidbody.velocity.normalized * Speed, ForceMode.Impulse);
+        player.rigidbody.AddForce(player.rigidbody.linearVelocity.normalized * Speed, ForceMode.Impulse);
     }
 }

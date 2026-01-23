@@ -77,7 +77,7 @@ public class HidrocityBoss : GenerationsObject
     }
     void StateRunAway()
     {
-        rigidbody.velocity = Vector3.up * 3;
+        rigidbody.linearVelocity = Vector3.up * 3;
     }
     void StateRunAwayEnd()
     {
@@ -155,7 +155,7 @@ public class HidrocityBoss : GenerationsObject
             }
         }
 
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
 
     }
     void StateWaterSwirlEnd()
@@ -208,7 +208,7 @@ public class HidrocityBoss : GenerationsObject
             stateMachine.ChangeState(StateWaterSwirl);
         }
 
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
     }
     void StateWaterSwirlBEnd()
     {
@@ -218,7 +218,7 @@ public class HidrocityBoss : GenerationsObject
     void StateWaterSwirlGetPlayerStart()
     {
         player.rigidbody.useGravity = false;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
 
     }
     void StateWaterSwirlGetPlayer()
@@ -282,7 +282,7 @@ public class HidrocityBoss : GenerationsObject
             //player.stateMachine.ChangeState(interactingGameObjects, player.StateHurt);
 
             player.rigidbody.useGravity = true;
-            player.rigidbody.velocity = Vector3.zero;
+            player.rigidbody.linearVelocity = Vector3.zero;
 
             stateMachine.ChangeState(StateMove);
         }

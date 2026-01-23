@@ -119,6 +119,7 @@ Material:
     - _DstBlend2: 0
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
+    - _ExcludeFromTUAndAA: 0
     - _Fade: 0.149
     - _MaterialID: 4
     - _MaterialTypeMask: 16

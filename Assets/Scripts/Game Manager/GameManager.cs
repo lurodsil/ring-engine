@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
 
         if(Player.instance != null)
         {
-            speedLines.SetFloat("_Center_Void_Size", Mathf.Clamp01(1 - Player.instance.rigidbody.velocity.magnitude / 80));
+            speedLines.SetFloat("_Center_Void_Size", Mathf.Clamp01(1 - Player.instance.rigidbody.linearVelocity.magnitude / 80));
         }
         
 

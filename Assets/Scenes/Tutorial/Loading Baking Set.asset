@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Loading Baking Set
   m_EditorClassIdentifier: 
   singleSceneMode: 1
+  dialogNoProbeVolumeInSetShown: 0
   settings:
     m_Version: 1
     dilationSettings:
@@ -23,16 +24,16 @@ MonoBehaviour:
       squaredDistWeighting: 1
     virtualOffsetSettings:
       useVirtualOffset: 1
+      validityThreshold: 0.25
       outOfGeoOffset: 0.01
       searchMultiplier: 0.2
       rayOriginBias: -0.001
-      maxHitsPerRay: 10
       collisionMask:
         serializedVersion: 2
         m_Bits: 4294967291
   m_SceneGUIDs:
   - c77a544b7630bbf429b0a13639edb841
-  scenesToNotBake: []
+  obsoleteScenesToNotBake: []
   m_LightingScenarios:
   - Default
   cellDescs:
@@ -46,6 +47,7 @@ MonoBehaviour:
     m_StreamableCellDescs:
       m_Keys: 
       m_Values: []
+    m_Asset: {fileID: 4900000, guid: e2d87202a4cae4b49b18a30e3ebba3df, type: 3}
   scenarios:
     m_Keys:
     - Default
@@ -58,6 +60,7 @@ MonoBehaviour:
         m_StreamableCellDescs:
           m_Keys: 
           m_Values: []
+        m_Asset: {fileID: 4900000, guid: 2e8850c17f973c74d935bd6f58b6893c, type: 3}
       cellOptionalDataAsset:
         m_AssetGUID: 91063dfa5a1a2144ab290f00ff5c1882
         m_StreamableAssetPath: APVStreamingAssets\757b5f438c8daea4ca0d1599eef3e521\91063dfa5a1a2144ab290f00ff5c1882.bytes
@@ -65,6 +68,15 @@ MonoBehaviour:
         m_StreamableCellDescs:
           m_Keys: 
           m_Values: []
+        m_Asset: {fileID: 4900000, guid: 91063dfa5a1a2144ab290f00ff5c1882, type: 3}
+      cellProbeOcclusionDataAsset:
+        m_AssetGUID: 
+        m_StreamableAssetPath: 
+        m_ElementSize: 0
+        m_StreamableCellDescs:
+          m_Keys: 
+          m_Values: []
+        m_Asset: {fileID: 0}
   cellBricksDataAsset:
     m_AssetGUID: 22c2326d424327947bf6fea5cf8e1341
     m_StreamableAssetPath: APVStreamingAssets\757b5f438c8daea4ca0d1599eef3e521\22c2326d424327947bf6fea5cf8e1341.bytes
@@ -72,6 +84,7 @@ MonoBehaviour:
     m_StreamableCellDescs:
       m_Keys: 
       m_Values: []
+    m_Asset: {fileID: 4900000, guid: 22c2326d424327947bf6fea5cf8e1341, type: 3}
   cellSupportDataAsset:
     m_AssetGUID: 2af154ec369ffd3459629f2ed5c37eeb
     m_StreamableAssetPath: APVStreamingAssets\757b5f438c8daea4ca0d1599eef3e521\2af154ec369ffd3459629f2ed5c37eeb.bytes
@@ -79,6 +92,7 @@ MonoBehaviour:
     m_StreamableCellDescs:
       m_Keys: 
       m_Values: []
+    m_Asset: {fileID: 4900000, guid: 2af154ec369ffd3459629f2ed5c37eeb, type: 3}
   chunkSizeInBricks: 128
   maxCellPosition: {x: 0, y: 0, z: 0}
   minCellPosition: {x: -1, y: -1, z: -1}
@@ -87,22 +101,55 @@ MonoBehaviour:
     m_Extent: {x: 81, y: 81, z: 81}
   bakedSimplificationLevels: 3
   bakedMinDistanceBetweenProbes: 1
+  bakedProbeOcclusion: 0
+  bakedSkyOcclusionValue: 0
+  bakedSkyShadingDirectionValue: 0
+  bakedProbeOffset: {x: 0, y: 0, z: 0}
+  bakedMaskCount: 1
+  bakedLayerMasks:
+    x: 0
+    y: 0
+    z: 0
+    w: 0
   maxSHChunkCount: -1
   L0ChunkSize: 65536
   L1ChunkSize: 32768
   L2TextureChunkSize: 32768
-  validityMaskChunkSize: 8192
+  ProbeOcclusionChunkSize: 0
+  sharedValidityMaskChunkSize: 8192
+  sharedSkyOcclusionL0L1ChunkSize: 0
+  sharedSkyShadingDirectionIndicesChunkSize: 0
+  sharedDataChunkSize: 0
   supportPositionChunkSize: 98304
   supportValidityChunkSize: 32768
   supportTouchupChunkSize: 32768
+  supportLayerMaskChunkSize: 0
   supportOffsetsChunkSize: 98304
   supportDataChunkSize: 262144
   lightingScenario: Default
-  version: 0
+  version: 2
   freezePlacement: 0
+  probeOffset: {x: 0, y: 0, z: 0}
   simplificationLevels: 3
   minDistanceBetweenProbes: 1
   renderersLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   minRendererVolumeSize: 0.1
+  skyOcclusion: 0
+  skyOcclusionBakingSamples: 2048
+  skyOcclusionBakingBounces: 2
+  skyOcclusionAverageAlbedo: 0.6
+  skyOcclusionBackFaceCulling: 0
+  skyOcclusionShadingDirection: 0
+  useRenderingLayers: 0
+  renderingLayerMasks: []
+  m_SceneBakeData:
+    m_Keys:
+    - c77a544b7630bbf429b0a13639edb841
+    m_Values:
+    - hasProbeVolume: 0
+      bakeScene: 1
+      bounds:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 81, y: 81, z: 81}

@@ -25,7 +25,7 @@ public class StruggleStartCollision : GenerationsObject
 
         player.transform.rotation = Quaternion.LookRotation(bezierKnot.tangent, bezierKnot.normal);
 
-        player.rigidbody.velocity = player.transform.forward * velocity;
+        player.rigidbody.linearVelocity = player.transform.forward * velocity;
     }
 
     private void StateStruggleEnd()

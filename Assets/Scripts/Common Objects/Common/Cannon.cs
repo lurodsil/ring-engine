@@ -88,7 +88,7 @@ public class Cannon : CommonActivableStatefulObject
     private void StateCanonStart()
     {
         player.rigidbody.useGravity = false;
-        player.rigidbody.velocity = Vector3.zero;
+        player.rigidbody.linearVelocity = Vector3.zero;
         cannonState = CannonState.EnteringUp;
         if (isTo3D)
         {
@@ -152,7 +152,7 @@ public class Cannon : CommonActivableStatefulObject
 
                 if (Time.time < duration)
                 {
-                    player.rigidbody.velocity = shotPosition.forward * BaseVel;
+                    player.rigidbody.linearVelocity = shotPosition.forward * BaseVel;
                 }
 
                 if (player.IsGrounded())
@@ -160,7 +160,7 @@ public class Cannon : CommonActivableStatefulObject
                     player.stateMachine.ChangeState(player.StateMove3D, gameObject);
                 }
 
-                player.transform.forward = player.rigidbody.velocity.normalized;
+                player.transform.forward = player.rigidbody.linearVelocity.normalized;
 
                 break;
         }

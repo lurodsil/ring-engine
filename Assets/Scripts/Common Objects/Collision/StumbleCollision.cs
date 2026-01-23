@@ -15,9 +15,9 @@ public class StumbleCollision : CommonStatefulObject
     private void StateStumbleStart()
     {
         OnStateStart?.Invoke();
-        Vector3 playerKeepVelocity = player.rigidbody.velocity * keepVelocityRate;
+        Vector3 playerKeepVelocity = player.rigidbody.linearVelocity * keepVelocityRate;
         playerKeepVelocity.y = stumbleUpVelocity;
-        player.rigidbody.velocity = playerKeepVelocity;
+        player.rigidbody.linearVelocity = playerKeepVelocity;
 
         player.isBoosting = false;
         player.canHomming = false;

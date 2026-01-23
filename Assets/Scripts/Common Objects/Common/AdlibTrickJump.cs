@@ -53,11 +53,11 @@ public class AdlibTrickJump : CommonObject
 
         if (player.isBoosting)
         {
-            player.rigidbody.velocity = startPoint.forward * ImpulseSpeedOnBoost;
+            player.rigidbody.linearVelocity = startPoint.forward * ImpulseSpeedOnBoost;
         }
         else
         {
-            player.rigidbody.velocity = startPoint.forward * ImpulseSpeedOnNormal;
+            player.rigidbody.linearVelocity = startPoint.forward * ImpulseSpeedOnNormal;
         }
 
         outOfControl = player.stateMachine.lastStateTime + OutOfControl;

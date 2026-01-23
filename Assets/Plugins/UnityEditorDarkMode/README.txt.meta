@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 33d8f76296a183145ae27b820db1e4b4
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 281842
+  packageName: DarkMode for Unity Editor on Windows
+  packageVersion: 1.1
+  assetPath: Assets/Plugins/UnityEditorDarkMode/README.txt
+  uploadId: 656109

@@ -41,12 +41,12 @@ public abstract class PlayerCore : MonoBehaviour
 
     public void StoreRigidbodyState()
     {
-        rigidbodyDragTemp = rigidbody.drag;
+        rigidbodyDragTemp = rigidbody.linearDamping;
     }
 
     public void ResetRigidbodyState()
     {
-        rigidbody.drag = rigidbodyDragTemp;
+        rigidbody.linearDamping = rigidbodyDragTemp;
         rigidbodyDragTemp = 0;
     }
     public virtual void Update()

@@ -199,7 +199,7 @@ public class PlayerSound : MonoBehaviour
     {
         if (player.stateMachine.currentStateName == "StateGrind")
         {
-            audioSource.pitch = 0.3f + player.rigidbody.velocity.magnitude / 50;
+            audioSource.pitch = 0.3f + player.rigidbody.linearVelocity.magnitude / 50;
         }
 
         if (!player.isBoosting)

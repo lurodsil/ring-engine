@@ -32,9 +32,9 @@ public class Balloon : CommonActivableStatefulObject
     private void StateBalloonStart()
     {
         OnStateStart?.Invoke();
-        Vector3 playerKeepVelocity = player.rigidbody.velocity.normalized * Random.Range(speedMin,speedMax);
+        Vector3 playerKeepVelocity = player.rigidbody.linearVelocity.normalized * Random.Range(speedMin,speedMax);
         playerKeepVelocity.y = upVelocity;
-        player.rigidbody.velocity = playerKeepVelocity;
+        player.rigidbody.linearVelocity = playerKeepVelocity;
     }
 
     private void StateBalloon()

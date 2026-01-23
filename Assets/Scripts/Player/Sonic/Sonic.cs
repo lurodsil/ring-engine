@@ -113,9 +113,9 @@ public class Sonic : Player
     }
     public void StateStompPhysics()
     {
-        if (rigidbody.velocity.y > -stompMaxDownVelocity)
+        if (rigidbody.linearVelocity.y > -stompMaxDownVelocity)
         {
-            rigidbody.velocity = Vector3.down * stompVelocity * SuperRate;
+            rigidbody.linearVelocity = Vector3.down * stompVelocity * SuperRate;
         }
     }
     void StateStompEnd()
@@ -135,12 +135,12 @@ public class Sonic : Player
     #region State Airboost
     void StateAirboostStart()
     {
-        rigidbody.velocity = (transform.forward + transform.up * 0.2f).normalized * airboostVelocity * SuperRate;
+        rigidbody.linearVelocity = (transform.forward + transform.up * 0.2f).normalized * airboostVelocity * SuperRate;
         canAirboost = false;
     }
     void StateAirboost()
     {
-        transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized);
+        transform.rotation = Quaternion.LookRotation(rigidbody.linearVelocity.normalized);
 
         if (IsGrounded())
         {
@@ -154,7 +154,7 @@ public class Sonic : Player
     }
     void StateAirboostEnd()
     {
-        rigidbody.velocity *= airboostKeepVelocity;
+        rigidbody.linearVelocity *= airboostKeepVelocity;
 
     }
     #endregion
@@ -164,7 +164,7 @@ public class Sonic : Player
     {
         canDoubleJump = false;
 
-        rigidbody.AddForce(transform.up * (doubleJumpForce - rigidbody.velocity.y), ForceMode.Impulse);
+        rigidbody.AddForce(transform.up * (doubleJumpForce - rigidbody.linearVelocity.y), ForceMode.Impulse);
         UpdateTargets();
     }
     void StateDoubleJump()
@@ -186,7 +186,7 @@ public class Sonic : Player
     }
     void StateDoubleJumpEnd()
     {
-        rigidbody.velocity *= airboostKeepVelocity;
+        rigidbody.linearVelocity *= airboostKeepVelocity;
     }
     #endregion
 
@@ -197,7 +197,7 @@ public class Sonic : Player
     }
     void StateChangeToSuperSonic()
     {
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
 
         if (Time.time > stateMachine.lastStateTime + 1.8f)
         {
@@ -275,7 +275,7 @@ public class Sonic : Player
     {
         rigidbody.useGravity = false;
 
-        rigidbody.drag = 1;
+        rigidbody.linearDamping = 1;
 
         isSuperSonic = true;
     }
@@ -306,7 +306,7 @@ public class Sonic : Player
         {
             if (rigidbody.HorizontalVelocity().magnitude > 40)
             {
-                transform.rotation = Quaternion.LookRotation(rigidbody.velocity.normalized, Vector3.up);
+                transform.rotation = Quaternion.LookRotation(rigidbody.linearVelocity.normalized, Vector3.up);
             }
             else
             {
@@ -335,7 +335,7 @@ public class Sonic : Player
 
     void StateFlyEnd()
     {
-        rigidbody.drag = 0;
+        rigidbody.linearDamping = 0;
 
         rigidbody.useGravity = true;
 

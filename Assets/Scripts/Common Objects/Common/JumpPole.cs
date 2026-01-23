@@ -18,14 +18,14 @@ public class JumpPole : CommonStatefulObject
 
         player.transform.forward = transform.forward;
 
-        float absoluteYVelocity = Mathf.Abs(player.rigidbody.velocity.y);
+        float absoluteYVelocity = Mathf.Abs(player.rigidbody.linearVelocity.y);
         float clampedVelocity = Mathf.Clamp(absoluteYVelocity + acceleration, addMinVelocity, addMaxVelocity);
 
-        player.rigidbody.velocity = Vector3.up * clampedVelocity;        
+        player.rigidbody.linearVelocity = Vector3.up * clampedVelocity;        
     }
     private void StateJumpPole()
     {
-        if (player.rigidbody.velocity.y < 10)
+        if (player.rigidbody.linearVelocity.y < 10)
         {
             player.stateMachine.ChangeState(player.StateFall, gameObject);
         }

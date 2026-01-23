@@ -32,7 +32,7 @@ public class FallDeadTrigger : CommonStatefulObject
     {
         if (drownPlayer)
         {
-            player.rigidbody.velocity *= 0.9f;
+            player.rigidbody.linearVelocity *= 0.9f;
         }
 
         if (Time.time > player.stateMachine.lastStateTime + 2)
