@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +5,7 @@ public class UpdateTrickButtons : MonoBehaviour
 {
     public AudioClip navigation;
     public AudioClip buttonPress;
+
     public GameObject buttonsHolder;
 
     public Sprite[] buttonsReleased;
@@ -17,46 +16,55 @@ public class UpdateTrickButtons : MonoBehaviour
     private char[] seedChar;
     private AudioSource audioSource;
 
-    private void OnEnable()
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void OnEnable()
     {
         EventManager.OnTrickStart += OnTrickStart;
         EventManager.OnTrickEnd += OnTrickEnd;
         EventManager.OnButtonPress += OnButtonPress;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         EventManager.OnTrickStart -= OnTrickStart;
         EventManager.OnTrickEnd -= OnTrickEnd;
         EventManager.OnButtonPress -= OnButtonPress;
     }
 
-    private void Start()
+    public void OnTrickStart(string seed)
     {
-        audioSource = GetComponent<AudioSource>();
-    }
+        if (!buttonsHolder.activeSelf)
+            buttonsHolder.SetActive(true);
 
-    public void OnTrickStart(string seed)    
-    {
-        buttonsHolder.SetActive(true);
         audioSource.PlayOneShot(navigation);
 
         seedChar = seed.ToCharArray();
 
-        for (int i = 0; i < seedChar.Length; i++)
+        int length = Mathf.Min(seedChar.Length, buttons.Length);
+
+        for (int i = 0; i < length; i++)
         {
-            buttons[i].sprite = buttonsReleased[int.Parse(seedChar[i].ToString())];
+            int digit = seedChar[i] - '0';
+            buttons[i].sprite = buttonsReleased[digit];
         }
     }
 
     public void OnButtonPress(int index)
     {
         audioSource.PlayOneShot(buttonPress);
-        buttons[index].sprite = buttonsPressed[int.Parse(seedChar[index].ToString())];
+
+        int digit = seedChar[index] - '0';
+
+        buttons[index].sprite = buttonsPressed[digit];
     }
 
     public void OnTrickEnd()
     {
-        buttonsHolder.SetActive(false);
+        if (buttonsHolder.activeSelf)
+            buttonsHolder.SetActive(false);
     }
 }
