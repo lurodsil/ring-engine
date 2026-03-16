@@ -10,6 +10,7 @@ public class DualBezierSpline : MonoBehaviour
     private float closestFloat = 0;
     private float f = 0;
     private float lastT;
+    public bool isReverse;
 
     public bool drawDirections;
 
@@ -18,6 +19,15 @@ public class DualBezierSpline : MonoBehaviour
 
     public BezierSpline left, right;
 
+    [ContextMenu("Invert Side")]
+    private void invertSide()
+    {
+        BezierSpline currentLeft = left; 
+
+        left = right;
+        right = currentLeft;
+    }
+
     public Vector3 GetPoint(float t, float l)
     {
         return Vector3.Lerp(left.GetPoint(t), right.GetPoint(t), l);
@@ -25,12 +35,17 @@ public class DualBezierSpline : MonoBehaviour
 
     public Vector3 GetTangent(float t)
     {
-        return Vector3.Lerp(left.GetTangent(t), right.GetTangent(t), 0.5f).normalized;
+        Vector3 tangent = Vector3.Lerp(left.GetTangent(t), right.GetTangent(t), 0.5f).normalized;
+
+        return isReverse ? -tangent : tangent;
     }
 
-    public Vector3 GetBinormal(float t)
+    public Vector3 GetBinormal(float t) 
     {
-        return (GetPoint(t, 1) - GetPoint(t, 0)).normalized;
+        Vector3 pointA = GetPoint(t, 1);
+        Vector3 pointB = GetPoint(t, 0);
+
+        return  isReverse ? (pointB - pointA).normalized : (pointA - pointB).normalized;
     }
 
     public Vector3 GetNormal(float t)
