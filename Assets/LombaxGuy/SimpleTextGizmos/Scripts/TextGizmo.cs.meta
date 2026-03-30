@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ba2133ece5c4b2d42bf72edacc1b237c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 283476
+  packageName: Simple Text Gizmos
+  packageVersion: 1.0.0
+  assetPath: Assets/LombaxGuy/SimpleTextGizmos/Scripts/TextGizmo.cs
+  uploadId: 668647
