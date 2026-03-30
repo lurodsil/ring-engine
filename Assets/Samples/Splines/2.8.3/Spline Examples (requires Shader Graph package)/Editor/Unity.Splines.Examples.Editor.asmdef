@@ -1,0 +1,21 @@
+{
+    "name": "Unity.Splines.Examples.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:21d1eb854b91ade49bc69a263d12bee2",
+        "GUID:e43142fc3fec6554980dde6126631f1d",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:9f08613db0663446b876a5eae626aa45"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

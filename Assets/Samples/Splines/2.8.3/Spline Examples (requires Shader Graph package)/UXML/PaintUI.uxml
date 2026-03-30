@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox style="height: auto; width: 842px; font-size: 36px; color: rgb(255, 255, 255);">
+        <ui:VisualElement name="PointReductionEpsilon" style="flex-direction: row;">
+            <ui:Slider picking-mode="Ignore" label="Point Reduction Epsilon" value="-1" high-value="1" name="PointReductionEpsilonSlider" style="flex-grow: 1;" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="PointReductionEpsilonLabel" style="flex-shrink: 0; width: 64px; flex-direction: row; align-items: center; justify-content: space-between; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="SplineTension" style="flex-direction: row;">
+            <ui:Slider picking-mode="Ignore" label="Spline Tension" value="0.2" high-value="2" name="SplineTensionSlider" style="flex-grow: 1;" />
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="SplineTensionLabel" style="flex-shrink: 0; width: 64px; flex-direction: row; align-items: center; justify-content: space-between; -unity-text-align: middle-left;" />
+        </ui:VisualElement>
+        <ui:Label text="Label" display-tooltip-when-elided="true" name="Stats" />
+    </ui:GroupBox>
+</ui:UXML>
