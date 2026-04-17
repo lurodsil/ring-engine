@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 1
+    supportSSR: 0
     supportSSRTransparent: 1
     supportSSAO: 1
-    supportSSGI: 1
+    supportSSGI: 0
     supportSubsurfaceScattering: 1
     subsurfaceScatteringAttenuation: 1
     sssSampleBudget:
-      m_Values: 140000002800000050000000
+      m_Values: 100000002000000040000000
       m_SchemaId:
         m_Id: With3Levels
     sssDownsampleSteps:
@@ -31,7 +31,7 @@ MonoBehaviour:
     supportVolumetrics: 1
     supportVolumetricClouds: 1
     supportLightLayers: 1
-    renderingLayerMaskBuffer: 1
+    renderingLayerMaskBuffer: 0
     supportWater: 1
     waterSimulationResolution: 128
     supportWaterExclusion: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
     supportDistortion: 1
     supportTransparentBackface: 1
     supportTransparentDepthPrepass: 1
-    supportTransparentDepthPostpass: 1
+    supportTransparentDepthPostpass: 0
     colorBufferFormat: 74
     depthBufferFormat: 0
     supportCustomPass: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
       m_Values: 800000000001000000020000
       m_SchemaId:
         m_Id: With3Levels
-    supportDecals: 1
+    supportDecals: 0
     supportDecalLayers: 1
     supportSurfaceGradient: 1
     decalNormalBufferHP: 0
@@ -77,20 +77,20 @@ MonoBehaviour:
     supportDitheringCrossFade: 0
     supportRuntimeAOVAPI: 0
     supportTerrainHole: 0
-    lightProbeSystem: 1
+    lightProbeSystem: 0
     oldLightProbeSystem: 0
-    probeVolumeMemoryBudget: 1024
-    supportProbeVolumeGPUStreaming: 0
+    probeVolumeMemoryBudget: 512
+    supportProbeVolumeGPUStreaming: 1
     supportProbeVolumeDiskStreaming: 0
     probeVolumeSHBands: 1
     supportProbeVolumeScenarios: 0
     supportProbeVolumeScenarioBlending: 1
     probeVolumeBlendingMemoryBudget: 128
-    supportRayTracing: 1
+    supportRayTracing: 0
     supportVFXRayTracing: 1
     supportedRayTracingMode: 3
     lightLoopSettings:
-      cookieAtlasSize: 2048
+      cookieAtlasSize: 1024
       cookieFormat: 74
       cookieAtlasLastValidMip: 0
       cookieTexArraySize: 1
@@ -98,10 +98,10 @@ MonoBehaviour:
       reflectionProbeCacheSize: 0
       reflectionCubemapSize: 0
       maxEnvLightsOnScreen: 0
-      reflectionCacheCompressed: 0
-      reflectionProbeFormat: 74
-      reflectionProbeTexCacheSize: 4096
-      reflectionProbeTexLastValidCubeMip: 3
+      reflectionCacheCompressed: 1
+      reflectionProbeFormat: 48
+      reflectionProbeTexCacheSize: 2048
+      reflectionProbeTexLastValidCubeMip: 4
       reflectionProbeTexLastValidPlanarMip: 0
       reflectionProbeDecreaseResToFit: 1
       skyReflectionSize: 256
@@ -109,20 +109,20 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 0
       supportFabricConvolution: 0
-      maxDirectionalLightsOnScreen: 16
-      maxPunctualLightsOnScreen: 512
-      maxAreaLightsOnScreen: 64
+      maxDirectionalLightsOnScreen: 2
+      maxPunctualLightsOnScreen: 128
+      maxAreaLightsOnScreen: 32
       maxCubeReflectionOnScreen: 32
-      maxPlanarReflectionOnScreen: 8
+      maxPlanarReflectionOnScreen: 1
       maxDecalsOnScreen: 512
       maxLightsPerClusterCell: 8
       maxLocalVolumetricFogSize: 0
-      maxLocalVolumetricFogOnScreen: 256
+      maxLocalVolumetricFogOnScreen: 128
     hdShadowInitParams:
-      maxShadowRequests: 128
+      maxShadowRequests: 64
       directionalShadowsDepthBits: 32
       punctualShadowFilteringQuality: 1
-      directionalShadowFilteringQuality: 1
+      directionalShadowFilteringQuality: 0
       areaShadowFilteringQuality: 0
       punctualLightShadowAtlas:
         shadowAtlasResolution: 4096
@@ -167,34 +167,35 @@ MonoBehaviour:
       lutFormat: 48
       bufferFormat: 74
     dynamicResolutionSettings:
-      enabled: 0
+      enabled: 1
       useMipBias: 0
       advancedUpscalersByPriority: 00
       advancedUpscalerNames:
       - DLSS
-      DLSSPerfQualitySetting: 0
-      DLSSInjectionPoint: 0
-      TAAUInjectionPoint: 0
+      - FSR2
+      DLSSPerfQualitySetting: 2
+      DLSSInjectionPoint: 1
+      TAAUInjectionPoint: 1
       STPInjectionPoint: 0
       defaultInjectionPoint: 2
-      DLSSUseOptimalSettings: 1
+      DLSSUseOptimalSettings: 0
       DLSSSharpness: 0.5
-      DLSSRenderPresetForQuality: 0
-      DLSSRenderPresetForBalanced: 0
-      DLSSRenderPresetForPerformance: 0
-      DLSSRenderPresetForUltraPerformance: 0
-      DLSSRenderPresetForDLAA: 0
+      DLSSRenderPresetForQuality: 4
+      DLSSRenderPresetForBalanced: 4
+      DLSSRenderPresetForPerformance: 4
+      DLSSRenderPresetForUltraPerformance: 4
+      DLSSRenderPresetForDLAA: 4
       FSR2EnableSharpness: 0
       FSR2Sharpness: 0
       FSR2UseOptimalSettings: 0
       FSR2QualitySetting: 0
-      FSR2InjectionPoint: 0
+      FSR2InjectionPoint: 1
       fsrOverrideSharpness: 0
       fsrSharpness: 0.92
       maxPercentage: 100
-      minPercentage: 100
+      minPercentage: 30
       dynResType: 1
-      upsampleFilter: 1
+      upsampleFilter: 5
       forceResolution: 0
       forcedPercentage: 100
       lowResTransparencyMinimumThreshold: 0
@@ -237,7 +238,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000001
+        m_Values: 000000
         m_SchemaId:
           m_Id: With3Levels
     maximumLODLevel:
@@ -252,20 +253,20 @@ MonoBehaviour:
       m_SchemaId:
         m_Id: With3Levels
     lightingQualitySettings:
-      AOStepCount: 040000000600000010000000
+      AOStepCount: 020000000600000010000000
       AOFullRes: 000001
-      AOMaximumRadiusPixels: 200000002800000050000000
-      AOBilateralUpsample: 000101
-      AODirectionCount: 010000000200000004000000
-      ContactShadowSampleCount: 060000000a00000010000000
+      AOMaximumRadiusPixels: 640000002800000050000000
+      AOBilateralUpsample: 010101
+      AODirectionCount: 020000000200000004000000
+      ContactShadowSampleCount: 040000000800000010000000
       SSRMaxRaySteps: 100000002000000040000000
-      SSGIRaySteps: 200000004000000080000000
+      SSGIRaySteps: 0c0000002000000040000000
       SSGIDenoise: 010101
       SSGIHalfResDenoise: 010000
       SSGIDenoiserRadius:
       - 0.75
-      - 0.5
-      - 0.5
+      - 0.75
+      - 0.75
       SSGISecondDenoise: 010101
       RTAORayLength:
       - 0.5
