@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
 
         audioSource = GetComponent<AudioSource>();
 
@@ -179,6 +179,9 @@ public class GameManager : MonoBehaviour
         //}
 
 
+
+
+
         if(Player.instance != null)
         {
             speedLines.SetFloat("_Center_Void_Size", Mathf.Clamp01(1 - Player.instance.rigidbody.linearVelocity.magnitude / 80));
@@ -204,18 +207,18 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Playing:
                 mixer.SetFloat("MasterVolume", 0);
-                if (Input.GetButtonDown(XboxButton.Start))
+                if (Player.instance.Input.PausePressed)
                 {
                     OnPause();
                 }
                 break;
             case GameState.Paused:
-                if (Input.GetButtonDown(XboxButton.Start))
+                if (Player.instance.Input.PausePressed)
                 {
                     OnResume();
                 }
 
-                if (Input.GetButtonDown(XboxButton.A))
+                if (Player.instance.Input.JumpPressed)
                 {
                     switch (pauseMenu.index)
                     {
