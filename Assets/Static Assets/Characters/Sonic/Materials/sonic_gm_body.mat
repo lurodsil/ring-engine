@@ -24,41 +24,35 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: sonic_gm_body
-  m_Shader: {fileID: -6465566751694194690, guid: 9c38cb8712cb3e64a9757f7cd1c8d92e,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 9c38cb8712cb3e64a9757f7cd1c8d92e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _DISABLE_SSR_TRANSPARENT
   - _MATERIAL_FEATURE_CLEAR_COAT
-  - _MATERIAL_FEATURE_SPECULAR_COLOR
   m_InvalidKeywords:
-  - _DETAIL_MAP
-  - _NORMALMAP
   - _NORMALMAP_TANGENT_SPACE
-  - _SPECULARCOLORMAP
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2225
   stringTagMap:
     MotionVector: User
   disabledShaderPasses:
-  - TransparentDepthPrepass
+  - MOTIONVECTORS
   - TransparentDepthPostpass
   - TransparentBackface
   - RayTracingPrepass
-  - MOTIONVECTORS
+  - TransparentDepthPrepass
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Diffuse:
-        m_Texture: {fileID: 2800000, guid: 6f881c136014f6e498c2d7546bbcbd72, type: 3}
+        m_Texture: {fileID: 2800000, guid: 248bd7d184eb4a444b7b4f5f5d23bb85, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_Super_Sonic:
-        m_Texture: {fileID: 2800000, guid: acb9a405f7e66744e98a2d910651660b, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Falloff:
@@ -66,7 +60,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Falloff_Super_Sonic:
-        m_Texture: {fileID: 2800000, guid: 918a4feef5d2db741af0bacb1301baea, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
@@ -78,11 +72,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Specular:
-        m_Texture: {fileID: 2800000, guid: bb67d6e3430be9245b2a7b2fc887bf59, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9319ad8c9d7d83a4eb309232d249bcfb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Specular_Super_Sonic:
-        m_Texture: {fileID: 2800000, guid: a9a44233eede8084e9b4574240d26905, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -103,8 +97,6 @@ Material:
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
-    - _AlphaToMask: 0
-    - _AlphaToMaskInspectorValue: 0
     - _BlendMode: 0
     - _ClearCoatEnabled: 1
     - _Coat_Mask: 0
@@ -117,21 +109,21 @@ Material:
     - _DoubleSidedNormalMode: 2
     - _DstBlend: 0
     - _DstBlend2: 0
-    - _EnableBlendModePreserveSpecularLighting: 0
+    - _EnableBlendModePreserveSpecularLighting: 1
     - _EnableFogOnTransparent: 1
     - _ExcludeFromTUAndAA: 0
-    - _Fade: 0.149
-    - _MaterialID: 4
-    - _MaterialTypeMask: 16
+    - _MaterialID: 1
+    - _MaterialTypeMask: 18
+    - _Metallic: 1
     - _OpaqueCullMode: 2
     - _PerPixelSorting: 0
     - _RayTracing: 0
     - _ReceivesSSR: 1
-    - _ReceivesSSRTransparent: 0
+    - _ReceivesSSRTransparent: 1
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.2
     - _SrcBlend: 1
     - _StencilRef: 0
     - _StencilRefDepth: 8
@@ -143,9 +135,7 @@ Material:
     - _StencilWriteMaskDistortionVec: 4
     - _StencilWriteMaskGBuffer: 15
     - _StencilWriteMaskMV: 41
-    - _SuperSonicBlend: 0
     - _Super_Blend: 0
-    - _Super_Sonic_Blend: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
     - _TransmissionEnable: 1
@@ -153,7 +143,7 @@ Material:
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
     - _TransparentDepthPrepassEnable: 0
-    - _TransparentSortPriority: 0
+    - _TransparentSortPriority: -1
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 1
     - _UseShadowThreshold: 0
@@ -164,6 +154,6 @@ Material:
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _FadeColor: {r: 0, g: 2.9960787, b: 2.9960787, a: 0}
+    - _FadeColor: {r: 0, g: 0, b: 4, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
