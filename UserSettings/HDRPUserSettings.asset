@@ -16,5 +16,5 @@ MonoBehaviour:
   m_WizardNeedRestartAfterChangingToDX12: 0
   m_WizardNeedToRunFixAllAgainAfterDomainReload: 0
   m_WizardFixAllAfterDomainReloadInclusiveMode: 0
-  m_WizardPopupAtStart: 1
+  m_WizardPopupAtStart: 0
   m_OpenConfigs: 01000000

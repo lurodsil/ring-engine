@@ -4,22 +4,22 @@
         {
             "userAdded": false,
             "type": "UnityEngine.AnimationClip",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEditor.Animations.AnimatorController",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.AnimatorOverrideController",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEditor.Audio.AudioMixerController",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
@@ -29,12 +29,12 @@
         {
             "userAdded": false,
             "type": "UnityEngine.Cubemap",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.GameObject",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
@@ -44,12 +44,12 @@
         {
             "userAdded": false,
             "type": "UnityEngine.LightingSettings",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.Material",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
@@ -64,32 +64,32 @@
         {
             "userAdded": false,
             "type": "UnityEngine.PhysicsMaterial",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.PhysicsMaterial2D",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.Rendering.PostProcessing.PostProcessProfile",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.Rendering.PostProcessing.PostProcessResources",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.Rendering.VolumeProfile",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEditor.SceneAsset",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
@@ -104,17 +104,17 @@
         {
             "userAdded": false,
             "type": "UnityEngine.Texture",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.Texture2D",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         },
         {
             "userAdded": false,
             "type": "UnityEngine.Timeline.TimelineAsset",
-            "defaultInstantiationMode": 0
+            "defaultInstantiationMode": 1
         }
     ],
     "defaultDependencyTypeInfo": {

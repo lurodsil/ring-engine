@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Internal/Loading.unity
     guid: 052b32fa4cf839045881e80ddd4c17d2
   - enabled: 1
+    path: Assets/Extras/Apotos/Scenes/Apotos Act 2.unity
+    guid: 08bfd96060414954ba50cd615dbf7cc0
+  - enabled: 1
     path: Assets/Scenes/Internal/GameOver.unity
     guid: 53af4dba17f443d4383000319e8788fe
   - enabled: 0
@@ -18,8 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: c77a544b7630bbf429b0a13639edb841
   m_configObjects:
-    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 83661711c905e154691fc47e64bd3a90,
-      type: 2}
-    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
-      guid: f62227dd89714d7498452c0a040c8d12, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 83661711c905e154691fc47e64bd3a90, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: f62227dd89714d7498452c0a040c8d12, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c225348cbe3a43948b53c335c99a6609, type: 3}
   m_UseUCBPForAssetBundles: 0

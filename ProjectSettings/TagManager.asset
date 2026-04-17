@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Target
   - Damage
@@ -27,6 +27,7 @@ TagManager:
   - LightSpeedDashRing
   - ItemTrigger
   - StompTarget
+  - Stage Guide Path
   layers:
   - Default
   - TransparentFX
@@ -44,8 +45,8 @@ TagManager:
   - Spline Collision
   - Editor Only
   - Shot
-  - 
-  - 
+  - Ground
+  - OneWayFloor
   - 
   - 
   - 
@@ -64,3 +65,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  m_RenderingLayers:
+  - Default
+  - Dynamic GI
