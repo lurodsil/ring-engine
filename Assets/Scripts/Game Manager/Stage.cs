@@ -68,8 +68,12 @@ public class Stage : MonoBehaviour
 
     private void OnValidate()
     {
-        stageNameUI.text = stageName;
-        actUI.text = act;
+        if(stageNameUI)
+        {
+            stageNameUI.text = stageName;
+            actUI.text = act;
+        }
+        
     }
 
     private void OnDisable()
@@ -106,80 +110,140 @@ public class Stage : MonoBehaviour
         audioSourceBoost = gameObject.AddComponent<AudioSource>();
 
         GameManager.instance.OnLoadingEnd();
+
+        InitAudio();
+
+        currentMode = MusicVelocityModes.Normal;
+        lastMode = currentMode;
     }
+
+    MusicVelocityModes currentMode;
+    MusicVelocityModes lastMode;
+
+    [SerializeField] float modeChangeDelay = 1f;
+    [SerializeField] float fadeSpeed = 2.5f;
+
+    MusicVelocityModes detectedMode;
+    MusicVelocityModes pendingMode;
+
+
+    float modeTimer;
+
+
+    void DetectMusicMode()
+    {
+        if (player.isBoosting)
+            detectedMode = MusicVelocityModes.Boost;
+        else if (player.absoluteVelocity > 30)
+            detectedMode = MusicVelocityModes.Fast;
+        else
+            detectedMode = MusicVelocityModes.Normal;
+    }
+
+    void UpdateMusicState()
+    {
+        if (detectedMode != pendingMode)
+        {
+            pendingMode = detectedMode;
+            modeTimer = 0f;
+        }
+        else
+        {
+            modeTimer += Time.deltaTime;
+
+            if (modeTimer >= modeChangeDelay && currentMode != pendingMode)
+            {
+                currentMode = pendingMode;
+            }
+        }
+    }
+
+    void UpdateMusicBlend()
+    {
+        float baseVolume = GameManager.instance.underwaterManager.underwater
+            ? musicVolumeUnderwater
+            : musicVolume;
+
+        Fade(audioSource, currentMode == MusicVelocityModes.Normal ? baseVolume : 0);
+        Fade(audioSourceFast, currentMode == MusicVelocityModes.Fast ? musicVolume : 0);
+        Fade(audioSourceBoost, currentMode == MusicVelocityModes.Boost ? musicVolume : 0);
+    }
+
+    void Fade(AudioSource source, float target)
+    {
+        source.volume = Mathf.MoveTowards(
+            source.volume,
+            target,
+            fadeSpeed * Time.deltaTime
+        );
+    }
+
+
+    void InitAudio()
+    {
+        if (GameManager.instance.tornadoGameplay)
+        {
+            SetupAudioSource(audioSource, start, tornadoTheme);
+            return;
+        }
+
+        SetupAudioSource(audioSource, start, loop);
+        SetupAudioSource(audioSourceFast, startFast, loopFast);
+        SetupAudioSource(audioSourceBoost, startBoost, loopBoost);
+    }
+
 
     void Update()
     {
         if (GameManager.instance.underwaterManager.underwaterAlertState == 4)
         {
-            audioSource.Stop();
-            audioSourceFast.Stop();
-            audioSourceBoost.Stop();
-        }
-        else if (playMusicOnStart && !audioSource.isPlaying)
-        {
-            if (GameManager.instance.tornadoGameplay)
-            {
-                SetupAudioSource(audioSource, start, tornadoTheme);
-            }
-            else
-            {
-                SetupAudioSource(audioSource, start, loop);
-                SetupAudioSource(audioSourceFast, startFast, loopFast);
-                SetupAudioSource(audioSourceBoost, startBoost, loopBoost);
-            }
-            
+            StopAllMusic();
+            return;
         }
 
-        if (player.isBoosting == true)
-        {
-            musicVelocityModes = MusicVelocityModes.Boost;
-        }
-        else if (player.absoluteVelocity > 30)
-        {
-            musicVelocityModes = MusicVelocityModes.Fast;
-        }
-        else
-        {
-            musicVelocityModes = MusicVelocityModes.Normal;
-        }
-
-
-            switch (musicVelocityModes)
-            {
-                case MusicVelocityModes.Normal:
-                    if (GameManager.instance.underwaterManager.underwater)
-                    {
-                        audioSource.volume = musicVolumeUnderwater;
-                    }
-                    else
-                    {
-                        audioSource.volume = musicVolume;
-
-                    }
-                    audioSourceFast.volume = 0;
-                    audioSourceBoost.volume = 0;
-                    break;
-                case MusicVelocityModes.Fast:
-                    if (loopFast)
-                    {
-                        audioSource.volume = 0;
-                        audioSourceFast.volume = musicVolume;
-                        audioSourceBoost.volume = 0;
-                    }
-                    break;
-                case MusicVelocityModes.Boost:
-                    if (loopBoost)
-                    {
-                        audioSource.volume = 0;
-                        audioSourceFast.volume = 0;
-                        audioSourceBoost.volume = musicVolume;
-                    }
-                    break;
-            }
-        
-        
+        DetectMusicMode();
+        UpdateMusicState();
+        UpdateMusicBlend();
     }
+
+
+
+    void StopAllMusic()
+    {
+        audioSource.Stop();
+        audioSourceFast.Stop();
+        audioSourceBoost.Stop();
+    }
+
+
+    void ApplyMusicMix()
+    {
+        float baseVolume = GameManager.instance.underwaterManager.underwater
+            ? musicVolumeUnderwater
+            : musicVolume;
+
+        audioSource.volume = 0;
+        audioSourceFast.volume = 0;
+        audioSourceBoost.volume = 0;
+
+        switch (currentMode)
+        {
+            case MusicVelocityModes.Normal:
+                audioSource.volume = baseVolume;
+                break;
+
+            case MusicVelocityModes.Fast:
+                if (loopFast)
+                    audioSourceFast.volume = musicVolume;
+                break;
+
+            case MusicVelocityModes.Boost:
+                if (loopBoost)
+                    audioSourceBoost.volume = musicVolume;
+                break;
+        }
+    }
+
 
     private void SetupAudioSource(AudioSource audioSource, AudioClip start, AudioClip loop)
     {
@@ -212,31 +276,31 @@ public class Stage : MonoBehaviour
 
     private void Reload()
     {
-        GameManager.instance.rings = 0;
+        //GameManager.instance.rings = 0;
 
-        for (int i = 0; i < checkpoints.Length; i++)
-        {
-            if (GameManager.instance.activeCheckpoints.Contains(checkpoints[i].PointMarkerID))
-            {
-                checkpoints[i].active = false;
-            }
+        //for (int i = 0; i < checkpoints.Length; i++)
+        //{
+        //    if (GameManager.instance.activeCheckpoints.Contains(checkpoints[i].PointMarkerID))
+        //    {
+        //        checkpoints[i].active = false;
+        //    }
 
-            if (checkpoints[i].PointMarkerID == GameManager.instance.lastCheckpoint)
-            {
-                spawnPoint = checkpoints[i].transform;
-            }
-        }
+        //    if (checkpoints[i].PointMarkerID == GameManager.instance.lastCheckpoint)
+        //    {
+        //        spawnPoint = checkpoints[i].transform;
+        //    }
+        //}
 
-        player = Instantiate(GameManager.instance.player, spawnPoint.transform.position, spawnPoint.transform.rotation).GetComponentInChildren<Player>();
+        //player = Instantiate(GameManager.instance.player, spawnPoint.transform.position, spawnPoint.transform.rotation).GetComponentInChildren<Player>();
 
-        for (int i = 0; i < redMedals.Length; i++)
-        {
-            if (GameManager.instance.foundRedMedals.Contains(redMedals[i].MedalID))
-            {
-                redMedals[i].gameObject.SetActive(false);
-            }
+        //for (int i = 0; i < redMedals.Length; i++)
+        //{
+        //    if (GameManager.instance.foundRedMedals.Contains(redMedals[i].MedalID))
+        //    {
+        //        redMedals[i].gameObject.SetActive(false);
+        //    }
 
-        }
+        //}
     }
 
     public void StartTornado()
