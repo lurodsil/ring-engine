@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1000013539322216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4000011862326434}
+  - component: {fileID: -2510888437667884470}
+  - component: {fileID: 65666906472710320}
+  m_Layer: 2
+  m_Name: GameplayModeChanger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000011862326434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013539322216}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -21.4677, y: -65.3175, z: -357.258}
+  m_LocalScale: {x: 10, y: 20, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2510888437667884470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013539322216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92bb65995246d9447b069d429c6ff1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  SetObjectID: -1
+  labelHeightOffset: 1.5
+  debugLastOffset: 0
+  OnPlayerTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  TargetDirection: {x: 0, y: 0, z: 0}
+  Template: 0
+  m_CurveCorrectionForce: 0
+  m_IsChangeCamera: 1
+  m_IsEnableFromBack: 1
+  m_IsEnableFromFront: 1
+  m_IsLimitEdge: 1
+  m_IsReverseCameraEnable: 0
+  m_PathCorrectionForce: 0.5
+  m_IsAutoChange2DPath: 1
+  m_IsPadCorrect: 1
+  m_PathEaseTime: 0.5
+  m_DashPathSideMoveRate: 0.6
+  m_IsGravityControl: 0
+  debugColor: {r: 0, g: 0, b: 1, a: 1}
+  frontGameplayMode: 0
+  backGameplayMode: 0
+--- !u!65 &65666906472710320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013539322216}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
