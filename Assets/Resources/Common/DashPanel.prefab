@@ -60,6 +60,9 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -84,9 +87,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000011464306778
 GameObject:
@@ -167,6 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04ca10281e4dc14488aa4d94c54de73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetObjectID: -1
+  labelHeightOffset: 1.5
+  debugLastOffset: 0
   OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls:
@@ -175,8 +183,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 47e325f8fd0abe6448e0c92af8b41f8b,
-            type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 47e325f8fd0abe6448e0c92af8b41f8b, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -214,9 +221,8 @@ AudioSource:
   m_GameObject: {fileID: 1000012153489080}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24362362, guid: da9f69e82f429d343ae6222bb56d3354,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 47e325f8fd0abe6448e0c92af8b41f8b, type: 3}
+  OutputAudioMixerGroup: {fileID: 24362362, guid: da9f69e82f429d343ae6222bb56d3354, type: 2}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 47e325f8fd0abe6448e0c92af8b41f8b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
@@ -376,5 +382,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.5, z: 2}
+  m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0, y: 0, z: 0}

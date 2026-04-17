@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4000012064660790}
@@ -123,30 +123,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9962284fe2e7c74abe406f4fcc37a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeTriggered: 0
-  onlyPlayerTrigger: 0
-  OnObjectTriggerEnter:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerStay:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  canBeActivated: 0
   active: 1
   OnBecomeActive:
     m_PersistentCalls:
       m_Calls: []
   OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  haveStates: 0
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1000012345425302
@@ -264,6 +251,9 @@ SkinnedMeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -287,9 +277,11 @@ SkinnedMeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0

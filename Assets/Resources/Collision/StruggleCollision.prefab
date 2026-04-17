@@ -139,20 +139,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c44789d78e88cd478d37f4e5692f823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
   active: 1
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  SetObjectID: 0
 --- !u!1 &3831595154047464424
 GameObject:
   m_ObjectHideFlags: 0
@@ -4923,7 +4916,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3831595154047464425
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4941,6 +4934,9 @@ ParticleSystemRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4962,9 +4958,11 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4979,13 +4977,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -4994,7 +4994,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &4124922698254400940
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,7 +5005,7 @@ GameObject:
   - component: {fileID: 4085406538023084337}
   - component: {fileID: 1820796486651547928}
   - component: {fileID: 6413423196696267090}
-  m_Layer: 2
+  m_Layer: 14
   m_Name: StruggleCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5064,17 +5063,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a60463ddb244584a987ed3924396ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
-  OnBecomeActive:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   SetObjectID: -1

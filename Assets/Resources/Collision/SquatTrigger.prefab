@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5002088973207495524}
   - component: {fileID: 2053882917032622101}
   - component: {fileID: 4038569146342568735}
-  m_Layer: 2
+  m_Layer: 14
   m_Name: SquatTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

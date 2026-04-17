@@ -60,6 +60,9 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,9 +84,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6451352627600394000
 GameObject:
@@ -131,30 +136,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c03dd7886fe61748887a43edd8f514d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canBeTriggered: 0
-  onlyPlayerTrigger: 0
-  OnObjectTriggerEnter:
+  OnPlayerTriggerEnter:
     m_PersistentCalls:
       m_Calls: []
-  OnObjectTriggerStay:
-    m_PersistentCalls:
-      m_Calls: []
-  OnObjectTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  canBeActivated: 0
-  active: 0
-  OnBecomeActive:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBecomeInactive:
-    m_PersistentCalls:
-      m_Calls: []
-  haveStates: 0
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
+  OnPlayerTriggerExit:
     m_PersistentCalls:
       m_Calls: []
   path: {fileID: 0}

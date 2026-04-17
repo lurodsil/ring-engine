@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 410197810344292105}
   - component: {fileID: 2351410943315732592}
   - component: {fileID: 5132604718405775962}
-  m_Layer: 2
+  m_Layer: 14
   m_Name: CutsceneTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb15259d389ef2429784799263b91da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5132604718405775962}
+        m_TargetAssemblyTypeName: RingEngineObject, Assembly-CSharp
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPlayerTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
   active: 0
   OnBecomeActive:
     m_PersistentCalls:
@@ -110,30 +128,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnStateStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnStateEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  OnPlayerTriggerEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5132604718405775962}
-        m_TargetAssemblyTypeName: RingEngineObject, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnPlayerTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
   cutsceneDutarion: 5
   lockPlayerControls: 1
   playerPositionAfterCutscene: {fileID: 0}
@@ -162,7 +156,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  easeIn: 3
+  positionEaseIn: 5
+  rotationEaseIn: 5
+  fieldOfViewEaseIn: 2
+  fieldOfView: 60
   returnToStartPosition: 0
   cameraTargetPosition: {fileID: 1449834507301466563}
 --- !u!1 &8637853877809582596

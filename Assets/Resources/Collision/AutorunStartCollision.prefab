@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000013555827968}
   - component: {fileID: 65000012840584690}
   - component: {fileID: 114000012639998286}
-  m_Layer: 2
+  m_Layer: 14
   m_Name: AutorunStartCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

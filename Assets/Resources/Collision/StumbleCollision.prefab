@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000013617044080}
   - component: {fileID: 65000010521062114}
   - component: {fileID: 114987354813302466}
-  m_Layer: 2
+  m_Layer: 14
   m_Name: StumbleCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

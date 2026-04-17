@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4000011721898844}
   - component: {fileID: 65000011004430626}
   - component: {fileID: 114000013443831808}
-  m_Layer: 2
+  m_Layer: 14
   m_Name: FallDeadTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.1, z: 1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000013443831808
 MonoBehaviour:

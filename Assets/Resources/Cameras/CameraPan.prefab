@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: CameraPan
   m_TagString: Untagged
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,6 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf32cf1dac3e1684c83897c870792f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SetObjectID: 0
+  labelHeightOffset: 1.5
+  debugLastOffset: 0
+  OnPlayerTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
+  Target: 0
   distance: 5
   distanceWhenBoosting: 2
   fieldOfView: 45
@@ -52,6 +62,7 @@ MonoBehaviour:
   easeOut: 0.5
   priority: 0
   targetOffset: {x: 0, y: 0, z: 0}
+  debugCameraColor: {r: 0, g: 1, b: 0, a: 1}
   cameraEnabledTime: 0
   rotation: {x: 0, y: 0, z: 0, w: 0}
   offset: {x: 0, y: 0, z: 0}
