@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class CameraTarget : MonoBehaviour
 {
     public Vector3 offset { get; set; }
-    public Vector3 position { get { return transform.position; }  }
+    public Vector3 position { get { return transform.position; } }
 
     public Player player;
     public Transform lookAt;
@@ -22,6 +21,7 @@ public class CameraTarget : MonoBehaviour
     private bool isShaking;
     private float intensity;
     private float force;
+    private bool lockRotation;
 
     private void Start()
     {
@@ -29,8 +29,24 @@ public class CameraTarget : MonoBehaviour
         localOffset = new Vector3(0, yOffset, 0);
     }
 
+    public void SetLockRotation(bool locked)
+    {
+        lockRotation = locked;
+    }
+
     private void Update()
     {
+        if (player.gameplayMode == GameplayMode.SideView)
+        {
+            if (player.sideViewPath != null && !lockRotation)
+            {
+                if (player.splineConstraint.currentFrenetFrame.binormal != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(-player.splineConstraint.currentFrenetFrame.binormal, Vector3.up), 10 * Time.deltaTime);
+                }
+            }
+        }
+
         if (!isShaking)
         {
             localOffset.y = Mathf.Lerp(localOffset.y, (player.IsGrounded() || player.isGrindGrounded) ? yOffset : yOffsetInAir, yOffsetDamping * Time.deltaTime);
@@ -39,7 +55,7 @@ public class CameraTarget : MonoBehaviour
         {
             localOffset.y = Mathf.Lerp(yOffset - force, yOffset + force, Mathf.PingPong(Time.time * intensity, 1));
         }
-   
+
         transform.position = player.transform.position + localOffset;
         subTargetPosition = player.transform.TransformPoint(offset) + localOffset;
         lookAt.transform.position = Vector3.SmoothDamp(lookAt.transform.position, subTargetPosition, ref velocity, damping);
@@ -49,7 +65,7 @@ public class CameraTarget : MonoBehaviour
     {
         this.force = force; ;
         this.intensity = intensity;
-        isShaking = true;        
+        isShaking = true;
         yield return new WaitForSeconds(duration);
         isShaking = false;
     }
