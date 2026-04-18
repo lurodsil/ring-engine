@@ -2,12 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BezierKnot
 {
     public Vector3 point { get; set; }
     public Vector3 tangent { get; set; }
     public Vector3 binormal { get; set; }
     public Vector3 normal { get; set; }
+
+    public Quaternion rotation
+    {
+        get
+        {
+            return Quaternion.LookRotation(tangent, normal);
+        }
+    }
+
+    public Quaternion rotationBinormal
+    {
+        get
+        {
+            return Quaternion.LookRotation(-binormal, Vector3.up);
+        }
+    }
 
     public BezierKnot()
     {

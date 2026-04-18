@@ -59,7 +59,7 @@ public class BezierMesh
         return returnMesh;
     }
 
-    public Mesh CreateSplineMesh(DualBezierSpline dualBezierSpline, int splineIterations = 50, float maxDistance = 1)
+    public Mesh CreateSplineMesh(DualBezierSpline dualBezierSpline, int splineIterations = 50, float maxDistance = 1f)
     {
         List<Vector3> vertices = new List<Vector3>();
 
@@ -69,51 +69,54 @@ public class BezierMesh
         Vector3 lastPointRight = dualBezierSpline.GetPoint(0, 1);
         Vector3 lastMiddlePoint = Vector3.Lerp(lastPointLeft, lastPointRight, 0.5f);
 
-        //Adds the two first vertices
         vertices.Add(dualBezierSpline.transform.InverseTransformPoint(lastPointLeft));
         vertices.Add(dualBezierSpline.transform.InverseTransformPoint(lastPointRight));
 
-        //Create Vertices
-        for (float f = 0; f < 1; f += step)
+        for (float f = step; f < 1f; f += step)
         {
             Vector3 pointLeft = dualBezierSpline.GetPoint(f, 0);
             Vector3 pointRight = dualBezierSpline.GetPoint(f, 1);
-            Vector3 middlePoint = Vector3.Lerp(pointLeft, pointLeft, 0.5f);
+            Vector3 middlePoint = Vector3.Lerp(pointLeft, pointRight, 0.5f);
 
             if (Vector3.Distance(lastMiddlePoint, middlePoint) > maxDistance)
             {
                 vertices.Add(dualBezierSpline.transform.InverseTransformPoint(pointLeft));
                 vertices.Add(dualBezierSpline.transform.InverseTransformPoint(pointRight));
+
+                lastMiddlePoint = middlePoint;
             }
-
-            lastPointLeft = pointLeft;
-            lastPointRight = pointRight;
-            lastMiddlePoint = middlePoint;
         }
 
-        //Adds the two last vertices
-        vertices.Add(dualBezierSpline.transform.InverseTransformPoint(lastPointLeft));
-        vertices.Add(dualBezierSpline.transform.InverseTransformPoint(lastPointRight));
+        vertices.Add(dualBezierSpline.transform.InverseTransformPoint(
+            dualBezierSpline.GetPoint(1f, 0)));
+        vertices.Add(dualBezierSpline.transform.InverseTransformPoint(
+            dualBezierSpline.GetPoint(1f, 1)));
 
-        int[] triangles = new int[vertices.Count * 3];
+        int segmentCount = (vertices.Count / 2) - 1;
+        int[] triangles = new int[segmentCount * 6];
 
-        //Create Triangles
-        for (int i = 0; i < (vertices.Count / 2f) - 1; i++)
+        for (int i = 0; i < segmentCount; i++)
         {
-            triangles[i * 6] = i * 2;
-            triangles[i * 6 + 1] = i * 2 + 2;
-            triangles[i * 6 + 2] = i * 2 + 1;
+            int v = i * 2;
+            int t = i * 6;
 
-            triangles[i * 6 + 3] = i * 2 + 1;
-            triangles[i * 6 + 4] = i * 2 + 2;
-            triangles[i * 6 + 5] = i * 2 + 3;
+            triangles[t] = v;
+            triangles[t + 1] = v + 2;
+            triangles[t + 2] = v + 1;
+
+            triangles[t + 3] = v + 1;
+            triangles[t + 4] = v + 2;
+            triangles[t + 5] = v + 3;
         }
 
-        Mesh returnMesh = new Mesh();
-        returnMesh.name = "spline mesh";
-        returnMesh.vertices = vertices.ToArray();
-        returnMesh.triangles = triangles;
+        Mesh mesh = new Mesh();
+        mesh.name = "Spline Mesh";
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles;
+        mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
 
-        return returnMesh;
+        return mesh;
     }
+
 }

@@ -41,7 +41,16 @@ public class BezierMeshCreator : MonoBehaviour
 
         float step = 1.0f / 100;
 
-        Vector3 lastPoint = bezierSpline.GetPoint(0);
+        Vector3 lastPoint;
+
+        if(bezierSpline)
+        {
+            lastPoint = bezierSpline.GetKnot(0).point;
+        }
+        else
+        {
+            lastPoint = dualBezierSpline.GetKnot(0, 0.5f).point;
+        }   
 
         float distance = distanceMin;
         float distaceBetween = betweenDecorationDistanceMin;
@@ -52,7 +61,16 @@ public class BezierMeshCreator : MonoBehaviour
 
         for (float f = 0; f < 1; f += step)
         {
-            BezierKnot knot = bezierSpline.GetKnot(f);
+            BezierKnot knot;
+
+            if(bezierSpline)
+            {
+                knot = bezierSpline.GetKnot(f);
+            }
+            else
+            {
+                knot = dualBezierSpline.GetKnot(f, 1f);
+            }
 
             Quaternion rotation = Quaternion.LookRotation(knot.binormal);
 
@@ -77,7 +95,7 @@ public class BezierMeshCreator : MonoBehaviour
         {
             if (structures[i].part && structures[i].cap)
             {
-                CreateMesh(structures[i], 100, distanceMax);
+                CreateMesh(structures[i], 500, distanceMax);
             }
             else
             {
@@ -207,6 +225,7 @@ public class BezierMeshCreator : MonoBehaviour
         finalMesh.name = "mesh_instance";
 
         finalMesh.CombineMeshes(combineInstances);
+
 
         GameObject meshObject = new GameObject(bezierMeshStructure.name);
         meshObject.transform.parent = transform;
