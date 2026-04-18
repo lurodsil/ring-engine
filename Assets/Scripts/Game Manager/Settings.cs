@@ -1,4 +1,6 @@
-﻿[System.Serializable]
+﻿using RingEngine.UI.Hud;
+
+[System.Serializable]
 public class Settings
 {
     //Audio

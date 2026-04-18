@@ -26,13 +26,13 @@ public class GameOver : MonoBehaviour
                 GameManager.instance.firstTimeLoad = true;
                 GameManager.instance.activeCheckpoints.Clear();
                 GameManager.instance.lastCheckpoint = -1;
-                Timer.reset = true;
+                Timer.ResetTimer();
                 GameManager.instance.lives = 3;
                 GameManager.instance.LoadSceneWithLoading(GameManager.instance.sceneLoading);
             }
         }
 
-        if (!continueGame && Input.GetButton(XboxButton.A))
+        if (!continueGame && Player.instance.Input.JumpHeld)
         {
             animator.SetTrigger("Continue");
             audioSource.PlayOneShot(audioClip);
