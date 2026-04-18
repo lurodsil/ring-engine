@@ -28,6 +28,75 @@ public class DualBezierSpline : MonoBehaviour
         right = currentLeft;
     }
 
+    [ContextMenu("Normalize Transform")]
+    [ContextMenu("Normalize Transform")]
+    public void NormalizeTransform()
+    {
+        if (left == null || right == null) return;
+
+
+
+        // 2. Pega origem e direção ANTES de mexer
+        Vector3 startPoint = GetPoint(0f, 0.5f);
+        Vector3 forward = GetTangent(0f);
+
+        if (forward.sqrMagnitude < 0.0001f)
+            forward = Vector3.forward;
+
+        Quaternion rotation = Quaternion.LookRotation(forward, GetNormal(0f));
+
+        // 3. Bake filhos para WORLD (IMPORTANTÍSSIMO)
+        BakeSplineToWorld(left);
+        BakeSplineToWorld(right);
+
+        // 4. Move o DualBezier
+        transform.position = startPoint;
+        transform.rotation = rotation;
+        transform.localScale = Vector3.one;
+
+        // 5. Converter de volta para LOCAL dos filhos
+        UnbakeSplineFromWorld(left);
+        UnbakeSplineFromWorld(right);
+
+        // 1. Normaliza os splines individuais
+        left.Normalize();
+        right.Normalize();
+    }
+
+
+    private void BakeSplineToWorld(BezierSpline spline)
+    {
+        Transform t = spline.transform;
+
+        for (int i = 0; i < spline.bezierControlPoints.Count; i++)
+        {
+            var cp = spline.bezierControlPoints[i];
+
+            cp.point = t.TransformPoint(cp.point);
+            cp.invec = t.TransformPoint(cp.invec);
+            cp.outvec = t.TransformPoint(cp.outvec);
+
+            spline.bezierControlPoints[i] = cp;
+        }
+    }
+
+    private void UnbakeSplineFromWorld(BezierSpline spline)
+    {
+        Transform t = spline.transform;
+        Matrix4x4 worldToLocal = t.worldToLocalMatrix;
+
+        for (int i = 0; i < spline.bezierControlPoints.Count; i++)
+        {
+            var cp = spline.bezierControlPoints[i];
+
+            cp.point = worldToLocal.MultiplyPoint3x4(cp.point);
+            cp.invec = worldToLocal.MultiplyPoint3x4(cp.invec);
+            cp.outvec = worldToLocal.MultiplyPoint3x4(cp.outvec);
+
+            spline.bezierControlPoints[i] = cp;
+        }
+    }
+
     public Vector3 GetPoint(float t, float l)
     {
         return Vector3.Lerp(left.GetPoint(t), right.GetPoint(t), l);
@@ -57,6 +126,8 @@ public class DualBezierSpline : MonoBehaviour
     {
         return new BezierKnot(GetPoint(t, b), GetTangent(t), GetBinormal(t), GetNormal(t));
     }
+
+
 
     public float ClosestPoint(Vector3 point, float precision)
     {

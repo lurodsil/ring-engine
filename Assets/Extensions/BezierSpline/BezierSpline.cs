@@ -18,6 +18,71 @@ public class BezierSpline : MonoBehaviour
 
     public List<BezierControlPoint> bezierControlPoints = new List<BezierControlPoint>();
 
+    [ContextMenu("Normalize Spline")]
+    private void NormalizeSpline()
+    {
+        Transform t = transform;
+
+        // 1. Converter tudo para WORLD
+        List<BezierControlPoint> worldPoints = new List<BezierControlPoint>();
+
+        for (int i = 0; i < bezierControlPoints.Count; i++)
+        {
+            var cp = bezierControlPoints[i];
+
+            BezierControlPoint newCp = new BezierControlPoint();
+
+            newCp.point = t.TransformPoint(cp.point);
+            newCp.invec = t.TransformPoint(cp.invec);
+            newCp.outvec = t.TransformPoint(cp.outvec);
+            newCp.bezierControlPointMode = cp.bezierControlPointMode;
+
+            worldPoints.Add(newCp);
+        }
+
+        // 2. Resetar transform
+        t.position = Vector3.zero;
+        t.rotation = Quaternion.identity;
+        t.localScale = Vector3.one;
+
+        // 3. Aplicar world points temporariamente
+        bezierControlPoints = worldPoints;
+
+        // 4. Calcular origem e direção da spline
+        Vector3 startPoint = GetPoint(0f);
+        Vector3 forward = GetTangent(0f);
+
+        // Segurança (caso tangent seja zero)
+        if (forward.sqrMagnitude < 0.0001f)
+            forward = Vector3.forward;
+
+        Quaternion rotation = Quaternion.LookRotation(forward, Vector3.up);
+
+        // 5. Aplicar novo transform
+        t.position = startPoint;
+        t.rotation = rotation;
+
+        // 6. Converter pontos de volta para LOCAL
+        Matrix4x4 worldToLocal = t.worldToLocalMatrix;
+
+        for (int i = 0; i < bezierControlPoints.Count; i++)
+        {
+            var cp = bezierControlPoints[i];
+
+            cp.point = worldToLocal.MultiplyPoint3x4(cp.point);
+            cp.invec = worldToLocal.MultiplyPoint3x4(cp.invec);
+            cp.outvec = worldToLocal.MultiplyPoint3x4(cp.outvec);
+
+            bezierControlPoints[i] = cp;
+        }
+    }
+
+
+    public void Normalize()
+    {
+        NormalizeSpline();
+    }
+
     public Vector3 GetPoint(float t)
     {
         int i;
