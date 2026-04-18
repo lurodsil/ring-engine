@@ -12,7 +12,7 @@ public class BillboardMesh : MonoBehaviour
 
     Vector3 targetPosition;
 
-    void LateUpdate()
+    void Update()
     {
         Vector3 cameraPosition = Camera.main.transform.position;
 
