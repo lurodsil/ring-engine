@@ -11,9 +11,8 @@ public class ChangeMode_3Dto2D : CommonObject
     public bool m_IsEnableFromFront = true;
     public bool m_IsPadCorrect = true;
     public float m_PathEaseTime = 0.5f;
-    public BezierPath bezierPath;
-
-
+    public GameplayMode frontGameplayMode = GameplayMode.SideView;
+    public GameplayMode backGameplayMode = GameplayMode.Forward;
 
     private void Start()
     {
@@ -22,11 +21,33 @@ public class ChangeMode_3Dto2D : CommonObject
 
     public void ChangeMode()
     {
-        player.sideViewPath = bezierPath;
+        Vector3 velocity = player.rigidbody.linearVelocity;
+
+        if (velocity.sqrMagnitude < 0.01f)
+            velocity = player.transform.forward;
+
+        Vector3 moveDir = Vector3.ProjectOnPlane(velocity, Vector3.up).normalized;
+        Vector3 forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+
+        float dot = Vector3.Dot(moveDir, forward);
+
+        const float threshold = 0.2f;
+
+        if (dot > threshold)
+        {
+            if (m_IsEnableFromFront)
+                player.gameplayMode = frontGameplayMode;
+        }
+        else if (dot < -threshold)
+        {
+            if (m_IsEnableFromBack)
+                player.gameplayMode = backGameplayMode;
+        }
     }
+
 
     public void OnDrawGizmos()
     {
-        Gizmos.DrawSphere(TargetDirection, 0.3f);
+        Gizmos.DrawWireSphere(TargetDirection, 0.3f);
     }
 }

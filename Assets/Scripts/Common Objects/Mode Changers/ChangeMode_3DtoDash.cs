@@ -13,28 +13,43 @@ public class ChangeMode_3DtoDash : GenerationsObject
     public bool m_IsLimitEdge = true;
     public bool m_IsReverseCameraEnable = false;
     public float m_PathCorrectionForce = 0.5f;
-    public BezierPath bezierPath;
+    public GameplayMode frontGameplayMode = GameplayMode.Dash;
+    public GameplayMode backGameplayMode = GameplayMode.Forward;
 
-    private void Awake()
+    private void Start()
     {
-        OnPlayerTriggerEnter!.AddListener(ChangeMode3DtoDash);
-    }
-    public override void OnValidate()
-    {
-        transform.localScale = new Vector3(Collision_Width, Collision_Height, 0.5f);
+        OnPlayerTriggerEnter.AddListener(ChangeMode);
     }
 
-    private void ChangeMode3DtoDash()
-    {            
-        if (player.pathType != BezierPathType.Dash)
+    public void ChangeMode()
+    {
+        Vector3 velocity = player.rigidbody.linearVelocity;
+
+        if (velocity.sqrMagnitude < 0.01f)
+            velocity = player.transform.forward;
+
+        Vector3 moveDir = Vector3.ProjectOnPlane(velocity, Vector3.up).normalized;
+        Vector3 forward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+
+        float dot = Vector3.Dot(moveDir, forward);
+
+        const float threshold = 0.2f;
+
+        if (dot > threshold)
         {
-            player.bezierPath = bezierPath;
-            player.pathType = BezierPathType.Dash;
+            if (m_IsEnableFromFront)
+                player.gameplayMode = frontGameplayMode;
         }
-        else
+        else if (dot < -threshold)
         {
-            player.bezierPath = null;
-            player.pathType = BezierPathType.None;
-        }        
+            if (m_IsEnableFromBack)
+                player.gameplayMode = backGameplayMode;
+        }
+    }
+
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(TargetDirection, 0.3f);
     }
 }
