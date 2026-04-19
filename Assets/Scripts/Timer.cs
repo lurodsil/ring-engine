@@ -1,32 +1,25 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public bool startTimer;
-    public bool pauseGame;
-    public bool resetTimer;
-    public static bool start;
-    public static bool reset;
     static float startTime;
-    static float minutes;
-    static float seconds;
-    static float seconds3Digits;
-    static float fraction;
     static float displayTimer;
+
     public static int minutesRound;
     public static int secondsRound;
     public static int fractionRound;
     public static int secondsRound3Digits;
 
+    static float seconds3Digits;
+
     public static bool isTimerPaused = true;
 
-    private void Update()
+    void Update()
     {
         if (!isTimerPaused)
         {
             UpdateTimer();
-        }       
+        }
     }
 
     public static void StartTimer()
@@ -49,10 +42,11 @@ public class Timer : MonoBehaviour
     {
         displayTimer = Time.time - startTime;
 
-        minutes = displayTimer / 60;
-        seconds = displayTimer % 60;
-        fraction = (displayTimer * 100) % 100;
-        seconds3Digits = displayTimer % 999;
+        float minutes = displayTimer / 60f;
+        float seconds = displayTimer % 60f;
+        float fraction = (displayTimer * 100f) % 100f;
+
+        seconds3Digits = displayTimer % 999f;
 
         minutesRound = Mathf.FloorToInt(minutes);
         secondsRound = Mathf.FloorToInt(seconds);
