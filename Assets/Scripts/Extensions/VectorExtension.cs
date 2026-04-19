@@ -40,104 +40,41 @@ public class VectorExtension
     {
         Vector3 input = new Vector3(inputX, 0, inputY);
         Vector3 direction = camera.TransformDirection(input);
-        direction.y =  target.TransformDirection(input).y;
-        return Vector3.ProjectOnPlane(direction, target.up).normalized;
+        direction.y = target.TransformDirection(input).y;
+        return Vector3.ProjectOnPlane(direction, target.up);
     }
 
-    //public static Vector3 Direction(Vector3 from, Vector3 to)
-    //{
-    //    return (to - from).normalized;
-    //}
+    public static Vector3 GetMovementDirectionProjectedOnPlane(Transform character, Vector2 input, Vector3 groundNormal)
+    {
+        Vector3 inputDirection =
+            character.forward * input.y +
+            character.right * input.x;
+
+        Vector3 movement = Vector3.ProjectOnPlane(inputDirection, groundNormal);
+
+        return movement.normalized;
+    }
+
+
 
     public static SixWayDirections Direction(Transform transform, Vector3 target)
     {
-        Vector3 dots = new Vector3();
+        Vector3 dir = (target - transform.position).normalized;
 
-        Vector3 dirToTarget = transform.DirectionTo(target);
+        float x = Vector3.Dot(transform.right, dir);
+        float y = Vector3.Dot(transform.up, dir);
+        float z = Vector3.Dot(transform.forward, dir);
 
-        dots.z = Vector3.Dot(transform.forward, dirToTarget);
-        dots.x = Vector3.Dot(transform.right, dirToTarget);
-        dots.y = Vector3.Dot(transform.up, dirToTarget);
+        float ax = Mathf.Abs(x);
+        float ay = Mathf.Abs(y);
+        float az = Mathf.Abs(z);
 
-        SixWayDirections sixWayDirections = new SixWayDirections();
+        if (ax > ay && ax > az)
+            return x > 0 ? SixWayDirections.Right : SixWayDirections.Left;
 
-        if (dots.x > 0.5f)
-        {
-            sixWayDirections = SixWayDirections.Right;
-        }
-        else if (dots.x < -0.5f)
-        {
-            sixWayDirections = SixWayDirections.Left;
-        }
-        else
-        {
-            if (dots.y > 0.5f)
-            {
-                sixWayDirections = SixWayDirections.Up;
-            }
-            else if (dots.y < -0.5f)
-            {
-                sixWayDirections = SixWayDirections.Down;
-            }
-            else
-            {
-                if (dots.z > 0.5f)
-                {
-                    sixWayDirections = SixWayDirections.Front;
-                }
-                else if (dots.z < -0.5f)
-                {
-                    sixWayDirections = SixWayDirections.Back;
-                }
-            }
-        }
+        if (ay > ax && ay > az)
+            return y > 0 ? SixWayDirections.Up : SixWayDirections.Down;
 
-        return sixWayDirections;
-    }
-
-    public static SixWayDirections InverseDirection(Transform transform, Vector3 target)
-    {
-        Vector3 dots = new Vector3();
-
-        Vector3 dirToTarget = transform.DirectionTo(target);
-
-        dots.z = Vector3.Dot(-transform.forward, dirToTarget);
-        dots.x = Vector3.Dot(-transform.right, dirToTarget);
-        dots.y = Vector3.Dot(-transform.up, dirToTarget);
-
-        SixWayDirections sixWayDirections = new SixWayDirections();
-
-        if (dots.x > 0.5f)
-        {
-            sixWayDirections = SixWayDirections.Right;
-        }
-        else if (dots.x < -0.5f)
-        {
-            sixWayDirections = SixWayDirections.Left;
-        }
-        else
-        {
-            if (dots.y > 0.5f)
-            {
-                sixWayDirections = SixWayDirections.Up;
-            }
-            else if (dots.y < -0.5f)
-            {
-                sixWayDirections = SixWayDirections.Down;
-            }
-            else
-            {
-                if (dots.z > 0.5f)
-                {
-                    sixWayDirections = SixWayDirections.Front;
-                }
-                else if (dots.z < -0.5f)
-                {
-                    sixWayDirections = SixWayDirections.Back;
-                }
-            }
-        }
-
-        return sixWayDirections;
+        return z > 0 ? SixWayDirections.Front : SixWayDirections.Back;
     }
 }
