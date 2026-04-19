@@ -97,7 +97,7 @@ public class UnderwaterManager : MonoBehaviour
                         if (Time.time > underwaterTimer + 11)
                         {
                             Player.instance.drown = true;
-                            Player.instance.stateMachine.ChangeState(Player.instance.StateDie);
+                            Player.instance.newStateMachine.ChangeState(Player.instance.States.StateDie);
                             audioSource.PlayOneShot(drown);
                             underwaterAlertState++;
                         }
