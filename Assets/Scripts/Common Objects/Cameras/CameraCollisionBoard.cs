@@ -1,162 +1,170 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraCollisionBoard : GenerationsObject
+[RequireComponent(typeof(BoxCollider))]
+public class CameraCollisionBoard : CommonObject
 {
-    public int ACameraID;
+    public CameraBoardSide SideForward = new CameraBoardSide();
+    public CameraBoardSide SideBackward = new CameraBoardSide();
 
-    public float ACameraPriority = 0f;
-    public int ALinkObjID;
-    public float ALinkSide = 1f;
-    public float AObjType = 0f;
-    public int BCameraID;
-    public float BCameraPriority = 0f;
-    public int BLinkObjID;
-    public float BLinkSide = 0f;
-    public float BObjType = 0f;
-    public float Collision_Height = 10f;
-    public float Collision_Width = 10f;
+    [Header("Collision")]
+    public float CollisionHeight = 20f;
+    public float CollisionWidth = 10f;
+
+    [Header("Transition")]
     public float EaseTime_AtoB = 1f;
     public float EaseTime_BtoA = 1f;
-    public float m_ValidFlag = 0f;
 
-    public GameObject aCamera;
-    public GameObject bCamera;
+    [Header("Camera Settings")]
+    public float GroundOffset = 0f;
+    public bool IsCastShadow = true;
+    public float Range = 100f;
 
-    GameObject target;
+    public float m_ValidFlag;
 
-    public override void OnValidate()
+    public override void OnEnable()
     {
-        if (!gameObject.GetComponent<BoxCollider>())
-        {
-            gameObject.AddComponent<BoxCollider>();
-        }
+        base.OnEnable();
 
-        gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        OnPlayerTriggerEnter.AddListener(Activate);
 
-        transform.localScale = new Vector3(Collision_Width, Collision_Height, 1f);
-
-        try
-        {
-            aCamera = FindObjectByID(ACameraID).gameObject;
-            bCamera = FindObjectByID(BCameraID).gameObject;
-        }
-        catch
-        {
-
-        }
-
+        CacheCameras();
     }
 
-    private new void OnTriggerEnter(Collider other)
+    [ContextMenu("Attach Cameras")]
+    private void CacheCameras()
     {
-        if (other.CompareTag(GameTags.playerTag))
+        if (SideForward.CameraID != 0)
         {
-            try
+            SideForward.camera = FindObjectByID(SideForward.CameraID) as CameraCommon;
+        }
+        if (SideBackward.CameraID != 0)
+        {
+            SideBackward.camera = FindObjectByID(SideBackward.CameraID) as CameraCommon;
+        }
+
+        if (SideForward.LinkObjID != 0)
+        {
+            SideForward.linkObj = FindObjectByID(SideForward.LinkObjID) as CameraCollisionBoard;
+        }
+        if (SideBackward.LinkObjID != 0)
+        {
+            SideBackward.linkObj = FindObjectByID(SideBackward.LinkObjID) as CameraCollisionBoard;
+        }
+    }
+
+
+    public void Activate()
+    {
+        CameraManager.blendCamera = null;
+
+        float dot = Vector3.Dot(player.rigidbody.linearVelocity.normalized, transform.forward);
+
+        bool nextPointForward = SideForward.linkObj != null &&
+                                Vector3.Dot(transform.forward, SideForward.linkObj.transform.forward) > 0;
+
+        bool backPointForward = SideBackward.linkObj != null &&
+                                Vector3.Dot(transform.forward, SideBackward.linkObj.transform.forward) > 0;
+
+        if (dot > 0)
+        {
+
+            if (SideBackward.CameraID != 0)
             {
-                float dot = Vector3.Dot(transform.forward, other.transform.forward);
+                CameraManager.DeactivateTrigger(SideBackward.camera);
+            }
+            else if (SideBackward.LinkObjID != 0 && SideBackward.linkObj != null)
+            {
+                CameraManager.DeactivateTrigger(SideBackward.linkObj.SideForward.camera);
+            }
 
-                if (dot < 0)
+            if (SideForward.CameraID != 0)
+            {
+                CameraManager.ActivateTrigger(SideForward.camera);
+
+                if (SideForward.linkObj != null)
                 {
-                    if (ACameraID == 0)
+                    if (nextPointForward)
                     {
-                        GameManager.instance.cameras.Clear();
+                        if (SideForward.linkObj.SideBackward.CameraID != 0)
+                            CameraManager.blendCamera = SideForward.linkObj.SideBackward.camera;
                     }
-
-                    target = aCamera;
-
-                    GameManager.instance.cameras.Clear();
-
-                    target.SendMessage("EaseTimeEnter", EaseTime_BtoA, SendMessageOptions.DontRequireReceiver);
-
-                    target.SendMessage("Strt()", SendMessageOptions.DontRequireReceiver);
-
-                    if (!GameManager.instance.cameras.Contains(target))
+                    else
                     {
-                        try
-                        {
-                            GameManager.instance.cameras.Insert(0, target);
-                        }
-                        catch
-                        {
-
-                        }
+                        if (SideForward.linkObj.SideForward.CameraID != 0)
+                            CameraManager.blendCamera = SideForward.linkObj.SideForward.camera;
                     }
                 }
+            }
+            else if (SideForward.LinkObjID != 0 && SideForward.linkObj != null)
+            {
+                if (nextPointForward)
+                    CameraManager.ActivateTrigger(SideForward.linkObj.SideBackward.camera);
                 else
+                    CameraManager.ActivateTrigger(SideForward.linkObj.SideForward.camera);
+            }
+        }
+        else
+        {
+
+            if (SideForward.CameraID != 0)
+            {
+                CameraManager.DeactivateTrigger(SideForward.camera);
+            }
+            else if (SideForward.LinkObjID != 0 && SideForward.linkObj != null)
+            {
+                CameraManager.DeactivateTrigger(SideForward.linkObj.SideBackward.camera);
+            }
+
+            if (SideBackward.CameraID != 0)
+            {
+                CameraManager.ActivateTrigger(SideBackward.camera);
+
+                if (SideBackward.linkObj != null)
                 {
-                    if (BCameraID == 0)
+                    if (backPointForward)
                     {
-                        GameManager.instance.cameras.Clear();
+                        if (SideBackward.linkObj.SideForward.CameraID != 0)
+                            CameraManager.blendCamera = SideBackward.linkObj.SideForward.camera;
                     }
-
-                    target = bCamera;
-
-                    GameManager.instance.cameras.Clear();
-
-                    target.SendMessage("EaseTimeEnter", EaseTime_AtoB, SendMessageOptions.DontRequireReceiver);
-                    target.SendMessage("Strt()", SendMessageOptions.DontRequireReceiver);
-
-                    if (!GameManager.instance.cameras.Contains(target))
+                    else
                     {
-                        try
-                        {
-                            GameManager.instance.cameras.Insert(0, target);
-                        }
-                        catch
-                        {
-
-                        }
+                        if (SideBackward.linkObj.SideBackward.CameraID != 0)
+                            CameraManager.blendCamera = SideBackward.linkObj.SideBackward.camera; 
                     }
-
                 }
             }
-            catch
+            else if (SideBackward.LinkObjID != 0 && SideBackward.linkObj != null)
             {
-
+                if (backPointForward)
+                    CameraManager.ActivateTrigger(SideBackward.linkObj.SideForward.camera);
+                else
+                    CameraManager.ActivateTrigger(SideBackward.linkObj.SideBackward.camera);
             }
-
         }
     }
+
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-        try
-        {
-            Gizmos.DrawLine(transform.position, FindObjectByID(ACameraID).transform.position);
-        }
-        catch
-        {
+        debugLastOffset = 0;
 
-        }
-        Gizmos.color = Color.Lerp(Color.green, Color.black, 0.5f);
+        DrawConnection(SideForward.LinkObjID, Color.cyan, "Camera Link Object with ID ");
+        DrawConnection(SideForward.CameraID, Color.blue, "Camera Link Object with ID ");
+        
+        DrawConnection(SideBackward.CameraID, Color.yellow, "Camera Link Object with ID ", 1);
+        DrawConnection(SideBackward.LinkObjID, Color.orange, "Camera Link Object with ID ", 1);
+    }
 
-        try
-        {
-            Gizmos.DrawLine(transform.position, FindObjectByID(ALinkObjID).transform.position);
-        }
-        catch
-        {
+    private void OnDrawGizmos()
+    {
+        float cameraDistance = GetSceneViewCameraDistance();
 
-        }
+        if (cameraDistance < 500)
+        {
+            debugLastOffset = 0;
 
-        Gizmos.color = Color.blue;
-        try
-        {
-            Gizmos.DrawLine(transform.position, FindObjectByID(BCameraID).transform.position);
-        }
-        catch
-        {
-
-        }
-        Gizmos.color = Color.cyan;
-        try
-        {
-            Gizmos.DrawLine(transform.position, FindObjectByID(BLinkObjID).transform.position);
-        }
-        catch
-        {
-
+            Gizmos.color = new Color(0, 0.5f, 0, 0.5f);
+            GizmosExtension.DrawBoxBoundaries(GetComponent<BoxCollider>());
         }
     }
 }
