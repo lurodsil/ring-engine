@@ -3,31 +3,56 @@ using System.Xml;
 using UnityEditor;
 using UnityEngine;
 
-
 public class GenerationsSplineReader : EditorWindow
 {
-    TextAsset xmlToRead;
+    [SerializeField] private TextAsset[] xmlsToRead;
+
+    private SerializedObject so;
+    private SerializedProperty xmlsProp;
+
     [MenuItem("Window/Ring Engine Tools/Generations Spline Reader")]
     public static void ShowWindow()
     {
-        GetWindow(typeof(GenerationsSplineReader), false, "XML Reader");
+        GetWindow<GenerationsSplineReader>("XML Reader");
     }
 
-    void OnGUI()
+    private void OnEnable()
     {
-        EditorGUI.BeginChangeCheck();
+        so = new SerializedObject(this);
+        xmlsProp = so.FindProperty("xmlsToRead");
+    }
 
-        xmlToRead = EditorGUILayout.ObjectField("XML File", xmlToRead, typeof(TextAsset), false) as TextAsset;
+    private void OnGUI()
+    {
+        so.Update();
+
+        EditorGUILayout.PropertyField(xmlsProp, new GUIContent("XML Files"), true);
+
+        EditorGUILayout.Space();
 
         if (GUILayout.Button("Read Splines"))
         {
-            ReadSplines();
-
-            TranslateSplines();
+            foreach (TextAsset xml in xmlsToRead)
+            {
+                if (xml == null) continue;
+                ReadSplines(xml);
+                TranslateSplines(xml);
+            }
         }
+
+        if (GUILayout.Button("Translate Splines"))
+        {
+            foreach (TextAsset xml in xmlsToRead)
+            {
+                if (xml == null) continue;
+                TranslateSplines(xml);
+            }
+        }
+
+        so.ApplyModifiedProperties();
     }
 
-    void ReadSplines()
+    void ReadSplines(TextAsset xmlToRead)
     {
         XmlDocument xmlDocument = new XmlDocument();
 
@@ -50,6 +75,7 @@ public class GenerationsSplineReader : EditorWindow
                                     {
                                         case "geometry":
                                             GameObject gas = new GameObject(b.Attributes[0].Value.Replace("-geometry", string.Empty));
+
                                             foreach (XmlNode c in b.ChildNodes)
                                             {
                                                 switch (c.Name)
@@ -67,6 +93,8 @@ public class GenerationsSplineReader : EditorWindow
 
                                                                     bezierSpline.bezierControlPoints.Clear();
 
+
+
                                                                     foreach (XmlNode e in d.ChildNodes)
                                                                     {
                                                                         BezierControlPoint controlPoint = new BezierControlPoint();
@@ -76,26 +104,21 @@ public class GenerationsSplineReader : EditorWindow
                                                                             case "auto":
                                                                                 foreach (XmlNode f in e.ChildNodes)
                                                                                 {
-
                                                                                     if (f.Name == "invec")
                                                                                     {
                                                                                         string[] sts = f.InnerText.Split(' ');
                                                                                         controlPoint.invec = ParseVector3FromArray(sts);
                                                                                     }
-
                                                                                     if (f.Name == "outvec")
                                                                                     {
                                                                                         string[] sts = f.InnerText.Split(' ');
                                                                                         controlPoint.outvec = ParseVector3FromArray(sts);
                                                                                     }
-
                                                                                     if (f.Name == "point")
                                                                                     {
                                                                                         string[] sts = f.InnerText.Split(' ');
                                                                                         controlPoint.point = ParseVector3FromArray(sts);
                                                                                     }
-
-
                                                                                 }
                                                                                 break;
                                                                             case "bezier":
@@ -107,13 +130,11 @@ public class GenerationsSplineReader : EditorWindow
                                                                                         string[] sts = f.InnerText.Split(' ');
                                                                                         controlPoint.invec = ParseVector3FromArray(sts);
                                                                                     }
-
                                                                                     if (f.Name == "outvec")
                                                                                     {
                                                                                         string[] sts = f.InnerText.Split(' ');
                                                                                         controlPoint.outvec = ParseVector3FromArray(sts);
                                                                                     }
-
                                                                                     if (f.Name == "point")
                                                                                     {
                                                                                         string[] sts = f.InnerText.Split(' ');
@@ -130,13 +151,11 @@ public class GenerationsSplineReader : EditorWindow
                                                                                         string[] sts = f.InnerText.Split(' ');
                                                                                         controlPoint.invec = ParseVector3FromArray(sts);
                                                                                     }
-
                                                                                     if (f.Name == "outvec")
                                                                                     {
                                                                                         string[] sts = f.InnerText.Split(' ');
                                                                                         controlPoint.outvec = ParseVector3FromArray(sts);
                                                                                     }
-
                                                                                     if (f.Name == "point")
                                                                                     {
                                                                                         string[] sts = f.InnerText.Split(' ');
@@ -170,12 +189,51 @@ public class GenerationsSplineReader : EditorWindow
                                                                         }
                                                                         bezierSpline.bezierControlPoints.Add(controlPoint);
                                                                     }
+                                                                    Vector3 direction = (gas.transform.position - bezierSpline.GetPoint(0)).normalized;
+
+                                                                    if (gas.transform.childCount < 2)
+                                                                    {
+                                                                        go.name = "right";
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        go.name = "left";
+                                                                    }
                                                                     break;
+
+
                                                             }
                                                         }
+
+
                                                         break;
                                                 }
                                             }
+
+
+
+                                            try
+                                            {
+                                                DualBezierSpline dualBezierSpline = gas.AddComponent<DualBezierSpline>();
+
+                                                gas.AddComponent<BezierPath>();
+
+                                                DualBezierSplineCollider dualBezierSplineCollider = gas.AddComponent<DualBezierSplineCollider>();
+
+                                                dualBezierSplineCollider.iterations = 300;
+
+                                                if (gas.transform.Find("right") && gas.transform.Find("left"))
+                                                {
+                                                    dualBezierSplineCollider.CreateMesh();
+                                                }
+
+                                                gas.layer = LayerMask.NameToLayer("Spline Collision");
+                                            }
+                                            catch
+                                            {
+
+                                            }
+
                                             break;
                                     }
                                 }
@@ -188,7 +246,7 @@ public class GenerationsSplineReader : EditorWindow
         }
     }
 
-    void TranslateSplines()
+    void TranslateSplines(TextAsset xmlToRead)
     {
         XmlDocument xmlDocument = new XmlDocument();
 
@@ -204,36 +262,53 @@ public class GenerationsSplineReader : EditorWindow
                         switch (a.Name)
                         {
                             case "scene":
-                                foreach (XmlNode b in a.ChildNodes)
+                                foreach (XmlNode node in xmlDocument.SelectNodes("//node"))
                                 {
-                                    switch (b.Name)
+                                    string id = node.Attributes["id"]?.Value;
+
+                                    if (string.IsNullOrEmpty(id))
+                                        continue;
+
+                                    GameObject go = GameObject.Find(id);
+
+                                    if (go == null)
                                     {
-                                        case "node":
+                                        Debug.LogWarning($"GameObject {id} não encontrado.");
+                                        continue;
+                                    }
 
-                                            //GameObject gas = GameObject.Find(b.Attributes[0].Value);
-                                            //Dragon Road Spline
-                                            GameObject gas = GameObject.Find(b.Attributes[0].Value + "-spline");
+                                    foreach (XmlNode child in node.ChildNodes)
+                                    {
+                                        switch (child.Name)
+                                        {
+                                            case "translate":
+                                                string[] pos = child.InnerText.Split(' ');
+                                                go.transform.position = new Vector3(
+                                                    -float.Parse(pos[0], CultureInfo.InvariantCulture),
+                                                     float.Parse(pos[1], CultureInfo.InvariantCulture),
+                                                     float.Parse(pos[2], CultureInfo.InvariantCulture));
+                                                break;
 
+                                            case "scale":
+                                                string[] scale = child.InnerText.Split(' ');
+                                                go.transform.localScale = new Vector3(
+                                                    -float.Parse(scale[0], CultureInfo.InvariantCulture),
+                                                     float.Parse(scale[1], CultureInfo.InvariantCulture),
+                                                     float.Parse(scale[2], CultureInfo.InvariantCulture));
+                                                break;
 
-                                            foreach (XmlNode c in b.ChildNodes)
-                                            {
-                                                switch (c.Name)
-                                                {
-                                                    case "translate":
-                                                        string[] pos = c.InnerText.Split(' ');
-                                                        gas.transform.position = new Vector3(-float.Parse(pos[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(pos[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(pos[2], CultureInfo.InvariantCulture.NumberFormat));
-                                                        break;
-                                                    case "scale":
-                                                        string[] size = c.InnerText.Split(' ');
-                                                        gas.transform.localScale = new Vector3(-float.Parse(size[0], CultureInfo.InvariantCulture.NumberFormat), float.Parse(size[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(size[2], CultureInfo.InvariantCulture.NumberFormat));
-                                                        break;
-                                                    case "rotate":
-                                                        string[] rot = c.InnerText.Split(' ');
-                                                        gas.transform.rotation = new Quaternion(float.Parse(rot[0], CultureInfo.InvariantCulture.NumberFormat), -float.Parse(rot[1], CultureInfo.InvariantCulture.NumberFormat), float.Parse(rot[2], CultureInfo.InvariantCulture.NumberFormat), float.Parse(rot[3], CultureInfo.InvariantCulture.NumberFormat));
-                                                        break;
-                                                }
-                                            }
-                                            break;
+                                            case "rotate":
+                                                string[] rot = child.InnerText.Split(' ');
+
+                                                Quaternion rotation = new Quaternion(
+                                                    float.Parse(rot[0], CultureInfo.InvariantCulture),
+                                                    float.Parse(rot[1], CultureInfo.InvariantCulture),
+                                                    float.Parse(rot[2], CultureInfo.InvariantCulture),
+                                                    float.Parse(rot[3], CultureInfo.InvariantCulture));
+
+                                                go.transform.rotation = ConvertToEuler(rotation);
+                                                break;
+                                        }
                                     }
                                 }
 
@@ -243,6 +318,13 @@ public class GenerationsSplineReader : EditorWindow
                     break;
             }
         }
+    }
+
+    private Quaternion ConvertToEuler(Quaternion currentRotation)
+    {
+        currentRotation.Normalize();
+        var euler = currentRotation.eulerAngles;
+        return Quaternion.Euler(euler.x, -euler.y, -euler.z);
     }
 
     private Vector3 ParseVector3FromArray(string[] floats)
