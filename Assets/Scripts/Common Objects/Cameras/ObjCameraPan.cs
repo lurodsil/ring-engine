@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ObjCameraPan : CameraCommon
 {
-    public bool moveToPosition;
+    public bool moveToPosition = true;
 
     private void FixedUpdate()
     {
@@ -17,5 +17,6 @@ public class ObjCameraPan : CameraCommon
         Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, fieldOfView, EaseIn());
         cameraTarget.offset = Vector3.Lerp(cameraTarget.offset, targetOffset, EaseIn());
         MainCamera.lastRotation = Camera.main.transform.rotation;
+        MainCamera.lastDistance = distance;
     }
 }
